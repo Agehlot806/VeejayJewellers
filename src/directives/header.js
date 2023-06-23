@@ -1,79 +1,155 @@
-import { Dropdown, Container, Form, Nav, Navbar } from 'react-bootstrap';
-import logo from '../assets/images/logo/logo.png';
-import shoppingIcon from '../assets/images/icons/bag-2.png';
-import { Link } from 'react-router-dom';
+import { Dropdown, Container, Form, Nav, Navbar } from "react-bootstrap";
+import logo from "../assets/images/logo/logo.png";
+import shoppingIcon from "../assets/images/icons/bag-2.png";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 function Header() {
-    return (
-        <Navbar bg="white" expand="lg" className='header-bg'>
-            <Container>
-                <Navbar.Brand><Link to='/'><img src={logo} className='logo' /></Link></Navbar.Brand>
-                <Navbar.Toggle aria-controls="navbarScroll" />
-                <Navbar.Collapse id="navbarScroll">
-                    <Nav
-                        className="header-menu ms-auto my-2 my-lg-0"
-                    // style={{ maxHeight: '100px' }}
-                    // navbarScroll
-                    >
-                        <Nav.Link><Link to='/'>Home</Link></Nav.Link>
-                        <Nav.Link><Link to="/about">AboutUs</Link></Nav.Link>
-                        <Nav.Link>
-                            <Dropdown>
-                                <Dropdown.Toggle id="dropdown-basic">
-                                    Brands
-                                </Dropdown.Toggle>
-                                <Dropdown.Menu>
-                                    <Dropdown.Item href=""><i className="fa fa-angle-double-right" /> <Link to='/ARHA-brands'>ARHA</Link></Dropdown.Item>
-                                    <Dropdown.Item href=""><i className="fa fa-angle-double-right" /> <Link to='/VDANA-brands'>V'DANA</Link></Dropdown.Item>
-                                    <Dropdown.Item href=""><i className="fa fa-angle-double-right" /> <Link to='/IRKA-brands'>IRKA</Link></Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown>
-                        </Nav.Link>
-                        <Nav.Link>
-                            <Dropdown>
-                                <Dropdown.Toggle id="dropdown-basic">
-                                    Product
-                                </Dropdown.Toggle>
-                                <Dropdown.Menu>
-                                    <Dropdown.Item><i className="fa fa-angle-double-right" /> <Link to='/bangles'>Bangle</Link> </Dropdown.Item>
-                                    <Dropdown.Item><i className="fa fa-angle-double-right" /> <Link to='/nacklaces'>Necklaces</Link></Dropdown.Item>
-                                    <Dropdown.Item><i className="fa fa-angle-double-right" /> <Link to='/chains'>Chains</Link></Dropdown.Item>
-                                    <Dropdown.Item><i className="fa fa-angle-double-right" /> <Link to='/rings'>Rings</Link></Dropdown.Item>
-                                    <Dropdown.Item><i className="fa fa-angle-double-right" /> <Link to='/earrings'>Earrings</Link></Dropdown.Item>
-                                    <Dropdown.Item><i className="fa fa-angle-double-right" /> <Link to='/bracelets'>Bracelets</Link></Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown>
-                        </Nav.Link>
-                        <Nav.Link>
-                            <Dropdown>
-                                <Dropdown.Toggle id="dropdown-basic">
-                                    Catalogue
-                                </Dropdown.Toggle>
+  const [brandcategories, setbrandcategories] = useState([]);
 
-                                <Dropdown.Menu>
-                                    <Dropdown.Item href=""><i className="fa fa-angle-double-right" /> <Link to='/women'>Women</Link></Dropdown.Item>
-                                    <Dropdown.Item href=""><i className="fa fa-angle-double-right" /> <Link to='/men'>Men</Link></Dropdown.Item>
-                                    <Dropdown.Item href=""><i className="fa fa-angle-double-right" /> <Link to='/kids'>Kids</Link></Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown>
-                        </Nav.Link>
-                        <Nav.Link>
-                            <Dropdown>
-                                <Dropdown.Toggle id="dropdown-basic">
-                                    Pages
-                                </Dropdown.Toggle>
+  useEffect(() => {
+    categorys();
+  }, []);
 
-                                <Dropdown.Menu>
-                                    <Dropdown.Item href=""><i className="fa fa-angle-double-right" /> <Link to='/helpandFAQs'>Help & FAQs</Link></Dropdown.Item>
-                                    <Dropdown.Item href=""><i className="fa fa-angle-double-right" /> <Link to='/offers-details'>Offers Details</Link></Dropdown.Item>
-                                    <Dropdown.Item href=""><i className="fa fa-angle-double-right" /> <Link to='/blog'>Blog</Link></Dropdown.Item>
-                                    <Dropdown.Item href=""><i className="fa fa-angle-double-right" /> <Link to='/contact'>Contacts</Link></Dropdown.Item>
+  const categorys = () => {
+    axios
+      .get(`http://veejayjewels.com/api/v1/categories`)
+      .then((response) => {
+        setbrandcategories(response.data.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
+  console.log("brandcategoriesbrandcategories", brandcategories);
 
-                                </Dropdown.Menu>
-                            </Dropdown>
-                        </Nav.Link>
-                        {/* <Nav.Link href="">Contacts</Nav.Link> */}
-                        {/* <Nav.Link href="">
+  return (
+    <Navbar bg="white" expand="lg" className="header-bg">
+      <Container>
+        <Navbar.Brand>
+          <Link to="/">
+            <img src={logo} className="logo" />
+          </Link>
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="navbarScroll" />
+        <Navbar.Collapse id="navbarScroll">
+          <Nav
+            className="header-menu ms-auto my-2 my-lg-0"
+            // style={{ maxHeight: '100px' }}
+            // navbarScroll
+          >
+            <Nav.Link>
+              <Link to="/">Home</Link>
+            </Nav.Link>
+            <Nav.Link>
+              <Link to="/about">AboutUs</Link>
+            </Nav.Link>
+            <Nav.Link>
+              <Dropdown>
+                <Dropdown.Toggle id="dropdown-basic">Brands</Dropdown.Toggle>
+                <Dropdown.Menu>
+                  {brandcategories &&
+                    brandcategories.map((item) => (
+                      <Dropdown.Item href="" key={item.id}>
+                        <i className="fa fa-angle-double-right" />{" "}
+                        <Link to={`/brands/${item.id}/${item.name}`}>
+                          {item.name}
+                        </Link>
+                      </Dropdown.Item>
+                    ))}
+                  {/* <Dropdown.Item href="">
+                    <i className="fa fa-angle-double-right" />{" "}
+                    <Link to="/ARHA-brands">ARHA</Link>
+                  </Dropdown.Item> */}
+                  {/* <Dropdown.Item href="">
+                    <i className="fa fa-angle-double-right" />{" "}
+                    <Link to="/VDANA-brands">V'DANA</Link>
+                  </Dropdown.Item> */}
+                  {/* <Dropdown.Item href="">
+                    <i className="fa fa-angle-double-right" />{" "}
+                    <Link to="/IRKA-brands">IRKA</Link>
+                  </Dropdown.Item> */}
+                </Dropdown.Menu>
+              </Dropdown>
+            </Nav.Link>
+            <Nav.Link>
+              <Dropdown>
+                <Dropdown.Toggle id="dropdown-basic">Product</Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item>
+                    <i className="fa fa-angle-double-right" />{" "}
+                    <Link to="/bangles">Bangle</Link>{" "}
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                    <i className="fa fa-angle-double-right" />{" "}
+                    <Link to="/nacklaces">Necklaces</Link>
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                    <i className="fa fa-angle-double-right" />{" "}
+                    <Link to="/chains">Chains</Link>
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                    <i className="fa fa-angle-double-right" />{" "}
+                    <Link to="/rings">Rings</Link>
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                    <i className="fa fa-angle-double-right" />{" "}
+                    <Link to="/earrings">Earrings</Link>
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                    <i className="fa fa-angle-double-right" />{" "}
+                    <Link to="/bracelets">Bracelets</Link>
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Nav.Link>
+            <Nav.Link>
+              <Dropdown>
+                <Dropdown.Toggle id="dropdown-basic">Catalogue</Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item href="">
+                    <i className="fa fa-angle-double-right" />{" "}
+                    <Link to="/women">Women</Link>
+                  </Dropdown.Item>
+                  <Dropdown.Item href="">
+                    <i className="fa fa-angle-double-right" />{" "}
+                    <Link to="/men">Men</Link>
+                  </Dropdown.Item>
+                  <Dropdown.Item href="">
+                    <i className="fa fa-angle-double-right" />{" "}
+                    <Link to="/kids">Kids</Link>
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Nav.Link>
+            <Nav.Link>
+              <Dropdown>
+                <Dropdown.Toggle id="dropdown-basic">Pages</Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item href="">
+                    <i className="fa fa-angle-double-right" />{" "}
+                    <Link to="/helpandFAQs">Help & FAQs</Link>
+                  </Dropdown.Item>
+                  <Dropdown.Item href="">
+                    <i className="fa fa-angle-double-right" />{" "}
+                    <Link to="/offers-details">Offers Details</Link>
+                  </Dropdown.Item>
+                  <Dropdown.Item href="">
+                    <i className="fa fa-angle-double-right" />{" "}
+                    <Link to="/blog">Blog</Link>
+                  </Dropdown.Item>
+                  <Dropdown.Item href="">
+                    <i className="fa fa-angle-double-right" />{" "}
+                    <Link to="/contact">Contacts</Link>
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Nav.Link>
+            {/* <Nav.Link href="">Contacts</Nav.Link> */}
+            {/* <Nav.Link href="">
                             <Form.Control
                                 type="search"
                                 placeholder="Search"
@@ -81,13 +157,19 @@ function Header() {
                                 aria-label="Search"
                             />
                         </Nav.Link> */}
-                         <Nav.Link className='header-bag'><Link to='/calculator'><i className="fa fa-calculator" /></Link></Nav.Link>
-                        <Nav.Link className='header-bag'><i className="fa fa-shopping-bag" /></Nav.Link>
-                    </Nav>
-                </Navbar.Collapse>
-            </Container>
-        </Navbar>
-    );
+            <Nav.Link className="header-bag">
+              <Link to="/calculator">
+                <i className="fa fa-calculator" />
+              </Link>
+            </Nav.Link>
+            <Nav.Link className="header-bag">
+              <i className="fa fa-shopping-bag" />
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
 }
 
 export default Header;
