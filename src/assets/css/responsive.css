@@ -1,0 +1,123 @@
+/* ======================================= Responsive css ======================================= */
+
+@media only screen and (max-width: 1024px) {
+    .header-menu a {
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+    .bestseller-cardImg img {
+        width: 175px;
+    }
+    .home-back .carousel-caption {
+        bottom: -2.75rem;
+    }
+    .home-content h3 {
+        font-size: 29px;
+    }
+    .home-content p {
+        margin: 15px 0 25px;
+    }
+}
+
+@media only screen and (max-width: 912px) {
+    .allPage-bg h2 {
+        font-size: 35px;
+    }
+    .mainForm-bg {
+        min-height: 100%;
+    }
+}
+@media only screen and (max-width: 820px) {
+    .mainForm-bg {
+        min-height: 100%;
+    }
+    .home-back .carousel-caption {
+        bottom: -4.75rem;
+    }
+    .home-content a {
+        padding: 12px;
+        font-size: 15px;
+    }
+}
+
+@media only screen and (max-width: 540px) {
+    .men-catlog h3 {
+        margin: 40px 0 14px;
+    }
+    .contact-form {
+        padding: 30px;
+    }
+    .home-content a {
+        font-size: 20px;
+    }
+    .mainForm-content {
+        padding: 18px;
+    }
+    .home-content h3 {
+        font-size: 20px;
+    }
+    .home-content p {
+        margin: 6px;
+        font-size: 11px;
+    }
+    .home-content a {
+        font-size: 11px;
+    }
+}
+@media only screen and (max-width: 414px) {
+    .home-content a {
+        padding: 6px;
+        font-size: 8px;
+    }
+    .home-content p {
+        margin: 6px;
+        font-size: 8px;
+    }
+    .mainForm-text {
+        padding: 0;
+    }
+    .a-nine {
+        display: none !important;
+    }
+    .a-eight {
+        display: none !important;
+    }
+    .a-seven {
+        display: none !important;
+    }
+}
+@media only screen and (max-width: 393px) {
+    .home-content a {
+        font-size: 17px;
+    }
+    
+}
+@media only screen and (max-width: 320px) {
+    .mainForm-text h2 {
+        font-size: 47px;
+    }
+}
+@media only screen and (max-width: 280px) {
+    .allPage-bg a {
+        font-size: 24px;
+    }
+    .home-content h1 {
+        font-size: 35px;
+    }
+    .home-content a {
+        font-size: 9px;
+    }
+    .main-btn {
+        font-size: 25px;
+    }
+    .mainForm-text h2 {
+        font-size: 30px;
+    }
+    .btn-section a {
+        margin-left: 2px;
+        margin-right: 2px;
+    }
+    .mainForm-btn button {
+        padding: 0 44px;
+    }
+}
