@@ -36,7 +36,7 @@ function Kids() {
             <section className='section-padding'>
                 <Container>
                     <Row>
-                        <Col lg={6} className="mt-2 mb-2">
+                        <Col lg={6} sm={6} xs={6} className='mt-2 mb-2'>
                             <div className='catlogOne'>
                                 <Row>
                                     <Col sm={6}>
@@ -50,7 +50,7 @@ function Kids() {
                                 </Row>
                             </div>
                         </Col>
-                        <Col lg={6} className="mt-2 mb-2">
+                        <Col lg={6} sm={6} xs={6} className='mt-2 mb-2'>
                             <div className='catlogOne'>
                                 <Row>
                                     <Col sm={6}>
@@ -66,7 +66,7 @@ function Kids() {
                         </Col>
                     </Row>
                     <Row>
-                        <Col lg={6} className="mt-2 mb-2">
+                        <Col lg={6} sm={6} xs={6} className='mt-2 mb-2'>
                             <div className='catlogOne'>
                                 <Row>
                                     <Col sm={6} className='align-self-center'>
@@ -81,7 +81,7 @@ function Kids() {
                                 </Row>
                             </div>
                         </Col>
-                        <Col lg={6} className="mt-2 mb-2">
+                        <Col lg={6} sm={6} xs={6} className='mt-2 mb-2'>
                             <div className='catlogOne'>
                                 <Row>
                                     <Col sm={6} className='align-self-center'>
@@ -112,32 +112,32 @@ function Kids() {
             <section className='section-padding catlogbg'>
                 <Container>
                     <Row>
-                        <Col lg={2} sm={6} className="mt-2 mb-2">
+                        <Col lg={2} sm={3} xs={6} className="mt-2 mb-2">
                             <div className='catlogbg-card'>
                                 <img src={product1} />
                             </div>
                         </Col>
-                        <Col lg={2} sm={6} className="mt-2 mb-2">
+                        <Col lg={2} sm={3} xs={6} className="mt-2 mb-2">
                             <div className='catlogbg-card'>
                                 <img src={product2} />
                             </div>
                         </Col>
-                        <Col lg={2} sm={6} className="mt-2 mb-2">
+                        <Col lg={2} sm={3} xs={6} className="mt-2 mb-2">
                             <div className='catlogbg-card'>
                                 <img src={product3} />
                             </div>
                         </Col>
-                        <Col lg={2} sm={6} className="mt-2 mb-2">
+                        <Col lg={2} sm={3} xs={6} className="mt-2 mb-2">
                             <div className='catlogbg-card'>
                                 <img src={product4} />
                             </div>
                         </Col>
-                        <Col lg={2} sm={6} className="mt-2 mb-2">
+                        <Col lg={2} sm={3} xs={6} className="mt-2 mb-2">
                             <div className='catlogbg-card'>
                                 <img src={product5} />
                             </div>
                         </Col>
-                        <Col lg={2} sm={6} className="mt-2 mb-2">
+                        <Col lg={2} sm={3} xs={6} className="mt-2 mb-2">
                             <div className='catlogbg-card'>
                                 <img src={product6} />
                             </div>

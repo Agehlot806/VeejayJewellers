@@ -35,17 +35,17 @@ function Men() {
             <section className="section-padding">
                 <Container>
                 <Row>
-                        <Col lg={4} sm={6} className='mt-2 mb-2'>
+                        <Col lg={4} sm={4}xs={4} className='mt-2 mb-2'>
                             <div className='catlogbg-card'>
                                 <img src={men5} />
                             </div>
                         </Col>
-                        <Col lg={4} sm={6} className='mt-2 mb-2'>
+                        <Col lg={4} sm={4}xs={4} className='mt-2 mb-2'>
                             <div className='catlogbg-card'>
                                 <img src={men6} />
                             </div>
                         </Col>
-                        <Col lg={4} sm={6} className='mt-2 mb-2'>
+                        <Col lg={4} sm={4}xs={4} className='mt-2 mb-2'>
                             <div className='catlogbg-card'>
                                 <img src={men7} />
                             </div>
@@ -68,7 +68,7 @@ function Men() {
             <section className='section-padding'>
                 <Container>
                     <Row>
-                        <Col lg={6} className='mt-2 mb-2'>
+                        <Col lg={6} sm={6} xs={6} className='mt-2 mb-2'>
                             <div className='men-catlog'>
                                 <Row>
                                     <Col sm={6}>
@@ -81,7 +81,7 @@ function Men() {
                                 </Row>
                             </div>
                         </Col>
-                        <Col lg={6} className='mt-2 mb-2'>
+                        <Col lg={6} sm={6} xs={6} className='mt-2 mb-2'>
                             <div className='men-catlog'>
                                 <Row>
                                     <Col sm={6}>
@@ -96,7 +96,7 @@ function Men() {
                         </Col>
                     </Row>
                     <Row className="mt-3">
-                        <Col lg={6} className='mt-2 mb-2'>
+                        <Col lg={6} sm={6} xs={6} className='mt-2 mb-2'>
                             <div className='men-catlog'>
                                 <Row>
                                 <Col sm={6} className='align-self-center'>
@@ -109,7 +109,7 @@ function Men() {
                                 </Row>
                             </div>
                         </Col>
-                        <Col lg={6} className='mt-2 mb-2'>
+                        <Col lg={6} sm={6} xs={6} className='mt-2 mb-2'>
                             <div className='men-catlog'>
                                 <Row>
                                 <Col sm={6} className='align-self-center'>

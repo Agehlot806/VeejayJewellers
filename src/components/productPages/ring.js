@@ -29,7 +29,7 @@ function Ring() {
             <section className='section-padding'>
                 <Container>
                     <Row >
-                        <Col lg={3} sm={6} className='mb-5'>
+                        <Col lg={3} sm={4} xs={6} className='mb-3'>
                             <div className='bestseller-card'>
                                 <div className='bestseller-cardImg'>
                                     <img src={ring1} />
@@ -46,7 +46,7 @@ function Ring() {
                                 <a><i className="fa fa-star-o" /></a>
                             </div>
                         </Col>
-                        <Col lg={3} sm={6} className='mb-5'>
+                        <Col lg={3} sm={4} xs={6} className='mb-3'>
                             <div className='bestseller-card'>
                                 <div className='bestseller-cardImg'>
                                     <img src={ring2} />
@@ -63,7 +63,7 @@ function Ring() {
                                 <a><i className="fa fa-star-o" /></a>
                             </div>
                         </Col>
-                        <Col lg={3} sm={6} className='mb-5'>
+                        <Col lg={3} sm={4} xs={6} className='mb-3'>
                             <div className='bestseller-card'>
                                 <div className='bestseller-cardImg'>
                                     <img src={ring3} />
@@ -80,7 +80,7 @@ function Ring() {
                                 <a><i className="fa fa-star-o" /></a>
                             </div>
                         </Col>
-                        <Col lg={3} sm={6} className='mb-5'>
+                        <Col lg={3} sm={4} xs={6} className='mb-3'>
                             <div className='bestseller-card'>
                                 <div className='bestseller-cardImg'>
                                     <img src={ring4} />
@@ -97,7 +97,7 @@ function Ring() {
                                 <a><i className="fa fa-star-o" /></a>
                             </div>
                         </Col>
-                        <Col lg={3} sm={6} className='mb-5'>
+                        <Col lg={3} sm={4} xs={6} className='mb-3'>
                             <div className='bestseller-card'>
                                 <div className='bestseller-cardImg'>
                                     <img src={ring1} />
@@ -114,7 +114,7 @@ function Ring() {
                                 <a><i className="fa fa-star-o" /></a>
                             </div>
                         </Col>
-                        <Col lg={3} sm={6} className='mb-5'>
+                        <Col lg={3} sm={4} xs={6} className='mb-3'>
                             <div className='bestseller-card'>
                                 <div className='bestseller-cardImg'>
                                     <img src={ring4} />

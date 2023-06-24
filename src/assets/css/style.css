@@ -870,6 +870,10 @@ nav.header-bg {
     top: 0;
     bottom: 0;
 }
+.offerDetails-item.clean img {
+    width: 100%;
+    height: 100%;
+}
 
 /* effect-clean*/
 .clean .Offeroverlay span:nth-child(1) {
@@ -1735,7 +1739,7 @@ nav.header-bg {
 }
 
 .quantity-btn {
-    text-align: right;
+    /* text-align: right; */
 }
 
 .quantity-btn button {
@@ -1751,7 +1755,7 @@ nav.header-bg {
 .quantity-btn span {
     margin: 12px;
     border: 1px solid #936207;
-    padding: 5px 20px;
+    padding: 2px 30px;
     border-radius: 5px;
     font-size: 18px;
     font-weight: bold;
@@ -1901,4 +1905,34 @@ nav.header-bg {
 }
 .homeBack-bg img {
     width: 100%;
+}
+
+.productdetails-bg img {
+    width: 100%;
+}
+.productDetailTable.table {
+    /* text-align: center; */
+}
+table.productDetailTable.table tbody tr td {
+    vertical-align: middle;
+}
+table.productDetailTable.table thead tr th {
+    font-size: 23px;
+    font-weight: 600;
+    font-family: Playfair sans-serif;
+}
+table.productDetailTable.table tr td label {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.showSize {
+    background: linear-gradient(271.8deg, #6A4500 0.65%, #936207 98.14%);
+    color: #fff;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 50px;
+    font-weight: 500;
+    font-size: 20px;
+    font-family: Playfair sans-serif;
 }

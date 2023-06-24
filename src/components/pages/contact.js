@@ -93,21 +93,21 @@ function Contact() {
             <section className='section-padding'>
                 <Container>
                     <Row>
-                        <Col lg={4} sm={6} className="mt-2 mb-2">
+                        <Col lg={4} sm={4} xs={6} className="mt-2 mb-2">
                             <div className='contact-box'>
                             <i className="fa fa-address-card-o" />
                             <h3>Our Address:</h3>
                             <p>1 Kundamal House, 67, N S Patkar Marg, Opposite - Mercedes Benz, Mumbai, Maharashtra 400007</p>
                             </div>
                         </Col>
-                        <Col lg={4} sm={6} className="mt-2 mb-2">
+                        <Col lg={4} sm={4} xs={6} className="mt-2 mb-2">
                             <div className='contact-box'>
                             <i className="fa fa-envelope" />
                             <h3>Our Mailbox:</h3>
                             <p>info@xyz.com</p>
                             </div>
                         </Col>
-                        <Col lg={4} sm={6} className="mt-2 mb-2">
+                        <Col lg={4} sm={4} xs={6} className="mt-2 mb-2">
                             <div className='contact-box'>
                             <i className="fa fa-phone-square" />
                             <h3>Our Phone:</h3>

@@ -27,7 +27,7 @@ function Necklaces() {
             <section className='section-padding'>
                 <Container>
                     <Row >
-                        <Col lg={3} sm={6} className='mb-5'>
+                        <Col lg={3} sm={4} xs={6} className='mb-3'>
                             <div className='bestseller-card'>
                                 <div className='bestseller-cardImg'>
                                     <img src={product5} />
@@ -44,7 +44,7 @@ function Necklaces() {
                                 <a><i className="fa fa-star-o" /></a>
                             </div>
                         </Col>
-                        <Col lg={3} sm={6} className='mb-5'>
+                        <Col lg={3} sm={4} xs={6} className='mb-3'>
                             <div className='bestseller-card'>
                                 <div className='bestseller-cardImg'>
                                     <img src={product3} />
@@ -61,7 +61,7 @@ function Necklaces() {
                                 <a><i className="fa fa-star-o" /></a>
                             </div>
                         </Col>
-                        <Col lg={3} sm={6} className='mb-5'>
+                        <Col lg={3} sm={4} xs={6} className='mb-3'>
                             <div className='bestseller-card'>
                                 <div className='bestseller-cardImg'>
                                     <img src={product5} />
@@ -78,7 +78,7 @@ function Necklaces() {
                                 <a><i className="fa fa-star-o" /></a>
                             </div>
                         </Col>
-                        <Col lg={3} sm={6} className='mb-5'>
+                        <Col lg={3} sm={4} xs={6} className='mb-3'>
                             <div className='bestseller-card'>
                                 <div className='bestseller-cardImg'>
                                     <img src={product3} />
@@ -95,7 +95,7 @@ function Necklaces() {
                                 <a><i className="fa fa-star-o" /></a>
                             </div>
                         </Col>
-                        <Col lg={3} sm={6} className='mb-5'>
+                        <Col lg={3} sm={4} xs={6} className='mb-3'>
                             <div className='bestseller-card'>
                                 <div className='bestseller-cardImg'>
                                     <img src={product5} />
@@ -112,7 +112,7 @@ function Necklaces() {
                                 <a><i className="fa fa-star-o" /></a>
                             </div>
                         </Col>
-                        <Col lg={3} sm={6} className='mb-5'>
+                        <Col lg={3} sm={4} xs={6} className='mb-3'>
                             <div className='bestseller-card'>
                                 <div className='bestseller-cardImg'>
                                     <img src={product3} />

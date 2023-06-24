@@ -27,7 +27,7 @@ function Earrings() {
             <section className='section-padding'>
                 <Container>
                     <Row >
-                        <Col lg={3} sm={6} className='mb-5'>
+                        <Col lg={3} sm={4} xs={6} className='mb-3'>
                             <div className='bestseller-card'>
                                 <div className='bestseller-cardImg'>
                                     <img src={product6} />
@@ -44,7 +44,7 @@ function Earrings() {
                                 <a><i className="fa fa-star-o" /></a>
                             </div>
                         </Col>
-                        <Col lg={3} sm={6} className='mb-5'>
+                        <Col lg={3} sm={4} xs={6} className='mb-3'>
                             <div className='bestseller-card'>
                                 <div className='bestseller-cardImg'>
                                     <img src={product7} />

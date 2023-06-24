@@ -58,7 +58,7 @@ function ARHA() {
                 <Container>
                     {/* <Row >
                     {brandcategories.map(item => (
-                        <Col lg={3} sm={6} className='mb-5'>
+                        <Col lg={3} sm={6} className='mb-3'>
                             <div className='bestseller-card'>
                                 <div className='bestseller-cardImg'>
                                     <img src={item.image} />
@@ -116,7 +116,7 @@ function ARHA() {
                                 <Tab.Content>
                                     <Tab.Pane eventKey="first">
                                         <Row>
-                                            <Col lg={4} sm={6} className='mb-5'>
+                                            <Col lg={4} sm={6} xs={6} className='mb-3'>
                                                 <div className='bestseller-card'>
                                                     <div className='bestseller-cardImg'>
                                                         <img src={bangle1} />
@@ -133,7 +133,7 @@ function ARHA() {
                                                     <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
-                                            <Col lg={4} sm={6} className='mb-5'>
+                                            <Col lg={4} sm={6} xs={6} className='mb-3'>
                                                 <div className='bestseller-card'>
                                                     <div className='bestseller-cardImg'>
                                                         <img src={bangle2} />
@@ -150,7 +150,7 @@ function ARHA() {
                                                     <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
-                                            <Col lg={4} sm={6} className='mb-5'>
+                                            <Col lg={4} sm={6} xs={6} className='mb-3'>
                                                 <div className='bestseller-card'>
                                                     <div className='bestseller-cardImg'>
                                                         <img src={product2} />
@@ -167,7 +167,7 @@ function ARHA() {
                                                     <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
-                                            <Col lg={4} sm={6} className='mb-5'>
+                                            <Col lg={4} sm={6} xs={6} className='mb-3'>
                                                 <div className='bestseller-card'>
                                                     <div className='bestseller-cardImg'>
                                                         <img src={bangle1} />
@@ -184,7 +184,7 @@ function ARHA() {
                                                     <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
-                                            <Col lg={4} sm={6} className='mb-5'>
+                                            <Col lg={4} sm={6} xs={6} className='mb-3'>
                                                 <div className='bestseller-card'>
                                                     <div className='bestseller-cardImg'>
                                                         <img src={bangle2} />
@@ -201,7 +201,7 @@ function ARHA() {
                                                     <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
-                                            <Col lg={4} sm={6} className='mb-5'>
+                                            <Col lg={4} sm={6} xs={6} className='mb-3'>
                                                 <div className='bestseller-card'>
                                                     <div className='bestseller-cardImg'>
                                                         <img src={product2} />
@@ -222,7 +222,7 @@ function ARHA() {
                                     </Tab.Pane>
                                     <Tab.Pane eventKey="Bombay Fancy">
                                         <Row>
-                                            <Col lg={4} sm={6} className='mb-5'>
+                                            <Col lg={4} sm={6} xs={6} className='mb-3'>
                                                 <div className='bestseller-card'>
                                                     <div className='bestseller-cardImg'>
                                                         <img src={ring1} />
@@ -239,7 +239,7 @@ function ARHA() {
                                                     <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
-                                            <Col lg={4} sm={6} className='mb-5'>
+                                            <Col lg={4} sm={6} xs={6} className='mb-3'>
                                                 <div className='bestseller-card'>
                                                     <div className='bestseller-cardImg'>
                                                         <img src={ring2} />
@@ -256,7 +256,7 @@ function ARHA() {
                                                     <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
-                                            <Col lg={4} sm={6} className='mb-5'>
+                                            <Col lg={4} sm={6} xs={6} className='mb-3'>
                                                 <div className='bestseller-card'>
                                                     <div className='bestseller-cardImg'>
                                                         <img src={ring3} />
@@ -277,7 +277,7 @@ function ARHA() {
                                     </Tab.Pane>
                                     <Tab.Pane eventKey="Turkish Fancy">
                                         <Row >
-                                            <Col lg={4} sm={6} className='mb-5'>
+                                            <Col lg={4} sm={6} xs={6} className='mb-3'>
                                                 <div className='bestseller-card'>
                                                     <div className='bestseller-cardImg'>
                                                         <img src={chain1} />
@@ -294,7 +294,7 @@ function ARHA() {
                                                     <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
-                                            <Col lg={4} sm={6} className='mb-5'>
+                                            <Col lg={4} sm={6} xs={6} className='mb-3'>
                                                 <div className='bestseller-card'>
                                                     <div className='bestseller-cardImg'>
                                                         <img src={chain2} />
@@ -311,7 +311,7 @@ function ARHA() {
                                                     <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
-                                            <Col lg={4} sm={6} className='mb-5'>
+                                            <Col lg={4} sm={6} xs={6} className='mb-3'>
                                                 <div className='bestseller-card'>
                                                     <div className='bestseller-cardImg'>
                                                         <img src={chain2} />
@@ -332,7 +332,7 @@ function ARHA() {
                                     </Tab.Pane>
                                     <Tab.Pane eventKey="Ladies bracelets">
                                         <Row>
-                                            <Col lg={4} sm={6} className='mb-5'>
+                                            <Col lg={4} sm={6} xs={6} className='mb-3'>
                                                 <div className='bestseller-card'>
                                                     <div className='bestseller-cardImg'>
                                                         <img src={bangle4} />
@@ -349,7 +349,7 @@ function ARHA() {
                                                     <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
-                                            <Col lg={4} sm={6} className='mb-5'>
+                                            <Col lg={4} sm={6} xs={6} className='mb-3'>
                                                 <div className='bestseller-card'>
                                                     <div className='bestseller-cardImg'>
                                                         <img src={product2} />
@@ -366,7 +366,7 @@ function ARHA() {
                                                     <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
-                                            <Col lg={4} sm={6} className='mb-5'>
+                                            <Col lg={4} sm={6} xs={6} className='mb-3'>
                                                 <div className='bestseller-card'>
                                                     <div className='bestseller-cardImg'>
                                                         <img src={bangle1} />
@@ -383,7 +383,7 @@ function ARHA() {
                                                     <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
-                                            <Col lg={4} sm={6} className='mb-5'>
+                                            <Col lg={4} sm={6} xs={6} className='mb-3'>
                                                 <div className='bestseller-card'>
                                                     <div className='bestseller-cardImg'>
                                                         <img src={bangle4} />
@@ -404,7 +404,7 @@ function ARHA() {
                                     </Tab.Pane>
                                     <Tab.Pane eventKey="Flexible bracelets">
                                         <Row>
-                                            <Col lg={4} sm={6} className='mb-5'>
+                                            <Col lg={4} sm={6} xs={6} className='mb-3'>
                                                 <div className='bestseller-card'>
                                                     <div className='bestseller-cardImg'>
                                                         <img src={ring4} />
@@ -421,7 +421,7 @@ function ARHA() {
                                                     <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
-                                            <Col lg={4} sm={6} className='mb-5'>
+                                            <Col lg={4} sm={6} xs={6} className='mb-3'>
                                                 <div className='bestseller-card'>
                                                     <div className='bestseller-cardImg'>
                                                         <img src={ring1} />
@@ -438,7 +438,7 @@ function ARHA() {
                                                     <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
-                                            <Col lg={4} sm={6} className='mb-5'>
+                                            <Col lg={4} sm={6} xs={6} className='mb-3'>
                                                 <div className='bestseller-card'>
                                                     <div className='bestseller-cardImg'>
                                                         <img src={ring4} />
@@ -459,7 +459,7 @@ function ARHA() {
                                     </Tab.Pane>
                                     <Tab.Pane eventKey="Calcutti bangles">
                                         <Row>
-                                            <Col lg={4} sm={6} className='mb-5'>
+                                            <Col lg={4} sm={6} xs={6} className='mb-3'>
                                                 <div className='bestseller-card'>
                                                     <div className='bestseller-cardImg'>
                                                         <img src={bangle1} />
@@ -476,7 +476,7 @@ function ARHA() {
                                                     <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
-                                            <Col lg={4} sm={6} className='mb-5'>
+                                            <Col lg={4} sm={6} xs={6} className='mb-3'>
                                                 <div className='bestseller-card'>
                                                     <div className='bestseller-cardImg'>
                                                         <img src={product1} />
@@ -493,7 +493,7 @@ function ARHA() {
                                                     <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
-                                            <Col lg={4} sm={6} className='mb-5'>
+                                            <Col lg={4} sm={6} xs={6} className='mb-3'>
                                                 <div className='bestseller-card'>
                                                     <div className='bestseller-cardImg'>
                                                         <img src={product2} />

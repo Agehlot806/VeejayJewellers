@@ -31,14 +31,14 @@ function About() {
             <section className='section-padding'>
                 <Container>
                     <Row>
-                        <Col lg={5} className='align-self-center'>
+                        <Col lg={5} sm={6}>
                             <div className='aboutImg'>
                                 <img src={about} />
                             </div>
                         </Col>
-                        <Col lg={7}>
+                        <Col lg={7} sm={6} className='align-self-center'>
                             <div className='about-content'>
-                                    <h1>About “VEEJAY JEWELLERS”</h1>
+                                    <h1>About “VEEJAY JEWELS”</h1>
                                 <p><b>Mauris blandit aliquet elit eget tincidunt nibh pulvinar uisque velit
                                     nisi pretium ut lacinia in elementum id enim velit nisi pretium
                                     elementum id enim.</b></p>
@@ -47,7 +47,7 @@ function About() {
                                     pellentesque nec, egestas non nisi. Quisque velit nisi, pretium ut
                                     lacinia in, elementum id enim.
                                 </p>
-                                <div className='text-left mt-5'>
+                                <div className='text-left mt-4'>
                                     <Link to='/contact' className='main-btn'><i className="fa fa-angle-double-right"/> Contact</Link>
                                 </div>
                             </div>
@@ -75,7 +75,7 @@ function About() {
             <section className='section-padding'>
                 <Container>
                     <Row>
-                        <Col lg={4}>
+                        <Col lg={4} sm={4}>
                             <div className='theme-card'>
                                 <div className='theme-cardImg'>
                                     <img src={about1} />
@@ -87,12 +87,12 @@ function About() {
                                 </div>
                             </div>
                         </Col>
-                        <Col lg={4} className='align-self-center'>
+                        <Col lg={4} sm={4} className='align-self-center'>
                             <div className='aboutCenterImg'>
                                 <img src={about2} />
                             </div>
                         </Col>
-                        <Col lg={4}>
+                        <Col lg={4} sm={4}>
                             <div className='theme-cardHead'>
                                     <h3>Our Goals</h3>
                                 <p>Metus natoquefui sociis tempor facili tempus ridiclus porta porttitor feugiat consequat.</p>
@@ -117,7 +117,7 @@ function About() {
                         </Col>
                     </Row>
                     <Row>
-                        <Col lg={4} sm={6} className='mt-2 mb-2'>
+                        <Col lg={4} sm={4} className='mt-2 mb-2'>
                             <div className='aboutService'>
                                 <h3>Fast delivery</h3>
                                 <p>Erat nam at lectus urna. In arcu cursus euismod quis viverra nibh cras pulvinar mat.
@@ -125,7 +125,7 @@ function About() {
                                 </p>
                             </div>
                         </Col>
-                        <Col lg={4} sm={6} className='mt-2 mb-2'>
+                        <Col lg={4} sm={4} className='mt-2 mb-2'>
                             <div className='aboutService'>
                                 <h3>Many offers</h3>
                                 <p>Fusce id velit ut tortor pretium. Feugiat nibh sed pulvinar proin gravida sed adip.
@@ -133,7 +133,7 @@ function About() {
                                 </p>
                             </div>
                         </Col>
-                        <Col lg={4} sm={6} className='mt-2 mb-2'>
+                        <Col lg={4} sm={4} className='mt-2 mb-2'>
                             <div className='aboutService'>
                                 <h3>24/7 support</h3>
                                 <p>Placerat in egestas erat imperdiet. Quis varius quam quisque id diam adipisc diam.

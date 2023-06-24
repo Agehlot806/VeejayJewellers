@@ -96,7 +96,7 @@ function SignupWholesaler() {
         formData.append('upload1', upload1);
         formData.append('upload2', upload2);
         axios
-            .post(`http://veejayjewels.com/api/v1/auth/registration`, formData, {
+            .post(`https://veejayjewels.com/api/v1/auth/registration`, formData, {
                 headers: { "Content-Type": "multipart/form-data" },
                 // withCredentials: true,
             })
@@ -121,7 +121,7 @@ const GetdataAll = async (e) => {
         'Content-Type': 'application/json',
 
     };
-    await fetch(`http://veejayjewels.com/api/v1/auth/state`, {
+    await fetch(`https://veejayjewels.com/api/v1/auth/state`, {
         method: 'GET',
         headers: headers,
     })
@@ -141,7 +141,7 @@ const Getdatacity = (id) => {
     formData.append("state", id);
 
     axios
-        .post(`http://veejayjewels.com/api/v1/auth/city`, formData, {
+        .post(`https://veejayjewels.com/api/v1/auth/city`, formData, {
             headers: { "Content-Type": "multipart/form-data" },
         })
         .then((response) => {
@@ -195,7 +195,7 @@ return (
                 <Row>
                     <Col lg={6} className='mainForm-bg'>
                         <div className="mainForm-text">
-                            <h2>VEEJAY JEWELLER'S</h2>
+                            <h2>VEEJAY JEWEL'S</h2>
                             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and</p>
                             <div className="btn-section">
                                 <Link to="/login" className="btn-theme-2">Login</Link>

@@ -9,9 +9,9 @@ function Header() {
             <Container>
                 <Navbar.Brand><Link to='/'><img src={logo} className='logo' /></Link></Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
-                <Navbar.Collapse id="navbarScroll">
+                <Navbar.Collapse id="navbarScroll" className='header-menu'>
                     <Nav
-                        className="header-menu ms-auto my-2 my-lg-0"
+                        className="ms-auto my-2 my-lg-0"
                     // style={{ maxHeight: '100px' }}
                     // navbarScroll
                     >

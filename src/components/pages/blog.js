@@ -37,7 +37,7 @@ function Blog() {
                         </Col>
                     </Row>
                     <Row>
-                        <Col lg={4} className="mt-2 mb-2">
+                        <Col lg={4} sm={4} xs={6} className="mt-2 mb-2">
                             <div className='blog-card'>
                                 <img src={blog1} />
                                 <div className='blog-cardContent'>
@@ -47,7 +47,7 @@ function Blog() {
                                 </div>
                             </div>
                         </Col>
-                        <Col lg={4} className="mt-2 mb-2">
+                        <Col lg={4} sm={4} xs={6} className="mt-2 mb-2">
                             <div className='blog-card'>
                                 <img src={blog2} />
                                 <div className='blog-cardContent'>
@@ -57,7 +57,7 @@ function Blog() {
                                 </div>
                             </div>
                         </Col>
-                        <Col lg={4} className="mt-2 mb-2">
+                        <Col lg={4} sm={4} xs={6} className="mt-2 mb-2">
                             <div className='blog-card'>
                                 <img src={blog3} />
                                 <div className='blog-cardContent'>
@@ -67,7 +67,7 @@ function Blog() {
                                 </div>
                             </div>
                         </Col>
-                        <Col lg={4} className="mt-2 mb-2">
+                        <Col lg={4} sm={4} xs={6} className="mt-2 mb-2">
                             <div className='blog-card'>
                                 <img src={blog1} />
                                 <div className='blog-cardContent'>
@@ -77,7 +77,7 @@ function Blog() {
                                 </div>
                             </div>
                         </Col>
-                        <Col lg={4} className="mt-2 mb-2">
+                        <Col lg={4} sm={4} xs={6} className="mt-2 mb-2">
                             <div className='blog-card'>
                                 <img src={blog2} />
                                 <div className='blog-cardContent'>
@@ -87,7 +87,7 @@ function Blog() {
                                 </div>
                             </div>
                         </Col>
-                        <Col lg={4} className="mt-2 mb-2">
+                        <Col lg={4} sm={4} xs={6} className="mt-2 mb-2">
                             <div className='blog-card'>
                                 <img src={blog3} />
                                 <div className='blog-cardContent'>

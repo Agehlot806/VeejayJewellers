@@ -24,7 +24,7 @@ function Allproduct() {
         allProduct()
     }, []);
     const allProduct = () => {
-        axios.get(`http://veejayjewels.com/api/v1/products/latest`)
+        axios.get(`https://veejayjewels.com/api/v1/products/latest`)
             .then((response) => {
                 // console.log(response.data);
                 setallproduct(response.data.data)

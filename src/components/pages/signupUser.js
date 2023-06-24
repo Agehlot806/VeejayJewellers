@@ -30,7 +30,7 @@ function SignupUser() {
       'Content-Type': 'application/json',
       'token': 'OjsvX5yp2xmOVHsUnhwSOpdWdEetlflRzQcXAFnZ',
     };
-    await fetch(`http://veejayjewels.com/api/v1/auth/registration`, {
+    await fetch(`https://veejayjewels.com/api/v1/auth/registration`, {
       method: 'POST',
 
       body: JSON.stringify({
@@ -76,7 +76,7 @@ function SignupUser() {
           <Row>
             <Col lg={6} className='mainForm-bg'>
               <div className="mainForm-text">
-                <h2>VEEJAY JEWELLER'S</h2>
+                <h2>VEEJAY JEWEL'S</h2>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and</p>
                 <div className="btn-section">
                   <Link to="/login" className="btn-theme-2">Login</Link>

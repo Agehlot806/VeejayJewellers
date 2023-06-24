@@ -20,6 +20,16 @@
     .home-content p {
         margin: 15px 0 25px;
     }
+    .bangleHomeCard img {
+    width: 200px;
+}
+.about-content h1 {
+    font-size: 35px;
+    margin: 15px 0 22px;
+}
+.catlogOne img {
+    width: 100%;
+}
 }
 
 @media only screen and (max-width: 912px) {
@@ -73,6 +83,16 @@
     .ourStore-gift h4 {
         margin: 20px 0;
     }
+    .theme-cardHead h5 {
+        margin: 5px 0;
+        font-size: 15px;
+    }
+    .catlogOne h2 {
+        font-size: 24px;
+    }
+    .catlogOne p {
+        font-size: 11px;
+    }
 }
 @media only screen and (max-width: 820px) {
     .mainForm-bg {
@@ -84,6 +104,44 @@
     .home-content a {
         padding: 12px;
         font-size: 15px;
+    }
+    .about-content h1 {
+        font-size: 24px;
+        margin: 0 0 5px;
+    }
+    .theme-cardHead h3 {
+        font-size: 24px;
+        margin: 0 0 5px;
+    }
+    .theme-cardHead h5 {
+        margin: 5px 0;
+        font-size: 15px;
+    }
+    .aboutDifferent-bg h2 {
+        font-size: 25px;
+        margin: 0 0 10px;
+    }
+    .main-heading {
+        font-size: 27px;
+    }
+    .aboutService h3 {
+        font-size: 25px;
+    }
+    .bestseller-cardImg img {
+        width: 85px;
+    }
+    .catlogbg-card img {
+        width: 100%;
+    }
+    .men-catlog h3 {
+        font-size: 17px;
+    }
+    .blog-cardContent h3 {
+        font-size: 18px;
+        margin: 0 0 6px;
+    }
+    .blog-cardContent p {
+        font-size: 13px;
     }
 }
 
@@ -184,9 +242,64 @@
     .aboutRight img {
         width: 320px;
     }
+    .about-content h1 {
+        font-size: 24px;
+        margin: 15px 0 ;
+    }
+    .allPage-bg h2 {
+        font-size: 26px;
+        margin: 0 0 18px;
+    }
+    .theme-cardHead h3 {
+        margin: 15px 0;
+    }
+    .aboutService {
+        padding: 30px;
+    }
+    .footer-list ul li a {
+        font-size: 14px;
+    }
+    .footer-list ul li a img {
+        width: 110px;
+    }
+    .footer-list ul li span {
+        font-size: 14px;
+    }
+    .social-media a {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    .footer-content {
+        padding: 10px 20px;
+    }
+    .footer-content h6 {
+        font-size: 11px;
+    }
+    .bestseller-cardImg {
+        padding: 40px 10px 30px;
+    }
+    .catlogOne h2 {
+        font-size: 19px;
+        margin: 10px 0;
+    }
+    .contact-box h3 {
+        font-size: 22px;
+        margin: 12px 0;
+    }
+    .calcutor-card h6 {
+        font-size: 20px;
+        margin: -33px 0;
+    }
     
 }
 @media only screen and (max-width: 414px) {
+    .section-padding {
+        padding-top: 30px;
+        padding-bottom: 25px;
+    }
+    .faqs-list .accordion-header button {
+        font-size: 14px;
+    }
     .home-content a {
         padding: 6px;
         font-size: 8px;
@@ -286,6 +399,37 @@
         border-radius: 10px;
         padding: 25px 17px;
     }
+    .men-catlog h3 {
+        margin: 15px 0;
+        font-size: 15px;
+    }
+    .men-catlog p {
+        font-size: 12px;
+    }
+    .men-catlog {
+        padding: 10px;
+    }
+    .blog-cardContent h3 {
+        font-size: 11px;
+    }
+    .blog-cardContent p {
+        font-size: 9px;
+    }
+    .contact-form h2 {
+        font-size: 24px;
+    }
+    .contact-box h3 {
+        font-size: 15px;
+        margin: 7px 0;
+    }
+    .contact-box p {
+        font-size: 10px;
+    }    
+    .contact-box i {
+        font-size: 30px;
+    }
+  
+
     
 }
 @media only screen and (max-width: 393px) {
@@ -304,6 +448,13 @@
     }
     .home-area img {
         padding: 30px 30px 65px;
+    }
+    .faqs-list .accordion-header button {
+        font-size: 10px;
+    }
+    .footer-list h5 {
+        font-size: 18px;
+        margin: 0 0 10px;
     }
     .details-card h3 {
         font-size: 11px;
@@ -366,6 +517,27 @@
     .catlog-card h5 {
         font-size: 3px;
     }
+    .contact-form h2 {
+        font-size: 20px;
+    }
+    .contact-box h3 {
+        font-size: 12px;
+    }
+    .contact-box p {
+        font-size: 8px;
+    }
+    .contact-box i {
+        font-size: 20px;
+    }
+    .calcutor h4 {
+        font-size: 15px;
+    }
+    .calcutor-area h3 {
+        font-size: 22px;
+    }
+    .calcutor-card h6 {
+        font-size: 20px;
+    }
     
 }
 
@@ -391,5 +563,38 @@
     }
     .mainForm-btn button {
         padding: 0 44px;
+    }
+    .footer-list h5 {
+        font-size: 16px;
+    }
+    .footer-list ul li a {
+        font-size: 10px;
+    }
+    .footer-list ul li {
+        margin: 2px 0;
+    }
+    .footer-list ul li span {
+        margin: 0 8px;
+    }
+    .bestseller-cardText a i {
+        font-size: 9px;
+    }
+    .bestseller-cardText h5 {
+        font-weight: 400;
+        font-size: 11px;
+        line-height: 19px;
+    }
+    .contact-form h2 {
+        font-size: 17px;
+    }
+    .contact-box h3 {
+        font-size: 10px;
+        margin: 7px 0;
+    }
+    .contact-box p {
+        font-size: 6px;
+    }
+    .contact-box i {
+        font-size: 20px;
     }
 }

@@ -14,7 +14,7 @@ function Login() {
       'Content-Type': 'application/json',
       
   };
-  await fetch(`http://veejayjewels.com/api/v1/auth/login`, {
+  await fetch(`https://veejayjewels.com/api/v1/auth/login`, {
       method: 'POST',
      
       body: JSON.stringify({
@@ -46,7 +46,7 @@ function Login() {
           <Row>
             <Col lg={6} className='mainForm-bg'>
               <div className="mainForm-text">
-                <h2>VEEJAY JEWELLER'S</h2>
+                <h2>VEEJAY JEWEL'S</h2>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and</p>
                 <div className="btn-section">
                   <Link to="/login" className="btn-theme-3">Login</Link>

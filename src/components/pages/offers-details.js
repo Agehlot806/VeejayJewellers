@@ -60,7 +60,7 @@ function Offersdetails(props) {
                         </Col>
                     </Row>
                     <Row>
-                        <Col lg={4}>
+                        <Col lg={4} sm={6}>
                             <div className="offerDetails-item clean">
                                 <img src={offer4} alt="image" />
                                 <div className="Offeroverlay">
@@ -71,7 +71,7 @@ function Offersdetails(props) {
                                 </div>
                             </div>
                         </Col>
-                        <Col lg={4}>
+                        <Col lg={4} sm={6}>
                             <div className="offerDetails-item clean">
                                 <img src={offer2} alt="image" />
                                 <div className="Offeroverlay">
@@ -82,7 +82,7 @@ function Offersdetails(props) {
                                 </div>
                             </div>
                         </Col>
-                        <Col lg={4}>
+                        <Col lg={4} sm={6}>
                             <div className="offerDetails-item clean">
                                 <img src={offer3} alt="image" />
                                 <div className="Offeroverlay">

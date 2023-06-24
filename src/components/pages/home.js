@@ -92,7 +92,7 @@ function Home(props) {
             <Row>
               <Col lg={7} sm={7}>
                 <div className='home-content'>
-                  <h1>Veejay Jeweller</h1>
+                  <h1>Veejay Jewel's</h1>
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet integer lorem amet arcu
                     egestas congue. Rhoncus scelerisque mi, ac sed lacus aliquam at tortor. Risus nulla massa
                     ut vitae phasellus dictum. Lacus feugiat mollis aenean ac. Cursus in at sagittis vivamus
@@ -191,7 +191,7 @@ function Home(props) {
           <Row className="justify-content-center">
             <Col lg={7}>
               <div className='bestseller'>
-                <h4 className='main-heading'>Veejay Jeweller Brands </h4>
+                <h4 className='main-heading'>Our Brands </h4>
               </div>
             </Col>
           </Row>
