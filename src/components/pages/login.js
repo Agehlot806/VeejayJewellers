@@ -4,6 +4,7 @@ import logo from "../../assets/images/logo/logo.png";
 import { Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+// import { BASE_URL } from "../../Constant/Index";
 
 function Login() {
   const [phone, setphone] = useState("");
@@ -16,7 +17,7 @@ function Login() {
       Accept: "application/json",
       "Content-Type": "application/json",
     };
-    await fetch(`http://veejayjewels.com/api/v1/auth/login`, {
+    await fetch(`https://veejayjewels.com/api/v1/auth/login`, {
       method: "POST",
 
       body: JSON.stringify({

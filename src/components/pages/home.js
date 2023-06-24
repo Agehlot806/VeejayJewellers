@@ -34,6 +34,7 @@ import border from "../../assets/images/banner/border.png";
 import homeBanner3 from "../../assets/images/banner/banner3.webp";
 import { Fade } from "react-reveal";
 import homeBanner2 from "../../assets/images/banner/home-banner2.png";
+import { BASE_URL } from "../../Constant/Index";
 
 const clinetreview = {
   desktop: {
@@ -59,14 +60,11 @@ function Home(props) {
 
   useEffect(() => {
     // Fetch the data
-    fetch("https://veejayjewels.com/api/v1/banners1")
+    fetch(`${BASE_URL}/banners1`)
       .then((response) => response.json())
       .then((jsonData) => setData(jsonData.data))
       .catch((error) => console.error("An error occurred:", error));
   }, []);
-  console.log("====================================", data);
-  console.log();
-  console.log("====================================");
 
   useEffect(() => {
     categorys();
@@ -74,7 +72,7 @@ function Home(props) {
 
   const categorys = () => {
     axios
-      .get(`http://veejayjewels.com/api/v1/categories`)
+      .get(`https://veejayjewels.com/api/v1/categories`)
       .then((response) => {
         setbrandcategories(response.data.data);
       })
@@ -82,7 +80,7 @@ function Home(props) {
         console.error("Error fetching data:", error);
       });
   };
-  console.log("brandcategoriesbrandcategories", data);
+  // console.log("brandcategoriesbrandcategories", data);
 
   return (
     <>

@@ -15,6 +15,7 @@ import ring3 from "../../assets/images/img/ring3.png";
 import ring4 from "../../assets/images/img/ring4.png";
 import chain1 from "../../assets/images/img/chain1.png";
 import chain2 from "../../assets/images/img/chain2.png";
+import { BASE_URL } from "../../Constant/Index";
 
 function ARHA({ item }) {
   const { id, name } = useParams();
@@ -24,9 +25,10 @@ function ARHA({ item }) {
   useEffect(() => {
     categorys();
   }, []);
+
   const categorys = () => {
     axios
-      .get(`http://veejayjewels.com/api/v1/categories/childes/${id}`)
+      .get(`${BASE_URL}/categories/childes/${id}`)
       .then((response) => {
         console.log(response.data);
         setbrandcategories(response.data.data);

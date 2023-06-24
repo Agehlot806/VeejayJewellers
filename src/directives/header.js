@@ -4,7 +4,7 @@ import shoppingIcon from "../assets/images/icons/bag-2.png";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
+import { BASE_URL } from "../Constant/Index";
 function Header() {
   const [brandcategories, setbrandcategories] = useState([]);
 
@@ -14,7 +14,7 @@ function Header() {
 
   const categorys = () => {
     axios
-      .get(`http://veejayjewels.com/api/v1/categories`)
+      .get(`${BASE_URL}/categories`)
       .then((response) => {
         setbrandcategories(response.data.data);
       })
@@ -22,14 +22,14 @@ function Header() {
         console.error("Error fetching data:", error);
       });
   };
-  console.log("brandcategoriesbrandcategories", brandcategories);
+  // console.log("brandcategoriesbrandcategories", brandcategories);
 
   return (
     <Navbar bg="white" expand="lg" className="header-bg">
       <Container>
         <Navbar.Brand>
           <Link to="/">
-            <img src={logo} className="logo" />
+            <img src={logo} className="logo" alt="" />
           </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
