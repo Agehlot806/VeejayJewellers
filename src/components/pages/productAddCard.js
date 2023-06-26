@@ -1,116 +1,225 @@
-import React, { useState } from 'react'
-import Header from '../../directives/header'
-import { Col, Container, Row, Form } from 'react-bootstrap'
-import product6 from '../../assets/images/img/product6.png'
-import Footer from '../../directives/footer';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import Header from "../../directives/header";
+import {
+  Col,
+  Container,
+  Row,
+  Form,
+  Table,
+  Modal,
+  Button,
+} from "react-bootstrap";
+import product6 from "../../assets/images/img/product6.png";
+import Footer from "../../directives/footer";
+import { Link } from "react-router-dom";
+import Carousel from "react-multi-carousel";
+import productdetails1 from "../../assets/images/img/productdetails1.jpg";
+import productdetails2 from "../../assets/images/img/productdetails2.jpg";
+import productdetails3 from "../../assets/images/img/productdetails3.jpg";
 
-function ProductAddCard() {
-    const [quantity, setQuantity] = useState(1);
+const productdetails = {
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 1,
+    slidesToSlide: 1, // optional, default to 1.
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 1,
+    slidesToSlide: 1, // optional, default to 1.
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+    slidesToSlide: 1, // optional, default to 1.
+  },
+};
+function ProductAddCard(props) {
+  const [quantity, setQuantity] = useState(1);
+  const [show, setShow] = useState(false);
 
-    const handleIncrement = () => {
-        setQuantity(quantity + 1);
-    };
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
-    const handleDecrement = () => {
-        if (quantity > 1) {
-            setQuantity(quantity - 1);
-        }
-    };
+  const handleIncrement = () => {
+    setQuantity(quantity + 1);
+  };
 
-    return (
-        <>
-            <Header />
-            <section className='section-padding'>
-                <Container>
-                    <Row className="justify-content-center">
-                        <Col lg={6}>
-                            <div className='add-cards'>
-                                <Row>
-                                    <Col><h5>Gold Earrings</h5></Col>
-                                    <Col><h6>10 gms</h6></Col>
-                                </Row>
-                                <div className='text-center'>
-                                    <img src={product6} />
-                                    <h5>Gold Current Price</h5>
-                                    <h4>₹ 59,400</h4>
-                                </div>
-                            </div>
-                        </Col>
-                    </Row>
-                    <Row className="mt-4">
-                        <Col lg={6}>
-                            <div className='addCard-conaty'>
-                                <Row>
-                                    <Col><h5>Pcs Quantity</h5></Col>
-                                    <Col>
-                                        <div className='quantity-btn'>
-                                            <button onClick={handleDecrement}>-</button>
-                                            <span>{quantity}</span>
-                                            <button onClick={handleIncrement}>+</button>
-                                        </div>
-                                    </Col>
-                                </Row>
-                                <hr />
-                                <Row>
-                                    <Col><h5>Size</h5></Col>
-                                    <Col>
-                                        <div className='quantity-btn'>
-                                            <Form.Select aria-label="Default select example">
-                                                <option>Open this select menu</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                            </Form.Select>
-                                        </div>
-                                    </Col>
-                                </Row>
-                            </div>
-                        </Col>
-                        <Col lg={6}>
-                            <div className='addCard-conaty'>
-                                <Row>
-                                    <Col><h5>Pcs Quantity</h5></Col>
-                                    <Col>
-                                        <div className='quantity-btn'>
-                                            <button onClick={handleDecrement}>-</button>
-                                            <span>{quantity}</span>
-                                            <button onClick={handleIncrement}>+</button>
-                                        </div>
-                                    </Col>
-                                </Row>
-                                <hr />
-                                <Row>
-                                    <Col><h5>Size</h5></Col>
-                                    <Col>
-                                        <div className='quantity-btn'>
-                                            <Form.Select aria-label="Default select example">
-                                                <option>Open this select menu</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                            </Form.Select>
-                                        </div>
-                                    </Col>
-                                </Row>
-                            </div>
-                        </Col>
-                    </Row>
-                    <div className='add-btn'>
-                        <Link to=''>Add to cart</Link>
-                    </div>
-                    <div className='add-Itemsbtn'>
-                        <Link to=''>Add Items</Link>
-                    </div>
-                </Container>
-            </section>
-            <Footer />
-        </>
-    )
+  const handleDecrement = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+
+  return (
+    <>
+      <Header />
+
+      <section className="section-padding">
+        <Container>
+          <Row>
+            <Col lg={5}>
+              <Carousel
+                swipeable={true}
+                draggable={true}
+                showDots={true}
+                responsive={productdetails}
+                ssr={true} // means to render carousel on server-side.
+                infinite={true}
+                autoPlay={props.deviceType !== "mobile" ? true : false}
+                autoPlaySpeed={1000}
+                keyBoardControl={true}
+                customTransition="all 1s"
+                transitionDuration={1000}
+                containerClass="carousel-container"
+                removeArrowOnDeviceType={["tablet", "mobile"]}
+                deviceType={props.deviceType}
+                dotListClass="product-dot-list-style"
+                itemClass="carousel-item-padding-40-px"
+              >
+                <div className="productdetails-bg">
+                  <img src={productdetails1} />
+                </div>
+                <div className="productdetails-bg">
+                  <img src={productdetails2} />
+                </div>
+                <div className="productdetails-bg">
+                  <img src={productdetails3} />
+                </div>
+              </Carousel>
+            </Col>
+            <Col lg={7}>
+              <Table responsive className="productDetailTable">
+                <tbody>
+                  <tr>
+                    <th>Product Name</th>
+                    <td>Bangle</td>
+                  </tr>
+                  <tr>
+                    <th>Product By</th>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th>Gram</th>
+                    <td>10 Gms</td>
+                  </tr>
+                </tbody>
+              </Table>
+
+              <Table responsive className="productDetailTable">
+                {/* <h6>Product Details</h6> */}
+                <tbody>
+                  <tr>
+                    <th>Design Number</th>
+                    <td>EX1035</td>
+                  </tr>
+                  <tr>
+                    <th>Weight</th>
+                    <td>67.00</td>
+                  </tr>
+                  <tr>
+                    <th>Jewelry Type</th>
+                    <td>Handmade</td>
+                  </tr>
+                </tbody>
+              </Table>
+
+              <Table responsive className="productDetailTable">
+                <thead>
+                  <tr>
+                    <th>Size</th>
+                    <th>Pcs Quantity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <label className="radio-inline">
+                        <input type="radio" name="optradio" /> 1.5
+                      </label>
+                    </td>
+                    <td>
+                      <div className="quantity-btn">
+                        <button onClick={handleDecrement}>-</button>
+                        <span>{quantity}</span>
+                        <button onClick={handleIncrement}>+</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </Table>
+              <div className="text-center">
+                <button className="showSize" onClick={handleShow}>
+                  Show more size
+                </button>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+      <Footer />
+
+      <Modal show={show} onHide={handleClose}>
+        {/* <Modal.Header closeButton>
+                    <Modal.Title>Modal heading</Modal.Title>
+                </Modal.Header> */}
+        <Modal.Body>
+          <Table responsive className="productDetailTable">
+            <thead>
+              <tr>
+                <th>Size</th>
+                <th>Pcs Quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <label className="radio-inline">
+                    <input type="radio" name="optradio" /> 1.5
+                  </label>
+                </td>
+                <td>
+                  <div className="quantity-btn">
+                    <button onClick={handleDecrement}>-</button>
+                    <span>{quantity}</span>
+                    <button onClick={handleIncrement}>+</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label className="radio-inline">
+                    <input type="radio" name="optradio" /> 1.5
+                  </label>
+                </td>
+                <td>
+                  <div className="quantity-btn">
+                    <button onClick={handleDecrement}>-</button>
+                    <span>{quantity}</span>
+                    <button onClick={handleIncrement}>+</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label className="radio-inline">
+                    <input type="radio" name="optradio" /> 1.5
+                  </label>
+                </td>
+                <td>
+                  <div className="quantity-btn">
+                    <button onClick={handleDecrement}>-</button>
+                    <span>{quantity}</span>
+                    <button onClick={handleIncrement}>+</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </Table>
+        </Modal.Body>
+      </Modal>
+    </>
+  );
 }
 
-export default ProductAddCard
+export default ProductAddCard;

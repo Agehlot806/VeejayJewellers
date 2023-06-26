@@ -1,108 +1,108 @@
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    font-family: 'Playfair Display', serif;
-    background: #F0EFEF !important;
+  font-family: "Inter", sans-serif;
+  font-family: "Playfair Display", serif;
+  background: #f0efef !important;
 }
 
 p {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 300;
-    font-size: 18px;
-    /* line-height: 22px; */
-    text-transform: capitalize;
-    color: #000000;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  /* line-height: 22px; */
+  text-transform: capitalize;
+  color: #000000;
 }
 
 a {
-    text-decoration: none !important;
+  text-decoration: none !important;
 }
 
 .section-padding {
-    padding-top: 60px;
-    padding-bottom: 60px;
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 
 .main-heading {
-    background: linear-gradient(271.8deg, #6A4500 0.65%, #936207 98.14%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    /* text-fill-color: transparent; */
-    font-family: 'Playfair Display';
-    font-weight: 700;
-    font-size: 41px;
+  background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  /* text-fill-color: transparent; */
+  font-family: "Playfair Display";
+  font-weight: 700;
+  font-size: 41px;
 }
 
 span.validationErr {
-    color: red;
-    margin: 4px;
+  color: red;
+  margin: 4px;
 }
 .main-space {
-    padding: 40px 0 0;
+  padding: 40px 0 0;
 }
 
 .react-multiple-carousel__arrow {
-    display: none !important;
+  display: none !important;
 }
 
 .custom-dot-list-style {
-    display: none !important;
+  display: none !important;
 }
 /* ==================================== Header area css =================================== */
 nav.header-bg {
-    /* height: 121px; */
-    background: #FFFFFF;
-    box-shadow: 0px 1px 30px rgba(0, 0, 0, 0.05);
+  /* height: 121px; */
+  background: #ffffff;
+  box-shadow: 0px 1px 30px rgba(0, 0, 0, 0.05);
 }
 
 .logo {
-    width: 78px;
-    height: 78px;
+  width: 78px;
+  height: 78px;
 }
 
 .header-menu a {
-    margin-left: 10px;
-    margin-right: 10px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    color: #000000;
-    font-family: 'Playfair Display';
-    align-self: center;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  color: #000000;
+  font-family: "Playfair Display";
+  align-self: center;
 }
 
 .header-menu a .dropdown button {
-    background: none;
-    border: none;
-    color: #000;
-    font-size: 20px;
+  background: none;
+  border: none;
+  color: #000;
+  font-size: 20px;
 }
 
 .header-menu a .dropdown button:active {
-    background: none;
-    color: #000;
+  background: none;
+  color: #000;
 }
 
 .header-menu a .dropdown .dropdown-item {
-    transition: transform 250ms;
-    /* transition: 0.5s; */
+  transition: transform 250ms;
+  /* transition: 0.5s; */
 }
 
 .header-menu a .dropdown .dropdown-item:hover {
-    background: none;
-    color: #6A4500;
-    transform: translateX(-10px);
+  background: none;
+  color: #6a4500;
+  transform: translateX(-10px);
 }
 
 .header-menu a .dropdown .dropdown-item:active {
-    background: none;
-    color: #6A4500;
+  background: none;
+  color: #6a4500;
 }
 
 /* a.header-bag {
@@ -111,24 +111,27 @@ nav.header-bg {
     align-self: center;
 } */
 
-
 .header-menu input {
-    border: 1px solid #936207;
-    border-radius: 15px;
-    width: 100%;
-    height: 50px;
+  border: 1px solid #936207;
+  border-radius: 15px;
+  width: 100%;
+  height: 50px;
 }
 
 .main-btn {
-    background: linear-gradient(271.8deg, rgba(106, 69, 0, 0.2) 0.65%, rgba(147, 98, 7, 0.2) 98.14%) !important;
-    box-shadow: 0px 1px 30px rgba(0, 0, 0, 0.05);
-    padding: 12px 20px;
-    font-weight: 700;
-    font-size: 18px;
-    letter-spacing: 0.05em;
-    text-transform: capitalize;
-    color: #936207;
-    border-radius: 8px;
+  background: linear-gradient(
+    271.8deg,
+    rgba(106, 69, 0, 0.2) 0.65%,
+    rgba(147, 98, 7, 0.2) 98.14%
+  ) !important;
+  box-shadow: 0px 1px 30px rgba(0, 0, 0, 0.05);
+  padding: 12px 20px;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  text-transform: capitalize;
+  color: #936207;
+  border-radius: 8px;
 }
 
 /* .main-btn:before {
@@ -142,107 +145,106 @@ nav.header-bg {
     border: 1px solid #6A4500;
 } */
 
-
 /* ========================= Home area css ============================= */
 
 #rssBlock {
-    /* left:0px;
+  /* left:0px;
     height: 80px; */
-    background: #FFFFFF;
-    /* position: absolute;
+  background: #ffffff;
+  /* position: absolute;
     width:1070px; */
-    overflow: hidden;
+  overflow: hidden;
 }
 
 /*remove p*/
 .cnnContents {
-    width: 100%;
-    margin: 0 auto;
-    font-size: 30px;
-    white-space: nowrap;
-    text-transform: uppercase;
-    font-family: 'Museo';
-    font-weight: 300;
+  width: 100%;
+  margin: 0 auto;
+  font-size: 30px;
+  white-space: nowrap;
+  text-transform: uppercase;
+  font-family: "Museo";
+  font-weight: 300;
 }
 
 .cnnContents a {
-    margin: 0 35px 0 35px;
-    color: #000;
+  margin: 0 35px 0 35px;
+  color: #000;
 }
 
 .marqueeStyle {
-    display: inline-block;
-    /* Apply animation to this element */
-    -webkit-animation: scrolling-left1 20s linear infinite;
-    animation: scrolling-left1 6s linear infinite;
-    font-size: 18px;
+  display: inline-block;
+  /* Apply animation to this element */
+  -webkit-animation: scrolling-left1 20s linear infinite;
+  animation: scrolling-left1 6s linear infinite;
+  font-size: 18px;
 }
 
 .marqueeStyle2 {
-    display: inline-block;
-    /* Apply animation to this element */
-    -webkit-animation: scrolling-left2 20s linear infinite;
-    animation: scrolling-left2 20s linear infinite;
-    animation-delay: 10s;
+  display: inline-block;
+  /* Apply animation to this element */
+  -webkit-animation: scrolling-left2 20s linear infinite;
+  animation: scrolling-left2 20s linear infinite;
+  animation-delay: 10s;
 }
 
 /* scrolling-left is continuous/repeatly text */
 @keyframes scrolling-left1 {
-    0% {
-        transform: translateX(100%);
-        -webkit-transform: translateX(100%);
-    }
+  0% {
+    transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+  }
 
-    100% {
-        transform: translateX(-100%);
-        -webkit-transform: translateX(-100%);
-    }
+  100% {
+    transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+  }
 }
 
 @keyframes scrolling-left2 {
-    0% {
-        transform: translateX(0%);
-        -webkit-transform: translateX(0%);
-    }
+  0% {
+    transform: translateX(0%);
+    -webkit-transform: translateX(0%);
+  }
 
-    100% {
-        transform: translateX(-200%);
-        -webkit-transform: translateX(-200%);
-    }
+  100% {
+    transform: translateX(-200%);
+    -webkit-transform: translateX(-200%);
+  }
 }
 
 @-webkit-keyframes scrolling-left1 {
-    0% {
-        -webkit-transform: translateX(100%);
-    }
+  0% {
+    -webkit-transform: translateX(100%);
+  }
 
-    100% {
-        -webkit-transform: translateX(-100%);
-    }
+  100% {
+    -webkit-transform: translateX(-100%);
+  }
 }
 
 @-webkit-keyframes scrolling-left2 {
-    0% {
-        -webkit-transform: translateX(0%);
-    }
+  0% {
+    -webkit-transform: translateX(0%);
+  }
 
-    100% {
-        -webkit-transform: translateX(-200%);
-    }
+  100% {
+    -webkit-transform: translateX(-200%);
+  }
 }
 
 .home-bg {
-    background: linear-gradient(271.8deg, #6A4500 0.65%, #936207 98.14%);
+  background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%);
 }
 
 .home-area {
-    padding-top: 30px;
-    padding-bottom: 100px;
+  padding-top: 30px;
+  padding-bottom: 100px;
 }
 
 .home-area img {
-    width: 100%;
-    /* animation: zoom-in-zoom-out 2s ease-out infinite; */
+  width: 100%;
+  /* animation: zoom-in-zoom-out 2s ease-out infinite; */
 }
 
 /* @keyframes zoom-in-zoom-out {
@@ -259,40 +261,39 @@ nav.header-bg {
     }
 } */
 
-
 .home-back img {
-    width: 100%;
-    /* max-height: 100vh; */
+  width: 100%;
+  /* max-height: 100vh; */
 }
 
 .home-content {
-    padding: 80px 0 80px;
-    text-align: left;
+  padding: 80px 0 80px;
+  text-align: left;
 }
 
 .home-content h1 {
-    font-weight: 700;
-    font-size: 41px;
-    color: #fff;
-    font-family: 'Playfair Display';
+  font-weight: 700;
+  font-size: 41px;
+  color: #fff;
+  font-family: "Playfair Display";
 }
 
 .home-content p {
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: #E7E7E7;
-    font-family: 'Inter', sans-serif;
-    margin: 15px 0 55px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #e7e7e7;
+  font-family: "Inter", sans-serif;
+  margin: 15px 0 55px;
 }
 
 .home-content a {
-    margin-right: 5px;
-    margin-left: 5px;
-    background-color: #fff;
-    padding: 10px 30px;
-    color: #000;
-    font-weight: 700;
-    font-size: 18px;
+  margin-right: 5px;
+  margin-left: 5px;
+  background-color: #fff;
+  padding: 10px 30px;
+  color: #000;
+  font-weight: 700;
+  font-size: 18px;
 }
 
 /* .home-content a:before {
@@ -307,243 +308,237 @@ nav.header-bg {
 } */
 
 .brandsCard {
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    padding: 20px;
-    background: #fff;
-    border-radius: 10px;
-    text-align: center;
-    height: 100%;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  text-align: center;
+  height: 100%;
 }
 .brandsCard img {
-    width: 80px;
-    height: 80px;
-    margin: 0 0 10px;
+  width: 80px;
+  height: 80px;
+  margin: 0 0 10px;
 }
 .brandsCard h3 {
-    font-family: 'Playfair Display';
-    font-size: 25px;
-    font-weight: 700;
+  font-family: "Playfair Display";
+  font-size: 25px;
+  font-weight: 700;
 }
 
 .brandsCard a {
-    background: linear-gradient(271.8deg, #6A4500 0.65%, #936207 98.14%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-size: 18px;
+  background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 18px;
 }
 
 /* ==================================== Details card area css ===================================== */
 .details-area {
-    position: relative;
+  position: relative;
 }
 .details-card {
-    text-align: center;
-    background: #DFD8CD;
-    padding: 25px;
-    height: 100%;
-    border-radius: 35px;
-    position: relative;
-    top: -30%;
+  text-align: center;
+  background: #dfd8cd;
+  padding: 25px;
+  height: 100%;
+  border-radius: 35px;
+  position: relative;
+  top: -30%;
 }
 
 .details-card img {
-    width: 100px;
-    margin: 0 0 18px;
+  width: 100px;
+  margin: 0 0 18px;
 }
 
 .details-card h3 {
-    font-family: 'Playfair Display';
-    font-weight: 700;
-    font-size: 20px;
-    text-transform: capitalize;
-    color: #000000;
+  font-family: "Playfair Display";
+  font-weight: 700;
+  font-size: 20px;
+  text-transform: capitalize;
+  color: #000000;
 }
 
 .details-card p {
-    font-weight: 400;
-    opacity: 0.75;
+  font-weight: 400;
+  opacity: 0.75;
 }
-
-
 
 /* ============================= The Bestsellers area css ============================ */
 .bestseller {
-    text-align: center;
+  text-align: center;
 }
 
 .bestseller h6 {
-    font-weight: 600;
-    font-size: 18px;
+  font-weight: 600;
+  font-size: 18px;
 }
 
 .bestseller-card {
-    text-align: center;
-    background: #FFFFFF;
-    border-radius: 40px 40px 0 0;
-    height: 58%;
+  text-align: center;
+  background: #ffffff;
+  border-radius: 40px 40px 0 0;
+  height: 58%;
 }
 
 .bestseller-cardImg {
-    text-align: center;
-    padding: 40px 10px 0;
+  text-align: center;
+  padding: 40px 10px 0;
 }
 
 .bestseller-cardImg img {
-    width: 150px;
+  width: 150px;
 }
 
 .bestseller-cardText {
-    padding: 20px;
-    border-radius: 0 0 40px 40px;
-    background: #FFFFFF;
-    text-align: center;
+  padding: 20px;
+  border-radius: 0 0 40px 40px;
+  background: #ffffff;
+  text-align: center;
 }
 
 .bestseller-cardText h5 {
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 17px;
-    letter-spacing: 0.12em;
-    color: #131415;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.12em;
+  color: #131415;
 }
 
 .bestseller-cardText p {
-    font-weight: 600;
-    font-size: 14px;
-    color: #818181;
+  font-weight: 600;
+  font-size: 14px;
+  color: #818181;
 }
 
 .bestseller-cardText a i {
-    color: #FFC107;
-    margin: 0 3px 0 2px;
+  color: #ffc107;
+  margin: 0 3px 0 2px;
 }
-.bestseller-cardImg i{
-    background: white;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    padding: 10px 14px;
-    border-radius: 50%;
-    font-size: 22px;
-    color: #000;
-    float: right;
+.bestseller-cardImg i {
+  background: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 10px 14px;
+  border-radius: 50%;
+  font-size: 22px;
+  color: #000;
+  float: right;
 }
-
 
 /* ================================= Silver-Dimonds area css =================================*/
 .Silver-Dimonds {
-    background: #E6E1D8;
-    text-align: center;
+  background: #e6e1d8;
+  text-align: center;
 }
 
 .Silver-Dimonds img {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .Silver-Dimonds h5 {
-    font-weight: 700;
-    font-size: 30px;
-    font-family: 'Playfair Display';
-    letter-spacing: 0.05em;
-    text-transform: capitalize;
-    color: #000000;
+  font-weight: 700;
+  font-size: 30px;
+  font-family: "Playfair Display";
+  letter-spacing: 0.05em;
+  text-transform: capitalize;
+  color: #000000;
 }
 
 .Silver-Dimonds a {
-    font-weight: 700;
-    font-size: 20px;
-    letter-spacing: 0.05em;
-    text-transform: capitalize;
-    color: #000000;
-    font-family: 'Playfair Display';
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 0.05em;
+  text-transform: capitalize;
+  color: #000000;
+  font-family: "Playfair Display";
 }
-
 
 /* ===================== New Productarea css ===================================== */
 .New-Products-head h5 {
-    font-family: 'Inter';
-    font-weight: 500;
-    font-size: 24px;
+  font-family: "Inter";
+  font-weight: 500;
+  font-size: 24px;
 }
 
 .New-ProductsLink {
-    text-align: right;
+  text-align: right;
 }
 
 .New-ProductsLink h5 {
-    background: linear-gradient(271.8deg, #6A4500 0.65%, #936207 98.14%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-family: 'Inter';
-    font-weight: 400;
-    font-size: 16px;
+  background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 16px;
 }
-
 
 /* =========================== Catlog area css ================================================ */
 .catlog-card {
-    background: #FFFFFF;
-    border: 0.5px solid #F4F4F4;
-    border-radius: 40px;
+  background: #ffffff;
+  border: 0.5px solid #f4f4f4;
+  border-radius: 40px;
 }
 
 .catlog-card img {
-    width: 100%;
+  width: 100%;
 }
 
 .catlog-card h5 {
-    background: linear-gradient(271.8deg, #6A4500 0.65%, #936207 98.14%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-transform: capitalize;
-    font-family: 'Playfair Display';
-    font-weight: 600;
-    font-size: 20px;
+  background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-transform: capitalize;
+  font-family: "Playfair Display";
+  font-weight: 600;
+  font-size: 20px;
 }
 
 .catlog-card h6 {
-    text-align: right;
-    margin: 5px 0;
+  text-align: right;
+  margin: 5px 0;
 }
 
 .catlog-card h6 a {
-    font-weight: 400;
-    font-size: 15px;
-    text-transform: capitalize;
-    color: #000000;
-    font-family: 'Inter';
+  font-weight: 400;
+  font-size: 15px;
+  text-transform: capitalize;
+  color: #000000;
+  font-family: "Inter";
 }
-
 
 /* ============================= Our store area css ==================================== */
 .ourStore-bg {
-    background: #E6E1D8;
+  background: #e6e1d8;
 }
 
 .ourStore-gift {
-    text-align: center;
+  text-align: center;
 }
 
 .ourStore-gift h4 {
-    font-family: 'Playfair Display';
-    font-weight: 700;
-    font-size: 30px;
-    letter-spacing: 0.05em;
-    text-transform: capitalize;
-    margin: 36px 0;
+  font-family: "Playfair Display";
+  font-weight: 700;
+  font-size: 30px;
+  letter-spacing: 0.05em;
+  text-transform: capitalize;
+  margin: 36px 0;
 }
 
 .ourStore-gift p {
-    font-weight: 400;
-    font-size: 14px;
-    text-transform: uppercase;
+  font-weight: 400;
+  font-size: 14px;
+  text-transform: uppercase;
 }
 
 .ourStore-gift img {
-    /* width: 100%; */
-    /* animation: zoom-out-zoom-out 2s ease-out infinite; */
+  /* width: 100%; */
+  /* animation: zoom-out-zoom-out 2s ease-out infinite; */
 }
 
 /* @keyframes zoom-out-zoom-out {
@@ -561,668 +556,672 @@ nav.header-bg {
 } */
 
 .home-content {
-    padding: 80px 0 80px;
+  padding: 80px 0 80px;
 }
-
 
 /* ================================ Footer area css ============================================ */
 .footer-bg {
-    background: linear-gradient(271.8deg, #6A4500 0.65%, #936207 98.14%);
+  background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%);
 }
 
 .footer-list h5 {
-    font-family: 'Playfair Display';
-    font-weight: 500;
-    font-size: 24px;
-    color: #FFFFFF;
-    margin: 0 0 26px;
+  font-family: "Playfair Display";
+  font-weight: 500;
+  font-size: 24px;
+  color: #ffffff;
+  margin: 0 0 26px;
 }
 
 .footer-list ul {
-    padding: 0;
+  padding: 0;
 }
 
 .footer-list ul li {
-    list-style-type: none;
-    margin: 12px 0;
+  list-style-type: none;
+  margin: 12px 0;
 }
 
 .footer-list ul li a {
-    font-weight: 400;
-    font-size: 17px;
-    color: #FFFFFF;
-    font-family: 'Inter';
+  font-weight: 400;
+  font-size: 17px;
+  color: #ffffff;
+  font-family: "Inter";
 }
 
 .footer-list ul li a img {
-    margin: 0 -10px;
+  margin: 0 -10px;
 }
 
 .footer-list ul li span {
-    font-family: 'Inter';
-    color: #FFFFFF;
+  font-family: "Inter";
+  color: #ffffff;
 }
 
 .social-media a {
-    margin-left: 10px;
-    margin-right: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .footer-bg hr {
-    opacity: 1;
-    color: #fff;
+  opacity: 1;
+  color: #fff;
 }
 
 .footer-content {
-    text-align: center;
-    padding: 25px 0;
+  text-align: center;
+  padding: 25px 0;
 }
 
 .footer-content h6 {
-    font-family: 'Inter';
-    font-weight: 300;
-    font-size: 13px;
-    line-height: 21px;
-    text-transform: capitalize;
-    color: #FFFFFF;
+  font-family: "Inter";
+  font-weight: 300;
+  font-size: 13px;
+  line-height: 21px;
+  text-transform: capitalize;
+  color: #ffffff;
 }
-
 
 /* ====================== main background image */
 .allPage-bg {
-    background: url(../images/banner/banner1.png);
-    background-size: cover;
-    background-repeat: no-repeat;
+  background: url(../images/banner/banner1.png);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .AllPage-area {
-    margin-top: 15px;
-    margin-bottom: 45px;
+  margin-top: 15px;
+  margin-bottom: 45px;
 }
 
 .allPage-bg h2 {
-    font-family: 'Playfair Display';
-    font-weight: 700;
-    font-size: 41px;
-    color: #FFFFFF;
-    margin: 25px 0 50px;
+  font-family: "Playfair Display";
+  font-weight: 700;
+  font-size: 41px;
+  color: #ffffff;
+  margin: 25px 0 50px;
 }
 
 .allPage-bg a {
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0px 1px 30px rgba(0, 0, 0, 0.05);
-    padding: 12px 20px;
-    font-weight: 700;
-    font-size: 18px;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: #E8CF36;
-    border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 1px 30px rgba(0, 0, 0, 0.05);
+  padding: 12px 20px;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #e8cf36;
+  border-radius: 8px;
 }
-
 
 .AllPage-area p {
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: #E7E7E7;
-    font-family: 'Inter', sans-serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #e7e7e7;
+  font-family: "Inter", sans-serif;
 }
-
-
 
 /* ========================== About page css ================================ */
 .aboutHome h3 {
-    color: #031632;
-    font-family: Playfair Display;
-    font-size: 45px;
-    font-weight: 700;
-    letter-spacing: 0.05em;
+  color: #031632;
+  font-family: Playfair Display;
+  font-size: 45px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
 }
 .aboutHome {
-    text-align: center;
+  text-align: center;
 }
 .abouthome-content h5 {
-    font-weight: 700;
-    font-size: 30px;
-    font-family: 'Playfair Display';
-    letter-spacing: 0.05em;
-    text-transform: capitalize;
-    color: #000000;
-    margin: 0 0 20px;
+  font-weight: 700;
+  font-size: 30px;
+  font-family: "Playfair Display";
+  letter-spacing: 0.05em;
+  text-transform: capitalize;
+  color: #000000;
+  margin: 0 0 20px;
 }
-
 
 .abouthome-content a {
-    font-weight: 700;
-    font-size: 20px;
-    letter-spacing: 0.05em;
-    text-transform: capitalize;
-    background: linear-gradient(271.8deg, #6A4500 0.65%, #936207 98.14%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-family: 'Playfair Display';
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 0.05em;
+  text-transform: capitalize;
+  background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: "Playfair Display";
 }
 .aboutHome-img {
-    text-align: center;
-    display: flex;
-    align-items: center;
-    position: relative;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  position: relative;
 }
 .aboutLeft h5 {
-    font-family: 'Playfair Display';
-    font-weight: 700;
+  font-family: "Playfair Display";
+  font-weight: 700;
 }
 .aboutLeft img {
-    margin: 0 0 12px;
+  margin: 0 0 12px;
 }
 .aboutRight img {
-    width: 600px;
+  width: 600px;
 }
 .aboutLeft {
-    text-align: center;
-    background: #DFD8CD;
-    padding: 18px;
-    border-radius: 35px;
-    position: absolute;
-    top: 70%;
-    left: -20%;
-    width: 350px;
+  text-align: center;
+  background: #dfd8cd;
+  padding: 18px;
+  border-radius: 35px;
+  position: absolute;
+  top: 70%;
+  left: -20%;
+  width: 350px;
 }
 .aboutImg img {
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
 }
 
 .about-content h1 {
-    font-family: 'Playfair Display';
-    font-weight: 700;
-    font-size: 41px;
-    margin: 15px 0 40px;
-    background: linear-gradient(271.8deg, #6A4500 0.65%, #936207 98.14%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  font-family: "Playfair Display";
+  font-weight: 700;
+  font-size: 41px;
+  margin: 15px 0 40px;
+  background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .aboutDifferent-bg {
-    background: #E6E1D8;
-    text-align: center;
+  background: #e6e1d8;
+  text-align: center;
 }
 
 .aboutDifferent-bg h2 {
-    font-family: 'Playfair Display';
-    font-weight: 700;
-    font-size: 35px;
-    letter-spacing: 0.05em;
-    text-transform: capitalize;
-    margin: 0 0 30px;
+  font-family: "Playfair Display";
+  font-weight: 700;
+  font-size: 35px;
+  letter-spacing: 0.05em;
+  text-transform: capitalize;
+  margin: 0 0 30px;
 }
 
 .theme-cardImg img {
-    width: 100%;
+  width: 100%;
 }
 
 .theme-cardHead h3 {
-    font-family: 'Playfair Display';
-    font-weight: 700;
-    font-size: 35px;
-    letter-spacing: 0.05em;
-    text-transform: capitalize;
-    margin: 25px 0;
+  font-family: "Playfair Display";
+  font-weight: 700;
+  font-size: 35px;
+  letter-spacing: 0.05em;
+  text-transform: capitalize;
+  margin: 25px 0;
 }
 
 .aboutCenterImg {
-    border-left: 1px solid #936207;
-    border-right: 1px solid #936207;
-    padding: 0 32px;
-    border-radius: 10px;
+  border-left: 1px solid #936207;
+  border-right: 1px solid #936207;
+  padding: 0 32px;
+  border-radius: 10px;
 }
 
 .aboutCenterImg img {
-    width: 100%;
+  width: 100%;
 }
 
 .theme-cardHead h5 {
-    margin: 30px 0;
+  margin: 30px 0;
 }
 
 .aboutService {
-    box-shadow: rgb(0 0 0 / 16%) 0px 1px 4px;
-    padding: 20px 20px 0px;
-    border-radius: 15px;
-    position: relative;
-    z-index: 1;
-    height: 100%;
-    transition: .5s;
-    background: #fff;
+  box-shadow: rgb(0 0 0 / 16%) 0px 1px 4px;
+  padding: 20px 20px 0px;
+  border-radius: 15px;
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  transition: 0.5s;
+  background: #fff;
 }
 
 .aboutService:before {
-    position: absolute;
-    content: "";
-    z-index: -1;
-    width: 100%;
-    height: 0;
-    background: linear-gradient(271.8deg, #6A4500 0.65%, #936207 98.14%);
-    left: 0;
-    top: 0;
-    transition: .5s;
-    border-radius: 15px;
+  position: absolute;
+  content: "";
+  z-index: -1;
+  width: 100%;
+  height: 0;
+  background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%);
+  left: 0;
+  top: 0;
+  transition: 0.5s;
+  border-radius: 15px;
 }
 
 .aboutService:hover:before {
-    background: linear-gradient(271.8deg, #6A4500 0.65%, #936207 98.14%);
-    height: 100%;
+  background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%);
+  height: 100%;
 }
 
 .aboutService:hover h3 {
-    color: #fff;
+  color: #fff;
 }
 
 .aboutService:hover p {
-    color: #fff;
+  color: #fff;
 }
 
 .aboutService h3 {
-    font-family: 'Playfair Display';
-    font-weight: 700;
-    font-size: 30px;
-    margin: 20px 0;
+  font-family: "Playfair Display";
+  font-weight: 700;
+  font-size: 30px;
+  margin: 20px 0;
 }
-
 
 /* =================================== Help and Faqs area css ===================================== */
 .faqs-list .accordion-item {
-    margin: 10px 0;
+  margin: 10px 0;
 }
 
 .faqs-list .accordion-button:not(.collapsed) {
-    background: linear-gradient(271.8deg, rgba(106, 69, 0, 0.2) 0.65%, rgba(147, 98, 7, 0.2) 98.14%) !important;
+  background: linear-gradient(
+    271.8deg,
+    rgba(106, 69, 0, 0.2) 0.65%,
+    rgba(147, 98, 7, 0.2) 98.14%
+  ) !important;
 }
 
 .faqs-list .accordion-header button {
-    font-family: 'Playfair Display';
-    font-weight: 700;
-    font-size: 20px;
+  font-family: "Playfair Display";
+  font-weight: 700;
+  font-size: 20px;
 }
 
 /* ======================== offers details area css ======================================= */
 .offerDetails-item {
-    width: 100%;
-    height: 400px;
-    background-color: white;
-    position: relative;
-    display: inline-block;
-    margin: 1% 2% 1% 0%;
-    overflow: hidden;
-    box-shadow: 2px 3px 10px #444444;
+  width: 100%;
+  height: 400px;
+  background-color: white;
+  position: relative;
+  display: inline-block;
+  margin: 1% 2% 1% 0%;
+  overflow: hidden;
+  box-shadow: 2px 3px 10px #444444;
 }
 
 .offerDetails-item .Offeroverlay {
-    color: #000;
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
-    opacity: 0;
-    transition: all 0.5s ease;
-    position: absolute;
-    top: 0;
-    bottom: 0;
+  color: #000;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  opacity: 0;
+  transition: all 0.5s ease;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+.offerDetails-item.clean img {
+  width: 100%;
+  height: 100%;
 }
 
 /* effect-clean*/
 .clean .Offeroverlay span:nth-child(1) {
-    position: absolute;
-    left: 39%;
-    top: 30%;
-    font-size: 109px;
-    font-weight: bold;
-    font-family: coustard;
-    transform: translateX(-50%);
+  position: absolute;
+  left: 39%;
+  top: 30%;
+  font-size: 109px;
+  font-weight: bold;
+  font-family: coustard;
+  transform: translateX(-50%);
 }
 
 .clean .Offeroverlay span:nth-child(2) {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    font-size: 30px;
-    transform: translateX(-50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 30px;
+  transform: translateX(-50%);
 }
 
 .clean .Offeroverlay span:nth-child(3) {
-    height: 3px;
-    background-color: goldenrod;
-    position: absolute;
-    top: 75%;
-    left: 0;
+  height: 3px;
+  background-color: goldenrod;
+  position: absolute;
+  top: 75%;
+  left: 0;
 }
 
 .clean .Offeroverlay:hover {
-    opacity: 0.8;
+  opacity: 0.8;
 }
 
 .clean .Offeroverlay:hover span:nth-child(1) {
-    animation: slide 0.4s;
+  animation: slide 0.4s;
 }
 
 .clean .Offeroverlay:hover span:nth-child(2) {
-    animation: slide 0.7s;
+  animation: slide 0.7s;
 }
 
 .clean .Offeroverlay:hover span:nth-child(3) {
-    animation: line 0.5s forwards;
+  animation: line 0.5s forwards;
 }
 
 @keyframes slide {
-    0% {
-        transform: translateX(-10%);
-    }
+  0% {
+    transform: translateX(-10%);
+  }
 
-    100% {
-        transform: translateX(-50%);
-    }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes line {
-    0% {
-        width: 0;
-    }
+  0% {
+    width: 0;
+  }
 
-    100% {
-        width: 50%
-    }
+  100% {
+    width: 50%;
+  }
 }
 
 /* effect-uncover*/
 
 .uncover .Offeroverlay span:nth-child(1) {
-    position: absolute;
-    left: 42%;
-    top: 22%;
-    font-size: 149px;
-    font-weight: bold;
-    font-family: coustard;
-    transform: translateX(-50%);
-    opacity: 0;
+  position: absolute;
+  left: 42%;
+  top: 22%;
+  font-size: 149px;
+  font-weight: bold;
+  font-family: coustard;
+  transform: translateX(-50%);
+  opacity: 0;
 }
 
 .uncover .Offeroverlay span:nth-child(2) {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    font-size: 30px;
-    transform: translateY(-50%);
-    transform: translateX(-50%);
-    opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 30px;
+  transform: translateY(-50%);
+  transform: translateX(-50%);
+  opacity: 0;
 }
 
 .uncover .Offeroverlay span:nth-child(3) {
-    height: 30px;
-    background-color: #000;
-    position: absolute;
-    top: 38%;
-    opacity: 0;
+  height: 30px;
+  background-color: #000;
+  position: absolute;
+  top: 38%;
+  opacity: 0;
 }
 
 .uncover .Offeroverlay span:nth-child(4) {
-    height: 30px;
-    background-color: #000;
-    position: absolute;
-    top: 50%;
-    left: 25%;
-    opacity: 0;
+  height: 30px;
+  background-color: #000;
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  opacity: 0;
 }
 
 .uncover .Offeroverlay:hover {
-    opacity: 0.8;
+  opacity: 0.8;
 }
 
 .uncover .Offeroverlay:hover span:nth-child(1) {
-    animation: fadein 0.6s forwards;
-    animation-delay: 0.5s;
+  animation: fadein 0.6s forwards;
+  animation-delay: 0.5s;
 }
 
 .uncover .Offeroverlay:hover span:nth-child(2) {
-    animation: fadein 0.6s forwards;
-    animation-delay: 0.75s;
+  animation: fadein 0.6s forwards;
+  animation-delay: 0.75s;
 }
 
 .uncover .Offeroverlay:hover span:nth-child(3) {
-    animation: draw-left 0.7s;
+  animation: draw-left 0.7s;
 }
 
 .uncover .Offeroverlay:hover span:nth-child(4) {
-    animation: draw-right 0.7s;
-    animation-delay: 0.6s;
+  animation: draw-right 0.7s;
+  animation-delay: 0.6s;
 }
 
 @keyframes draw-left {
-    0% {
-        opacity: 0;
-        width: 0px;
-        left: 75%
-    }
+  0% {
+    opacity: 0;
+    width: 0px;
+    left: 75%;
+  }
 
-    50% {
-        opacity: 1;
-        left: 25%;
-        width: 200px;
-    }
+  50% {
+    opacity: 1;
+    left: 25%;
+    width: 200px;
+  }
 
-    100% {
-        opacity: 0;
-        width: 0px;
-        left: 25%;
-    }
+  100% {
+    opacity: 0;
+    width: 0px;
+    left: 25%;
+  }
 }
 
 @keyframes draw-right {
-    0% {
-        opacity: 0;
-        width: 0px;
-    }
+  0% {
+    opacity: 0;
+    width: 0px;
+  }
 
-    50% {
-        opacity: 1;
-        width: 200px;
-    }
+  50% {
+    opacity: 1;
+    width: 200px;
+  }
 
-    100% {
-        opacity: 0;
-        width: 0px;
-    }
+  100% {
+    opacity: 0;
+    width: 0px;
+  }
 }
 
 @keyframes fadein {
-    0% {
-        opacity: 0;
-    }
+  0% {
+    opacity: 0;
+  }
 
-    100% {
-        opacity: 1;
-    }
+  100% {
+    opacity: 1;
+  }
 }
 
 /* effect-explode */
 .explode .Offeroverlay span:nth-child(1) {
-    position: absolute;
-    left: 10%;
-    top: 28%;
-    font-size: 200px;
-    font-weight: bold;
-    font-family: coustard;
-    transform: translateX(-50%);
-    opacity: 0;
+  position: absolute;
+  left: 10%;
+  top: 28%;
+  font-size: 200px;
+  font-weight: bold;
+  font-family: coustard;
+  transform: translateX(-50%);
+  opacity: 0;
 }
 
 .explode .Offeroverlay span:nth-child(2) {
-    position: absolute;
-    top: 64%;
-    left: 10%;
-    font-size: 30px;
-    opacity: 0;
+  position: absolute;
+  top: 64%;
+  left: 10%;
+  font-size: 30px;
+  opacity: 0;
 }
 
 .explode .Offeroverlay span:nth-child(3) {
-    position: absolute;
-    top: 90%;
-    left: 0;
-    height: 60px;
-    background-color: #000;
+  position: absolute;
+  top: 90%;
+  left: 0;
+  height: 60px;
+  background-color: #000;
 }
 
 .explode .Offeroverlay:hover {
-    opacity: 0.8;
+  opacity: 0.8;
 }
 
 .explode .Offeroverlay:hover span:nth-child(1) {
-    animation: focus 0.4s forwards;
-    animation-delay: 0.2s;
+  animation: focus 0.4s forwards;
+  animation-delay: 0.2s;
 }
 
 .explode .Offeroverlay:hover span:nth-child(2) {
-    animation: focus 0.4s forwards;
-    animation-delay: 0.4s;
+  animation: focus 0.4s forwards;
+  animation-delay: 0.4s;
 }
 
 .explode .Offeroverlay:hover span:nth-child(3) {
-    animation: block 0.3s forwards;
-    animation-delay: 0.15s;
+  animation: block 0.3s forwards;
+  animation-delay: 0.15s;
 }
 
 @keyframes focus {
-    0% {
-        transform: scale(1.4) translateX(-30%);
-        filter: blur(10px);
-        opacity: 0;
-    }
+  0% {
+    transform: scale(1.4) translateX(-30%);
+    filter: blur(10px);
+    opacity: 0;
+  }
 
-    100% {
-        transform: scale(1) translateX(0%);
-        filter: blur(0px);
-        opacity: 1;
-    }
+  100% {
+    transform: scale(1) translateX(0%);
+    filter: blur(0px);
+    opacity: 1;
+  }
 }
 
 @keyframes block {
-    0% {
-        width: 0;
-        filter: blur(5px);
-        opacity: 0;
-    }
+  0% {
+    width: 0;
+    filter: blur(5px);
+    opacity: 0;
+  }
 
-    100% {
-        width: 100%;
-        filter: blur(0px);
-        opacity: 1;
-    }
+  100% {
+    width: 100%;
+    filter: blur(0px);
+    opacity: 1;
+  }
 }
 
 .offer-sliderarea {
-    position: relative;
-    text-align: center;
+  position: relative;
+  text-align: center;
 }
 
 .offer-sliderarea img {
-    width: 100%;
+  width: 100%;
 }
 
 .offer-sliderText {
-    position: absolute;
-    top: 30%;
-    left: 12%;
+  position: absolute;
+  top: 30%;
+  left: 12%;
 }
 
 .offer-sliderText h2 {
-    font-family: 'Playfair Display';
-    font-weight: 700;
-    font-size: 41px;
+  font-family: "Playfair Display";
+  font-weight: 700;
+  font-size: 41px;
 }
-
 
 /* ====================================== Contact area css ======================================= */
 .contact-form {
-    padding: 60px 100px;
-    box-shadow: 0 19px 38px rgb(0 0 0 / 30%), 0 15px 12px rgb(0 0 0 / 22%);
-    border-bottom: 5px solid #936207;
-    border-top-right-radius: 2%;
-    border-top-left-radius: 2%;
-    background: #fff;
+  padding: 60px 100px;
+  box-shadow: 0 19px 38px rgb(0 0 0 / 30%), 0 15px 12px rgb(0 0 0 / 22%);
+  border-bottom: 5px solid #936207;
+  border-top-right-radius: 2%;
+  border-top-left-radius: 2%;
+  background: #fff;
 }
 
 .contact-form h2 {
-    font-family: 'Playfair Display';
-    font-weight: 700;
-    font-size: 35px;
-    margin: 0 0 16px;
+  font-family: "Playfair Display";
+  font-weight: 700;
+  font-size: 35px;
+  margin: 0 0 16px;
 }
 
 .contact-form input {
-    background: #fff;
-    color: gray !important;
-    border: 1px solid lightgray;
-    padding: 10px 20px;
+  background: #fff;
+  color: gray !important;
+  border: 1px solid lightgray;
+  padding: 10px 20px;
 }
 
 .contact-form .form-select {
-    /* background: #fff; */
-    color: gray !important;
-    border: 1px solid lightgray;
-    padding: 10px 20px;
+  /* background: #fff; */
+  color: gray !important;
+  border: 1px solid lightgray;
+  padding: 10px 20px;
 }
 
 .contact-form .form-control {
-    background: #fff;
-    color: gray !important;
-    border: 1px solid lightgray;
-    padding: 10px 20px;
+  background: #fff;
+  color: gray !important;
+  border: 1px solid lightgray;
+  padding: 10px 20px;
 }
 
 .contact-form .form-control:focus {
-    background: #f6f6f6;
-    border: none !important;
-    box-shadow: none !important;
+  background: #f6f6f6;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .contact-form .form-select:focus {
-    background: #f6f6f6;
-    border: none !important;
-    box-shadow: none !important;
+  background: #f6f6f6;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .contact-form input:focus {
-    background: #f6f6f6;
-    border: none !important;
-    box-shadow: none !important;
+  background: #f6f6f6;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .contact-form textarea {
-    background: #f6f6f6;
-    border: none;
-    padding: 10px 20px;
-    /* margin: 20px 0; */
+  background: #f6f6f6;
+  border: none;
+  padding: 10px 20px;
+  /* margin: 20px 0; */
 }
 
 .contact-form label {
-    font-weight: 500;
+  font-weight: 500;
 }
 
 .contact-form button {
-    background: linear-gradient(271.8deg, rgba(106, 69, 0, 0.2) 0.65%, rgba(147, 98, 7, 0.2) 98.14%) !important;
-    box-shadow: 0px 1px 30px rgba(0, 0, 0, 0.05);
-    padding: 12px 20px;
-    position: relative;
-    font-weight: 700;
-    font-size: 18px;
-    letter-spacing: 0.05em;
-    text-transform: capitalize;
-    color: #936207;
-    border: none;
+  background: linear-gradient(
+    271.8deg,
+    rgba(106, 69, 0, 0.2) 0.65%,
+    rgba(147, 98, 7, 0.2) 98.14%
+  ) !important;
+  box-shadow: 0px 1px 30px rgba(0, 0, 0, 0.05);
+  padding: 12px 20px;
+  position: relative;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  text-transform: capitalize;
+  color: #936207;
+  border: none;
 }
 
 .contact-form button:hover {
-    color: #936207;
+  color: #936207;
 }
 
 /* .contact-box { */
@@ -1231,674 +1230,704 @@ nav.header-bg {
     background-repeat: no-repeat; */
 /* } */
 .contact-box {
-    box-shadow: rgb(0 0 0 / 16%) 0px 1px 4px;
-    padding: 20px 20px 0px;
-    border-radius: 15px;
-    position: relative;
-    z-index: 1;
-    height: 100%;
-    transition: .5s;
-    background: #fff;
+  box-shadow: rgb(0 0 0 / 16%) 0px 1px 4px;
+  padding: 20px 20px 0px;
+  border-radius: 15px;
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  transition: 0.5s;
+  background: #fff;
 }
 
 .contact-box i {
-    font-size: 44px;
+  font-size: 44px;
 }
 
 .contact-box h3 {
-    font-family: 'Playfair Display';
-    font-weight: 700;
-    font-size: 28px;
-    margin: 25px 0 12px;
+  font-family: "Playfair Display";
+  font-weight: 700;
+  font-size: 28px;
+  margin: 25px 0 12px;
 }
 
 .contact-box:hover:before {
-    background: linear-gradient(271.8deg, #6A4500 0.65%, #936207 98.14%);
-    height: 100%;
+  background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%);
+  height: 100%;
 }
 
 .contact-box:before {
-    position: absolute;
-    content: "";
-    z-index: -1;
-    width: 100%;
-    height: 0;
-    background: linear-gradient(271.8deg, #6A4500 0.65%, #936207 98.14%);
-    left: 0;
-    bottom: 0;
-    transition: .5s;
-    border-radius: 15px;
+  position: absolute;
+  content: "";
+  z-index: -1;
+  width: 100%;
+  height: 0;
+  background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%);
+  left: 0;
+  bottom: 0;
+  transition: 0.5s;
+  border-radius: 15px;
 }
 
 .contact-box:hover h3 {
-    color: #fff;
+  color: #fff;
 }
 
 .contact-box:hover i {
-    color: #fff;
+  color: #fff;
 }
 
 .contact-box:hover p {
-    color: #fff;
+  color: #fff;
 }
-
 
 /* ======================== Catalogue area css ====================== */
 .catlogOne {
-    text-align: center;
+  text-align: center;
 }
 
 .catlogOne h2 {
-    font-family: 'Playfair Display';
-    font-weight: 700;
-    font-size: 30px;
+  font-family: "Playfair Display";
+  font-weight: 700;
+  font-size: 30px;
 }
 
 .catlogbg img {
-    width: 100%;
+  width: 100%;
 }
 
 .catlogbg-card {
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-    height: 100%;
-    border-radius: 5px;
-    text-align: center;
-    padding: 12px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  height: 100%;
+  border-radius: 5px;
+  text-align: center;
+  padding: 12px;
 }
 
 /* =============================== Mens catalogue area css ============================== */
 .men-catlog {
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-    border-radius: 5px;
-    height: 100%;
-    padding: 20px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  border-radius: 5px;
+  height: 100%;
+  padding: 20px;
 }
 
 .men-catlog img {
-    width: 100%;
+  width: 100%;
 }
 
 .men-catlog h3 {
-    font-family: 'Playfair Display';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 26px;
-    margin: 0 0 14px;
-    background: linear-gradient(271.8deg, #6A4500 0.65%, #936207 98.14%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  font-family: "Playfair Display";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 26px;
+  margin: 0 0 14px;
+  background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-
 
 /* =============================== Blog area css ============================= */
 .blog-card {
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-    border-radius: 5px;
-    height: 100%;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  border-radius: 5px;
+  height: 100%;
 }
 
 .blog-card img {
-    width: 100%;
-    webkit-transform: scale(1);
-    transform: scale(1);
-    -webkit-transition: .2s ease-in-out;
-    transition: .2s ease-in-out;
+  width: 100%;
+  webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
 }
 
 .blog-card img:hover {
-    -webkit-transform: scale(0.9);
-    transform: scale(0.9);
+  -webkit-transform: scale(0.9);
+  transform: scale(0.9);
 }
 
 .blog-cardContent {
-    padding: 12px;
+  padding: 12px;
 }
 
 .blog-cardContent h3 {
-    font-family: 'Playfair Display';
-    font-weight: 700;
-    font-size: 25px;
-    background: linear-gradient(271.8deg, #6A4500 0.65%, #936207 98.14%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin: 0 0 20px;
+  font-family: "Playfair Display";
+  font-weight: 700;
+  font-size: 25px;
+  background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 20px;
 }
-
-
 
 /* ======================== Login area css ==================================== */
 
 .mainForm-bg {
-
-    background-color: #000;
-    background-size: cover;
-    top: 0;
-    bottom: 0;
-    min-height: 100vh;
-    /* text-align: right; */
-    z-index: 999;
-    opacity: 1;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+  background-color: #000;
+  background-size: cover;
+  top: 0;
+  bottom: 0;
+  min-height: 100vh;
+  /* text-align: right; */
+  z-index: 999;
+  opacity: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 .mainForm-bg:before {
-    position: absolute;
-    content: '';
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    opacity: 0.5;
-    background: url(../images/banner/bg.webp);
-    background-repeat: no-repeat;
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0.5;
+  background: url(../images/banner/bg.webp);
+  background-repeat: no-repeat;
 }
 
 .mainForm-text {
-    text-align: right;
-    color: #fff;
-    opacity: 0.9;
-    padding: 30px 50px 30px 40px;
+  text-align: right;
+  color: #fff;
+  opacity: 0.9;
+  padding: 30px 50px 30px 40px;
 }
 
 .mainForm-text p {
-    color: #fff;
+  color: #fff;
 }
 
 .mainForm-text h3 {
-    font-size: 35px;
+  font-size: 35px;
 }
 
 .mainForm-text h2 {
-    display: block;
-    text-shadow: 0 0 80px rgba(255, 255, 255, 0.5);
-    background: url(../images/banner/line.png) repeat-y;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -webkit-animation: aitf 40s linear infinite;
-    -webkit-transform: translate3d(0, 0, 0);
-    -webkit-backface-visibility: hidden;
-    font-family: 'Playfair Display';
-    margin: 0 0 30px 0;
-    font-size: 60px;
+  display: block;
+  text-shadow: 0 0 80px rgba(255, 255, 255, 0.5);
+  background: url(../images/banner/line.png) repeat-y;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-animation: aitf 40s linear infinite;
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  font-family: "Playfair Display";
+  margin: 0 0 30px 0;
+  font-size: 60px;
 }
 
 .mainForm-text p {
-    color: #fff;
-    opacity: 0.9;
-    font-size: 15px;
-    margin-bottom: 40px;
+  color: #fff;
+  opacity: 0.9;
+  font-size: 15px;
+  margin-bottom: 40px;
 }
 
 @keyframes aitf {
-    0% {
-        background-position: 0% 50%;
-    }
+  0% {
+    background-position: 0% 50%;
+  }
 
-    100% {
-        background-position: 100% 50%;
-    }
+  100% {
+    background-position: 100% 50%;
+  }
 }
 
 .btn-section {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .btn-theme-3:hover {
-    color: #fff;
-    border: 2px solid #936207;
+  color: #fff;
+  border: 2px solid #936207;
 }
 
 .btn-theme-3:hover {
-    background: transparent;
+  background: transparent;
 }
 
 .btn-theme-3 {
-    background: #fff;
+  background: #fff;
 }
 
 .btn-theme-3 {
-    color: #000;
-    text-align: center;
-    border: 2px solid transparent;
-    display: inline-block;
-    padding: 0 35px;
-    position: relative;
-    z-index: 1;
-    transition: all .7s ease;
-    border-radius: 50px;
-    line-height: 41px;
-    font-size: 16px;
-    font-weight: bold;
-    font-family: 'Jost', sans-serif;
-    border-radius: 0;
+  color: #000;
+  text-align: center;
+  border: 2px solid transparent;
+  display: inline-block;
+  padding: 0 35px;
+  position: relative;
+  z-index: 1;
+  transition: all 0.7s ease;
+  border-radius: 50px;
+  line-height: 41px;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: "Jost", sans-serif;
+  border-radius: 0;
 }
 
 .btn-theme-3:hover:before {
-    width: 0;
-    opacity: 1;
-    visibility: visible;
+  width: 0;
+  opacity: 1;
+  visibility: visible;
 }
 
 .btn-theme-3:before {
-    background: #936207;
+  background: #936207;
 }
 
 .btn-theme-3:before {
-    position: absolute;
-    content: "";
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    visibility: hidden;
-    transition: all .7s ease;
-    z-index: -1;
-    border-radius: 50px 0 0 50px;
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.7s ease;
+  z-index: -1;
+  border-radius: 50px 0 0 50px;
 }
 
 .btn-theme-3:hover:after {
-    width: 0;
-    opacity: 1;
-    visibility: visible;
+  width: 0;
+  opacity: 1;
+  visibility: visible;
 }
 
 .btn-theme-3:after {
-    background: #936207;
+  background: #936207;
 }
 
 .btn-theme-3:after {
-    position: absolute;
-    content: "";
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    visibility: hidden;
-    transition: all .7s ease;
-    z-index: -1;
-    border-radius: 0 50px 50px 0;
+  position: absolute;
+  content: "";
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.7s ease;
+  z-index: -1;
+  border-radius: 0 50px 50px 0;
 }
 
 .btn-theme-2:hover {
-    color: #fff;
+  color: #fff;
 }
 
 .btn-theme-2 {
-    border: 2px solid #936207;
-    border-radius: 0;
-    color: #fff;
+  border: 2px solid #936207;
+  border-radius: 0;
+  color: #fff;
 }
 
 .btn-theme-2 {
-    padding: 0 30px;
-    display: inline-block;
-    position: relative;
-    z-index: 5;
-    transition: .7s ease;
-    background: transparent;
-    line-height: 41px;
-    font-size: 16px;
-    font-weight: bold;
-    font-family: 'Jost', sans-serif;
-    border-radius: 0;
+  padding: 0 30px;
+  display: inline-block;
+  position: relative;
+  z-index: 5;
+  transition: 0.7s ease;
+  background: transparent;
+  line-height: 41px;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: "Jost", sans-serif;
+  border-radius: 0;
 }
 
 .btn-theme-2:hover:before,
 .btn-theme-2:hover:after {
-    width: 50%;
+  width: 50%;
 }
 
 .btn-theme-2:before,
 .btn-theme-2:after {
-    background: #936207;
+  background: #936207;
 }
 
 .btn-theme-2:before,
 .btn-theme-2:before {
-    position: absolute;
-    content: "";
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    z-index: -1;
-    transition: all .7s ease;
-    border-radius: 0;
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  z-index: -1;
+  transition: all 0.7s ease;
+  border-radius: 0;
 }
 
 .btn-theme-2:before,
 .btn-theme-2:after {
-    color: #fff;
+  color: #fff;
 }
 
 .btn-theme-2:hover:before,
 .btn-theme-2:hover:after {
-    width: 50%;
+  width: 50%;
 }
 
 .btn-theme-2:after,
 .btn-theme-2:after {
-    position: absolute;
-    content: "";
-    top: 0;
-    right: 0;
-    width: 0;
-    height: 100%;
-    z-index: -1;
-    transition: all .7s ease;
-    border-radius: 0;
+  position: absolute;
+  content: "";
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 100%;
+  z-index: -1;
+  transition: all 0.7s ease;
+  border-radius: 0;
 }
 
 .btn-theme-2:before,
 .btn-theme-2:after {
-    background: #936207;
+  background: #936207;
 }
 
 .btn-section a {
-    margin: 5px;
+  margin: 5px;
 }
 
 .mainForm-content {
-    padding: 40px 50px;
+  padding: 40px 50px;
 }
 
 .mainForm-content h3 {
-    background: linear-gradient(271.8deg, #6A4500 0.65%, #936207 98.14%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-family: 'Playfair Display';
-    font-weight: 700;
-    font-size: 41px;
+  background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: "Playfair Display";
+  font-weight: 700;
+  font-size: 41px;
 }
 
 .mainForm-content h4 {
-    font-size: 25px;
-    font-family: monospace;
-    margin: 0 0 35px;
+  font-size: 25px;
+  font-family: monospace;
+  margin: 0 0 35px;
 }
 
 .mainForm-content input {
-    background: #fff;
-    color: gray !important;
-    border: none;
-    padding: 10px 20px;
+  background: #fff;
+  color: gray !important;
+  border: none;
+  padding: 10px 20px;
 }
 
 .mainForm-content .form-select {
-    border: none !important;
-    color: gray !important;
-    padding: 10px 20px;
+  border: none !important;
+  color: gray !important;
+  padding: 10px 20px;
 }
 
 .mainForm-content .form-select:focus {
-    box-shadow: none !important;
-    background: #f6f6f6 !important;
-    border: none !important;
+  box-shadow: none !important;
+  background: #f6f6f6 !important;
+  border: none !important;
 }
 
 .mainForm-content input:focus {
-    box-shadow: none !important;
-    background: #f6f6f6 !important;
+  box-shadow: none !important;
+  background: #f6f6f6 !important;
 }
 
 .mainForm-content label {
-    font-weight: 500;
+  font-weight: 500;
 }
 
 .mainForm-right {
-    text-align: right;
+  text-align: right;
 }
 
 .mainForm-right a {
-    color: #000;
-    font-weight: 500;
+  color: #000;
+  font-weight: 500;
 }
 
 .mainForm-btn {
-    margin: 30px 0;
+  margin: 30px 0;
 }
 
 .mainForm-btn button {
-    width: 100%;
-    background: linear-gradient(271.8deg, #6A4500 0.65%, #936207 98.14%);
-    color: #fff;
-    padding: 0 50px;
-    line-height: 55px;
-    font-weight: 500;
-    font-size: 20px;
-    border: none;
+  width: 100%;
+  background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%);
+  color: #fff;
+  padding: 0 50px;
+  line-height: 55px;
+  font-weight: 500;
+  font-size: 20px;
+  border: none;
 }
 
 .mainForm-content a {
-    color: #7a5002;
-    font-weight: 500;
+  color: #7a5002;
+  font-weight: 500;
 }
-
 
 /* ================= Products card all inner pages design css ===================== */
 .addCard-btn {
-    background: linear-gradient(271.8deg, #6A4500 0.65%, #936207 98.14%);
-    border-radius: 20px;
-    padding: 10px;
-    margin: 20px 0;
+  background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%);
+  border-radius: 20px;
+  padding: 10px;
+  margin: 20px 0;
 }
 
 .addCard-btn a {
-    color: #fff;
-    font-size: 18px;
-    font-weight: 500;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
 }
 
 .add-cards h5 {
-    font-family: 'Inter';
-    font-weight: 600;
-    margin: 10px 0;
+  font-family: "Inter";
+  font-weight: 600;
+  margin: 10px 0;
 }
 
 .add-cards h6 {
-    text-align: right;
-    background: linear-gradient(271.8deg, #6A4500 0.65%, #936207 98.14%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-family: 'Playfair Display';
-    font-weight: 600;
-    font-size: 30px;
+  text-align: right;
+  background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: "Playfair Display";
+  font-weight: 600;
+  font-size: 30px;
 }
 
 .add-cards h4 {
-    background: linear-gradient(271.8deg, #6A4500 0.65%, #936207 98.14%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-family: 'Playfair Display';
-    font-weight: 600;
-    font-size: 30px;
+  background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: "Playfair Display";
+  font-weight: 600;
+  font-size: 30px;
 }
 
 .addCard-conaty {
-    background: #FFFFFF;
-    border-radius: 16px;
-    padding: 20px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
 }
 
 .quantity-btn {
-    text-align: right;
+  /* text-align: right; */
 }
 
 .quantity-btn button {
-    font-weight: bold;
-    background: linear-gradient(271.8deg, #6A4500 0.65%, #936207 98.14%);
-    border: none;
-    padding: 0 16px 4px;
-    border-radius: 50px;
-    color: #fff;
-    font-size: 18px;
+  font-weight: bold;
+  background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%);
+  border: none;
+  padding: 0 16px 4px;
+  border-radius: 50px;
+  color: #fff;
+  font-size: 18px;
 }
 
 .quantity-btn span {
-    margin: 12px;
-    border: 1px solid #936207;
-    padding: 5px 20px;
-    border-radius: 5px;
-    font-size: 18px;
-    font-weight: bold;
+  margin: 12px;
+  border: 1px solid #936207;
+  padding: 2px 30px;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .quantity-btn select {
-    border-radius: 20px;
-    border: 1.5px solid #936207;
+  border-radius: 20px;
+  border: 1.5px solid #936207;
 }
 
 .quantity-btn select:focus {
-    border-color: #936207 !important;
-    box-shadow: none !important;
+  border-color: #936207 !important;
+  box-shadow: none !important;
 }
 .add-btn {
-    text-align: center;
-    margin: 30px 0;
+  text-align: center;
+  margin: 30px 0;
 }
 .add-btn a {
-    background: linear-gradient(271.8deg, #6A4500 0.65%, #936207 98.14%);
-    color: #fff;
-    font-weight: 500;
-    padding: 10px 30px;
-    border-radius: 20px;
+  background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%);
+  color: #fff;
+  font-weight: 500;
+  padding: 10px 30px;
+  border-radius: 20px;
 }
 .add-Itemsbtn {
-    text-align: right;
-    margin: 30px 0;
+  text-align: right;
+  margin: 30px 0;
 }
 .add-Itemsbtn a {
-    background: linear-gradient(271.8deg, #6A4500 0.65%, #936207 98.14%);
-    color: #fff;
-    font-weight: 500;
-    padding: 10px 30px;
-    border-radius: 20px;
+  background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%);
+  color: #fff;
+  font-weight: 500;
+  padding: 10px 30px;
+  border-radius: 20px;
 }
 
 /* =================== Calculator area css ============ */
 .calcutor {
-    background: #FFFFFF;
-    border-radius: 16px;
-    padding: 15px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 15px;
 }
 .calcutor .progress-bar {
-    background: linear-gradient(271.8deg, #6A4500 0.65%, #936207 98.14%);
+  background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%);
 }
 .calcutor h4 {
-    font-family: 'Playfair Display';
-    font-size: 20px;
-    font-weight: 700;
+  font-family: "Playfair Display";
+  font-size: 20px;
+  font-weight: 700;
 }
 .calcutor-area h3 {
-    text-align: center;
-    font-family: 'Playfair Display';
-    font-weight: 700;
-    font-size: 30px;
+  text-align: center;
+  font-family: "Playfair Display";
+  font-weight: 700;
+  font-size: 30px;
 }
 .calcutor h4 span {
-    color: #936207;
+  color: #936207;
 }
 .calcutor-card {
-    border: 1.5px solid #936207;
-    padding: 25px;
-    border-radius: 40px;
+  border: 1.5px solid #936207;
+  padding: 25px;
+  border-radius: 40px;
 }
 .calcutor-card h5 {
-    font-family: 'Inter';
+  font-family: "Inter";
 }
 .calcutor-card h6 {
-    font-family: 'Playfair Display';
-    font-weight: 700;
-    font-size: 32px;
-    margin: -5px 0;
-    text-align: right;
+  font-family: "Playfair Display";
+  font-weight: 700;
+  font-size: 32px;
+  margin: -5px 0;
+  text-align: right;
 }
 
 /*================================= brands Category’s area css ============================ */
 .brand-cate-list a {
-    font-weight: 600;
-    color: #000;
-    margin: 5px 0 5px 0;
+  font-weight: 600;
+  color: #000;
+  margin: 5px 0 5px 0;
 }
 .brand-cate-list a:hover {
-    color: #936207 !important;
+  color: #936207 !important;
 }
-.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
-    background: linear-gradient(271.8deg, #6A4500 0.65%, #936207 98.14%) !important;
-    color: #fff !important;
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  background: linear-gradient(
+    271.8deg,
+    #6a4500 0.65%,
+    #936207 98.14%
+  ) !important;
+  color: #fff !important;
 }
-
-
 
 /* bangle-areaCara area css */
 .bangle-areaCara {
-    box-shadow: 0px 2px 20px 0px #0000000D;
-    background: #fff;
-    border-radius: 40px;
-    padding: 40px;
-    position: relative;
-    top: -130px;
+  box-shadow: 0px 2px 20px 0px #0000000d;
+  background: #fff;
+  border-radius: 40px;
+  padding: 40px;
+  position: relative;
+  top: -130px;
 }
 .sliderBangle {
-    position: relative;
+  position: relative;
 }
 .bangleHome {
-    text-align: center;
+  text-align: center;
 }
 .bangleHomeCard:hover {
-    background: #E6E1D8;
+  background: #e6e1d8;
 }
 
 .bangleHomeCard {
-    background: #fff;
-    padding: 20px 10px 40px;
-    text-align: center;
-    border-radius: 26px;
+  background: #fff;
+  padding: 20px 10px 40px;
+  text-align: center;
+  border-radius: 26px;
 }
 .bangleHomeCard img {
-    margin: 0 0 15px;
-    width: 300px;
+  margin: 0 0 15px;
+  width: 300px;
 }
 .bangleHomeCard h3 {
-    font-weight: 400;
-    font-size: 26px;
+  font-weight: 400;
+  font-size: 26px;
 }
 .bangleHomeCard h6 {
-    font-size: 26px;
-    background: linear-gradient(271.8deg, #6A4500 0.65%, #936207 98.14%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-family: 'Playfair Display';
-    margin: 0 0 32px;
+  font-size: 26px;
+  background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: "Playfair Display";
+  margin: 0 0 32px;
 }
 .main-addBtn {
-    background: linear-gradient(271.8deg, #6A4500 0.65%, #936207 98.14%);
-    color: #fff;
-    font-weight: 600;
-    padding: 16px 36px;
-    border-radius: 8px;
-    font-size: 22px;
-    font-family: 'Playfair Display';
+  background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%);
+  color: #fff;
+  font-weight: 600;
+  padding: 16px 36px;
+  border-radius: 8px;
+  font-size: 22px;
+  font-family: "Playfair Display";
 }
 
 .new-arr img {
-    width: 100%;
+  width: 100%;
 }
 .homeBack-bg img {
-    width: 100%;
+  width: 100%;
+}
+
+.productdetails-bg img {
+  width: 100%;
+}
+.productDetailTable.table {
+  /* text-align: center; */
+}
+table.productDetailTable.table tbody tr td {
+  vertical-align: middle;
+}
+table.productDetailTable.table thead tr th {
+  font-size: 23px;
+  font-weight: 600;
+  font-family: Playfair sans-serif;
+}
+table.productDetailTable.table tr td label {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.showSize {
+  background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%);
+  color: #fff;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 50px;
+  font-weight: 500;
+  font-size: 20px;
+  font-family: Playfair sans-serif;
 }
