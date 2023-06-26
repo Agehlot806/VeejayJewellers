@@ -110,7 +110,7 @@ function Home(props) {
         <div className="home-area">
           <Container>
             <Row>
-              <Col lg={7}>
+              <Col lg={7} sm={7}>
                 <div className="home-content">
                   <h1>Veejay Jeweller</h1>
                   <p>
@@ -126,7 +126,7 @@ function Home(props) {
                   </Link>
                 </div>
               </Col>
-              <Col lg={5} className="align-self-center">
+              <Col lg={5} sm={5} className="align-self-center">
                 <img src={home} />
               </Col>
             </Row>
@@ -149,21 +149,21 @@ function Home(props) {
       <section className=" details-area">
         <Container>
           <Row>
-            <Col lg={4} sm={6} className="mb-4">
+            <Col lg={4} sm={6} xs={6} className="mb-4">
               <div className="details-card">
                 <img src={imgIcon1} />
                 <h3>amazing Value every day</h3>
                 <p>Items Prices that fit your Budget </p>
               </div>
             </Col>
-            <Col lg={4} sm={6} className="mb-4">
+            <Col lg={4} sm={6} xs={6} className="mb-4">
               <div className="details-card">
                 <img src={imgIcon2} />
                 <h3>Successful Customer Service</h3>
                 <p>Items Prices that fit your Budget </p>
               </div>
             </Col>
-            <Col lg={4} sm={6} className="mb-4">
+            <Col lg={4} sm={6} xs={6} className="mb-4">
               <div className="details-card">
                 <img src={imgIcon3} />
                 <h3>Successful Customer Service</h3>
@@ -182,7 +182,7 @@ function Home(props) {
           </div>
           <div className="main-space">
             <Row>
-              <Col lg={5}>
+              <Col lg={5} sm={5}>
                 <div className="abouthome-content">
                   <h5>Silver-Dimonds Earrings </h5>
                   <p>
@@ -195,7 +195,7 @@ function Home(props) {
                   <Link to="">learn more</Link>
                 </div>
               </Col>
-              <Col lg={7}>
+              <Col lg={7} sm={7}>
                 <div className="aboutHome-img">
                   <div className="aboutRight">
                     <img src={abouthome} />
@@ -226,7 +226,7 @@ function Home(props) {
           </Row>
           <Row className="mt-3">
             {brandcategories.map((item) => (
-              <Col lg={4} sm={6} className="mb-3" key={item.id}>
+              <Col lg={4} sm={6} xs={6} className="mb-3" key={item.id}>
                 <div className="brandsCard">
                   <img src={item.image} alt="" />
                   <h3>{item.name}</h3>
@@ -309,7 +309,7 @@ function Home(props) {
             </div>
             <div className="main-space">
               <Row>
-                <Col lg={4}>
+                <Col lg={4} sm={4} xs={6}>
                   <div className="bangleHomeCard">
                     <img src={Group1} />
                     <h3>Handmade Jewelry Bangle</h3>
@@ -319,7 +319,7 @@ function Home(props) {
                     </Link>
                   </div>
                 </Col>
-                <Col lg={4}>
+                <Col lg={4} sm={4} xs={6}>
                   <div className="bangleHomeCard">
                     <img src={Group2} />
                     <h3>Handmade Jewelry Bangle</h3>
@@ -329,7 +329,7 @@ function Home(props) {
                     </Link>
                   </div>
                 </Col>
-                <Col lg={4}>
+                <Col lg={4} sm={4} xs={6}>
                   <div className="bangleHomeCard">
                     <img src={Group3} />
                     <h3>Handmade Jewelry Bangle</h3>
@@ -348,10 +348,10 @@ function Home(props) {
       <section className="new-arr">
         <Container>
           <Row>
-            <Col lg={6}>
+            <Col lg={6} sm={6} xs={6}>
               <img src={one} />
             </Col>
-            <Col lg={6}>
+            <Col lg={6} sm={6} xs={6}>
               <img src={two} />
             </Col>
           </Row>
@@ -370,7 +370,7 @@ function Home(props) {
           </Row>
 
           <Row className="mt-4 mb-4">
-            <Col lg={3} sm={6} className="mb-5">
+            <Col lg={3} sm={4} xs={6} className="mb-3">
               <Link to="/product-add-card">
                 <div className="bestseller-card">
                   <div className="bestseller-cardImg">
@@ -399,7 +399,7 @@ function Home(props) {
                 </div>
               </Link>
             </Col>
-            <Col lg={3} sm={6} className="mb-5">
+            <Col lg={3} sm={4} xs={6} className="mb-3">
               <Link to="/product-add-card">
                 <div className="bestseller-card">
                   <div className="bestseller-cardImg">
@@ -427,7 +427,7 @@ function Home(props) {
                 </div>
               </Link>
             </Col>
-            <Col lg={3} sm={6} className="mb-5">
+            <Col lg={3} sm={4} xs={6} className="mb-3">
               <Link to="/product-add-card">
                 <div className="bestseller-card">
                   <div className="bestseller-cardImg">
@@ -455,7 +455,7 @@ function Home(props) {
                 </div>
               </Link>
             </Col>
-            <Col lg={3} sm={6} className="mb-5">
+            <Col lg={3} sm={4} xs={6} className="mb-3">
               <Link to="/product-add-card">
                 <div className="bestseller-card">
                   <div className="bestseller-cardImg">
@@ -483,7 +483,7 @@ function Home(props) {
                 </div>
               </Link>
             </Col>
-            <Col lg={3} sm={6} className="mb-5">
+            <Col lg={3} sm={4} xs={6} className="mb-3">
               <Link to="/product-add-card">
                 <div className="bestseller-card">
                   <div className="bestseller-cardImg">
@@ -511,7 +511,7 @@ function Home(props) {
                 </div>
               </Link>
             </Col>
-            <Col lg={3} sm={6} className="mb-5">
+            <Col lg={3} sm={4} xs={6} className="mb-3">
               <Link to="/product-add-card">
                 <div className="bestseller-card">
                   <div className="bestseller-cardImg">
@@ -539,7 +539,7 @@ function Home(props) {
                 </div>
               </Link>
             </Col>
-            <Col lg={3} sm={6} className="mb-5">
+            <Col lg={3} sm={4} xs={6} className="mb-3">
               <Link to="/product-add-card">
                 <div className="bestseller-card">
                   <div className="bestseller-cardImg">
@@ -567,7 +567,7 @@ function Home(props) {
                 </div>
               </Link>
             </Col>
-            <Col lg={3} sm={6} className="mb-5">
+            <Col lg={3} sm={4} xs={6} className="mb-3">
               <Link to="/product-add-card">
                 <div className="bestseller-card">
                   <div className="bestseller-cardImg">
@@ -632,12 +632,12 @@ function Home(props) {
       <section className="section-padding pb-0">
         <Container>
           <Row>
-            <Col lg={6}>
+            <Col lg={6} xs={6}>
               <div className="New-Products-head">
                 <h5>New Products</h5>
               </div>
             </Col>
-            <Col lg={6}>
+            <Col lg={6} xs={6}>
               <div className="New-ProductsLink">
                 <h5>
                   <Link to="/all-products">
@@ -649,7 +649,7 @@ function Home(props) {
             </Col>
           </Row>
           <Row className="mt-4 mb-4">
-            <Col lg={3} sm={6} className="mb-5">
+            <Col lg={3} sm={4} xs={6} className="mb-3">
               <Link to="/product-add-card">
                 <div className="bestseller-card">
                   <div className="bestseller-cardImg">
@@ -677,7 +677,7 @@ function Home(props) {
                 </div>
               </Link>
             </Col>
-            <Col lg={3} sm={6} className="mb-5">
+            <Col lg={3} sm={4} xs={6} className="mb-3">
               <Link to="/product-add-card">
                 <div className="bestseller-card">
                   <div className="bestseller-cardImg">
@@ -705,7 +705,7 @@ function Home(props) {
                 </div>
               </Link>
             </Col>
-            <Col lg={3} sm={6} className="mb-5">
+            <Col lg={3} sm={4} xs={6} className="mb-3">
               <Link to="/product-add-card">
                 <div className="bestseller-card">
                   <div className="bestseller-cardImg">
@@ -733,7 +733,7 @@ function Home(props) {
                 </div>
               </Link>
             </Col>
-            <Col lg={3} sm={6} className="mb-5">
+            <Col lg={3} sm={4} xs={6} className="mb-3">
               <Link to="/product-add-card">
                 <div className="bestseller-card">
                   <div className="bestseller-cardImg">
@@ -776,14 +776,14 @@ function Home(props) {
             </Col>
           </Row>
           <Row className="mt-4">
-            <Col lg={4} className="mt-2 mb-3">
+            <Col lg={4} sm={4} xs={12} className="mt-2 mb-3">
               <div className="catlog-card">
                 <img src={img3} />
                 <Row className="p-3">
-                  <Col lg={6}>
+                  <Col lg={6} xs={6}>
                     <h5>Women</h5>
                   </Col>
-                  <Col lg={6}>
+                  <Col lg={6} xs={6}>
                     <h6>
                       <Link to="/women">
                         Explore More <i className="fa fa-angle-right" />
@@ -793,14 +793,14 @@ function Home(props) {
                 </Row>
               </div>
             </Col>
-            <Col lg={4} className="mt-2 mb-3">
+            <Col lg={4} sm={4} xs={12} className="mt-2 mb-3">
               <div className="catlog-card">
                 <img src={img4} />
                 <Row className="p-3">
-                  <Col lg={6}>
+                  <Col lg={6} xs={6}>
                     <h5>Men</h5>
                   </Col>
-                  <Col lg={6}>
+                  <Col lg={6} xs={6}>
                     <h6>
                       <Link to="/men">
                         Explore More <i className="fa fa-angle-right" />
@@ -810,14 +810,14 @@ function Home(props) {
                 </Row>
               </div>
             </Col>
-            <Col lg={4} className="mt-2 mb-3">
+            <Col lg={4} sm={4} xs={12} className="mt-2 mb-3">
               <div className="catlog-card">
                 <img src={img5} />
                 <Row className="p-3">
-                  <Col lg={6}>
+                  <Col lg={6} xs={6}>
                     <h5>kids</h5>
                   </Col>
-                  <Col lg={6}>
+                  <Col lg={6} xs={6}>
                     <h6>
                       <Link to="/kids">
                         Explore More <i className="fa fa-angle-right" />
@@ -834,7 +834,7 @@ function Home(props) {
       <section className="section-padding ourStore-bg">
         <Container>
           <Row>
-            <Col lg={5}>
+            <Col lg={5} sm={5}>
               <div className="ourStore-gift">
                 <img src={product1} />
                 <h4>Make A gift</h4>
@@ -845,7 +845,7 @@ function Home(props) {
                 </p>
               </div>
             </Col>
-            <Col lg={7}>
+            <Col lg={7} sm={7}>
               <div className="ourStore-gift">
                 <h4>Our Store</h4>
                 <p>
