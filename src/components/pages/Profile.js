@@ -51,13 +51,10 @@ function Profile() {
       Accept: "application/json",
       "Content-Type": "application/json",
     };
-    await fetch(
-      `https://veejayjewels.com/api/v1/customer/info?id=${storedId}`,
-      {
-        method: "GET",
-        headers: headers,
-      }
-    )
+    await fetch(`${BASE_URL}/customer/info?id=${storedId}`, {
+      method: "GET",
+      headers: headers,
+    })
       .then((response) => response.json())
       .then((response) => {
         setId(response.data.id);

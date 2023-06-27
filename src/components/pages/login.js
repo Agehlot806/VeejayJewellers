@@ -1,23 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
-import logo from "../../assets/images/logo/logo.png";
+
 import { Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../../Constant/Index";
 // import { BASE_URL } from "../../Constant/Index";
 
 function Login() {
   const [phone, setphone] = useState("");
   const [password, setpassword] = useState("");
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     var headers = {
       Accept: "application/json",
       "Content-Type": "application/json",
     };
-    await fetch(`https://veejayjewels.com/api/v1/auth/login`, {
+    await fetch(`${BASE_URL}/auth/login`, {
       method: "POST",
       body: JSON.stringify({
         password: password,
@@ -30,7 +31,7 @@ function Login() {
         localStorage.setItem("id", data.data.id);
         localStorage.setItem("profileImage", data.data.image);
         if (data.message === "Login Successfull") {
-          // navigate("/");
+          navigate("/");
           toast.success("Login Successful");
         }
         if (data.errors && data.errors[0].message === "Invalid credential.") {
