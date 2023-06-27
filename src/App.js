@@ -30,6 +30,7 @@ import ProductAddCard from "./components/pages/productAddCard";
 import Productlock from "./components/pages/product-lock";
 import Calculator from "./components/pages/calculator";
 import Forgotpassword from "./components/pages/forgot-password";
+import Profile from "./components/pages/Profile";
 
 // ScrollToTop component
 const ScrollToTop = () => {
@@ -49,6 +50,7 @@ const App = ({ item }) => {
         <ScrollToTop /> {/* Add ScrollToTop component here */}
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/about" element={<About />} />
           <Route path="/helpandFAQs" element={<HelpandFAQs />} />
           <Route path="/offers-details" element={<Offersdetails />} />
@@ -60,7 +62,7 @@ const App = ({ item }) => {
           <Route path="/custom-design" element={<Customdesign />} />
           <Route path="/all-products" element={<Allproduct />} />
           <Route path="/product-variety" element={<Productvariety />} />
-          <Route path="/product-add-card" element={<ProductAddCard />} />
+          <Route path="/productaddcard/:id" element={<ProductAddCard />} />
           <Route path="/product-lock" element={<Productlock />} />
           <Route path="/calculator" element={<Calculator />} />
           <Route path="/forgot-password" element={<Forgotpassword />} />

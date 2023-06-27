@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../directives/header";
 import {
   Col,
@@ -11,11 +11,13 @@ import {
 } from "react-bootstrap";
 import product6 from "../../assets/images/img/product6.png";
 import Footer from "../../directives/footer";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Carousel from "react-multi-carousel";
 import productdetails1 from "../../assets/images/img/productdetails1.jpg";
 import productdetails2 from "../../assets/images/img/productdetails2.jpg";
 import productdetails3 from "../../assets/images/img/productdetails3.jpg";
+import { BASE_URL } from "../../Constant/Index";
+import axios from "axios";
 
 const productdetails = {
   desktop: {
@@ -37,10 +39,12 @@ const productdetails = {
 function ProductAddCard(props) {
   const [quantity, setQuantity] = useState(1);
   const [show, setShow] = useState(false);
-
+  const [unit, setUnit] = useState("");
+  const [productType, setProductType] = useState("");
+  const [name, setName] = useState("");
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  const { id } = useParams();
   const handleIncrement = () => {
     setQuantity(quantity + 1);
   };
@@ -51,6 +55,23 @@ function ProductAddCard(props) {
     }
   };
 
+  const GetProductDetails = () => {
+    axios
+      .get(`${BASE_URL}/products/details/${id}`)
+      .then((response) => {
+        // console.log(response.data);
+        setUnit(response.data.data.unit);
+        setName(response.data.data.name);
+        setProductType(response.data.data.product_type);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
+  // console.log("productDetail", productDetail.name);
+  useEffect(() => {
+    GetProductDetails();
+  }, []);
   return (
     <>
       <Header />
@@ -93,7 +114,7 @@ function ProductAddCard(props) {
                 <tbody>
                   <tr>
                     <th>Product Name</th>
-                    <td>Bangle</td>
+                    <td>{name ? name : ""}</td>
                   </tr>
                   <tr>
                     <th>Product By</th>
@@ -101,7 +122,7 @@ function ProductAddCard(props) {
                   </tr>
                   <tr>
                     <th>Gram</th>
-                    <td>10 Gms</td>
+                    <td>{unit ? unit : ""}</td>
                   </tr>
                 </tbody>
               </Table>
@@ -119,7 +140,7 @@ function ProductAddCard(props) {
                   </tr>
                   <tr>
                     <th>Jewelry Type</th>
-                    <td>Handmade</td>
+                    <td>{productType ? productType : ""}</td>
                   </tr>
                 </tbody>
               </Table>

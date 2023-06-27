@@ -1669,7 +1669,11 @@ nav.header-bg {
 
 .mainForm-btn button {
   width: 100%;
-  background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%);
+  background: linear-gradient(
+    271.8deg,
+    #6a4500 0.65%,
+    #936207 98.14%
+  ) !important;
   color: #fff;
   padding: 0 50px;
   line-height: 55px;
@@ -1930,4 +1934,28 @@ table.productDetailTable.table tr td label {
   font-weight: 500;
   font-size: 20px;
   font-family: Playfair sans-serif;
+}
+
+/* raksha csss */
+
+.header {
+  position: relative;
+  /* top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background-size: cover;
+  border-radius: 50%; */
+}
+
+.profile-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px; /* Adjust this value to position the icon as needed */
+  transform: translateY(-50%);
+  width: 40px; /* Adjust the width and height as per your icon dimensions */
+  height: 40px;
+  /* Replace with the path to your profile icon image */
+  background-size: cover;
+  border-radius: 50%;
 }

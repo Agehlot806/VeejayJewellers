@@ -1,17 +1,24 @@
 import { Dropdown, Container, Form, Nav, Navbar } from "react-bootstrap";
 import logo from "../assets/images/logo/logo.png";
 import shoppingIcon from "../assets/images/icons/bag-2.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { BASE_URL } from "../Constant/Index";
+import ProfileImage from "../assets/images/icons/Profile.png";
 function Header() {
+  const navigate = useNavigate();
   const [brandcategories, setbrandcategories] = useState([]);
+  const profile = localStorage.getItem("profileImage");
+  const imageUrl = `https://veejayjewels.com/public/${profile}`;
 
   useEffect(() => {
     categorys();
   }, []);
 
+  const navigateToProfileEdit = () => {
+    navigate("/profile");
+  };
   const categorys = () => {
     axios
       .get(`${BASE_URL}/categories`)
@@ -164,6 +171,16 @@ function Header() {
             </Nav.Link>
             <Nav.Link className="header-bag">
               <i className="fa fa-shopping-bag" />
+            </Nav.Link>
+            <Nav.Link className="">
+              <img
+                className="profile-icon"
+                src={imageUrl ? imageUrl : ProfileImage}
+                alt=""
+                onClick={navigateToProfileEdit}
+              ></img>
+
+              {/* <i className="fa fa-shopping-bag" /> */}
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

@@ -65,7 +65,7 @@ function Allproduct() {
           <Row>
             {allproduct.map((item) => (
               <Col lg={3} sm={6} className="mt-4 mb-5">
-                <Link to="/product-add-card">
+                <Link to={`/productaddcard/${item.id}`}>
                   <div className="bestseller-card">
                     <div className="bestseller-cardImg">
                       <img src={cleanImageUrl(item.image)} alt="" />

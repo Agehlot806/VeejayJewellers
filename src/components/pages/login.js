@@ -10,7 +10,7 @@ function Login() {
   const [phone, setphone] = useState("");
   const [password, setpassword] = useState("");
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     var headers = {
@@ -19,25 +19,26 @@ function Login() {
     };
     await fetch(`https://veejayjewels.com/api/v1/auth/login`, {
       method: "POST",
-
       body: JSON.stringify({
         password: password,
         phone: phone,
       }),
       headers: headers,
     })
-      .then((Response) => Response.json())
-      .then((Response) => {
-        if (Response.message == "Login Successfull") {
-          navigate("/");
-          toast.success("Login Successfull");
+      .then((response) => response.json())
+      .then((data) => {
+        localStorage.setItem("id", data.data.id);
+        localStorage.setItem("profileImage", data.data.image);
+        if (data.message === "Login Successfull") {
+          // navigate("/");
+          toast.success("Login Successful");
         }
-        if (Response.errors[0].message == "Invalid credential.") {
+        if (data.errors && data.errors[0].message === "Invalid credential.") {
           toast.error("Invalid credential");
         }
       })
       .catch((error) => {
-        console.error("ERROR FOUND---->>>>" + error);
+        console.error("ERROR FOUND---->>>>", error);
       });
   };
 
