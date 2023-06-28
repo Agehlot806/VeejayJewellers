@@ -6,12 +6,15 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { BASE_URL } from "../Constant/Index";
 import ProfileImage from "../assets/images/icons/Profile.png";
-function Header() {
+
+function Header({ profileImage }) {
   const navigate = useNavigate();
   const [brandcategories, setbrandcategories] = useState([]);
   const profile = localStorage.getItem("profileImage");
+  // const uploadImageURL = localStorage.getItem("uploadImageURL");
   const imageUrl = `https://veejayjewels.com/public/${profile}`;
-
+  const latestProfile = `https://veejayjewels.com/public/${profileImage}`;
+  console.log("imageUrl", profile, profileImage);
   useEffect(() => {
     categorys();
   }, []);
@@ -170,7 +173,14 @@ function Header() {
             <Nav.Link className="">
               <img
                 className="profile-icon"
-                src={imageUrl ? imageUrl : ProfileImage}
+                // src={ProfileImage}
+                src={
+                  profileImage
+                    ? latestProfile
+                    : profile
+                    ? imageUrl
+                    : ProfileImage
+                }
                 alt=""
                 onClick={navigateToProfileEdit}
               ></img>
