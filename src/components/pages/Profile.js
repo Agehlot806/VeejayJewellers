@@ -21,6 +21,7 @@ function Profile() {
   const [uploadImage, setUploadImage] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
   const [showPreview, setShowPreview] = useState(false);
+
   const storedId = localStorage.getItem("id");
   const navigate = useNavigate();
 
@@ -82,6 +83,7 @@ function Profile() {
 
   const updateProfileData = (e) => {
     e.preventDefault();
+
     const formData = new FormData();
     formData.append("f_name", firstName);
     formData.append("l_name", lastName);
@@ -99,6 +101,7 @@ function Profile() {
         // withCredentials: true,
       })
       .then((response) => {
+        setUploadImage(response.data.data.image);
         toast.success("Successfuly Updated");
       })
 
@@ -111,7 +114,6 @@ function Profile() {
     setShowPreview(false);
     setUploadImage(event.target.files[0]);
     setSelectedImage(URL.createObjectURL(event.target.files[0]));
-    localStorage.setItem("uploadImage", event.target.files[0]);
   };
 
   const handleSelectChange = (e) => {
@@ -138,23 +140,29 @@ function Profile() {
   const Subscriptioncity = (event) => {
     setCity(event.target.value);
   };
+
+  useEffect(() => {
+    getDataAll();
+    EditProfile();
+    if (city) {
+      Getdatacity(city);
+    }
+  }, []);
+
+  const handleLogouot = () => {
+    localStorage.removeItem("id");
+  };
   useEffect(() => {
     if (!storedId) {
-      getDataAll();
-      EditProfile();
-      if (city) {
-        Getdatacity(city);
-      } else {
-        navigate("/login");
-      }
+      navigate("/login");
     }
     // GetdataAll();
-  }, []);
+  });
 
   return (
     <>
       <Toaster />
-      <Header />
+      <Header profileImage={uploadImage} />
 
       <section className="section-padding">
         <Container>
@@ -268,7 +276,9 @@ function Profile() {
                     </Button>
                   </div>
                   <div className="mainForm-btn">
-                    <Button type="submit">Logout</Button>
+                    <Button type="submit" onClick={handleLogouot}>
+                      Logout
+                    </Button>
                   </div>
                 </Form>
               </div>
