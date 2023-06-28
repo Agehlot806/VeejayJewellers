@@ -7,17 +7,17 @@ import React, { useEffect, useState } from "react";
 import { BASE_URL } from "../Constant/Index";
 import ProfileImage from "../assets/images/icons/Profile.png";
 
-function Header({ uploadImage }) {
+function Header({ profileImage }) {
   const navigate = useNavigate();
   const [brandcategories, setbrandcategories] = useState([]);
   const profile = localStorage.getItem("profileImage");
   // const uploadImageURL = localStorage.getItem("uploadImageURL");
   const imageUrl = `https://veejayjewels.com/public/${profile}`;
-  const latestProfile = `https://veejayjewels.com/public/${uploadImage}`;
-  console.log("imageUrl", profile, uploadImage);
+  const latestProfile = `https://veejayjewels.com/public/${profileImage}`;
+  console.log("imageUrl", profile, profileImage);
   useEffect(() => {
     categorys();
-  }, [latestProfile]);
+  }, []);
 
   const navigateToProfileEdit = () => {
     navigate("/profile");
@@ -180,7 +180,7 @@ function Header({ uploadImage }) {
                 className="profile-icon"
                 // src={ProfileImage}
                 src={
-                  uploadImage
+                  profileImage
                     ? latestProfile
                     : profile
                     ? imageUrl

@@ -21,7 +21,7 @@ function Profile() {
   const [uploadImage, setUploadImage] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
   const [showPreview, setShowPreview] = useState(false);
-
+  const [imageProfile, setImageProfile] = useState("");
   const storedId = localStorage.getItem("id");
   const navigate = useNavigate();
 
@@ -101,7 +101,7 @@ function Profile() {
         // withCredentials: true,
       })
       .then((response) => {
-        setUploadImage(response.data.data.image);
+        setImageProfile(response.data.data.image);
         toast.success("Successfuly Updated");
       })
 
@@ -162,7 +162,7 @@ function Profile() {
   return (
     <>
       <Toaster />
-      <Header profileImage={uploadImage} />
+      <Header profileImage={imageProfile} />
 
       <section className="section-padding">
         <Container>
