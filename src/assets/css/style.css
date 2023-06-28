@@ -1949,15 +1949,8 @@ table.productDetailTable.table tr td label {
 }
 
 .profile-icon {
-  position: absolute;
-  top: 50%;
-  right: 10px; /* Adjust this value to position the icon as needed */
-  transform: translateY(-50%);
-  width: 40px; /* Adjust the width and height as per your icon dimensions */
-  height: 40px;
-  /* Replace with the path to your profile icon image */
-  background-size: cover;
-  border-radius: 50%;
+  width: 50px;
+  height: 50px;
 }
 
 .product-addBtn {
@@ -1974,7 +1967,7 @@ table.productDetailTable.table tr td label {
 }
 .dropdown-rate {
   width: 100%;
-  min-width: 280px !important; 
+  /* min-width: 280px !important;  */
 }
 .updated {
   text-align: center;
@@ -1991,4 +1984,43 @@ table.productDetailTable.table tr td label {
   font-weight: 400;
   font-size: 20px;
   font-family: "Playfair Display";
+}
+
+
+/* add cart area css */
+.add-cart {
+  background: #ffffff;
+  color: #000;
+  border-radius: 20px;
+  padding: 20px;
+  display: inline-flex;
+  text-align: left;
+  width: 100%;
+}
+.add-cart img {
+  width: 100px;
+  height: 100px;
+}
+.add-cart-content h2 {
+  font-family: Playfair;
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+.add-cart-content h5 {
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+}
+.add-cart-content {
+  margin: 0 15px;
+}
+.add-border img {
+  width: 100%;
+}
+.order-invoice {
+  background: #fff;
+}
+.header-rate span a {
+  display: inline-block;
 }

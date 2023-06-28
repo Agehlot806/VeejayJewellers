@@ -56,6 +56,7 @@ const clinetreview = {
 
 function Home(props) {
   const [brandcategories, setbrandcategories] = useState([]);
+  const [videoUrl, setVideoUrl] = useState('');
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -69,7 +70,20 @@ function Home(props) {
   useEffect(() => {
     categorys();
   }, []);
-
+  useEffect(()=>{
+    axios
+    .get(`${BASE_URL}/banners1`)
+    .then((response) => {
+      // setVideo(response.data.data[6].image);
+      const videoUrl = response.data.data[6].image;
+      setVideoUrl(videoUrl);
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
+  })
+  
+  
   const categorys = () => {
     axios
       .get(`https://veejayjewels.com/api/v1/categories`)
@@ -397,7 +411,7 @@ function Home(props) {
                     <i className="fa fa-star-o" />
                   </a>
                   <div className="product-btnarea">
-                    <Link to="" className="product-addBtn">
+                    <Link to="/product-details" className="product-addBtn">
                       Add To Cart
                     </Link>
                   </div>
@@ -430,7 +444,7 @@ function Home(props) {
                     <i className="fa fa-star-o" />
                   </a>
                   <div className="product-btnarea">
-                    <Link to="" className="product-addBtn">
+                    <Link to="/product-details" className="product-addBtn">
                       Add To Cart
                     </Link>
                   </div>
@@ -463,7 +477,7 @@ function Home(props) {
                     <i className="fa fa-star-o" />
                   </a>
                   <div className="product-btnarea">
-                    <Link to="" className="product-addBtn">
+                    <Link to="/product-details" className="product-addBtn">
                       Add To Cart
                     </Link>
                   </div>
@@ -496,7 +510,7 @@ function Home(props) {
                     <i className="fa fa-star-o" />
                   </a>
                   <div className="product-btnarea">
-                    <Link to="" className="product-addBtn">
+                    <Link to="/product-details" className="product-addBtn">
                       Add To Cart
                     </Link>
                   </div>
@@ -529,7 +543,7 @@ function Home(props) {
                     <i className="fa fa-star-o" />
                   </a>
                   <div className="product-btnarea">
-                    <Link to="" className="product-addBtn">
+                    <Link to="/product-details" className="product-addBtn">
                       Add To Cart
                     </Link>
                   </div>
@@ -562,7 +576,7 @@ function Home(props) {
                     <i className="fa fa-star-o" />
                   </a>
                   <div className="product-btnarea">
-                    <Link to="" className="product-addBtn">
+                    <Link to="/product-details" className="product-addBtn">
                       Add To Cart
                     </Link>
                   </div>
@@ -595,7 +609,7 @@ function Home(props) {
                     <i className="fa fa-star-o" />
                   </a>
                   <div className="product-btnarea">
-                    <Link to="" className="product-addBtn">
+                    <Link to="/product-details" className="product-addBtn">
                       Add To Cart
                     </Link>
                   </div>
@@ -628,7 +642,7 @@ function Home(props) {
                     <i className="fa fa-star-o" />
                   </a>
                   <div className="product-btnarea">
-                    <Link to="" className="product-addBtn">
+                    <Link to="/product-details" className="product-addBtn">
                       Add To Cart
                     </Link>
                   </div>
@@ -646,8 +660,15 @@ function Home(props) {
 
       <section className="section-padding">
         <div className="Silver-Dimonds">
-          <Container>
-            <Row>
+          <Container fluid>
+          <video controls loop autoPlay muted>
+        {videoUrl ? (
+          <source src={videoUrl} type="video/mp4"/>
+        ) : (
+          <p>Loading video...</p>
+        )}
+      </video>
+            {/* <Row>
               <Col lg={3} sm={3} className="align-self-center mt-5 mb-5">
                 <img src={product7} />
               </Col>
@@ -664,7 +685,7 @@ function Home(props) {
               <Col lg={3} sm={3}>
                 <img src={img2} />
               </Col>
-            </Row>
+            </Row> */}
           </Container>
         </div>
       </section>
@@ -715,7 +736,7 @@ function Home(props) {
                     <i className="fa fa-star-o" />
                   </a>
                   <div className="product-btnarea">
-                    <Link to="" className="product-addBtn">
+                    <Link to="/product-details" className="product-addBtn">
                       Add To Cart
                     </Link>
                   </div>
@@ -748,7 +769,7 @@ function Home(props) {
                     <i className="fa fa-star-o" />
                   </a>
                   <div className="product-btnarea">
-                    <Link to="" className="product-addBtn">
+                    <Link to="/product-details" className="product-addBtn">
                       Add To Cart
                     </Link>
                   </div>
@@ -781,7 +802,7 @@ function Home(props) {
                     <i className="fa fa-star-o" />
                   </a>
                   <div className="product-btnarea">
-                    <Link to="" className="product-addBtn">
+                    <Link to="/product-details" className="product-addBtn">
                       Add To Cart
                     </Link>
                   </div>
@@ -814,7 +835,7 @@ function Home(props) {
                     <i className="fa fa-star-o" />
                   </a>
                   <div className="product-btnarea">
-                    <Link to="" className="product-addBtn">
+                    <Link to="/product-details" className="product-addBtn">
                       Add To Cart
                     </Link>
                   </div>

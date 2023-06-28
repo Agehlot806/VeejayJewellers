@@ -32,6 +32,8 @@ import Calculator from "./components/pages/calculator";
 import Forgotpassword from "./components/pages/forgot-password";
 import Profile from "./components/pages/Profile";
 import Addcart from "./components/pages/add-cart";
+import Checkinvoice from "./components/pages/checkinvoice";
+import Orderinvoice from "./components/pages/orderinvoice";
 
 // ScrollToTop component
 const ScrollToTop = () => {
@@ -65,6 +67,8 @@ const App = ({ item }) => {
           <Route path="/product-variety" element={<Productvariety />} />
           <Route path="/product-details/:id" element={<ProductDetails />} />
           <Route path="/add-to-cart" element={<Addcart />} />
+          <Route path="/check-invoice" element={<Checkinvoice />} />
+          <Route path="/order-invoice" element={<Orderinvoice />} />
           <Route path="/product-lock" element={<Productlock />} />
           <Route path="/calculator" element={<Calculator />} />
           <Route path="/forgot-password" element={<Forgotpassword />} />
