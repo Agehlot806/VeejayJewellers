@@ -7,10 +7,10 @@ import product1 from '../../assets/images/img/product1.png'
 import product2 from '../../assets/images/img/product2.png'
 
 function Bracelets() {
-  return (
-    <>
-    <Header />
-    <div className='allPage-bg'>
+    return (
+        <>
+            <Header />
+            <div className='allPage-bg'>
                 <div className='section-padding'>
                     <div className='AllPage-area'>
                         <Container>
@@ -42,6 +42,11 @@ function Bracelets() {
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star-o" /></a>
+                                <div className="product-btnarea">
+                                    <Link to="" className="product-addBtn">
+                                        Add To Cart
+                                    </Link>
+                                </div>
                             </div>
                         </Col>
                         <Col lg={3} sm={6} className='mb-5'>
@@ -59,6 +64,11 @@ function Bracelets() {
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star-o" /></a>
+                                <div className="product-btnarea">
+                                    <Link to="" className="product-addBtn">
+                                        Add To Cart
+                                    </Link>
+                                </div>
                             </div>
                         </Col>
                         <Col lg={3} sm={6} className='mb-5'>
@@ -76,6 +86,11 @@ function Bracelets() {
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star-o" /></a>
+                                <div className="product-btnarea">
+                                    <Link to="" className="product-addBtn">
+                                        Add To Cart
+                                    </Link>
+                                </div>
                             </div>
                         </Col>
                         <Col lg={3} sm={6} className='mb-5'>
@@ -93,15 +108,20 @@ function Bracelets() {
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star-o" /></a>
+                                <div className="product-btnarea">
+                                    <Link to="" className="product-addBtn">
+                                        Add To Cart
+                                    </Link>
+                                </div>
                             </div>
                         </Col>
                     </Row>
                 </Container>
             </section>
-    <Footer />
+            <Footer />
 
-    </>
-  )
+        </>
+    )
 }
 
 export default Bracelets

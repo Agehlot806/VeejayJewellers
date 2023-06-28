@@ -31,7 +31,7 @@ function Footer() {
                                     <ul>
                                         <li><Link>Careers</Link></li>
                                         <li><Link to='/about'>AboutUs</Link></li>
-                                        <li><Link to='/offers-details'>Offers Details</Link></li>
+                                        {/* <li><Link to='/offers-details'>Offers Details</Link></li> */}
                                         <li><Link to='/helpandFAQs'>Help & FAQs</Link></li>
                                         <li><Link to='/blog'>Blog</Link></li>
                                     </ul>

@@ -67,8 +67,8 @@ nav.header-bg {
 }
 
 .header-menu a {
-  margin-left: 10px;
-  margin-right: 10px;
+  /* margin-left: 2px;
+  margin-right: 2px; */
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -380,7 +380,7 @@ nav.header-bg {
   text-align: center;
   background: #ffffff;
   border-radius: 40px 40px 0 0;
-  height: 58%;
+  height: 50%;
 }
 
 .bestseller-cardImg {
@@ -1958,4 +1958,37 @@ table.productDetailTable.table tr td label {
   /* Replace with the path to your profile icon image */
   background-size: cover;
   border-radius: 50%;
+}
+
+.product-addBtn {
+  background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%);
+  color: #fff;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 19px;
+  font-family: "Playfair Display";
+}
+.product-btnarea {
+  margin: 16px 0;
+}
+.dropdown-rate {
+  width: 100%;
+  min-width: 280px !important; 
+}
+.updated {
+  text-align: center;
+}
+.updated p b {
+  font-weight: 700;
+}
+.dropdown-rate table tr {
+  font-weight: 500;
+}
+.dropdown-rate button {
+  background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%) !important;
+  padding: 4px 25px;
+  font-weight: 400;
+  font-size: 20px;
+  font-family: "Playfair Display";
 }

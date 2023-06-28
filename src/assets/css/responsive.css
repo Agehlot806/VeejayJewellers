@@ -1,15 +1,15 @@
 /* ======================================= Responsive css ======================================= */
 
 @media only screen and (max-width: 1024px) {
-  .header-menu a {
+ /* .header-menu a  {
     margin-left: 6px;
     margin-right: 6px;
-  }
+  } */
   .bestseller-cardImg img {
     width: 110px;
   }
   .bestseller-card {
-    height: 50%;
+    height: 40%;
   }
   .home-back .carousel-caption {
     bottom: -2.75rem;
@@ -290,6 +290,9 @@
     font-size: 20px;
     margin: -33px 0;
   }
+  .productDetailTable {
+    margin: 33px 0 0;
+}
 }
 @media only screen and (max-width: 414px) {
   .section-padding {
@@ -330,9 +333,10 @@
     width: 280px;
   }
   .aboutLeft {
-    left: 34%;
-    width: 220px;
-  }
+    left: 42%;
+    width: 200px;
+    top: 30%;
+}
   .aboutLeft img {
     width: 50px;
   }
@@ -352,9 +356,16 @@
     width: 85px;
   }
   .bestseller-card {
-    height: 40%;
+    height:32%;
     border-radius: 20px 20px 0 0;
   }
+  .product-addBtn {
+    padding: 10px;
+    font-size: 14px;
+}
+.New-Products-head h5 {
+  font-size: 20px;
+}
   .bestseller-cardText {
     padding: 12px 20px;
     border-radius: 0 0 20px 20px;
@@ -381,7 +392,7 @@
     width: 150px;
   }
   .New-ProductsLink h5 {
-    font-size: 14px;
+    font-size: 13px;
   }
   .footer-list ul li a {
     font-weight: 400;
@@ -510,9 +521,9 @@
   .bestseller-cardImg img {
     width: 65px;
   }
-  .catlog-card h5 {
-    font-size: 3px;
-  }
+  .catlog-card h6 a {
+    font-size: 11px;
+}
   .contact-form h2 {
     font-size: 20px;
   }
@@ -547,7 +558,7 @@
     font-size: 9px;
   }
   .main-btn {
-    font-size: 25px;
+    font-size: 16px;
   }
   .mainForm-text h2 {
     font-size: 30px;
@@ -592,4 +603,22 @@
   .contact-box i {
     font-size: 20px;
   }
+  .brandsCard img {
+    width: 65px;
+    height: 65px;
+}
+.brandsCard h3 {
+  font-size: 20px;
+}
+.brandsCard a {
+  font-size: 11px;
+}
+.product-addBtn {
+  padding: 8px;
+  font-size: 8px;
+  border-radius: 3px;
+}
+.bestseller-cardText p {
+  margin: 0;
+}
 }

@@ -25,12 +25,13 @@ import SignupWholesaler from "./components/pages/signupWholesaler";
 import Customdesign from "./components/pages/custom-design";
 import Allproduct from "./components/pages/all-product";
 import Productvariety from "./components/pages/product-variety";
-import ProductAddCard from "./components/pages/productAddCard";
+import ProductDetails from "./components/pages/productDetails";
 // import IRKA from "./components/Brands/IRKA";
 import Productlock from "./components/pages/product-lock";
 import Calculator from "./components/pages/calculator";
 import Forgotpassword from "./components/pages/forgot-password";
 import Profile from "./components/pages/Profile";
+import Addcart from "./components/pages/add-cart";
 
 // ScrollToTop component
 const ScrollToTop = () => {
@@ -62,7 +63,8 @@ const App = ({ item }) => {
           <Route path="/custom-design" element={<Customdesign />} />
           <Route path="/all-products" element={<Allproduct />} />
           <Route path="/product-variety" element={<Productvariety />} />
-          <Route path="/productaddcard/:id" element={<ProductAddCard />} />
+          <Route path="/product-details/:id" element={<ProductDetails />} />
+          <Route path="/add-to-cart" element={<Addcart />} />
           <Route path="/product-lock" element={<Productlock />} />
           <Route path="/calculator" element={<Calculator />} />
           <Route path="/forgot-password" element={<Forgotpassword />} />

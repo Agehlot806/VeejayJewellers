@@ -86,7 +86,7 @@ function Home(props) {
     <>
       <Header />
 
-      <div id="rssBlock">
+      {/* <div id="rssBlock">
         <p className="cnnContents">
           <a className="marqueeStyle">
             &nbsp;gold current price 10gms : ₹ 59,410
@@ -104,7 +104,7 @@ function Home(props) {
             &nbsp;gold current price 10gms : ₹ 59,410
           </a>
         </p>
-      </div>
+      </div> */}
 
       <div className="home-bg">
         <div className="home-area">
@@ -396,6 +396,11 @@ function Home(props) {
                   <a>
                     <i className="fa fa-star-o" />
                   </a>
+                  <div className="product-btnarea">
+                    <Link to="" className="product-addBtn">
+                      Add To Cart
+                    </Link>
+                  </div>
                 </div>
               </Link>
             </Col>
@@ -424,6 +429,11 @@ function Home(props) {
                   <a>
                     <i className="fa fa-star-o" />
                   </a>
+                  <div className="product-btnarea">
+                    <Link to="" className="product-addBtn">
+                      Add To Cart
+                    </Link>
+                  </div>
                 </div>
               </Link>
             </Col>
@@ -452,6 +462,11 @@ function Home(props) {
                   <a>
                     <i className="fa fa-star-o" />
                   </a>
+                  <div className="product-btnarea">
+                    <Link to="" className="product-addBtn">
+                      Add To Cart
+                    </Link>
+                  </div>
                 </div>
               </Link>
             </Col>
@@ -480,6 +495,11 @@ function Home(props) {
                   <a>
                     <i className="fa fa-star-o" />
                   </a>
+                  <div className="product-btnarea">
+                    <Link to="" className="product-addBtn">
+                      Add To Cart
+                    </Link>
+                  </div>
                 </div>
               </Link>
             </Col>
@@ -508,6 +528,11 @@ function Home(props) {
                   <a>
                     <i className="fa fa-star-o" />
                   </a>
+                  <div className="product-btnarea">
+                    <Link to="" className="product-addBtn">
+                      Add To Cart
+                    </Link>
+                  </div>
                 </div>
               </Link>
             </Col>
@@ -536,6 +561,11 @@ function Home(props) {
                   <a>
                     <i className="fa fa-star-o" />
                   </a>
+                  <div className="product-btnarea">
+                    <Link to="" className="product-addBtn">
+                      Add To Cart
+                    </Link>
+                  </div>
                 </div>
               </Link>
             </Col>
@@ -564,6 +594,11 @@ function Home(props) {
                   <a>
                     <i className="fa fa-star-o" />
                   </a>
+                  <div className="product-btnarea">
+                    <Link to="" className="product-addBtn">
+                      Add To Cart
+                    </Link>
+                  </div>
                 </div>
               </Link>
             </Col>
@@ -592,6 +627,11 @@ function Home(props) {
                   <a>
                     <i className="fa fa-star-o" />
                   </a>
+                  <div className="product-btnarea">
+                    <Link to="" className="product-addBtn">
+                      Add To Cart
+                    </Link>
+                  </div>
                 </div>
               </Link>
             </Col>
@@ -674,6 +714,11 @@ function Home(props) {
                   <a>
                     <i className="fa fa-star-o" />
                   </a>
+                  <div className="product-btnarea">
+                    <Link to="" className="product-addBtn">
+                      Add To Cart
+                    </Link>
+                  </div>
                 </div>
               </Link>
             </Col>
@@ -702,6 +747,11 @@ function Home(props) {
                   <a>
                     <i className="fa fa-star-o" />
                   </a>
+                  <div className="product-btnarea">
+                    <Link to="" className="product-addBtn">
+                      Add To Cart
+                    </Link>
+                  </div>
                 </div>
               </Link>
             </Col>
@@ -730,6 +780,11 @@ function Home(props) {
                   <a>
                     <i className="fa fa-star-o" />
                   </a>
+                  <div className="product-btnarea">
+                    <Link to="" className="product-addBtn">
+                      Add To Cart
+                    </Link>
+                  </div>
                 </div>
               </Link>
             </Col>
@@ -758,6 +813,11 @@ function Home(props) {
                   <a>
                     <i className="fa fa-star-o" />
                   </a>
+                  <div className="product-btnarea">
+                    <Link to="" className="product-addBtn">
+                      Add To Cart
+                    </Link>
+                  </div>
                 </div>
               </Link>
             </Col>

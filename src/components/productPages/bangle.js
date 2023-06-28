@@ -46,6 +46,11 @@ function Bangle() {
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star-o" /></a>
+                                 <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                             </div>
                         </Col>
                         <Col lg={3} sm={6} className='mb-5'>
@@ -63,6 +68,11 @@ function Bangle() {
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star-o" /></a>
+                                 <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                             </div>
                         </Col>
                         <Col lg={3} sm={6} className='mb-5'>
@@ -80,6 +90,11 @@ function Bangle() {
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star-o" /></a>
+                                 <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                             </div>
                         </Col>
                         <Col lg={3} sm={6} className='mb-5'>
@@ -97,6 +112,11 @@ function Bangle() {
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star-o" /></a>
+                                 <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                             </div>
                         </Col>
                         <Col lg={3} sm={6} className='mb-5'>
@@ -114,6 +134,11 @@ function Bangle() {
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star-o" /></a>
+                                 <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                             </div>
                         </Col>
                         <Col lg={3} sm={6} className='mb-5'>
@@ -131,6 +156,11 @@ function Bangle() {
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star-o" /></a>
+                                 <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                             </div>
                         </Col>
                         <Col lg={3} sm={6} className='mb-5'>
@@ -148,6 +178,11 @@ function Bangle() {
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star-o" /></a>
+                                 <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                             </div>
                         </Col>
                         <Col lg={3} sm={6} className='mb-5'>
@@ -165,6 +200,11 @@ function Bangle() {
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star-o" /></a>
+                                 <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                             </div>
                         </Col>
                         <Col lg={3} sm={6} className='mb-5'>
@@ -182,6 +222,11 @@ function Bangle() {
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star-o" /></a>
+                                 <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                             </div>
                         </Col>
                         <Col lg={3} sm={6} className='mb-5'>
@@ -199,6 +244,11 @@ function Bangle() {
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star-o" /></a>
+                                 <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                             </div>
                         </Col>
                         <Col lg={3} sm={6} className='mb-5'>
@@ -216,6 +266,11 @@ function Bangle() {
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star-o" /></a>
+                                 <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                             </div>
                         </Col>
                         <Col lg={3} sm={6} className='mb-5'>
@@ -233,6 +288,11 @@ function Bangle() {
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star-o" /></a>
+                                 <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                             </div>
                         </Col>
                         <Col lg={3} sm={6} className='mb-5'>
@@ -250,6 +310,11 @@ function Bangle() {
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star-o" /></a>
+                                 <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                             </div>
                         </Col>
                         <Col lg={3} sm={6} className='mb-5'>
@@ -267,6 +332,11 @@ function Bangle() {
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star-o" /></a>
+                                 <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                             </div>
                         </Col>
                         <Col lg={3} sm={6} className='mb-5'>
@@ -284,6 +354,11 @@ function Bangle() {
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star" /></a>
                                 <a><i className="fa fa-star-o" /></a>
+                                 <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                             </div>
                         </Col>
                         <Col lg={3} sm={6} className='mb-5'>

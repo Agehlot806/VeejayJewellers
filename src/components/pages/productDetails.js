@@ -36,12 +36,14 @@ const productdetails = {
     slidesToSlide: 1, // optional, default to 1.
   },
 };
-function ProductAddCard(props) {
+function ProductDetails(props) {
   const [quantity, setQuantity] = useState(1);
   const [show, setShow] = useState(false);
   const [unit, setUnit] = useState("");
   const [productType, setProductType] = useState("");
   const [name, setName] = useState("");
+  const [image, setImage] = useState("");
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const { id } = useParams();
@@ -62,13 +64,14 @@ function ProductAddCard(props) {
         // console.log(response.data);
         setUnit(response.data.data.unit);
         setName(response.data.data.name);
+        setImage(response.data.data.image);
         setProductType(response.data.data.product_type);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
   };
-  // console.log("productDetail", productDetail.name);
+  console.log("image", image);
   useEffect(() => {
     GetProductDetails();
   }, []);
@@ -99,13 +102,13 @@ function ProductAddCard(props) {
                 itemClass="carousel-item-padding-40-px"
               >
                 <div className="productdetails-bg">
-                  <img src={productdetails1} />
+                  <img src={"https://veejayjewels.com/storage/app/public/product/" + image} />
                 </div>
                 <div className="productdetails-bg">
-                  <img src={productdetails2} />
+                  <img src={"https://veejayjewels.com/storage/app/public/product/" + image} />
                 </div>
                 <div className="productdetails-bg">
-                  <img src={productdetails3} />
+                  <img src={"https://veejayjewels.com/storage/app/public/product/" + image} />
                 </div>
               </Carousel>
             </Col>
@@ -169,11 +172,18 @@ function ProductAddCard(props) {
                   </tr>
                 </tbody>
               </Table>
-              <div className="text-center">
-                <button className="showSize" onClick={handleShow}>
-                  Show more size
-                </button>
-              </div>
+              <Row>
+                <Col lg={6}>
+                  <Link className="showSize" onClick={handleShow}>
+                    Show more size
+                  </Link>
+                </Col>
+                <Col lg={6}>
+                  <Link to='/add-to-cart' className="showSize">
+                    Add To Cart
+                  </Link>
+                </Col>
+              </Row>
             </Col>
           </Row>
         </Container>
@@ -238,9 +248,16 @@ function ProductAddCard(props) {
             </tbody>
           </Table>
         </Modal.Body>
+        <Modal.Footer>
+          {/* <Button variant="primary" onClick={handleClose} > */}
+            <Link to='/add-to-cart' className="showSize">
+              Add To Cart
+            </Link>
+          {/* </Button> */}
+        </Modal.Footer>
       </Modal>
     </>
   );
 }
 
-export default ProductAddCard;
+export default ProductDetails;

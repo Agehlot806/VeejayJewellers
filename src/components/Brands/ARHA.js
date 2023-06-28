@@ -153,6 +153,11 @@ function ARHA({ item }) {
                           <a>
                             <i className="fa fa-star-o" />
                           </a>
+                          <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                         </div>
                       </Col>
                       <Col lg={4} sm={6} className="mb-5">
@@ -179,6 +184,11 @@ function ARHA({ item }) {
                           <a>
                             <i className="fa fa-star-o" />
                           </a>
+                           <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                         </div>
                       </Col>
                       <Col lg={4} sm={6} className="mb-5">
@@ -205,6 +215,11 @@ function ARHA({ item }) {
                           <a>
                             <i className="fa fa-star-o" />
                           </a>
+                           <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                         </div>
                       </Col>
                       <Col lg={4} sm={6} className="mb-5">
@@ -231,6 +246,11 @@ function ARHA({ item }) {
                           <a>
                             <i className="fa fa-star-o" />
                           </a>
+                           <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                         </div>
                       </Col>
                       <Col lg={4} sm={6} className="mb-5">
@@ -257,6 +277,11 @@ function ARHA({ item }) {
                           <a>
                             <i className="fa fa-star-o" />
                           </a>
+                           <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                         </div>
                       </Col>
                       <Col lg={4} sm={6} className="mb-5">
@@ -283,6 +308,11 @@ function ARHA({ item }) {
                           <a>
                             <i className="fa fa-star-o" />
                           </a>
+                           <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                         </div>
                       </Col>
                     </Row>
@@ -313,6 +343,11 @@ function ARHA({ item }) {
                           <a>
                             <i className="fa fa-star-o" />
                           </a>
+                           <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                         </div>
                       </Col>
                       <Col lg={4} sm={6} className="mb-5">
@@ -339,6 +374,11 @@ function ARHA({ item }) {
                           <a>
                             <i className="fa fa-star-o" />
                           </a>
+                           <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                         </div>
                       </Col>
                       <Col lg={4} sm={6} className="mb-5">
@@ -365,6 +405,11 @@ function ARHA({ item }) {
                           <a>
                             <i className="fa fa-star-o" />
                           </a>
+                           <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                         </div>
                       </Col>
                     </Row>
@@ -395,6 +440,11 @@ function ARHA({ item }) {
                           <a>
                             <i className="fa fa-star-o" />
                           </a>
+                           <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                         </div>
                       </Col>
                       <Col lg={4} sm={6} className="mb-5">
@@ -421,6 +471,11 @@ function ARHA({ item }) {
                           <a>
                             <i className="fa fa-star-o" />
                           </a>
+                           <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                         </div>
                       </Col>
                       <Col lg={4} sm={6} className="mb-5">
@@ -447,6 +502,11 @@ function ARHA({ item }) {
                           <a>
                             <i className="fa fa-star-o" />
                           </a>
+                           <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                         </div>
                       </Col>
                     </Row>
@@ -477,6 +537,11 @@ function ARHA({ item }) {
                           <a>
                             <i className="fa fa-star-o" />
                           </a>
+                           <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                         </div>
                       </Col>
                       <Col lg={4} sm={6} className="mb-5">
@@ -503,6 +568,11 @@ function ARHA({ item }) {
                           <a>
                             <i className="fa fa-star-o" />
                           </a>
+                           <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                         </div>
                       </Col>
                       <Col lg={4} sm={6} className="mb-5">
@@ -529,6 +599,11 @@ function ARHA({ item }) {
                           <a>
                             <i className="fa fa-star-o" />
                           </a>
+                           <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                         </div>
                       </Col>
                       <Col lg={4} sm={6} className="mb-5">
@@ -555,6 +630,11 @@ function ARHA({ item }) {
                           <a>
                             <i className="fa fa-star-o" />
                           </a>
+                           <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                         </div>
                       </Col>
                     </Row>
@@ -585,6 +665,11 @@ function ARHA({ item }) {
                           <a>
                             <i className="fa fa-star-o" />
                           </a>
+                           <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                         </div>
                       </Col>
                       <Col lg={4} sm={6} className="mb-5">
@@ -611,6 +696,11 @@ function ARHA({ item }) {
                           <a>
                             <i className="fa fa-star-o" />
                           </a>
+                           <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                         </div>
                       </Col>
                       <Col lg={4} sm={6} className="mb-5">
@@ -637,6 +727,11 @@ function ARHA({ item }) {
                           <a>
                             <i className="fa fa-star-o" />
                           </a>
+                           <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                         </div>
                       </Col>
                     </Row>
@@ -667,6 +762,11 @@ function ARHA({ item }) {
                           <a>
                             <i className="fa fa-star-o" />
                           </a>
+                           <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                         </div>
                       </Col>
                       <Col lg={4} sm={6} className="mb-5">
@@ -693,6 +793,11 @@ function ARHA({ item }) {
                           <a>
                             <i className="fa fa-star-o" />
                           </a>
+                           <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                         </div>
                       </Col>
                       <Col lg={4} sm={6} className="mb-5">
@@ -719,6 +824,11 @@ function ARHA({ item }) {
                           <a>
                             <i className="fa fa-star-o" />
                           </a>
+                           <div className="product-btnarea">
+                            <Link to="" className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
                         </div>
                       </Col>
                     </Row>
