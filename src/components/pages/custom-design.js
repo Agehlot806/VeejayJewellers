@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import Header from "../../directives/header";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import Footer from "../../directives/footer";
+import { BASE_URL } from "../../Constant/Index";
+import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 function Customdesign() {
   const [title, setTitle] = useState("");
@@ -12,16 +15,44 @@ function Customdesign() {
   const [showPreview, setShowPreview] = useState(false);
   const [uploadImage, setUploadImage] = useState([]);
   const [selectImage, setSelectedImage] = useState("");
+  const id = localStorage.getItem("id");
 
   const handleUploadImage = (event) => {
     setShowPreview(false);
     setUploadImage(event.target.files[0]);
     setSelectedImage(URL.createObjectURL(event.target.files[0]));
   };
-  const handleSubmitForm = () => {};
+
+  const handleSubmitForm = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("size", size);
+    formData.append("quantity", quantity);
+    formData.append("need_product", date);
+    formData.append("image", uploadImage);
+    formData.append("description", description);
+    formData.append("user_id", id);
+
+    axios
+      .post(`${BASE_URL}/auth/custom_order`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+        // withCredentials: true,
+      })
+      .then((response) => {
+        console.log("response", response);
+        toast.success("Successfuly Updated");
+      })
+
+      .catch((error) => {
+        // console.log(error.response.data);
+      });
+  };
+  console.log("date", date);
   return (
     <>
       <Header />
+      <Toaster />
       <div className="allPage-bg">
         <div className="section-padding">
           <div className="AllPage-area">
@@ -59,7 +90,7 @@ function Customdesign() {
                   Please complete the required fields below to make an
                   appointment *
                 </p>
-                <Form onSubmit={(e) => handleSubmitForm(e)}>
+                <Form>
                   <Row className="mb-3">
                     <Form.Group as={Col}>
                       <Form.Label>Title</Form.Label>
@@ -94,9 +125,8 @@ function Customdesign() {
                       <Form.Label>When Do You need The product ?</Form.Label>
                       <Form.Control
                         type="date"
-                        placeholder="dd/mm/yyyy"
                         value={date}
-                        onChange={(e) => setDate(e.target.vallue)}
+                        onChange={(e) => setDate(e.target.value)}
                       />
                     </Form.Group>
                   </Row>
@@ -125,7 +155,7 @@ function Customdesign() {
                     ></img>
                   </Row>
                   <div className="mt-5">
-                    <Button className="main-btn">
+                    <Button className="main-btn" onClick={handleSubmitForm}>
                       <i className="fa fa-angle-double-right" /> Submit
                     </Button>
                   </div>

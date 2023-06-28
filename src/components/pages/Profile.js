@@ -5,6 +5,7 @@ import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { BASE_URL } from "../../Constant/Index";
+import { useNavigate } from "react-router-dom";
 
 function Profile() {
   const [firstName, setFirstName] = useState("");
@@ -21,6 +22,7 @@ function Profile() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [showPreview, setShowPreview] = useState(false);
   const storedId = localStorage.getItem("id");
+  const navigate = useNavigate();
 
   const getDataAll = async () => {
     var headers = {
@@ -109,6 +111,7 @@ function Profile() {
     setShowPreview(false);
     setUploadImage(event.target.files[0]);
     setSelectedImage(URL.createObjectURL(event.target.files[0]));
+    localStorage.setItem("uploadImage", event.target.files[0]);
   };
 
   const handleSelectChange = (e) => {
@@ -136,12 +139,16 @@ function Profile() {
     setCity(event.target.value);
   };
   useEffect(() => {
-    // GetdataAll();
-    getDataAll();
-    EditProfile();
-    if (city) {
-      Getdatacity(city);
+    if (!storedId) {
+      getDataAll();
+      EditProfile();
+      if (city) {
+        Getdatacity(city);
+      } else {
+        navigate("/login");
+      }
     }
+    // GetdataAll();
   }, []);
 
   return (
