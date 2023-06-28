@@ -1,9 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../../directives/header";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import Footer from "../../directives/footer";
 
 function Customdesign() {
+  const [title, setTitle] = useState("");
+  const [size, setSize] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [date, setDate] = useState("");
+  const [description, setDescription] = useState("");
+  const [showPreview, setShowPreview] = useState(false);
+  const [uploadImage, setUploadImage] = useState([]);
+  const [selectImage, setSelectedImage] = useState("");
+
+  const handleUploadImage = (event) => {
+    setShowPreview(false);
+    setUploadImage(event.target.files[0]);
+    setSelectedImage(URL.createObjectURL(event.target.files[0]));
+  };
+  const handleSubmitForm = () => {};
   return (
     <>
       <Header />
@@ -44,79 +59,57 @@ function Customdesign() {
                   Please complete the required fields below to make an
                   appointment *
                 </p>
-                <Form>
+                <Form onSubmit={(e) => handleSubmitForm(e)}>
                   <Row className="mb-3">
                     <Form.Group as={Col}>
-                      <Form.Label>First Name</Form.Label>
+                      <Form.Label>Title</Form.Label>
                       <Form.Control
                         type="text"
-                        placeholder="Enter first name"
+                        placeholder="Enter  Title"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
                       />
                     </Form.Group>
                     <Form.Group as={Col}>
-                      <Form.Label>Last Name</Form.Label>
-                      <Form.Control type="text" placeholder="Enter last name" />
+                      <Form.Label>Size</Form.Label>
+                      <Form.Control
+                        type="text"
+                        placeholder="Enter Size"
+                        value={size}
+                        onChange={(e) => setSize(e.target.value)}
+                      />
                     </Form.Group>
                   </Row>
                   <Row className="mb-3">
                     <Form.Group as={Col}>
-                      <Form.Label>Email Address</Form.Label>
-                      <Form.Control type="email" placeholder="Enter email" />
-                    </Form.Group>
-                    <Form.Group as={Col}>
-                      <Form.Label>Phone Number</Form.Label>
+                      <Form.Label>Quantity</Form.Label>
                       <Form.Control
                         type="number"
-                        placeholder="Enter phone number"
+                        placeholder="Quantity"
+                        value={quantity}
+                        onChange={(e) => setQuantity(e.target.value)}
+                      />
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                      <Form.Label>When Do You need The product ?</Form.Label>
+                      <Form.Control
+                        type="date"
+                        placeholder="dd/mm/yyyy"
+                        value={date}
+                        onChange={(e) => setDate(e.target.vallue)}
                       />
                     </Form.Group>
                   </Row>
+
                   <Row className="mb-3">
-                    <Form.Group as={Col}>
-                      <Form.Label>Product Type</Form.Label>
-                      <Form.Select aria-label="Default select example">
-                        <option selected="true" disabled="disabled">
-                          Select Type
-                        </option>
-                        <option value="Engagement Ring">Engagement Ring</option>
-                        <option value="Wedding Band">Wedding Band</option>
-                        <option value="Ring">Ring</option>
-                        <option value="Earrings">Earrings</option>
-                        <option value="Necklace">Necklace</option>
-                        <option value="Bracelet">Bracelet</option>
-                        <option value="Eternity Band">Eternity Band</option>
-                        <option value="Pendant">Pendant</option>
-                        <option value="Band">Band</option>
-                      </Form.Select>
-                    </Form.Group>
-                    <Form.Group as={Col}>
-                      <Form.Label>Price Range</Form.Label>
-                      <Form.Select aria-label="Default select example">
-                        <option selected="true" disabled="disabled">
-                          Select Price
-                        </option>
-                        <option value="Under 1000$">Under 1000$</option>
-                        <option value="Under 2000$">Under 3000$</option>
-                        <option value="Under 6000$">Under 6000$</option>
-                        <option value="Under 9000$">Under 9000$</option>
-                        <option value="Under 15000$">Under 15000$</option>
-                      </Form.Select>
-                    </Form.Group>
-                  </Row>
-                  <Row className="mb-3">
-                    <Form.Group as={Col}>
-                      <Form.Label>What’s More Important</Form.Label>
-                      <Form.Select aria-label="Default select example">
-                        <option selected="true" disabled="disabled">
-                          Select---
-                        </option>
-                        <option value="Size">Size</option>
-                        <option value="Quality">Quality</option>
-                      </Form.Select>
-                    </Form.Group>
-                    <Form.Group as={Col}>
-                      <Form.Label>When Do You Need The Product?</Form.Label>
-                      <Form.Control type="date" />
+                    <Form.Group controlId="exampleForm.ControlTextarea1">
+                      <Form.Label> Description</Form.Label>
+                      <Form.Control
+                        as="textarea"
+                        rows={3}
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                      />
                     </Form.Group>
                   </Row>
                   <Row className="mb-3">
@@ -124,14 +117,12 @@ function Customdesign() {
                       <Form.Label>
                         Upload images to help guide your request (JPG, GIF, PNG)
                       </Form.Label>
-                      <Form.Control type="file" />
+                      <Form.Control type="file" onChange={handleUploadImage} />
                     </Form.Group>
-                  </Row>
-                  <Row className="mb-3">
-                    <Form.Group controlId="exampleForm.ControlTextarea1">
-                      <Form.Label>Example textarea</Form.Label>
-                      <Form.Control as="textarea" rows={3} />
-                    </Form.Group>
+                    <img
+                      src={showPreview ? uploadImage : selectImage}
+                      alt="file"
+                    ></img>
                   </Row>
                   <div className="mt-5">
                     <Button className="main-btn">
