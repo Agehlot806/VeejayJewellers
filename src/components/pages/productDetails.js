@@ -13,7 +13,7 @@ import product6 from "../../assets/images/img/product6.png";
 import Footer from "../../directives/footer";
 import { Link, useParams } from "react-router-dom";
 import Carousel from "react-multi-carousel";
-import productdetails1 from "../../assets/images/img/productdetails1.jpg";
+import product1 from "../../assets/images/img/product1.png";
 import productdetails2 from "../../assets/images/img/productdetails2.jpg";
 import productdetails3 from "../../assets/images/img/productdetails3.jpg";
 import { BASE_URL } from "../../Constant/Index";
@@ -82,7 +82,7 @@ function ProductDetails(props) {
       <section className="section-padding">
         <Container>
           <Row>
-            <Col lg={5}>
+            <Col lg={4}>
               <Carousel
                 swipeable={true}
                 draggable={true}
@@ -112,7 +112,7 @@ function ProductDetails(props) {
                 </div>
               </Carousel>
             </Col>
-            <Col lg={7}>
+            <Col lg={4}>
               <Table responsive className="productDetailTable">
                 <tbody>
                   <tr>
@@ -120,19 +120,9 @@ function ProductDetails(props) {
                     <td>{name ? name : ""}</td>
                   </tr>
                   <tr>
-                    <th>Product By</th>
-                    <td></td>
-                  </tr>
-                  <tr>
                     <th>Gram</th>
                     <td>{unit ? unit : ""}</td>
                   </tr>
-                </tbody>
-              </Table>
-
-              <Table responsive className="productDetailTable">
-                {/* <h6>Product Details</h6> */}
-                <tbody>
                   <tr>
                     <th>Design Number</th>
                     <td>EX1035</td>
@@ -147,7 +137,11 @@ function ProductDetails(props) {
                   </tr>
                 </tbody>
               </Table>
-
+              <Link to='/add-to-cart' className="showSize">
+                Add To Cart
+              </Link>
+            </Col>
+            <Col lg={3}>
               <Table responsive className="productDetailTable">
                 <thead>
                   <tr>
@@ -172,18 +166,42 @@ function ProductDetails(props) {
                   </tr>
                 </tbody>
               </Table>
-              <Row>
-                <Col lg={6}>
-                  <Link className="showSize" onClick={handleShow}>
+              <Link className="showSize" onClick={handleShow}>
                     Show more size
                   </Link>
-                </Col>
-                <Col lg={6}>
-                  <Link to='/add-to-cart' className="showSize">
-                    Add To Cart
-                  </Link>
-                </Col>
-              </Row>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+
+      <section className="section-padding ourStore-bg">
+        <Container>
+          <Row>
+            <Col lg={5} sm={5}>
+              <div className="ourStore-gift">
+                <img src={product1} />
+                <h4>Make A gift</h4>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet
+                  integer lorem amet arcu egestas congue. Rhoncus scelerisque m
+                  aenean.
+                </p>
+              </div>
+            </Col>
+            <Col lg={7} sm={7}>
+              <div className="ourStore-gift">
+                <h4>Our Store</h4>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet
+                  integer lorem amet arcu egestas congue. Rhoncus scelerisque m
+                  aenean ac. Cursus in at sagittis vivamus Rhoncus scelerisque m
+                </p>
+              </div>
+              <div className="text-center mt-5">
+                <Link to="" className="main-btn">
+                  <i className="fa fa-angle-double-right" /> Find out more
+                </Link>
+              </div>
             </Col>
           </Row>
         </Container>
@@ -250,9 +268,9 @@ function ProductDetails(props) {
         </Modal.Body>
         <Modal.Footer>
           {/* <Button variant="primary" onClick={handleClose} > */}
-            <Link to='/add-to-cart' className="showSize">
-              Add To Cart
-            </Link>
+          <Link to='/add-to-cart' className="showSize">
+            Add To Cart
+          </Link>
           {/* </Button> */}
         </Modal.Footer>
       </Modal>

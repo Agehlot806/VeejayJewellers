@@ -2,6 +2,8 @@ import { useState } from 'react';
 import Header from '../../directives/header'
 import Footer from '../../directives/footer'
 import { Container, Row, Col, Button, Form } from 'react-bootstrap'
+import bannertwo from '../../assets/images/banner/image 12.png'
+import border from '../../assets/images/banner/border.png'
 
 function Contact() {
     const [validated, setValidated] = useState(false);
@@ -19,103 +21,72 @@ function Contact() {
     return (
         <>
             <Header />
-            <div className='allPage-bg'>
-                <div className='section-padding'>
-                    <div className='AllPage-area'>
-                        <Container>
-                            <Row>
-                                <Col lg={7}>
-                                    <h2>CONTACT</h2>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting
-                                        industry. Lorem Ipsum has been the industry's standard dummy text
-                                        ever since the 1500s, when an unknown.</p>
-                                </Col>
-                            </Row>
-                        </Container>
-                    </div>
-                </div>
+            <div className='allPage-bgtwo'>
+                <Container fluid className='p-0'>
+                    <img src={bannertwo} />
+                </Container>
             </div>
 
             <section className='section-padding'>
                 <Container>
                     <Row className="justify-content-center">
                         <Col lg={9}>
+                            <div className='text-center'>
                                 <h4 className='main-heading text-center'>ContactUs</h4>
-                                <p className='text-center'>Lorem Ipsum is simply dummy text of the printing.</p>
-                        </Col>
-                    </Row>
-                    <Row className="justify-content-center mt-3">
-                        <Col lg={10}>
-                            <div className='contact-form'>
-                                <h2>Ready to Get Started?</h2>
-                                <p>Your email address will not be published. Required fields are marked *</p>
-                                <Form>
-                                    
-                                    <Form.Group className="mb-3">
-                                        <Form.Label>Your Name</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Enter full name"
-                                        />
-                                    </Form.Group>
-                                    <Form.Group className="mb-3">
-                                        <Form.Label>Your Email</Form.Label>
-                                        <Form.Control
-                                            type="email"
-                                            placeholder="Enter email"
-                                        />
-                                    </Form.Group>
-                                    <Form.Group className="mb-3">
-                                        <Form.Label>Mobile Number</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Enter mobile number"
-                                        />
-                                    </Form.Group>
-                                    <Form.Group className="mb-3">
-                                        <Form.Label>Message</Form.Label>
-                                        <Form.Control
-                                            as="textarea"
-                                            type="text"
-                                            placeholder="Leave a comment here"
-                                        />
-                                    </Form.Group>
-                                    <div className='mt-5'>
-                                        <Button className='main-btn'><i className="fa fa-angle-double-right"/> Submit</Button>
-                                    </div>
-                                </Form>
+                                <div className='all-border'>
+                                    <img src={border} />
+                                </div>
                             </div>
                         </Col>
                     </Row>
                 </Container>
             </section>
-
             <section className='section-padding'>
                 <Container>
                     <Row>
-                        <Col lg={4} sm={6} className="mt-2 mb-2">
-                            <div className='contact-box'>
-                            <i className="fa fa-address-card-o" />
-                            <h3>Our Address:</h3>
-                            <p>1 Kundamal House, 67, N S Patkar Marg, Opposite - Mercedes Benz, Mumbai, Maharashtra 400007</p>
+                        <Col lg={8}>
+                            <div className='contact-text'>
+                                <h1>How Can We Help You?</h1>
+                            </div>
+                            <div className='contact-icons'>
+                                <div><i className="fa fa-phone-square" /></div>
+                                <div className='contact-iconsText'>
+                                    <h5>Telephone</h5>
+                                    <h6>+91 00000000 , +91 00000000</h6>
+                                </div>
+                            </div>
+
+                        </Col>
+                        <Col lg={8}>
+                            <div className='contact-icons mt-4'>
+                                <div><i className="fa fa-clock-o" /></div>
+                                <div className='contact-iconsText'>
+                                    <h5>Opening Times</h5>
+                                    <h6>10:00 AM - 6:00 PM</h6>
+                                </div>
                             </div>
                         </Col>
-                        <Col lg={4} sm={6} className="mt-2 mb-2">
-                            <div className='contact-box'>
-                            <i className="fa fa-envelope" />
-                            <h3>Our Mailbox:</h3>
-                            <p>info@xyz.com</p>
-                            </div>
-                        </Col>
-                        <Col lg={4} sm={6} className="mt-2 mb-2">
-                            <div className='contact-box'>
-                            <i className="fa fa-phone-square" />
-                            <h3>Our Phone:</h3>
-                            <p>+00-00000000</p>
-                            </div>
-                        </Col>
-                     
                     </Row>
+                    <Row>
+                        <Col lg={8}>
+                            <div className='contact-text mt-4'>
+                                <h1>Our Location</h1>
+                            </div>
+                            <div className='contact-icons'>
+                                <div><i className="fa fa-address-card-o" /></div>
+                                <div className='contact-iconsText'>
+                                    <h5>Telephone</h5>
+                                    <h6>1 Kundamal House, 67, N S Patkar Marg, Opposite - Mercedes Benz, Mumbai, Maharashtra 400007</h6>
+                                </div>
+                            </div>
+                        </Col>
+                    </Row>
+                </Container>
+            </section>
+            <section className='section-padding'>
+                <Container>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2990.274257380938!2d-70.56068388481569!3d41.45496659976631!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e52963ac45bbcb%3A0xf05e8d125e82af10!2sDos%20Mas!5e0!3m2!1sen!2sus!4v1671220374408!5m2!1sen!2sus"
+                        width="100%" height={450} style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
                 </Container>
             </section>
             <Footer />

@@ -661,13 +661,13 @@ function Home(props) {
       <section className="section-padding">
         <div className="Silver-Dimonds">
           <Container fluid>
-          <video controls loop autoPlay muted>
+          {/* <video controls loop autoPlay muted>
         {videoUrl ? (
           <source src={videoUrl} type="video/mp4"/>
         ) : (
           <p>Loading video...</p>
         )}
-      </video>
+      </video> */}
             {/* <Row>
               <Col lg={3} sm={3} className="align-self-center mt-5 mb-5">
                 <img src={product7} />

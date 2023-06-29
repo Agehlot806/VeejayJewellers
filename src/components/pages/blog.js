@@ -6,6 +6,8 @@ import blog1 from "../../assets/images/img/blog1.webp";
 import blog2 from "../../assets/images/img/blog2.webp";
 import blog3 from "../../assets/images/img/blog3.webp";
 import { BASE_URL } from "../../Constant/Index";
+import bannertwo from '../../assets/images/banner/image 12.png'
+import border from '../../assets/images/banner/border.png'
 
 function Blog() {
   const [blogs, setBlogs] = useState([]);
@@ -25,36 +27,29 @@ function Blog() {
   return (
     <>
       <Header />
-      <div className="allPage-bg">
-        <div className="section-padding">
-          <div className="AllPage-area">
-            <Container>
-              <Row>
-                <Col lg={7}>
-                  <h2>BLOG</h2>
-                  <p>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown.
-                  </p>
-                </Col>
-              </Row>
-            </Container>
-          </div>
-        </div>
-      </div>
+      <div className='allPage-bgtwo'>
+                <Container fluid className='p-0'>
+                    <img src={bannertwo} />
+                </Container>
+            </div>
+
+            <section className='section-padding'>
+                <Container>
+                    <Row className="justify-content-center">
+                        <Col lg={9}>
+                            <div className='text-center'>
+                                <h4 className='main-heading text-center'>All Blogs</h4>
+                                <div className='all-border'>
+                                    <img src={border} />
+                                </div>
+                            </div>
+                        </Col>
+                    </Row>
+                </Container>
+            </section>
 
       <section className="section-padding">
         <Container>
-          <Row className="justify-content-center">
-            <Col lg={7}>
-              <h4 className="main-heading text-center">Blog News</h4>
-              <p className="text-center">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry.
-              </p>
-            </Col>
-          </Row>
           <Row>
             {blogs &&
               blogs.map((blog) => (
@@ -75,66 +70,7 @@ function Blog() {
                   </div>
                 </Col>
               ))}
-            {/* <Col lg={4} className="mt-2 mb-2">
-                            <div className='blog-card'>
-                                <img src={blog1} />
-                                <div className='blog-cardContent'>
-                                    <h3>Mothers day special gifting guide</h3>
-                                    <p>Personalized Jewelry: Consider gifting a piece of jewelry, such as a
-                                        necklace or bracelet, with her initials,...</p>
-                                </div>
-                            </div>
-                        </Col>
-                        <Col lg={4} className="mt-2 mb-2">
-                            <div className='blog-card'>
-                                <img src={blog2} />
-                                <div className='blog-cardContent'>
-                                    <h3>Mothers day special gifting guide</h3>
-                                    <p>Personalized Jewelry: Consider gifting a piece of jewelry, such as a
-                                        necklace or bracelet, with her initials,...</p>
-                                </div>
-                            </div>
-                        </Col>
-                        <Col lg={4} className="mt-2 mb-2">
-                            <div className='blog-card'>
-                                <img src={blog3} />
-                                <div className='blog-cardContent'>
-                                    <h3>Mothers day special gifting guide</h3>
-                                    <p>Personalized Jewelry: Consider gifting a piece of jewelry, such as a
-                                        necklace or bracelet, with her initials,...</p>
-                                </div>
-                            </div>
-                        </Col>
-                        <Col lg={4} className="mt-2 mb-2">
-                            <div className='blog-card'>
-                                <img src={blog1} />
-                                <div className='blog-cardContent'>
-                                    <h3>Mothers day special gifting guide</h3>
-                                    <p>Personalized Jewelry: Consider gifting a piece of jewelry, such as a
-                                        necklace or bracelet, with her initials,...</p>
-                                </div>
-                            </div>
-                        </Col>
-                        <Col lg={4} className="mt-2 mb-2">
-                            <div className='blog-card'>
-                                <img src={blog2} />
-                                <div className='blog-cardContent'>
-                                    <h3>Mothers day special gifting guide</h3>
-                                    <p>Personalized Jewelry: Consider gifting a piece of jewelry, such as a
-                                        necklace or bracelet, with her initials,...</p>
-                                </div>
-                            </div>
-                        </Col>
-                        <Col lg={4} className="mt-2 mb-2">
-                            <div className='blog-card'>
-                                <img src={blog3} />
-                                <div className='blog-cardContent'>
-                                    <h3>Mothers day special gifting guide</h3>
-                                    <p>Personalized Jewelry: Consider gifting a piece of jewelry, such as a
-                                        necklace or bracelet, with her initials,...</p>
-                                </div>
-                            </div>
-                        </Col> */}
+           
           </Row>
         </Container>
       </section>
