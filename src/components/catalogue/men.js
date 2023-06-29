@@ -1,135 +1,94 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../../directives/header'
 import Footer from '../../directives/footer'
 import { Container, Row, Col } from 'react-bootstrap'
-import men1 from '../../assets/images/img/men1.webp'
-import men2 from '../../assets/images/img/men2.webp'
-import men3 from '../../assets/images/img/men3.webp'
-import men4 from '../../assets/images/img/men4.webp'
-import catlogbg from '../../assets/images/banner/mencata.webp'
-import men5 from '../../assets/images/img/men5.png'
-import men6 from '../../assets/images/img/men6.png'
-import men7 from '../../assets/images/img/men7.png'
-
+import cat1 from '../../assets/images/img/cat1.png'
+import cat4 from '../../assets/images/img/cat4.png'
+import cat7 from '../../assets/images/img/cat7.png'
+import cat2 from '../../assets/images/img/cat2.png'
+import cat3 from '../../assets/images/img/cat3.png'
+import cat5 from '../../assets/images/img/cat5.png'
+import cat6 from '../../assets/images/img/cat6.png'
+import cat8 from '../../assets/images/img/cat8.png'
+import catlog3 from '../../assets/images/img/catlog3.jpg'
+import catlog6 from '../../assets/images/img/catlog6.jpg'
+import catlogbg from '../../assets/images/banner/catlog-bg.png'
+import product1 from '../../assets/images/img/product1.png'
+import product2 from '../../assets/images/img/product2.png'
+import product3 from '../../assets/images/img/product3.png'
+import product4 from '../../assets/images/img/product4.png'
+import product5 from '../../assets/images/img/product5.png'
+import product6 from '../../assets/images/img/product6.png'
+import bannertwo from '../../assets/images/banner/image 12.png'
+import border from '../../assets/images/banner/border.png'
+import { BASE_URL } from '../../Constant/Index'
+import axios from 'axios'
+import { Link } from 'react-router-dom'
 function Men() {
+    useEffect(() => {
+        mens()
+    }, [])
+    const [mensdata, setMensData] = useState([])
+    const mens = () => {
+        axios
+            .get(`${BASE_URL}/auth/catalogue`)
+            .then((response) => {
+                console.log(response.data.data)
+                setMensData(response.data.data)
+            })
+            .catch((error) => {
+                console.error("Error fetching data:", error);
+            });
+    };
     return (
         <>
             <Header />
-            <div className='allPage-bg'>
-                <div className='section-padding'>
-                    <div className='AllPage-area'>
-                        <Container>
-                            <Row>
-                                <Col lg={7}>
-                                    <h2>MEN'S CATALOGUE</h2>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting
-                                        industry. Lorem Ipsum has been the industry's standard dummy text
-                                        ever since the 1500s, when an unknown.</p>
-                                </Col>
-                            </Row>
-                        </Container>
-                    </div>
-                </div>
+            <div className='allPage-bgtwo'>
+                <Container fluid className='p-0'>
+                    <img src={bannertwo} />
+                </Container>
             </div>
-          
-            <section className="section-padding">
+            <section className='section-padding'>
                 <Container>
-                <Row>
-                        <Col lg={4} sm={6} className='mt-2 mb-2'>
-                            <div className='catlogbg-card'>
-                                <img src={men5} />
-                            </div>
-                        </Col>
-                        <Col lg={4} sm={6} className='mt-2 mb-2'>
-                            <div className='catlogbg-card'>
-                                <img src={men6} />
-                            </div>
-                        </Col>
-                        <Col lg={4} sm={6} className='mt-2 mb-2'>
-                            <div className='catlogbg-card'>
-                                <img src={men7} />
+                    <Row className="justify-content-center">
+                        <Col lg={9}>
+                            <div className='text-center'>
+                                <h4 className='main-heading text-center'>Catalogue</h4>
+                                <div className='all-border'>
+                                    <img src={border} />
+                                </div>
                             </div>
                         </Col>
                     </Row>
                 </Container>
             </section>
-
-            
-            <section className='section-padding catlogbg'>
-                <Container>
-                    <Row>
-                        <Col lg={12}>
-                            <img src={catlogbg} />
-                        </Col>
-                    </Row>
-                </Container>
-            </section>
-
             <section className='section-padding'>
                 <Container>
                     <Row>
-                        <Col lg={6} className='mt-2 mb-2'>
-                            <div className='men-catlog'>
-                                <Row>
-                                    <Col sm={6}>
-                                        <img src={men1} />
+                        {mensdata ? (
+                            mensdata.map((item, index) => (
+                                item.type === 'men' && (
+                                    <Col lg={3} className='mt-2 mb-2'>
+                                        <div className='catlogOne'>
+                                            <Row>
+                                                <Link to={"https://veejayjewels.com/storage/app/public/pdf/" + item.file}>
+                                                    <Col sm={12} className='mb-3'>
+                                                        <img src={"https://veejayjewels.com/storage/app/public/catalog/" + item.thumnail} />
+                                                        <h2>{item.title}</h2>
+                                                        <p>Read More</p>
+                                                    </Col>
+                                                </Link>
+                                            </Row>
+                                        </div>
                                     </Col>
-                                    <Col sm={6} className='align-self-center'>
-                                        <h3>Platinum jewellery for men</h3>
-                                        <p>When character has courage.it's rare it's Platinum</p>
-                                    </Col>
-                                </Row>
-                            </div>
-                        </Col>
-                        <Col lg={6} className='mt-2 mb-2'>
-                            <div className='men-catlog'>
-                                <Row>
-                                    <Col sm={6}>
-                                        <img src={men2} />
-                                    </Col>
-                                    <Col sm={6} className='align-self-center'>
-                                        <h3>Platinum jewellery for men</h3>
-                                        <p>When character has courage.it's rare it's Platinum</p>
-                                    </Col>
-                                </Row>
-                            </div>
-                        </Col>
-                    </Row>
-                    <Row className="mt-3">
-                        <Col lg={6} className='mt-2 mb-2'>
-                            <div className='men-catlog'>
-                                <Row>
-                                <Col sm={6} className='align-self-center'>
-                                        <h3>Platinum jewellery for men</h3>
-                                        <p>When character has courage.it's rare it's Platinum</p>
-                                    </Col>
-                                    <Col sm={6}>
-                                        <img src={men3} />
-                                    </Col>
-                                </Row>
-                            </div>
-                        </Col>
-                        <Col lg={6} className='mt-2 mb-2'>
-                            <div className='men-catlog'>
-                                <Row>
-                                <Col sm={6} className='align-self-center'>
-                                        <h3>Platinum jewellery for men</h3>
-                                        <p>When character has courage.it's rare it's Platinum</p>
-                                    </Col>
-                                    <Col sm={6}>
-                                        <img src={men4} />
-                                    </Col>
-                                </Row>
-                            </div>
-                        </Col>
+                                )
+                            ))
+                        ) : null}
                     </Row>
                 </Container>
             </section>
-
-
             <Footer />
         </>
     )
 }
-
 export default Men

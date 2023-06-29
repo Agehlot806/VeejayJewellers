@@ -68,9 +68,9 @@ function Login() {
                   <Link to="/login" className="btn-theme-3">
                     Login
                   </Link>
-                  <Link to="/signUp-user" className="btn-theme-2">
+                  {/* <Link to="/signUp-user" className="btn-theme-2">
                     SignUp User
-                  </Link>
+                  </Link> */}
                   <Link to="/signUp-wholesaler" className="btn-theme-2">
                     SignUp Wholesaler
                   </Link>

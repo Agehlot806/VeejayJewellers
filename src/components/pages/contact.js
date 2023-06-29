@@ -5,6 +5,7 @@ import { Container, Row, Col, Button, Form } from 'react-bootstrap'
 import bannertwo from '../../assets/images/banner/image 12.png'
 import border from '../../assets/images/banner/border.png'
 
+
 function Contact() {
     const [validated, setValidated] = useState(false);
 

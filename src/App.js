@@ -34,6 +34,8 @@ import Profile from "./components/pages/Profile";
 import Addcart from "./components/pages/add-cart";
 import Checkinvoice from "./components/pages/checkinvoice";
 import Orderinvoice from "./components/pages/orderinvoice";
+import Product from "./components/pages/product";
+import Blogdetails from "./components/pages/blog-details";
 
 // ScrollToTop component
 const ScrollToTop = () => {
@@ -58,12 +60,14 @@ const App = ({ item }) => {
           <Route path="/helpandFAQs" element={<HelpandFAQs />} />
           <Route path="/offers-details" element={<Offersdetails />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog-details/:id" element={<Blogdetails />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signUp-user" element={<SignupUser />} />
           <Route path="/signUp-wholesaler" element={<SignupWholesaler />} />
           <Route path="/custom-design" element={<Customdesign />} />
           <Route path="/all-products" element={<Allproduct />} />
+          <Route path="/products" element={<Product />} />
           <Route path="/product-variety" element={<Productvariety />} />
           <Route path="/product-details/:id" element={<ProductDetails />} />
           <Route path="/add-to-cart" element={<Addcart />} />

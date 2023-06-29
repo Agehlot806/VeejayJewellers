@@ -16,7 +16,7 @@ import product3 from "../../assets/images/img/product3.png";
 import product4 from "../../assets/images/img/product4.png";
 import product5 from "../../assets/images/img/product5.png";
 import product6 from "../../assets/images/img/product6.png";
-import product7 from "../../assets/images/img/product7.png";
+import blog1 from "../../assets/images/img/blog1.webp";
 import img2 from "../../assets/images/img/img2.png";
 import img3 from "../../assets/images/img/img3.png";
 import img4 from "../../assets/images/img/img4.png";
@@ -54,8 +54,29 @@ const clinetreview = {
   },
 };
 
+const newArrivals = {
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 2,
+    slidesToSlide: 1, // optional, default to 1.
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 1,
+    slidesToSlide: 1, // optional, default to 1.
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+    slidesToSlide: 1, // optional, default to 1.
+  },
+};
+
 function Home(props) {
   const [brandcategories, setbrandcategories] = useState([]);
+  const [blogs, setBlogs] = useState([]);
+  const [posts, setPosts] = useState([]);
+  const [videos, setVideoUrls] = useState('');
   const [videoUrl, setVideoUrl] = useState('');
   const [data, setData] = useState([]);
 
@@ -69,21 +90,42 @@ function Home(props) {
 
   useEffect(() => {
     categorys();
+    fetchBlogs();
   }, []);
-  useEffect(()=>{
+  useEffect(() => {
     axios
-    .get(`${BASE_URL}/banners1`)
-    .then((response) => {
-      // setVideo(response.data.data[6].image);
-      const videoUrl = response.data.data[6].image;
-      setVideoUrl(videoUrl);
-    })
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-    });
+      .get(`${BASE_URL}/banners1`)
+      .then((response) => {
+        // setVideo(response.data.data[6].image);
+        const videoUrl = response.data.data[6].image;
+        setVideoUrl(videoUrl);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
   })
-  
-  
+
+  // const fetchBlogs = async () => {
+  //   try {
+  //     const response = await fetch(`${BASE_URL}/auth/blog`);
+  //     const data = await response.json();
+  //     setBlogs(data.data);
+  //   } catch (error) {
+  //     console.error("Error fetching blogs:", error);
+  //   }
+  // };
+  const fetchBlogs = async () => {
+    try {
+      const response = await fetch(`${BASE_URL}/auth/blog`);
+      const data = await response.json();
+      const latestPosts = data.data.slice(0, 3);
+      setPosts(latestPosts);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
   const categorys = () => {
     axios
       .get(`https://veejayjewels.com/api/v1/categories`)
@@ -94,7 +136,27 @@ function Home(props) {
         console.error("Error fetching data:", error);
       });
   };
+
+
   // console.log("brandcategoriesbrandcategories", data);
+
+  useEffect(() => {
+    axios
+      .get(`${BASE_URL}/banners1`)
+      .then((response) => {
+        // setVideo(response.data.data[6].image);
+        // const videoUrl = response.data.data[5].image
+        setVideoUrls(response.data.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  })
+
+
+
+
+
 
   return (
     <>
@@ -126,7 +188,7 @@ function Home(props) {
             <Row>
               <Col lg={7} sm={7}>
                 <div className="home-content">
-                  <h1>Veejay Jeweller</h1>
+                  <h1>Veejay Jewels</h1>
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Amet integer lorem amet arcu egestas congue. Rhoncus
@@ -279,6 +341,7 @@ function Home(props) {
         </Container>
       </section>
       <section className="sliderBangle">
+
         <Container fluid className="p-0">
           <Carousel
             swipeable={true}
@@ -304,17 +367,9 @@ function Home(props) {
                   <img src={item.image} alt="" />
                 </div>
               ))}
-            {/* <div  className="homeBack-bg">
-              <img src={homeBanner2} alt="" />
-            </div> */}
-            {/* <div className="homeBack-bg">
-              <img src={homeBanner2} />
-            </div> */}
-            {/* <div className="homeBack-bg">
-              <img src={homeBanner2} />
-            </div> */}
           </Carousel>
         </Container>
+
         <Container>
           <div className="section-padding bangle-areaCara">
             <div className="bangleHome">
@@ -360,15 +415,32 @@ function Home(props) {
       </section>
 
       <section className="new-arr">
-        <Container>
-          <Row>
-            <Col lg={6} sm={6} xs={6}>
+        <Container className="p-0">
+          <Carousel
+            swipeable={true}
+            draggable={true}
+            showDots={true}
+            responsive={newArrivals}
+            ssr={true} // means to render carousel on server-side.
+            infinite={true}
+            autoPlay={props.deviceType !== "mobile" ? true : false}
+            autoPlaySpeed={500}
+            keyBoardControl={true}
+            customTransition="all 1s"
+            transitionDuration={1000}
+            containerClass="carousel-container"
+            removeArrowOnDeviceType={["tablet", "mobile"]}
+            deviceType={props.deviceType}
+            dotListClass="custom-dot-list-style"
+            itemClass="carousel-item-padding-40-px"
+          >
+            <div>
               <img src={one} />
-            </Col>
-            <Col lg={6} sm={6} xs={6}>
+            </div>
+            <div>
               <img src={two} />
-            </Col>
-          </Row>
+            </div>
+          </Carousel>
         </Container>
       </section>
 
@@ -658,10 +730,50 @@ function Home(props) {
         </Container>
       </section>
 
+      <section className="new-arr">
+        <Container className="p-0">
+          <Carousel
+            swipeable={true}
+            draggable={true}
+            showDots={true}
+            responsive={newArrivals}
+            ssr={true} // means to render carousel on server-side.
+            infinite={true}
+            autoPlay={props.deviceType !== "mobile" ? true : false}
+            autoPlaySpeed={500}
+            keyBoardControl={true}
+            customTransition="all 1s"
+            transitionDuration={1000}
+            containerClass="carousel-container"
+            removeArrowOnDeviceType={["tablet", "mobile"]}
+            deviceType={props.deviceType}
+            dotListClass="custom-dot-list-style"
+            itemClass="carousel-item-padding-40-px"
+          >
+            {Array.isArray(videos) && videos.length > 0 ? (
+              videos
+                .filter((video) => video.type === 'video')
+                .map((video) => (
+                  // <Col lg={6}>
+                  <div key={video.id} className="videoarea">
+                    <video loop autoPlay muted>
+                      <source src={video.image} type="video/mp4" />
+                    </video>
+                    {/* <video src={video.image} controls  /> */}
+                  </div>
+                  // </Col>
+                ))
+            ) : (
+              <p>No videos found.</p>
+            )}
+          </Carousel>
+        </Container>
+      </section>
+
       <section className="section-padding">
         <div className="Silver-Dimonds">
           <Container fluid>
-          {/* <video controls loop autoPlay muted>
+            {/* <video controls loop autoPlay muted>
         {videoUrl ? (
           <source src={videoUrl} type="video/mp4"/>
         ) : (
@@ -912,39 +1024,94 @@ function Home(props) {
         </Container>
       </section>
 
-      <section className="section-padding ourStore-bg">
+      <section className="section-padding Catlog pt-0">
         <Container>
-          <Row>
-            <Col lg={5} sm={5}>
-              <div className="ourStore-gift">
-                <img src={product1} />
-                <h4>Make A gift</h4>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet
-                  integer lorem amet arcu egestas congue. Rhoncus scelerisque m
-                  aenean.
-                </p>
-              </div>
-            </Col>
-            <Col lg={7} sm={7}>
-              <div className="ourStore-gift">
-                <h4>Our Store</h4>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet
-                  integer lorem amet arcu egestas congue. Rhoncus scelerisque m
-                  aenean ac. Cursus in at sagittis vivamus Rhoncus scelerisque m
-                </p>
-              </div>
-              <div className="text-center mt-5">
-                <Link to="" className="main-btn">
-                  <i className="fa fa-angle-double-right" /> Find out more
-                </Link>
+          <Row className="justify-content-center">
+            <Col lg={7}>
+              <div className="bestseller">
+                <h4 className="main-heading">Blogs</h4>
               </div>
             </Col>
           </Row>
+          <Row className="mt-4">
+            {posts &&
+              posts.map((blog) => (
+                <Col lg={4} sm={4} xs={12} className="mt-2 mb-3">
+                  <div className="blogs-card" key={blog.id}>
+                    <img
+                      src={
+                        blog.image
+                          ? `https://veejayjewels.com/storage/app/public/banner/${blog.image}`
+                          : blog1
+                      }
+                      alt=""
+                    />
+                    <h5>{blog.title}</h5>
+                  </div>
+                </Col>
+              ))}
+
+          </Row>
+          <div className="text-center mt-3">
+            <Link to="/blog" className="main-btn">
+              <i className="fa fa-angle-double-right" /> All Blogs
+            </Link>
+          </div>
         </Container>
       </section>
 
+      <section className="section-padding ourStore-bg">
+        <Container className="p-0">
+          <Carousel
+            swipeable={true}
+            draggable={true}
+            showDots={true}
+            responsive={clinetreview}
+            ssr={true} // means to render carousel on server-side.
+            infinite={true}
+            autoPlay={props.deviceType !== "mobile" ? true : false}
+            autoPlaySpeed={1000}
+            keyBoardControl={true}
+            customTransition="all 1s"
+            transitionDuration={1000}
+            containerClass="carousel-container"
+            removeArrowOnDeviceType={["tablet", "mobile"]}
+            deviceType={props.deviceType}
+            dotListClass="custom-dot-list-style"
+            itemClass="carousel-item-padding-40-px"
+          >
+            <Row>
+              <Col lg={5} sm={5}>
+                <div className="ourStore-gift">
+                  <img src={product1} />
+                  <h4>Make A gift</h4>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet
+                    integer lorem amet arcu egestas congue. Rhoncus scelerisque m
+                    aenean.
+                  </p>
+                </div>
+              </Col>
+              <Col lg={7} sm={7}>
+                <div className="ourStore-gift">
+                  <h4>Our Store</h4>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet
+                    integer lorem amet arcu egestas congue. Rhoncus scelerisque m
+                    aenean ac. Cursus in at sagittis vivamus Rhoncus scelerisque m
+                  </p>
+                </div>
+                <div className="text-center mt-5">
+                  <Link to="" className="main-btn">
+                    <i className="fa fa-angle-double-right" /> Find out more
+                  </Link>
+                </div>
+              </Col>
+            </Row>
+          </Carousel>
+        </Container>
+
+      </section>
       <Footer />
     </>
   );

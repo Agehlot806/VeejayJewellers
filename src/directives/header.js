@@ -94,6 +94,9 @@ function Header({ profileImage }) {
                 <Link to="/about">AboutUs</Link>
               </Nav.Link>
               <Nav.Link>
+                <Link to="/brands/:id/:name">Product</Link>
+              </Nav.Link>
+              {/* <Nav.Link>
                 <Dropdown>
                   <Dropdown.Toggle id="dropdown-basic">Brands</Dropdown.Toggle>
                   <Dropdown.Menu>
@@ -106,22 +109,10 @@ function Header({ profileImage }) {
                           </Link>
                         </Dropdown.Item>
                       ))}
-                    {/* <Dropdown.Item href="">
-                    <i className="fa fa-angle-double-right" />{" "}
-                    <Link to="/ARHA-brands">ARHA</Link>
-                  </Dropdown.Item> */}
-                    {/* <Dropdown.Item href="">
-                    <i className="fa fa-angle-double-right" />{" "}
-                    <Link to="/VDANA-brands">V'DANA</Link>
-                  </Dropdown.Item> */}
-                    {/* <Dropdown.Item href="">
-                    <i className="fa fa-angle-double-right" />{" "}
-                    <Link to="/IRKA-brands">IRKA</Link>
-                  </Dropdown.Item> */}
                   </Dropdown.Menu>
                 </Dropdown>
-              </Nav.Link>
-              <Nav.Link>
+              </Nav.Link> */}
+              {/* <Nav.Link>
                 <Dropdown>
                   <Dropdown.Toggle id="dropdown-basic">Product</Dropdown.Toggle>
                   <Dropdown.Menu>
@@ -151,7 +142,7 @@ function Header({ profileImage }) {
                     </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
-              </Nav.Link>
+              </Nav.Link> */}
               <Nav.Link>
                 <Dropdown>
                   <Dropdown.Toggle id="dropdown-basic">Catalogue</Dropdown.Toggle>
