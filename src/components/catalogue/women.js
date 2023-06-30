@@ -194,44 +194,30 @@ function Women() {
                     </Row>
                 </Container>
             </section>
-            <section className='section-padding'>
+            <section className=''>
                 <Container>
-                <Tabs
-                    defaultActiveKey="home"
-                    transition={false}
-                    id="noanim-tab-example"
-                    className="mb-3 justify-content-center"
-                >
-                    <Tab eventKey="home" title="Home">
-                        <Row>
-                            {womendata ? (
-                                womendata.map((item, index) => (
-                                    item.type === 'women' && (
-                                        <Col lg={3} className='mt-2 mb-2'>
-                                            <div className='catlogOne'>
-                                                <Row>
-                                                    <Link to={"https://veejayjewels.com/storage/app/public/pdf/" + item.file}>
-                                                        <Col sm={12} className='mb-3'>
-                                                            <img src={"https://veejayjewels.com/storage/app/public/catalog/" + item.thumnail} />
-                                                            <h2>{item.title}</h2>
-                                                            <p>Read More</p>
-                                                        </Col>
-                                                    </Link>
-                                                </Row>
-                                            </div>
-                                        </Col>
-                                    )
-                                ))
-                            ) : null}
-                        </Row>
-                    </Tab>
-                    <Tab eventKey="profile" title="Profile">
-                        <Container>
+                    <div className='catloggg'>
+                        <ul className="nav nav-pills mb-5" id="pills-tab" role="tablist">
+                            <li className="nav-item">
+                                <a className="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">All Products</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Gold Bangle</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Diamond Bangle</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-Ring" role="tab" aria-controls="pills-Ring" aria-selected="false">Gold Ring</a>
+                            </li>
+                        </ul>
+                        <div className="tab-content" id="pills-tabContent">
+                            <div className="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                             <Row>
                                 {womendata ? (
                                     womendata.map((item, index) => (
                                         item.type === 'women' && (
-                                            <Col lg={3} className='mt-2 mb-2'>
+                                            <Col lg={4} className='mt-2 mb-2'>
                                                 <div className='catlogOne'>
                                                     <Row>
                                                         <Link to={"https://veejayjewels.com/storage/app/public/pdf/" + item.file}>
@@ -248,11 +234,16 @@ function Women() {
                                     ))
                                 ) : null}
                             </Row>
-                        </Container>
-                    </Tab>
-                </Tabs>
+                            </div>
+                            <div className="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">dd</div>
+                            <div className="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
+                            <div className="tab-pane fade" id="pills-Ring" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
+                        </div>
+                    </div>
                 </Container>
             </section>
+
+            <section className='section-padding'></section>
             <Footer />
         </>
     )

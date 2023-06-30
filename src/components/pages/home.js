@@ -24,8 +24,7 @@ import img5 from "../../assets/images/img/img5.png";
 import Group1 from "../../assets/images/img/Group1.png";
 import Group2 from "../../assets/images/img/Group2.png";
 import Group3 from "../../assets/images/img/Group3.png";
-import one from "../../assets/images/img/one.png";
-import two from "../../assets/images/img/two.png";
+import biglogo from "../../assets/images/logo/biglogo.png";
 import abouthome from "../../assets/images/img/abouthome.png";
 import aboutimgicon from "../../assets/images/img/aboutimgicon.png";
 
@@ -62,7 +61,7 @@ const newArrivals = {
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 1,
+    items: 2,
     slidesToSlide: 1, // optional, default to 1.
   },
   mobile: {
@@ -74,11 +73,16 @@ const newArrivals = {
 
 function Home(props) {
   const [brandcategories, setbrandcategories] = useState([]);
-  const [blogs, setBlogs] = useState([]);
+  const [latestproduct, setlatestproduct] = useState([]);
+  const [allproduct, setallproduct] = useState([]);
   const [posts, setPosts] = useState([]);
   const [videos, setVideoUrls] = useState('');
   const [videoUrl, setVideoUrl] = useState('');
   const [data, setData] = useState([]);
+  const [secondbanner, setsecondbanner] = useState([])
+  const [bangledata, setbangledata] = useState([])
+
+
 
   useEffect(() => {
     // Fetch the data
@@ -91,6 +95,10 @@ function Home(props) {
   useEffect(() => {
     categorys();
     fetchBlogs();
+    fetchlatestProduct();
+    fetchnewProduct();
+    secondBanner();
+    bangleProduct();
   }, []);
   useEffect(() => {
     axios
@@ -105,15 +113,6 @@ function Home(props) {
       });
   })
 
-  // const fetchBlogs = async () => {
-  //   try {
-  //     const response = await fetch(`${BASE_URL}/auth/blog`);
-  //     const data = await response.json();
-  //     setBlogs(data.data);
-  //   } catch (error) {
-  //     console.error("Error fetching blogs:", error);
-  //   }
-  // };
   const fetchBlogs = async () => {
     try {
       const response = await fetch(`${BASE_URL}/auth/blog`);
@@ -125,6 +124,32 @@ function Home(props) {
     }
   };
 
+  const fetchlatestProduct = async () => {
+    try {
+      const response = await fetch(`${BASE_URL}/products/latest`);
+      const data = await response.json();
+      const latestPosts = data.data.slice(0, 8);
+      console.log("22222", data);
+      setlatestproduct(latestPosts);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const fetchnewProduct = async () => {
+    try {
+      const response = await fetch(`${BASE_URL}/products/latest`);
+      const data = await response.json();
+      const latestPosts = data.data.slice(0, 4);
+      setallproduct(latestPosts);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const cleanImageUrl = (imageUrl) => {
+    // Remove square brackets and escape characters
+    return imageUrl.replace(/[\[\]\\"]/g, "");
+  };
 
   const categorys = () => {
     axios
@@ -136,8 +161,6 @@ function Home(props) {
         console.error("Error fetching data:", error);
       });
   };
-
-
   // console.log("brandcategoriesbrandcategories", data);
 
   useEffect(() => {
@@ -153,8 +176,27 @@ function Home(props) {
       });
   })
 
-
-
+  const secondBanner = () => {
+    axios
+      .get(`${BASE_URL}/banners1`)
+      .then((response) => {
+        console.log(response.data.data)
+        setsecondbanner(response.data.data)
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
+  const bangleProduct = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}/products/latest`);
+    const data = await response.json();
+    const latestPosts = data.data.slice(0, 3);
+    setbangledata(latestPosts);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 
 
@@ -203,7 +245,7 @@ function Home(props) {
                 </div>
               </Col>
               <Col lg={5} sm={5} className="align-self-center">
-                <img src={home} />
+                <img src={biglogo} />
               </Col>
             </Row>
           </Container>
@@ -434,12 +476,22 @@ function Home(props) {
             dotListClass="custom-dot-list-style"
             itemClass="carousel-item-padding-40-px"
           >
-            <div>
+
+            {secondbanner ? (
+              secondbanner.map((item, index) => (
+                item.type === 'second' && (
+                    <div key={item.id} className="homeBack-bg">
+                      <img src={item.image} alt="" />
+                    </div>
+                )
+              ))
+            ) : null}
+            {/* <div>
               <img src={one} />
             </div>
             <div>
               <img src={two} />
-            </div>
+            </div> */}
           </Carousel>
         </Container>
       </section>
@@ -456,271 +508,42 @@ function Home(props) {
           </Row>
 
           <Row className="mt-4 mb-4">
-            <Col lg={3} sm={4} xs={6} className="mb-3">
-              <Link to="/product-add-card">
-                <div className="bestseller-card">
-                  <div className="bestseller-cardImg">
-                    {/* <Link to="/product-lock"><i className="fa fa-lock" /></Link> */}
-                    <img src={product6} />
+            {latestproduct &&
+              latestproduct.map((item) => (
+                <Col lg={3} sm={4} xs={6} className="mb-3">
+                  <div className="bestseller-card" key={item.id}>
+                    <div className="bestseller-cardImg">
+
+                      <img src={cleanImageUrl(item.image)} alt="" />
+                    </div>
                   </div>
-                </div>
-                <div className="bestseller-cardText">
-                  <h5>Bangle "MURATO"</h5>
-                  <p>15gms</p>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star-o" />
-                  </a>
-                  <div className="product-btnarea">
-                    <Link to="/product-details" className="product-addBtn">
-                      Add To Cart
-                    </Link>
+                  <div className="bestseller-cardText">
+                    <h5>{item.name}</h5>
+                    <p>{item.unit}</p>
+                    <a>
+                      <i className="fa fa-star" />
+                    </a>
+                    <a>
+                      <i className="fa fa-star" />
+                    </a>
+                    <a>
+                      <i className="fa fa-star" />
+                    </a>
+                    <a>
+                      <i className="fa fa-star" />
+                    </a>
+                    <a>
+                      <i className="fa fa-star-o" />
+                    </a>
+                    <div className="product-btnarea">
+                      <Link to={`/product-details/${item.id}`} className="product-addBtn">
+                        Add To Cart
+                      </Link>
+                    </div>
                   </div>
-                </div>
-              </Link>
-            </Col>
-            <Col lg={3} sm={4} xs={6} className="mb-3">
-              <Link to="/product-add-card">
-                <div className="bestseller-card">
-                  <div className="bestseller-cardImg">
-                    <img src={product1} />
-                  </div>
-                </div>
-                <div className="bestseller-cardText">
-                  <h5>NECKLACE "MURATO"</h5>
-                  <p>15gms</p>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star-o" />
-                  </a>
-                  <div className="product-btnarea">
-                    <Link to="/product-details" className="product-addBtn">
-                      Add To Cart
-                    </Link>
-                  </div>
-                </div>
-              </Link>
-            </Col>
-            <Col lg={3} sm={4} xs={6} className="mb-3">
-              <Link to="/product-add-card">
-                <div className="bestseller-card">
-                  <div className="bestseller-cardImg">
-                    <img src={product2} />
-                  </div>
-                </div>
-                <div className="bestseller-cardText">
-                  <h5>NECKLACE "MURATO"</h5>
-                  <p>15gms</p>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star-o" />
-                  </a>
-                  <div className="product-btnarea">
-                    <Link to="/product-details" className="product-addBtn">
-                      Add To Cart
-                    </Link>
-                  </div>
-                </div>
-              </Link>
-            </Col>
-            <Col lg={3} sm={4} xs={6} className="mb-3">
-              <Link to="/product-add-card">
-                <div className="bestseller-card">
-                  <div className="bestseller-cardImg">
-                    <img src={product3} />
-                  </div>
-                </div>
-                <div className="bestseller-cardText">
-                  <h5>bangle "MURATO"</h5>
-                  <p>15gms</p>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star-o" />
-                  </a>
-                  <div className="product-btnarea">
-                    <Link to="/product-details" className="product-addBtn">
-                      Add To Cart
-                    </Link>
-                  </div>
-                </div>
-              </Link>
-            </Col>
-            <Col lg={3} sm={4} xs={6} className="mb-3">
-              <Link to="/product-add-card">
-                <div className="bestseller-card">
-                  <div className="bestseller-cardImg">
-                    <img src={product4} />
-                  </div>
-                </div>
-                <div className="bestseller-cardText">
-                  <h5>Bangle "MURATO"</h5>
-                  <p>15gms</p>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star-o" />
-                  </a>
-                  <div className="product-btnarea">
-                    <Link to="/product-details" className="product-addBtn">
-                      Add To Cart
-                    </Link>
-                  </div>
-                </div>
-              </Link>
-            </Col>
-            <Col lg={3} sm={4} xs={6} className="mb-3">
-              <Link to="/product-add-card">
-                <div className="bestseller-card">
-                  <div className="bestseller-cardImg">
-                    <img src={product2} />
-                  </div>
-                </div>
-                <div className="bestseller-cardText">
-                  <h5>Bangle "MURATO"</h5>
-                  <p>15gms</p>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star-o" />
-                  </a>
-                  <div className="product-btnarea">
-                    <Link to="/product-details" className="product-addBtn">
-                      Add To Cart
-                    </Link>
-                  </div>
-                </div>
-              </Link>
-            </Col>
-            <Col lg={3} sm={4} xs={6} className="mb-3">
-              <Link to="/product-add-card">
-                <div className="bestseller-card">
-                  <div className="bestseller-cardImg">
-                    <img src={product2} />
-                  </div>
-                </div>
-                <div className="bestseller-cardText">
-                  <h5>Bangle "MURATO"</h5>
-                  <p>15gms</p>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star-o" />
-                  </a>
-                  <div className="product-btnarea">
-                    <Link to="/product-details" className="product-addBtn">
-                      Add To Cart
-                    </Link>
-                  </div>
-                </div>
-              </Link>
-            </Col>
-            <Col lg={3} sm={4} xs={6} className="mb-3">
-              <Link to="/product-add-card">
-                <div className="bestseller-card">
-                  <div className="bestseller-cardImg">
-                    <img src={product2} />
-                  </div>
-                </div>
-                <div className="bestseller-cardText">
-                  <h5>Bangle "MURATO"</h5>
-                  <p>15gms</p>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star-o" />
-                  </a>
-                  <div className="product-btnarea">
-                    <Link to="/product-details" className="product-addBtn">
-                      Add To Cart
-                    </Link>
-                  </div>
-                </div>
-              </Link>
-            </Col>
+                </Col>
+              ))}
+
           </Row>
           <div className="text-center">
             <Link to="/all-products" className="main-btn">
@@ -731,7 +554,7 @@ function Home(props) {
       </section>
 
       <section className="new-arr">
-        <Container className="p-0">
+        <Container fluid className="p-0">
           <Carousel
             swipeable={true}
             draggable={true}
@@ -740,7 +563,7 @@ function Home(props) {
             ssr={true} // means to render carousel on server-side.
             infinite={true}
             autoPlay={props.deviceType !== "mobile" ? true : false}
-            autoPlaySpeed={500}
+            autoPlaySpeed={2000}
             keyBoardControl={true}
             customTransition="all 1s"
             transitionDuration={1000}
@@ -822,138 +645,41 @@ function Home(props) {
             </Col>
           </Row>
           <Row className="mt-4 mb-4">
-            <Col lg={3} sm={4} xs={6} className="mb-3">
-              <Link to="/product-add-card">
-                <div className="bestseller-card">
-                  <div className="bestseller-cardImg">
-                    <img src={product6} />
+            {allproduct &&
+              allproduct.map((item) => (
+                <Col lg={3} sm={4} xs={6} className="mb-3">
+                  <div className="bestseller-card" key={item.id}>
+                    <div className="bestseller-cardImg">
+
+                      <img src={cleanImageUrl(item.image)} alt="" />
+                    </div>
                   </div>
-                </div>
-                <div className="bestseller-cardText">
-                  <h5>NECKLACE "MURATO"</h5>
-                  <p>15gms</p>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star-o" />
-                  </a>
-                  <div className="product-btnarea">
-                    <Link to="/product-details" className="product-addBtn">
-                      Add To Cart
-                    </Link>
+                  <div className="bestseller-cardText">
+                    <h5>{item.name}</h5>
+                    <p>{item.unit}</p>
+                    <a>
+                      <i className="fa fa-star" />
+                    </a>
+                    <a>
+                      <i className="fa fa-star" />
+                    </a>
+                    <a>
+                      <i className="fa fa-star" />
+                    </a>
+                    <a>
+                      <i className="fa fa-star" />
+                    </a>
+                    <a>
+                      <i className="fa fa-star-o" />
+                    </a>
+                    <div className="product-btnarea">
+                      <Link to={`/product-details/${item.id}`} className="product-addBtn">
+                        Add To Cart
+                      </Link>
+                    </div>
                   </div>
-                </div>
-              </Link>
-            </Col>
-            <Col lg={3} sm={4} xs={6} className="mb-3">
-              <Link to="/product-add-card">
-                <div className="bestseller-card">
-                  <div className="bestseller-cardImg">
-                    <img src={product5} />
-                  </div>
-                </div>
-                <div className="bestseller-cardText">
-                  <h5>NECKLACE "MURATO"</h5>
-                  <p>15gms</p>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star-o" />
-                  </a>
-                  <div className="product-btnarea">
-                    <Link to="/product-details" className="product-addBtn">
-                      Add To Cart
-                    </Link>
-                  </div>
-                </div>
-              </Link>
-            </Col>
-            <Col lg={3} sm={4} xs={6} className="mb-3">
-              <Link to="/product-add-card">
-                <div className="bestseller-card">
-                  <div className="bestseller-cardImg">
-                    <img src={product2} />
-                  </div>
-                </div>
-                <div className="bestseller-cardText">
-                  <h5>NECKLACE "MURATO"</h5>
-                  <p>15gms</p>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star-o" />
-                  </a>
-                  <div className="product-btnarea">
-                    <Link to="/product-details" className="product-addBtn">
-                      Add To Cart
-                    </Link>
-                  </div>
-                </div>
-              </Link>
-            </Col>
-            <Col lg={3} sm={4} xs={6} className="mb-3">
-              <Link to="/product-add-card">
-                <div className="bestseller-card">
-                  <div className="bestseller-cardImg">
-                    <img src={product3} />
-                  </div>
-                </div>
-                <div className="bestseller-cardText">
-                  <h5>NECKLACE "MURATO"</h5>
-                  <p>15gms</p>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star-o" />
-                  </a>
-                  <div className="product-btnarea">
-                    <Link to="/product-details" className="product-addBtn">
-                      Add To Cart
-                    </Link>
-                  </div>
-                </div>
-              </Link>
-            </Col>
+                </Col>
+              ))}
           </Row>
         </Container>
       </section>

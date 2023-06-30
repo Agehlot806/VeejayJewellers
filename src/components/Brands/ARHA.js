@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "../../directives/header";
 import Footer from "../../directives/footer";
-import { Container, Row, Col, Nav, Tab } from "react-bootstrap";
+import { Container, Row, Col, Nav, Tab, Form } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import bangle1 from "../../assets/images/img/bangle1.png";
@@ -19,6 +19,7 @@ import bannertwo from '../../assets/images/banner/image 12.png'
 import image14 from '../../assets/images/banner/image 14.png'
 import image15 from '../../assets/images/banner/image 15.png'
 import ring1 from '../../assets/images/img/ring1.png'
+
 import Carousel from "react-multi-carousel";
 const ourstore = {
   desktop: {
@@ -41,14 +42,16 @@ function ARHA(props) {
   const { id, name } = useParams();
   console.log("name", name);
   const [brandcategories, setbrandcategories] = useState([]);
-
+  const [latestsapidatashow, setLatestsapidata] = useState([]);
+  const [allproduct, setallproduct] = useState([]);
   useEffect(() => {
     categorys();
+    latestsapidata();
+    allProduct();
   }, []);
-
   const categorys = () => {
     axios
-      .get(`${BASE_URL}/categories/childes/${id}`)
+      .get(`${BASE_URL}/categories`)
       .then((response) => {
         console.log(response.data);
         setbrandcategories(response.data.data);
@@ -58,6 +61,69 @@ function ARHA(props) {
       });
   };
   console.log("brandcategories", brandcategories);
+  const latestsapidata = () => {
+    axios
+      .get(`${BASE_URL}/products/latest`)
+      .then((response) => {
+        console.log(response.data);
+        setLatestsapidata(response.data.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
+  const [sameid,setSameId]=useState([])
+  // console.log("ID:", id);
+  const customerData = latestsapidatashow.find((customer) => customer.category_ids == sameid)
+  console.log("latestsapidatashow", customerData);
+  const handleNavItemClick = (event, Id) => {
+    event.preventDefault();
+    console.log("Clicked product ID:", Id);
+    setSameId(Id)
+    // Perform any desired actions with the product ID
+  };
+const cleanImageUrl = (imageUrl) => {
+  // Remove square brackets and escape characters
+  return imageUrl.replace(/[\[\]\\"]/g, "");
+};
+const allProduct = () => {
+    axios
+        .get(`${BASE_URL}/products/latest`)
+        .then((response) => {
+            console.log(response.data);
+            setallproduct(response.data.data);
+        })
+        .catch((error) => {
+            console.error("Error fetching data:", error);
+        });
+};
+
+
+  const [value, setValue] = useState(50);
+
+  const handleRangeChange = (event) => {
+    setValue(event.target.value);
+  };
+  const [selectedValue, setSelectedValue] = useState("");
+  const minProductValue = 1; // Minimum value for the quantity
+  const maxProductValue = 50; // Maximum value for the quantity
+  const [quantity, setQuantity] = useState(minProductValue);
+  const handleIncrement = () => {
+    if (quantity < maxProductValue) {
+      setQuantity(quantity + 1);
+    }
+  };
+  const handleDecrement = () => {
+    if (quantity > minProductValue) {
+      setQuantity(quantity - 1);
+    }
+  };
+  const totalPrice = quantity * value;
+  const handleSelectChange = (event) => {
+    setSelectedValue(event.target.value);
+  };
+
+
   return (
     <>
       <Header />
@@ -72,60 +138,106 @@ function ARHA(props) {
                 <Nav variant="pills" className="flex-column brand-cate-list">
                   <div className="tabBrands">
                     <h3>Brand</h3>
-                    {/* {brandcategories &&
-                    brandcategories.map((item) => ( */}
                     <Nav.Item>
-                      <Nav.Link eventKey="first">ARHA</Nav.Link>
+                      <Nav.Link eventKey="AllProduct">All Product</Nav.Link>
                     </Nav.Item>
-                    {/* ))} */}
+                    {brandcategories ? (
+                        brandcategories.map((item, index) => (
+                          <Nav.Item key={index}>
+                          <Nav.Link eventKey={item.id} onClick={(event) => handleNavItemClick(event, item.id)}>
+                            {item.name}
+                          </Nav.Link>
+                        </Nav.Item>
+                        ))
+                    ) : null}
 
-                    <Nav.Item>
-                      <Nav.Link eventKey="V’DANA">V’DANA</Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                      <Nav.Link eventKey="IRKA">IRKA</Nav.Link>
-                    </Nav.Item>
+                    <h3>Sort by</h3>
+                    <div className="checkbox-bg">
+                      <div className="form-check">
+                        <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" defaultValue="option1" defaultChecked />
+                        <label className="form-check-label" htmlFor="exampleRadios1">
+                          Last Frist
+                        </label>
+                      </div>
+                      <div className="form-check">
+                        <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" defaultValue="option2" />
+                        <label className="form-check-label" htmlFor="exampleRadios2">
+                          Oldest Frist
+                        </label>
+                      </div>
+
+                      <div className="form-check">
+                        <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" defaultValue="option2" />
+                        <label className="form-check-label" htmlFor="exampleRadios3">
+                          Gross Wt high to Low
+                        </label>
+                      </div>
+
+                      <div className="form-check">
+                        <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" defaultValue="option2" />
+                        <label className="form-check-label" htmlFor="exampleRadios4">
+                          Gross Wt Low to high
+                        </label>
+                      </div>
+                    </div>
+
+                    <h3>Filter</h3>
+                    <div className="range-bg">
+                      <label>18 carat gold
+
+                      </label>
+                      <input
+                        type="range"
+                        min={0}
+                        max={1000000}
+                        value={value}
+                        onChange={handleRangeChange}
+                        className='rangeinput'
+                      />
+                      <div className="text-center">
+                        <h2>₹ {value}</h2>
+                      </div>
+                    </div>
+
+                    {/* <main>
+        <input type="range" className="win10-thumb" />
+        <input type="range" className="win10-thumb" min={0} max={100} defaultValue={25} step={5} />
+        <input type="range" className="win10-thumb" disabled defaultValue={64} />
+        <input type="range" />
+        <input type="range" min={0} max={100} defaultValue={40} step={5} />
+        <input type="range" disabled defaultValue={80} />
+      </main> */}
+
+                    {/* <div className="range-bg">
+                      <label>18 carat gold
+
+                      </label>
+                      <input
+                        type="range"
+                        min={0}
+                        max={1000000}
+                        value={value}
+                        onChange={handleRangeChange}
+                        className='rangeinput'
+                      />
+                      <div className="text-center">
+                        <h2>₹ {value}</h2>
+                      </div>
+                    </div> */}
+
                   </div>
                 </Nav>
                 <div className="product-banner">
                   <img src={image15} />
                 </div>
 
-                
+
                 <div className="tabBrands">
-                  <h3>New Arrivals</h3>
-                  <div className="newArrivals">
-                    <div><img src={ring1} /></div>
-                    <div className="newArrivals-content">
-                      <h5>Gold bangle</h5>
-                      <h6>weight 10gms</h6>
-                      <p>Size : 2.5 <span>Quantity : 4</span></p>
-                    </div>
-                  </div>
-                  <div className="newArrivals">
-                    <div><img src={bangle4} /></div>
-                    <div className="newArrivals-content">
-                      <h5>Gold bangle</h5>
-                      <h6>weight 10gms</h6>
-                      <p>Size : 2.5 <span>Quantity : 4</span></p>
-                    </div>
-                  </div>
-                  <div className="newArrivals">
-                    <div><img src={ring3} /></div>
-                    <div className="newArrivals-content">
-                      <h5>Gold bangle</h5>
-                      <h6>weight 10gms</h6>
-                      <p>Size : 2.5 <span>Quantity : 4</span></p>
-                    </div>
-                  </div>
-                  <div className="newArrivals">
-                    <div><img src={ring2} /></div>
-                    <div className="newArrivals-content">
-                      <h5>Gold bangle</h5>
-                      <h6>weight 10gms</h6>
-                      <p>Size : 2.5 <span>Quantity : 4</span></p>
-                    </div>
-                  </div>
+                  <h3>Catalogue</h3>
+                  
+                  <h5>Bangle</h5>
+                  <h5>Ring</h5>
+                  <h5>bracelets</h5><h5>Gold</h5><h5>NECKLACE</h5>
                 </div>
 
                 <div className="product-banner">
@@ -134,17 +246,18 @@ function ARHA(props) {
               </Col>
               <Col sm={9}>
                 <Tab.Content>
-                  <Tab.Pane eventKey="first">
+                <Tab.Pane eventKey="AllProduct">
                     <Row>
+                    {allproduct.map((item) => (
                       <Col lg={4} sm={6} className="mb-5">
                         <div className="bestseller-card">
                           <div className="bestseller-cardImg">
-                            <img src={bangle1} />
+                            <img src={cleanImageUrl(item.image)} />
                           </div>
                         </div>
                         <div className="bestseller-cardText">
-                          <h5>Bangle "MURATO"</h5>
-                          <p>15gms</p>
+                          <h5>{item.name}</h5>
+                          <p>{item.unit}</p>
                           <a>
                             <i className="fa fa-star" />
                           </a>
@@ -167,161 +280,7 @@ function ARHA(props) {
                           </div>
                         </div>
                       </Col>
-                      <Col lg={4} sm={6} className="mb-5">
-                        <div className="bestseller-card">
-                          <div className="bestseller-cardImg">
-                            <img src={bangle2} />
-                          </div>
-                        </div>
-                        <div className="bestseller-cardText">
-                          <h5>NECKLACE "MURATO"</h5>
-                          <p>15gms</p>
-                          <a>
-                            <i className="fa fa-star" />
-                          </a>
-                          <a>
-                            <i className="fa fa-star" />
-                          </a>
-                          <a>
-                            <i className="fa fa-star" />
-                          </a>
-                          <a>
-                            <i className="fa fa-star" />
-                          </a>
-                          <a>
-                            <i className="fa fa-star-o" />
-                          </a>
-                          <div className="product-btnarea">
-                            <Link to="" className="product-addBtn">
-                              Add To Cart
-                            </Link>
-                          </div>
-                        </div>
-                      </Col>
-                      <Col lg={4} sm={6} className="mb-5">
-                        <div className="bestseller-card">
-                          <div className="bestseller-cardImg">
-                            <img src={product2} />
-                          </div>
-                        </div>
-                        <div className="bestseller-cardText">
-                          <h5>NECKLACE "MURATO"</h5>
-                          <p>15gms</p>
-                          <a>
-                            <i className="fa fa-star" />
-                          </a>
-                          <a>
-                            <i className="fa fa-star" />
-                          </a>
-                          <a>
-                            <i className="fa fa-star" />
-                          </a>
-                          <a>
-                            <i className="fa fa-star" />
-                          </a>
-                          <a>
-                            <i className="fa fa-star-o" />
-                          </a>
-                          <div className="product-btnarea">
-                            <Link to="" className="product-addBtn">
-                              Add To Cart
-                            </Link>
-                          </div>
-                        </div>
-                      </Col>
-                      <Col lg={4} sm={6} className="mb-5">
-                        <div className="bestseller-card">
-                          <div className="bestseller-cardImg">
-                            <img src={bangle1} />
-                          </div>
-                        </div>
-                        <div className="bestseller-cardText">
-                          <h5>Bangle "MURATO"</h5>
-                          <p>15gms</p>
-                          <a>
-                            <i className="fa fa-star" />
-                          </a>
-                          <a>
-                            <i className="fa fa-star" />
-                          </a>
-                          <a>
-                            <i className="fa fa-star" />
-                          </a>
-                          <a>
-                            <i className="fa fa-star" />
-                          </a>
-                          <a>
-                            <i className="fa fa-star-o" />
-                          </a>
-                          <div className="product-btnarea">
-                            <Link to="" className="product-addBtn">
-                              Add To Cart
-                            </Link>
-                          </div>
-                        </div>
-                      </Col>
-                      <Col lg={4} sm={6} className="mb-5">
-                        <div className="bestseller-card">
-                          <div className="bestseller-cardImg">
-                            <img src={bangle2} />
-                          </div>
-                        </div>
-                        <div className="bestseller-cardText">
-                          <h5>NECKLACE "MURATO"</h5>
-                          <p>15gms</p>
-                          <a>
-                            <i className="fa fa-star" />
-                          </a>
-                          <a>
-                            <i className="fa fa-star" />
-                          </a>
-                          <a>
-                            <i className="fa fa-star" />
-                          </a>
-                          <a>
-                            <i className="fa fa-star" />
-                          </a>
-                          <a>
-                            <i className="fa fa-star-o" />
-                          </a>
-                          <div className="product-btnarea">
-                            <Link to="" className="product-addBtn">
-                              Add To Cart
-                            </Link>
-                          </div>
-                        </div>
-                      </Col>
-                      <Col lg={4} sm={6} className="mb-5">
-                        <div className="bestseller-card">
-                          <div className="bestseller-cardImg">
-                            <img src={product2} />
-                          </div>
-                        </div>
-                        <div className="bestseller-cardText">
-                          <h5>NECKLACE "MURATO"</h5>
-                          <p>15gms</p>
-                          <a>
-                            <i className="fa fa-star" />
-                          </a>
-                          <a>
-                            <i className="fa fa-star" />
-                          </a>
-                          <a>
-                            <i className="fa fa-star" />
-                          </a>
-                          <a>
-                            <i className="fa fa-star" />
-                          </a>
-                          <a>
-                            <i className="fa fa-star-o" />
-                          </a>
-                          <div className="product-btnarea">
-                            <Link to="" className="product-addBtn">
-                              Add To Cart
-                            </Link>
-                          </div>
-                        </div>
-                      </Col>
+                       ))}
                     </Row>
                   </Tab.Pane>
                   <Tab.Pane eventKey="V’DANA">

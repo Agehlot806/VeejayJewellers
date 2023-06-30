@@ -11,11 +11,11 @@ import {
 } from "react-bootstrap";
 import product6 from "../../assets/images/img/product6.png";
 import Footer from "../../directives/footer";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Carousel from "react-multi-carousel";
 import product1 from "../../assets/images/img/product1.png";
 import productdetails2 from "../../assets/images/img/productdetails2.jpg";
-import productdetails3 from "../../assets/images/img/productdetails3.jpg";
+import bannertwo from '../../assets/images/banner/image 12.png'
 import product2 from "../../assets/images/img/product2.png";
 import product3 from "../../assets/images/img/product3.png";
 import product4 from "../../assets/images/img/product4.png";
@@ -57,18 +57,21 @@ const productdetails = {
   },
 };
 function ProductDetails(props) {
-  const [quantity, setQuantity] = useState(1);
-  const [quantity1, setQuantity1] = useState(1);
-  const [quantity2, setQuantity2] = useState(1);
+  const [quantity, setQuantity] = useState(0);
+  const [quantity1, setQuantity1] = useState(0);
+  const [quantity2, setQuantity2] = useState(0);
   const [show, setShow] = useState(false);
   const [unit, setUnit] = useState("");
   const [productType, setProductType] = useState("");
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
-  const[description,setdescription]=useState("")
+  const [description, setdescription] = useState("")
+  const [variations, setvariations] = useState("")
+  const [variationstype, setvariationstype] = useState("")
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const { id } = useParams();
+  const addtocard = useNavigate()
   const handleIncrement = () => {
     setQuantity(quantity + 1);
   };
@@ -78,7 +81,7 @@ function ProductDetails(props) {
     }
   };
   const handleIncrement1 = () => {
-    setQuantity1(quantity1+ 1);
+    setQuantity1(quantity1 + 1);
   };
   const handleDecrement1 = () => {
     if (quantity1 > 1) {
@@ -103,133 +106,225 @@ function ProductDetails(props) {
         setImage(response.data.data.image);
         setProductType(response.data.data.product_type);
         setdescription(response.data.data.description);
+        setvariations(response.data.data.variations)
+        setvariationstype(response.data.data.variations[0].type)
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
   };
-  console.log("image", image);
+  console.log("image", variations);
   useEffect(() => {
     GetProductDetails();
   }, []);
+  const loginId = localStorage.getItem("id");
+  console.log("loginId", loginId);
+// ????mapdata all//
+// const UpdatecardDetail = (e) => {
+//   e.preventDefault();
+//   const listToSend = {
+//     variants: [],
+//   };
+//   const formData = new FormData();
+//   formData.append("user_id", loginId);
+//   formData.append("product_id", id);
+//   formData.append("product_name", name);
+//   formData.append(
+//       "variant",
+//         JSON.stringify([{ variant: typevariant, quantity: quantity }])
+//     );
+//   formData.append("image", `https://veejayjewels.com/storage/app/public/product/${image}`);
+//   axios
+//     .post(`${BASE_URL}/products/add_to_card`, formData, {
+//       headers: { "Content-Type": "multipart/form-data" },
+//     })
+//     .then((response) => {
+//       console.log(response);
+//       console.log("responseresponse", response);
+//       addtocard("/add-to-cart");
+//       for (let i = 0; i < response.data.variant.length; i++) {
+//         // console.log(`===>>>> variant: ${jewellerydetailsmodel.data.variations[i].type} quantity: ${quantity[i]} selected: ${isSelectedList[i]}`);
+//         console.log(response.data.variant[i]);
+//         if (response.data.variant[i]) {
+//           listToSend.variants.push({
+//             type: response.data.variant[i].type,
+//           quantity: response.data.variant[i].quantity,
+//             // quantity: quantity[i]
+//           });
+//         }
+//       }
+//       // add-to-cart
+//       // history.push("/all-events");mmit
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//     });
+// };
+  const UpdatecardDetail = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("user_id", loginId);
+    formData.append("product_id", id);
+    formData.append("product_name", name);
+    formData.append(
+      "variant",
+      JSON.stringify([{ variant: typevariant, quantity: quantity }])
+    );
+    formData.append("image", "https://veejayjewels.com/storage/app/public/product/" + image);
+    axios
+      .post(`${BASE_URL}/products/add_to_card`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+        // withCredentials: true,
+      })
+      .then((response) => {
+        console.log(response);
+        console.log("responseresponse", response);
+        addtocard("/add-to-cart")
+        // add-to-cart
+        // history.push("/all-events");mmit
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const [typevariant, setTypeVeriant] = useState()
+  const typeValue = (e) => {
+    setTypeVeriant(e.target.value)
+  }
+  console.log("typevarianttypevariant", typevariant);
 
 
   return (
     <>
       <Header />
+      <div className='allPage-bgtwo'>
+        <Container fluid className='p-0'>
+          <img src={bannertwo} />
+        </Container>
+      </div>
       <section className="section-padding">
         <Container>
-          <Row>
-            <Col lg={4}>
-              <Carousel
-                swipeable={true}
-                draggable={true}
-                showDots={true}
-                responsive={productdetails}
-                ssr={true} // means to render carousel on server-side.
-                infinite={true}
-                autoPlay={props.deviceType !== "mobile" ? true : false}
-                autoPlaySpeed={1000}
-                keyBoardControl={true}
-                customTransition="all 1s"
-                transitionDuration={1000}
-                containerClass="carousel-container"
-                removeArrowOnDeviceType={["tablet", "mobile"]}
-                deviceType={props.deviceType}
-                dotListClass="product-dot-list-style"
-                itemClass="carousel-item-padding-40-px"
-              >
-                <div className="productdetails-bg">
-                  <img src={"https://veejayjewels.com/storage/app/public/product/" + image} />
-                </div>
-                <div className="productdetails-bg">
-                  <img src={"https://veejayjewels.com/storage/app/public/product/" + image} />
-                </div>
-                <div className="productdetails-bg">
-                  <img src={"https://veejayjewels.com/storage/app/public/product/" + image} />
-                </div>
-              </Carousel>
-            </Col>
-            <Col lg={4}>
-              <Table responsive className="productDetailTable">
-                <tbody>
-                  <tr>
-                    <th>Product Name</th>
-                    <td>{name ? name : ""}</td>
-                  </tr>
-                  <tr>
-                    <th>Gram</th>
-                    <td>{unit ? unit : ""}</td>
-                  </tr>
-                  <tr>
-                    <th>Design Number</th>
-                    <td>EX1035</td>
-                  </tr>
-                  <tr>
-                    <th>Weight</th>
-                    <td>67.00</td>
-                  </tr>
-                  <tr>
-                    <th>Jewelry Type</th>
-                    <td>{productType ? productType : ""}</td>
-                  </tr>
-                </tbody>
-              </Table>
-              <Link to='/add-to-cart' className="showSize">
+          <div className="productDetailsBG">
+            <Row>
+              <Col lg={4}>
+                <Carousel
+                  swipeable={true}
+                  draggable={true}
+                  showDots={true}
+                  responsive={productdetails}
+                  ssr={true} // means to render carousel on server-side.
+                  infinite={true}
+                  autoPlay={props.deviceType !== "mobile" ? true : false}
+                  autoPlaySpeed={1000}
+                  keyBoardControl={true}
+                  customTransition="all 1s"
+                  transitionDuration={1000}
+                  containerClass="carousel-container"
+                  removeArrowOnDeviceType={["tablet", "mobile"]}
+                  deviceType={props.deviceType}
+                  dotListClass="product-dot-list-style"
+                  itemClass="carousel-item-padding-40-px"
+                >
+                  <div className="productdetails-bg">
+                    <img src={"https://veejayjewels.com/storage/app/public/product/" + image} />
+                  </div>
+                  <div className="productdetails-bg">
+                    <img src={"https://veejayjewels.com/storage/app/public/product/" + image} />
+                  </div>
+                  <div className="productdetails-bg">
+                    <img src={"https://veejayjewels.com/storage/app/public/product/" + image} />
+                  </div>
+                </Carousel>
+              </Col>
+              <Col lg={4}>
+                <Table responsive className="productDetailTable">
+                  <tbody>
+                    <tr>
+                      <th>Product Name</th>
+                      <td>{name ? name : ""}</td>
+                    </tr>
+                    <tr>
+                      <th>Gram</th>
+                      <td>{unit ? unit : ""}</td>
+                    </tr>
+                    <tr>
+                      <th>Design Number</th>
+                      <td>EX1035</td>
+                    </tr>
+                    <tr>
+                      <th>Weight</th>
+                      <td>67.00</td>
+                    </tr>
+                    <tr>
+                      <th>Jewelry Type</th>
+                      <td>{productType ? productType : ""}</td>
+                    </tr>
+                  </tbody>
+                </Table>
+                <Button className="showSize" onClick={UpdatecardDetail}>
                 Add To Cart
-              </Link>
-            </Col>
-            <Col lg={3}>
-              <Table responsive className="productDetailTable">
-                <thead>
-                  <tr>
-                    <th>Size</th>
-                    <th>Pcs Quantity</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <label className="radio-inline">
-                        <input type="radio" name="optradio" /> 1.5
+              </Button>
+              </Col>
+              <Col lg={3}>
+
+                <div className="show-area">
+                  <div className="show-areatext">
+                    <Row>
+                      <Col lg={4}><h6>Size</h6></Col>
+                      <Col lg={8}><div className="text-right"><h6>Pcs Quantity</h6></div></Col>
+                    </Row>
+                  </div>
+                  <div className="show-contentS">
+                    <Row>
+                      <Col lg={4}>
+                        
+                        <label className="radio-inline" onChange={typeValue} value={typevariant}>
+                        <input type="checkbox" name="optradio" value={variationstype} /> {variationstype}
                       </label>
-                    </td>
-                    <td>
-                      <div className="quantity-btn">
-                        <button onClick={handleDecrement}>-</button>
-                        <span>{quantity}</span>
-                        <button onClick={handleIncrement}>+</button>
+                      </Col>
+                      <Col lg={8}><div className="text-right">
+                        <div className="quantity-btn">
+                          <button onClick={handleDecrement}>-</button>
+                          <span>{quantity}</span>
+                          <button onClick={handleIncrement}>+</button>
+                        </div>
                       </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </Table>
-              <Link className="showSize" onClick={handleShow}>
-                    Show more size
-                  </Link>
-            </Col>
-          </Row>
+                      </Col>
+
+                    </Row>
+                    <hr />
+                  </div>
+
+                  <div className="showSizearea">
+                    <Link className="showSize" onClick={handleShow}>
+                      Show more size
+                    </Link>
+                  </div>
+                </div>
+              </Col>
+            </Row>
+          </div>
         </Container>
       </section>
       <section className="section-padding">
-        <Container>
-      <div className='product_details'>
-                  <h1 className="p-3">Product Description</h1>
-      </div>
-      <div className="product-text p-3">
-        <h3><div dangerouslySetInnerHTML={{ __html: description }}></div></h3>
-      </div>
-      </Container>
+        <Container className="productCardbg">
+          <div className='product_details'>
+            <h1 className="p-3">Product Description</h1>
+          </div>
+          <div className="product-text p-3">
+            <h3><div dangerouslySetInnerHTML={{ __html: description }}></div></h3>
+          </div>
+        </Container>
       </section>
 
       <section className="section-padding">
         <Container>
           <Row className="justify-content-center">
             <Col lg={7}>
-            <div className="aboutHome">
-            <h3>Related Products</h3>
-            <img src={border} />
-          </div>
+              <div className="aboutHome">
+                <h3>Related Products</h3>
+                <img src={border} />
+              </div>
             </Col>
           </Row>
           <Row className="mt-4 mb-4">
@@ -568,9 +663,13 @@ function ProductDetails(props) {
             <tbody>
               <tr>
                 <td>
-                  <label className="radio-inline">
-                    <input type="radio" name="optradio" /> 1.5
-                  </label>
+                  {variations ? (
+                    variations.map((item, index) => (
+                      <label className="radio-inline" key={index}>
+                        <input type="checkbox" name="optradio" /> {item.type}
+                      </label>
+                    ))
+                  ) : null}
                 </td>
                 <td>
                   <div className="quantity-btn">
@@ -580,42 +679,14 @@ function ProductDetails(props) {
                   </div>
                 </td>
               </tr>
-              <tr>
-                <td>
-                  <label className="radio-inline">
-                    <input type="radio" name="optradio" /> 1.5
-                  </label>
-                </td>
-                <td>
-                  <div className="quantity-btn">
-                    <button onClick={handleDecrement1}>-</button>
-                    <span>{quantity1}</span>
-                    <button onClick={handleIncrement1}>+</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <label className="radio-inline">
-                    <input type="radio" name="optradio" /> 1.5
-                  </label>
-                </td>
-                <td>
-                  <div className="quantity-btn">
-                    <button onClick={handleDecrement2}>-</button>
-                    <span>{quantity2}</span>
-                    <button onClick={handleIncrement2}>+</button>
-                  </div>
-                </td>
-              </tr>
             </tbody>
           </Table>
         </Modal.Body>
         <Modal.Footer>
           {/* <Button variant="primary" onClick={handleClose} > */}
-          <Link to='/add-to-cart' className="showSize">
+          <Button onClick={UpdatecardDetail} className="showSize">
             Add To Cart
-          </Link>
+          </Button>
           {/* </Button> */}
         </Modal.Footer>
       </Modal>

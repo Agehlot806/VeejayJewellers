@@ -24,6 +24,9 @@ import border from '../../assets/images/banner/border.png'
 import { BASE_URL } from '../../Constant/Index'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+
+
+
 function Men() {
     useEffect(() => {
         mens()
@@ -62,13 +65,31 @@ function Men() {
                     </Row>
                 </Container>
             </section>
-            <section className='section-padding'>
+
+            <section className=''>
                 <Container>
-                    <Row>
-                        {mensdata ? (
+                    <div className='catloggg'>
+                        <ul className="nav nav-pills mb-5" id="pills-tab" role="tablist">
+                            <li className="nav-item">
+                                <a className="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">All Products</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Gold Bangle</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Diamond Bangle</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-Ring" role="tab" aria-controls="pills-Ring" aria-selected="false">Gold Ring</a>
+                            </li>
+                        </ul>
+                        <div className="tab-content" id="pills-tabContent">
+                            <div className="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                            <Row>
+                            {mensdata ? (
                             mensdata.map((item, index) => (
                                 item.type === 'men' && (
-                                    <Col lg={3} className='mt-2 mb-2'>
+                                    <Col lg={4} className='mt-2 mb-2'>
                                         <div className='catlogOne'>
                                             <Row>
                                                 <Link to={"https://veejayjewels.com/storage/app/public/pdf/" + item.file}>
@@ -84,9 +105,18 @@ function Men() {
                                 )
                             ))
                         ) : null}
-                    </Row>
+                            </Row>
+                            </div>
+                            <div className="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">dd</div>
+                            <div className="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
+                            <div className="tab-pane fade" id="pills-Ring" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
+                        </div>
+                    </div>
                 </Container>
             </section>
+
+            <section className='section-padding'></section>
+
             <Footer />
         </>
     )

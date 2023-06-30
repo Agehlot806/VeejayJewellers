@@ -6,27 +6,33 @@ import { Container, Row, Col } from 'react-bootstrap'
 import about from '../../assets/images/img/about.jpg'
 import about1 from '../../assets/images/img/about1.jpg'
 import about2 from '../../assets/images/img/about2.jpg'
+import bannertwo from '../../assets/images/banner/image 12.png'
+import border from '../../assets/images/banner/border.png'
 
 function About() {
     return (
         <>
             <Header />
-            <div className='allPage-bg'>
-                <div className='section-padding'>
-                    <div className='AllPage-area'>
-                        <Container>
-                            <Row>
-                                <Col lg={7}>
-                                    <h2>ABOUT US</h2>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting
-                                        industry. Lorem Ipsum has been the industry's standard dummy text
-                                        ever since the 1500s, when an unknown.</p>
-                                </Col>
-                            </Row>
-                        </Container>
-                    </div>
-                </div>
+            <div className='allPage-bgtwo'>
+                <Container fluid className='p-0'>
+                    <img src={bannertwo} />
+                </Container>
             </div>
+
+            <section className='section-padding'>
+                <Container>
+                    <Row className="justify-content-center">
+                        <Col lg={9}>
+                            <div className='text-center'>
+                                <h4 className='main-heading text-center'>About Us</h4>
+                                <div className='all-border'>
+                                    <img src={border} />
+                                </div>
+                            </div>
+                        </Col>
+                    </Row>
+                </Container>
+            </section>
 
             <section className='section-padding'>
                 <Container>

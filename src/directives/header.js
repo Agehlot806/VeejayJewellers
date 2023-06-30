@@ -94,7 +94,7 @@ function Header({ profileImage }) {
                 <Link to="/about">AboutUs</Link>
               </Nav.Link>
               <Nav.Link>
-                <Link to="/brands/:id/:name">Product</Link>
+                <Link to="/brands">Product</Link>
               </Nav.Link>
               {/* <Nav.Link>
                 <Dropdown>

@@ -18,6 +18,7 @@ import ring3 from "../../assets/images/img/ring3.png";
 import ring4 from "../../assets/images/img/ring4.png";
 import product5 from "../../assets/images/img/product5.png";
 import { BASE_URL } from "../../Constant/Index";
+import bannertwo from '../../assets/images/banner/image 12.png'
 
 function Allproduct() {
     const [allproduct, setallproduct] = useState([]);
@@ -46,19 +47,10 @@ function Allproduct() {
     return (
         <>
             <Header />
-            <div className="allPage-bg">
-                <div className="section-padding">
-                    <div className="AllPage-area">
-                        <Container>
-                            <Row>
-                                <Col lg={7}>
-                                    <h2>ALL PRODUCT'S</h2>
-                                    <Link to="">Shop now</Link>
-                                </Col>
-                            </Row>
-                        </Container>
-                    </div>
-                </div>
+            <div className='allPage-bgtwo'>
+                <Container fluid className='p-0'>
+                    <img src={bannertwo} />
+                </Container>
             </div>
             <section className="section-padding">
                 <Container>

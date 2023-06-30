@@ -112,11 +112,12 @@ function Login() {
 
                   <p>
                     Don't have an account?{" "}
-                    <Link to="/signUp-user" class="thembo">
+                    <Link to="/signUp-wholesaler" class="thembo">
                       {" "}
-                      Register here
+                      Signup Wholesaler here
                     </Link>
                   </p>
+                  
                 </div>
               </div>
             </Col>

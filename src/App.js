@@ -78,7 +78,7 @@ const App = ({ item }) => {
           <Route path="/forgot-password" element={<Forgotpassword />} />
 
           {/* Brands pages */}
-          <Route path="/brands/:id/:name" element={<ARHA item={item} />} />
+          <Route path="/brands" element={<ARHA item={item} />} />
           {/* <Route path="/ARHA-brands" element={<ARHA />} /> */}
           {/* <Route path="/VDANA-brands" element={<VDANA />} /> */}
           {/* <Route path="/IRKA-brands" element={<IRKA />} /> */}
