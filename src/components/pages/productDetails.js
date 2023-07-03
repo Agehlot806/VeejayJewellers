@@ -22,7 +22,7 @@ import product4 from "../../assets/images/img/product4.png";
 import border from "../../assets/images/banner/border.png";
 import { BASE_URL } from "../../Constant/Index";
 import axios from "axios";
-const ourstore = {
+const clinetreview = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
     items: 1,
@@ -57,7 +57,7 @@ const productdetails = {
   },
 };
 function ProductDetails(props) {
-  const [quantity, setQuantity] = useState(0);
+  const [thirdbanner, setthirdbanner] = useState([])
   const [quantity1, setQuantity1] = useState(0);
   const [quantity2, setQuantity2] = useState(0);
   const [show, setShow] = useState(false);
@@ -67,34 +67,62 @@ function ProductDetails(props) {
   const [image, setImage] = useState("");
   const [description, setdescription] = useState("")
   const [variations, setvariations] = useState("")
-  const [variationstype, setvariationstype] = useState("")
+  // const [variationstype, setvariationstype] = useState("")
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const { id } = useParams();
   const addtocard = useNavigate()
-  const handleIncrement = () => {
+  const [selectedVariant, setSelectedVariant] = useState("");
+  const [quantity, setQuantity] = useState(1);
+  const [variationstype, setVariationstype] = useState("");
+  const handleIncrementone = () => {
     setQuantity(quantity + 1);
   };
-  const handleDecrement = () => {
+  const handleDecrementone = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
     }
   };
-  const handleIncrement1 = () => {
-    setQuantity1(quantity1 + 1);
+  const handleSubmitone = () => {
+    const formData = new FormData();
+    formData.append("user_id", loginId);
+    formData.append("product_id", id);
+    formData.append("product_name", name);
+    formData.append(
+      "variant",
+      JSON.stringify([{ variant: selectedVariant, quantity: quantity }])
+    );
+    formData.append(
+      "image",
+      "https://veejayjewels.com/storage/app/public/product/" + image
+    );
+    axios
+      .post(`${BASE_URL}/products/add_to_card`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+      .then((response) => {
+        console.log(response);
+        addtocard("/add-to-cart");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
-  const handleDecrement1 = () => {
-    if (quantity1 > 1) {
-      setQuantity1(quantity1 - 1);
-    }
+  const [selectedQuantities, setSelectedQuantities] = useState({});
+  const handleIncrement = (variant) => {
+    setSelectedQuantities((prevQuantities) => ({
+      ...prevQuantities,
+      [variant]: (prevQuantities[variant] || 0) + 1,
+    }));
   };
-  const handleIncrement2 = () => {
-    setQuantity2(quantity2 + 1);
-  };
-  const handleDecrement2 = () => {
-    if (quantity2 > 1) {
-      setQuantity2(quantity2 - 1);
-    }
+  const handleDecrement = (variant) => {
+    setSelectedQuantities((prevQuantities) => {
+      const updatedQuantity = (prevQuantities[variant] || 0) - 1;
+      return {
+        ...prevQuantities,
+        [variant]: updatedQuantity >= 1 ? updatedQuantity : 1,
+      };
+    });
   };
   const GetProductDetails = () => {
     axios
@@ -107,81 +135,54 @@ function ProductDetails(props) {
         setProductType(response.data.data.product_type);
         setdescription(response.data.data.description);
         setvariations(response.data.data.variations)
-        setvariationstype(response.data.data.variations[0].type)
+        setVariationstype(response.data.data.variations[0].type);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
   };
-  console.log("image", variations);
+  console.log("variationstype", variationstype);
   useEffect(() => {
     GetProductDetails();
+    thirdBanner();
   }, []);
   const loginId = localStorage.getItem("id");
   console.log("loginId", loginId);
-// ????mapdata all//
-// const UpdatecardDetail = (e) => {
-//   e.preventDefault();
-//   const listToSend = {
-//     variants: [],
-//   };
-//   const formData = new FormData();
-//   formData.append("user_id", loginId);
-//   formData.append("product_id", id);
-//   formData.append("product_name", name);
-//   formData.append(
-//       "variant",
-//         JSON.stringify([{ variant: typevariant, quantity: quantity }])
-//     );
-//   formData.append("image", `https://veejayjewels.com/storage/app/public/product/${image}`);
-//   axios
-//     .post(`${BASE_URL}/products/add_to_card`, formData, {
-//       headers: { "Content-Type": "multipart/form-data" },
-//     })
-//     .then((response) => {
-//       console.log(response);
-//       console.log("responseresponse", response);
-//       addtocard("/add-to-cart");
-//       for (let i = 0; i < response.data.variant.length; i++) {
-//         // console.log(`===>>>> variant: ${jewellerydetailsmodel.data.variations[i].type} quantity: ${quantity[i]} selected: ${isSelectedList[i]}`);
-//         console.log(response.data.variant[i]);
-//         if (response.data.variant[i]) {
-//           listToSend.variants.push({
-//             type: response.data.variant[i].type,
-//           quantity: response.data.variant[i].quantity,
-//             // quantity: quantity[i]
-//           });
-//         }
-//       }
-//       // add-to-cart
-//       // history.push("/all-events");mmit
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//     });
-// };
-  const UpdatecardDetail = (e) => {
-    e.preventDefault();
+  const [selectedVariants, setSelectedVariants] = useState([]);
+  const handleVariantSelection = (variant) => {
+    const isSelected = selectedVariants.includes(variant);
+    if (isSelected) {
+      setSelectedVariants(selectedVariants.filter((v) => v !== variant));
+    } else {
+      setSelectedVariants([...selectedVariants, variant]);
+    }
+  };
+  const handleSubmit = () => {
     const formData = new FormData();
     formData.append("user_id", loginId);
     formData.append("product_id", id);
     formData.append("product_name", name);
     formData.append(
       "variant",
-      JSON.stringify([{ variant: typevariant, quantity: quantity }])
+      JSON.stringify(
+        Object.entries(selectedQuantities).map(([variant, quantity]) => ({
+          variant,
+          quantity,
+        }))
+      )
     );
-    formData.append("image", "https://veejayjewels.com/storage/app/public/product/" + image);
+    formData.append(
+      "image",
+      "https://veejayjewels.com/storage/app/public/product/" + image
+    );
     axios
       .post(`${BASE_URL}/products/add_to_card`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
-        // withCredentials: true,
       })
       .then((response) => {
         console.log(response);
-        console.log("responseresponse", response);
-        addtocard("/add-to-cart")
-        // add-to-cart
-        // history.push("/all-events");mmit
+        addtocard("/add-to-cart");
+        // history.push("/all-events");
       })
       .catch((error) => {
         console.log(error);
@@ -193,6 +194,19 @@ function ProductDetails(props) {
   }
   console.log("typevarianttypevariant", typevariant);
 
+
+
+  const thirdBanner = () => {
+    axios
+      .get(`${BASE_URL}/banners1`)
+      .then((response) => {
+        console.log(response.data.data)
+        setthirdbanner(response.data.data)
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
 
   return (
     <>
@@ -206,7 +220,7 @@ function ProductDetails(props) {
         <Container>
           <div className="productDetailsBG">
             <Row>
-              <Col lg={4}>
+              <Col lg={4} sm={4}>
                 <Carousel
                   swipeable={true}
                   draggable={true}
@@ -236,7 +250,7 @@ function ProductDetails(props) {
                   </div>
                 </Carousel>
               </Col>
-              <Col lg={4}>
+              <Col lg={4} sm={4}>
                 <Table responsive className="productDetailTable">
                   <tbody>
                     <tr>
@@ -261,36 +275,39 @@ function ProductDetails(props) {
                     </tr>
                   </tbody>
                 </Table>
-                <Button className="showSize" onClick={UpdatecardDetail}>
-                Add To Cart
-              </Button>
+                <Button className="showSize" onClick={handleSubmitone}>
+                  Add To Cart
+                </Button>
               </Col>
-              <Col lg={3}>
+              <Col lg={4} sm={4}>
 
                 <div className="show-area">
                   <div className="show-areatext">
                     <Row>
-                      <Col lg={4}><h6>Size</h6></Col>
-                      <Col lg={8}><div className="text-right"><h6>Pcs Quantity</h6></div></Col>
+                      <Col lg={4} xs={4}><h6>Size</h6></Col>
+                      <Col lg={8} xs={8}><div className="text-right"><h6>Pcs Quantity</h6></div></Col>
                     </Row>
                   </div>
                   <div className="show-contentS">
                     <Row>
                       <Col lg={4}>
-                        
-                        <label className="radio-inline" onChange={typeValue} value={typevariant}>
-                        <input type="checkbox" name="optradio" value={variationstype} /> {variationstype}
-                      </label>
+                        <label className="radio-inline">
+                          <input
+                            type="checkbox"
+                            name="optradio"
+                            onChange={() => setSelectedVariant(variationstype)}
+                          />{" "}
+                          {variationstype}
+                        </label>
                       </Col>
                       <Col lg={8}><div className="text-right">
                         <div className="quantity-btn">
-                          <button onClick={handleDecrement}>-</button>
+                          <button onClick={handleDecrementone}>-</button>
                           <span>{quantity}</span>
-                          <button onClick={handleIncrement}>+</button>
+                          <button onClick={handleIncrementone}>+</button>
                         </div>
                       </div>
                       </Col>
-
                     </Row>
                     <hr />
                   </div>
@@ -328,281 +345,261 @@ function ProductDetails(props) {
             </Col>
           </Row>
           <Row className="mt-4 mb-4">
-            <Col lg={4} sm={4} xs={6} className="mb-3">
-              <Link to="/product-add-card">
-                <div className="bestseller-card">
-                  <div className="bestseller-cardImg">
-                    {/* <Link to="/product-lock"><i className="fa fa-lock" /></Link> */}
-                    <img src={product6} />
-                  </div>
+            <Col lg={3} sm={4} xs={6} className="mb-4">
+              <div className="mainProductcard">
+                <img src={product2} />
+                <h4>Bangle "MURATO"</h4>
+                <p>10gms</p>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star-o" />
+                </a>
+                <div className="product-btnarea">
+                  <Link to="/product-details" className="product-addBtn">
+                    Add To Cart
+                  </Link>
                 </div>
-                <div className="bestseller-cardText">
-                  <h5>Bangle "MURATO"</h5>
-                  <p>15gms</p>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star-o" />
-                  </a>
-                  <div className="product-btnarea">
-                    <Link to="/product-details" className="product-addBtn">
-                      Add To Cart
-                    </Link>
-                  </div>
-                </div>
-              </Link>
+              </div>
             </Col>
-            <Col lg={4} sm={4} xs={6} className="mb-3">
-              <Link to="/product-add-card">
-                <div className="bestseller-card">
-                  <div className="bestseller-cardImg">
-                    <img src={product1} />
-                  </div>
+            <Col lg={3} sm={4} xs={6} className="mb-4">
+              <div className="mainProductcard">
+                <img src={product2} />
+                <h4>Bangle "MURATO"</h4>
+                <p>10gms</p>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star-o" />
+                </a>
+                <div className="product-btnarea">
+                  <Link to="/product-details" className="product-addBtn">
+                    Add To Cart
+                  </Link>
                 </div>
-                <div className="bestseller-cardText">
-                  <h5>NECKLACE "MURATO"</h5>
-                  <p>15gms</p>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star-o" />
-                  </a>
-                  <div className="product-btnarea">
-                    <Link to="/product-details" className="product-addBtn">
-                      Add To Cart
-                    </Link>
-                  </div>
-                </div>
-              </Link>
+              </div>
             </Col>
-            <Col lg={4} sm={4} xs={6} className="mb-3">
-              <Link to="/product-add-card">
-                <div className="bestseller-card">
-                  <div className="bestseller-cardImg">
-                    <img src={product2} />
-                  </div>
+            <Col lg={3} sm={4} xs={6} className="mb-4">
+              <div className="mainProductcard">
+                <img src={product3} />
+                <h4>Bangle "MURATO"</h4>
+                <p>10gms</p>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star-o" />
+                </a>
+                <div className="product-btnarea">
+                  <Link to="/product-details" className="product-addBtn">
+                    Add To Cart
+                  </Link>
                 </div>
-                <div className="bestseller-cardText">
-                  <h5>NECKLACE "MURATO"</h5>
-                  <p>15gms</p>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star-o" />
-                  </a>
-                  <div className="product-btnarea">
-                    <Link to="/product-details" className="product-addBtn">
-                      Add To Cart
-                    </Link>
-                  </div>
-                </div>
-              </Link>
+              </div>
             </Col>
-            <Col lg={4} sm={4} xs={6} className="mb-3">
-              <Link to="/product-add-card">
-                <div className="bestseller-card">
-                  <div className="bestseller-cardImg">
-                    <img src={product3} />
-                  </div>
+            <Col lg={3} sm={4} xs={6} className="mb-4">
+              <div className="mainProductcard">
+                <img src={product4} />
+                <h4>Bangle "MURATO"</h4>
+                <p>10gms</p>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star-o" />
+                </a>
+                <div className="product-btnarea">
+                  <Link to="/product-details" className="product-addBtn">
+                    Add To Cart
+                  </Link>
                 </div>
-                <div className="bestseller-cardText">
-                  <h5>bangle "MURATO"</h5>
-                  <p>15gms</p>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star-o" />
-                  </a>
-                  <div className="product-btnarea">
-                    <Link to="/product-details" className="product-addBtn">
-                      Add To Cart
-                    </Link>
-                  </div>
-                </div>
-              </Link>
+              </div>
             </Col>
-            <Col lg={4} sm={4} xs={6} className="mb-3">
-              <Link to="/product-add-card">
-                <div className="bestseller-card">
-                  <div className="bestseller-cardImg">
-                    <img src={product4} />
-                  </div>
+
+            <Col lg={3} sm={4} xs={6} className="mb-4">
+              <div className="mainProductcard">
+                <img src={product6} />
+                <h4>Bangle "MURATO"</h4>
+                <p>10gms</p>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star-o" />
+                </a>
+                <div className="product-btnarea">
+                  <Link to="/product-details" className="product-addBtn">
+                    Add To Cart
+                  </Link>
                 </div>
-                <div className="bestseller-cardText">
-                  <h5>Bangle "MURATO"</h5>
-                  <p>15gms</p>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star-o" />
-                  </a>
-                  <div className="product-btnarea">
-                    <Link to="/product-details" className="product-addBtn">
-                      Add To Cart
-                    </Link>
-                  </div>
-                </div>
-              </Link>
+              </div>
             </Col>
-            <Col lg={4} sm={4} xs={6} className="mb-3">
-              <Link to="/product-add-card">
-                <div className="bestseller-card">
-                  <div className="bestseller-cardImg">
-                    <img src={product2} />
-                  </div>
+            <Col lg={3} sm={4} xs={6} className="mb-4">
+              <div className="mainProductcard">
+                <img src={product2} />
+                <h4>Bangle "MURATO"</h4>
+                <p>10gms</p>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star-o" />
+                </a>
+                <div className="product-btnarea">
+                  <Link to="/product-details" className="product-addBtn">
+                    Add To Cart
+                  </Link>
                 </div>
-                <div className="bestseller-cardText">
-                  <h5>Bangle "MURATO"</h5>
-                  <p>15gms</p>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star-o" />
-                  </a>
-                  <div className="product-btnarea">
-                    <Link to="/product-details" className="product-addBtn">
-                      Add To Cart
-                    </Link>
-                  </div>
-                </div>
-              </Link>
+              </div>
             </Col>
-            <Col lg={4} sm={4} xs={6} className="mb-3">
-              <Link to="/product-add-card">
-                <div className="bestseller-card">
-                  <div className="bestseller-cardImg">
-                    <img src={product2} />
-                  </div>
+            <Col lg={3} sm={4} xs={6} className="mb-4">
+              <div className="mainProductcard">
+                <img src={product2} />
+                <h4>Bangle "MURATO"</h4>
+                <p>10gms</p>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star-o" />
+                </a>
+                <div className="product-btnarea">
+                  <Link to="/product-details" className="product-addBtn">
+                    Add To Cart
+                  </Link>
                 </div>
-                <div className="bestseller-cardText">
-                  <h5>Bangle "MURATO"</h5>
-                  <p>15gms</p>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star-o" />
-                  </a>
-                  <div className="product-btnarea">
-                    <Link to="/product-details" className="product-addBtn">
-                      Add To Cart
-                    </Link>
-                  </div>
-                </div>
-              </Link>
+              </div>
             </Col>
-            <Col lg={4} sm={4} xs={6} className="mb-3">
-              <Link to="/product-add-card">
-                <div className="bestseller-card">
-                  <div className="bestseller-cardImg">
-                    <img src={product2} />
-                  </div>
+            <Col lg={3} sm={4} xs={6} className="mb-4">
+              <div className="mainProductcard">
+                <img src={product2} />
+                <h4>Bangle "MURATO"</h4>
+                <p>10gms</p>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star-o" />
+                </a>
+                <div className="product-btnarea">
+                  <Link to="/product-details" className="product-addBtn">
+                    Add To Cart
+                  </Link>
                 </div>
-                <div className="bestseller-cardText">
-                  <h5>Bangle "MURATO"</h5>
-                  <p>15gms</p>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star" />
-                  </a>
-                  <a>
-                    <i className="fa fa-star-o" />
-                  </a>
-                  <div className="product-btnarea">
-                    <Link to="/product-details" className="product-addBtn">
-                      Add To Cart
-                    </Link>
-                  </div>
-                </div>
-              </Link>
+              </div>
             </Col>
+            <Col lg={3} sm={4} xs={6} className="mb-4">
+              <div className="mainProductcard">
+                <img src={product2} />
+                <h4>Bangle "MURATO"</h4>
+                <p>10gms</p>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star" />
+                </a>
+                <a>
+                  <i className="fa fa-star-o" />
+                </a>
+                <div className="product-btnarea">
+                  <Link to="/product-details" className="product-addBtn">
+                    Add To Cart
+                  </Link>
+                </div>
+              </div>
+            </Col>
+
           </Row>
         </Container>
       </section>
-      <section className="section-padding ourStore-bg">
-        <Container className="p-0">
+      <section className="">
+        <Container fluid className="p-0">
           <Carousel
             swipeable={true}
             draggable={true}
             showDots={true}
-            responsive={ourstore}
+            responsive={clinetreview}
             ssr={true} // means to render carousel on server-side.
             infinite={true}
             autoPlay={props.deviceType !== "mobile" ? true : false}
@@ -616,43 +613,26 @@ function ProductDetails(props) {
             dotListClass="custom-dot-list-style"
             itemClass="carousel-item-padding-40-px"
           >
-            <Row>
-              <Col lg={5} sm={5}>
-                <div className="ourStore-gift">
-                  <img src={product1} />
-                  <h4>Make A gift</h4>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet
-                    integer lorem amet arcu egestas congue. Rhoncus scelerisque m
-                    aenean.
-                  </p>
-                </div>
-              </Col>
-              <Col lg={7} sm={7}>
-                <div className="ourStore-gift">
-                  <h4>Our Store</h4>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet
-                    integer lorem amet arcu egestas congue. Rhoncus scelerisque m
-                    aenean ac. Cursus in at sagittis vivamus Rhoncus scelerisque m
-                  </p>
-                </div>
-                <div className="text-center mt-5">
-                  <Link to="" className="main-btn">
-                    <i className="fa fa-angle-double-right" /> Find out more
-                  </Link>
-                </div>
-              </Col>
-            </Row>
+
+            {thirdbanner ? (
+              thirdbanner.map((item, index) => (
+                item.type === 'thrid' && (
+                  <div key={item.id} className="homeBack-bg">
+                    <img src={item.image} alt="" />
+                  </div>
+                )
+              ))
+            ) : null}
           </Carousel>
         </Container>
+
       </section>
       <Footer />
       <Modal show={show} onHide={handleClose}>
         {/* <Modal.Header closeButton>
                     <Modal.Title>Modal heading</Modal.Title>
                 </Modal.Header> */}
-        <Modal.Body>
+        {/* <Modal.Body>
           <Table responsive className="productDetailTable">
             <thead>
               <tr>
@@ -681,10 +661,48 @@ function ProductDetails(props) {
               </tr>
             </tbody>
           </Table>
+        </Modal.Body> */}
+        <Modal.Body>
+          {variations ? (
+            <Table className="productDetailTable">
+              <thead>
+              <tr>
+                <th>Size</th>
+                <th>Pcs Quantity</th>
+              </tr>
+            </thead>
+              <tbody>
+                {variations.map((item, index) => (
+                  <tr key={index}>
+                    <td>
+                      <label className="radio-inline">
+                        <input
+                          type="checkbox"
+                          name="optradio"
+                          onChange={() => handleVariantSelection(item.type)}
+                        />{" "}
+                        {item.type}
+                      </label>
+                    </td>
+                    <td>
+                      <div className="quantity-btn">
+                        <button onClick={() => handleDecrement(item.type)}>-</button>
+                        <span>{selectedQuantities[item.type] || 1}</span>
+                        <button onClick={() => handleIncrement(item.type)}>+</button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          ) : null}
+          {/* <button onClick={handleSubmit}>Add to Cart</button> */}
         </Modal.Body>
+
+
         <Modal.Footer>
           {/* <Button variant="primary" onClick={handleClose} > */}
-          <Button onClick={UpdatecardDetail} className="showSize">
+          <Button onClick={handleSubmit} className="showSize">
             Add To Cart
           </Button>
           {/* </Button> */}

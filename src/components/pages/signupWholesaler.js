@@ -11,11 +11,10 @@ function SignupWholesaler() {
   const [f_name, setf_name] = useState("");
   const [l_name, setl_name] = useState("");
   const [phone, setphone] = useState("");
-  const [email, setemail] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
   const [confirmpassword, setconfirmpassword] = useState("");
-  const [role, setrole] = useState("");
-  const [temporary_token, settemporary_token] = useState(null);
+  // const [temporary_token, settemporary_token] = useState(null);
   const [company_name, setcompany_name] = useState("");
   const [foundation_date, setfoundation_date] = useState("");
   const [state, setstate] = useState("");
@@ -31,108 +30,85 @@ function SignupWholesaler() {
   useEffect(() => {
     GetdataAll();
   }, []);
-  // const handlewholesales = async (e) => {
-  //     var headers = {
-  //         'Accept': 'application/json',
-  //         'Content-Type': 'application/json',
-  //         'token': 'OjsvX5yp2xmOVHsUnhwSOpdWdEetlflRzQcXAFnZ',
-  //     };
-  //     await fetch(`http://veejayjewels.com/api/v1/auth/registration`, {
-  //         method: 'POST',
 
-  //         body: JSON.stringify({
-  //             f_name: f_name,
-  //             l_name: l_name,
-  //             phone: phone,
-  //             email: email,
-  //             password: password,
-  //             password: confirmpassword,
-  //             role: "wholesale",
-  //             temporary_token: temporary_token,
-  //             company_name: company_name,
-  //             foundation_date: foundation_date,
-  //             state: state,
-  //             city: city,
-  //             pincode: pincode,
-  //             gst_number: gst_number,
-  //             upload1: upload1,
-  //             upload2: upload2,
-  //         }),
-  //         headers: headers,
-  //     })
-  //         .then((Response) => Response.json())
-  //         .then((Response) => {
+  const handleChangeEmail = (e) => {
+    const value = e.target.value;
+    setEmail(value);
+  };
 
-  //             if (Response.message == 'Registration Successfull') {
-  //                 toast.success("Registration Successfull")
-  //             }
-  //             if (f_name.length == 0 || l_name.length == 0 || phone.length == 0 || email.length == 0 || password.length == 0 ||
-  //                 company_name.length == 0 || foundation_date.length == 0 || pincode.length == 0 || gst_number.length == 0
-  //                 || upload1.length == 0 || upload2.length == 0 || state.length == 0 || city.length == 0) {
-  //                 seterror(true)
-  //             }
-  //         })
-  //         .catch((error) => {
-  //             console.error("ERROR FOUND---->>>>" + error);
-  //         })
-  // };
   const handlewholesales = (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("f_name", f_name);
-    formData.append("l_name", l_name);
-    formData.append("phone", phone);
-    formData.append("email", email);
-    formData.append("password", password);
-    formData.append("password", confirmpassword);
-    formData.append("role", "seller");
-    formData.append("temporary_token", temporary_token);
-    formData.append("company_name", company_name);
-    formData.append("foundation_date", foundation_date);
-    formData.append("state", state);
-    formData.append("city", city);
-    formData.append("pincode", pincode);
-    formData.append("gst_number", gst_number);
-    formData.append("upload1", upload1);
-    formData.append("upload2", upload2);
-    axios
-      .post(`${BASE_URL}/auth/registration`, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-        // withCredentials: true,
-      })
-      .then((response) => {
-        console.log(response);
-        toast.success("Registration Successfull");
-        // history.push("/all-events");mmit
-        if (
-          f_name.length == 0 ||
-          l_name.length == 0 ||
-          phone.length == 0 ||
-          email.length == 0 ||
-          password.length == 0 ||
-          company_name.length == 0 ||
-          foundation_date.length == 0 ||
-          pincode.length == 0 ||
-          gst_number.length == 0 ||
-          upload1.length == 0 ||
-          upload2.length == 0 ||
-          state.length == 0 ||
-          city.length == 0
-        ) {
-          seterror(true);
-        }
-      })
+    if (
+      company_name &&
+      foundation_date &&
+      state &&
+      city &&
+      pincode &&
+      gst_number &&
+      upload1 &&
+      upload2
+    ) {
+      const formData = new FormData();
+      formData.append("f_name", f_name);
+      formData.append("l_name", l_name);
+      formData.append("phone", phone);
+      formData.append("email", email);
+      formData.append("password", password);
+      formData.append("password", confirmpassword);
+      formData.append("role", "seller");
+      formData.append("temporary_token", "null");
+      formData.append("company_name", company_name);
+      formData.append("foundation_date", foundation_date);
+      formData.append("state", state);
+      formData.append("city", city);
+      formData.append("pincode", pincode);
+      formData.append("gst_number", gst_number);
+      formData.append("upload1", upload1);
+      formData.append("upload2", upload2);
+      axios
+        .post(`${BASE_URL}/auth/registration`, formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+          // withCredentials: true,
+        })
+        .then((response) => {
+          console.log(response);
+          toast.success("Registration Successfull");
+          // history.push("/all-events");mmit
+          // if (
+          //   f_name.length == 0 ||
+          //   l_name.length == 0 ||
+          //   phone.length == 0 ||
+          //   email.length == 0 ||
+          //   password.length == 0 ||
+          //   company_name.length == 0 ||
+          //   foundation_date.length == 0 ||
+          //   pincode.length == 0 ||
+          //   gst_number.length == 0 ||
+          //   upload1.length == 0 ||
+          //   upload2.length == 0 ||
+          //   state.length == 0 ||
+          //   city.length == 0
+          // ) {
+          //   seterror(true);
+          // }
+        })
 
-      .catch((error) => {
-        // console.log(error.response.data);
-      });
+        .catch((error) => {
+          if (error.response.data == "User Already Exist") {
+            toast.error("User Already Exist");
+          }
+          console.log(error.response.data);
+        });
+    } else {
+      toast.error("Please Enter All Field");
+    }
   };
   const GetdataAll = async (e) => {
     var headers = {
       Accept: "application/json",
       "Content-Type": "application/json",
     };
-    await fetch(`http://veejayjewels.com/api/v1/auth/state`, {
+    await fetch(`${BASE_URL}/auth/state`, {
       method: "GET",
       headers: headers,
     })
@@ -167,7 +143,12 @@ function SignupWholesaler() {
 
   // Function to move to the next step
   const nextStep = () => {
-    setStep((prevStep) => prevStep + 1);
+    if (f_name && l_name && email && password && confirmpassword && phone) {
+      setStep((prevStep) => prevStep + 1);
+    } else {
+      toast.error("Please Enter All Fields");
+      // alert("fill all fields");
+    }
   };
 
   // Function to move to the previous step
@@ -192,6 +173,17 @@ function SignupWholesaler() {
   };
   const imagesecond = (event) => {
     setupload2(event.target.files[0]);
+  };
+  console.log(email);
+
+  const handlePhoneNumberChange = (event) => {
+    const input = event.target.value;
+    const numericValue = input.replace(/\D/g, ''); // Remove non-digit characters
+
+    // Restrict to 10 digits
+    const formattedNumber = numericValue.slice(0, 10);
+
+    setphone(formattedNumber);
   };
 
   return (
@@ -231,7 +223,9 @@ function SignupWholesaler() {
                     <div className="stepform">
                       <Row className="mb-3">
                         <Form.Group as={Col}>
-                          <Form.Label>First Name</Form.Label>
+                          <Form.Label>
+                            First Name<span style={{ color: "red" }}>*</span>
+                          </Form.Label>
                           <Form.Control
                             type="text"
                             placeholder="Enter first name"
@@ -247,7 +241,9 @@ function SignupWholesaler() {
                           )}
                         </Form.Group>
                         <Form.Group as={Col}>
-                          <Form.Label>Last Name</Form.Label>
+                          <Form.Label>
+                            Last Name<span style={{ color: "red" }}>*</span>
+                          </Form.Label>
                           <Form.Control
                             type="text"
                             placeholder="Enter last name"
@@ -265,12 +261,15 @@ function SignupWholesaler() {
                       </Row>
                       <Row className="mb-3">
                         <Form.Group as={Col}>
-                          <Form.Label>Mobile Number</Form.Label>
+                          <Form.Label>
+                            Mobile Number<span style={{ color: "red" }}>*</span>
+                          </Form.Label>
                           <Form.Control
                             type="number"
                             placeholder="Enter mobile number"
                             value={phone}
-                            onChange={(e) => setphone(e.target.value)}
+                            onChange={handlePhoneNumberChange}
+                            onInput={(e) => setphone(e.target.value)}
                           />
                           {error && phone.length <= 0 ? (
                             <span className="validationErr">
@@ -281,12 +280,16 @@ function SignupWholesaler() {
                           )}
                         </Form.Group>
                         <Form.Group as={Col}>
-                          <Form.Label>Email</Form.Label>
+                          <Form.Label>
+                            Email<span style={{ color: "red" }}>*</span>
+                          </Form.Label>
                           <Form.Control
-                            type="email"
+                            type="text"
                             placeholder="Enter email"
+                            autoComplete="new-email"
                             value={email}
-                            onChange={(e) => setemail(e.target.value)}
+                            onChange={handleChangeEmail}
+                            // {/* onChange={(e) => setemail(e.target.value)} */}
                           />
                           {error && email.length <= 0 ? (
                             <span className="validationErr">
@@ -299,9 +302,12 @@ function SignupWholesaler() {
                       </Row>
                       <Row className="mb-3">
                         <Form.Group as={Col}>
-                          <Form.Label>Set Password</Form.Label>
+                          <Form.Label>
+                            Password <span style={{ color: "red" }}>*</span>
+                          </Form.Label>
                           <Form.Control
                             type="password"
+                            autoComplete="new-password"
                             placeholder="Enter set password"
                             value={password}
                             onChange={(e) => setpassword(e.target.value)}
@@ -315,9 +321,13 @@ function SignupWholesaler() {
                           )}
                         </Form.Group>
                         <Form.Group as={Col}>
-                          <Form.Label>Confirm Password</Form.Label>
+                          <Form.Label>
+                            Confirm Password
+                            <span style={{ color: "red" }}>*</span>
+                          </Form.Label>
                           <Form.Control
                             type="password"
+                            autoComplete="new-password"
                             placeholder="Enter confirm password"
                             value={confirmpassword}
                             onChange={(e) => setconfirmpassword(e.target.value)}
@@ -341,7 +351,9 @@ function SignupWholesaler() {
                       {/* <h2>Step 2 : Documents</h2> */}
                       <Row className="mb-3">
                         <Form.Group as={Col}>
-                          <Form.Label>Company Name</Form.Label>
+                          <Form.Label>
+                            Company Name<span style={{ color: "red" }}>*</span>
+                          </Form.Label>
                           <Form.Control
                             type="text"
                             placeholder="Enter company name"
@@ -357,7 +369,10 @@ function SignupWholesaler() {
                           )}
                         </Form.Group>
                         <Form.Group as={Col}>
-                          <Form.Label>Date Formulation</Form.Label>
+                          <Form.Label>
+                            Date Formulation
+                            <span style={{ color: "red" }}>*</span>
+                          </Form.Label>
                           <Form.Control
                             type="date"
                             placeholder="Enter date formulation"
@@ -376,7 +391,9 @@ function SignupWholesaler() {
 
                       <Row className="mb-3">
                         <Form.Group as={Col}>
-                          <Form.Label>State</Form.Label>
+                          <Form.Label>
+                            State<span style={{ color: "red" }}>*</span>
+                          </Form.Label>
                           <Form.Select
                             aria-label="Default select example"
                             onChange={Subscription}
@@ -398,7 +415,9 @@ function SignupWholesaler() {
                           )}
                         </Form.Group>
                         <Form.Group as={Col}>
-                          <Form.Label>City</Form.Label>
+                          <Form.Label>
+                            City<span style={{ color: "red" }}>*</span>
+                          </Form.Label>
                           <Form.Select
                             aria-label="Default select example"
                             onChange={Subscriptioncity}
@@ -420,7 +439,9 @@ function SignupWholesaler() {
                       </Row>
                       <Row className="mb-3">
                         <Form.Group as={Col}>
-                          <Form.Label>Pincode</Form.Label>
+                          <Form.Label>
+                            Pincode <span style={{ color: "red" }}>*</span>
+                          </Form.Label>
                           <Form.Control
                             type="number"
                             placeholder="Enter pincode"
@@ -436,7 +457,9 @@ function SignupWholesaler() {
                           )}
                         </Form.Group>
                         <Form.Group as={Col}>
-                          <Form.Label>GST Number</Form.Label>
+                          <Form.Label>
+                            GST Number<span style={{ color: "red" }}>*</span>
+                          </Form.Label>
                           <Form.Control
                             type="number"
                             placeholder="Enter gst number"
@@ -454,7 +477,9 @@ function SignupWholesaler() {
                       </Row>
                       <Row className="mb-3">
                         <Form.Group as={Col}>
-                          <Form.Label>Upload 1</Form.Label>
+                          <Form.Label>
+                            Upload 1<span style={{ color: "red" }}>*</span>
+                          </Form.Label>
                           <Form.Control
                             type="file"
                             placeholder="Enter company name"
@@ -469,7 +494,9 @@ function SignupWholesaler() {
                           )}
                         </Form.Group>
                         <Form.Group as={Col}>
-                          <Form.Label>Upload 2</Form.Label>
+                          <Form.Label>
+                            Upload 2<span style={{ color: "red" }}>*</span>
+                          </Form.Label>
                           <Form.Control
                             type="file"
                             placeholder="Enter date formulation"

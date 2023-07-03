@@ -11,36 +11,51 @@ function Login() {
   const [phone, setphone] = useState("");
   const [password, setpassword] = useState("");
 
+
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
-    var headers = {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    };
-    await fetch(`${BASE_URL}/auth/login`, {
-      method: "POST",
-      body: JSON.stringify({
-        password: password,
-        phone: phone,
-      }),
-      headers: headers,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        localStorage.setItem("id", data.data.id);
-        localStorage.setItem("profileImage", data.data.image);
-        if (data.message === "Login Successfull") {
-          navigate("/");
-          toast.success("Login Successful");
-        }
-        if (data.errors && data.errors[0].message === "Invalid credential.") {
-          toast.error("Invalid credential");
-        }
+    if (phone && password) {
+      var headers = {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      };
+      await fetch(`${BASE_URL}/auth/login`, {
+        method: "POST",
+        body: JSON.stringify({
+          password: password,
+          phone: phone,
+        }),
+        headers: headers,
       })
-      .catch((error) => {
-        console.error("ERROR FOUND---->>>>", error);
-      });
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("data", data);
+          if (data.errors && data.errors[0].message) {
+            toast.error("Invalid credential");
+          }
+          localStorage.setItem("id", data.data.id);
+          localStorage.setItem("profileImage", data.data.image);
+          if (data.message === "Login Successfull") {
+            navigate("/");
+            toast.success("Login Successful");
+          }
+        })
+        .catch((error) => {
+          console.error("ERROR FOUND---->>>>", error.data);
+        });
+    } else {
+      toast.error("Please Enter All Field");
+    }
+  };
+  const handlePhoneNumberChange = (event) => {
+    const input = event.target.value;
+    const numericValue = input.replace(/\D/g, ''); // Remove non-digit characters
+
+    // Restrict to 10 digits
+    const formattedNumber = numericValue.slice(0, 10);
+
+    setphone(formattedNumber);
   };
 
   // useEffect(() => {
@@ -83,18 +98,22 @@ function Login() {
                 <h4>Sign Into Your Account</h4>
                 <div>
                   <Form.Group className="mb-3">
-                    <Form.Label>Mobile Number</Form.Label>
+                    <Form.Label>Mobile Number <span style={{ color: "red" }}>*</span></Form.Label>
                     <Form.Control
+                      autoComplete="new-number"
                       type="number"
                       placeholder="Enter mobile number"
                       value={phone}
-                      onChange={(e) => setphone(e.target.value)}
+                      onChange={handlePhoneNumberChange}
+                      // maxLength={10}
+                      onInput={(e) => setphone(e.target.value)}
                     />
                   </Form.Group>
 
                   <Form.Group className="mb-3">
-                    <Form.Label>Password</Form.Label>
+                    <Form.Label>Password <span style={{ color: "red" }}>*</span></Form.Label>
                     <Form.Control
+                      autoComplete="new-password"
                       type="password"
                       placeholder="Enter password"
                       value={password}
@@ -117,7 +136,7 @@ function Login() {
                       Signup Wholesaler here
                     </Link>
                   </p>
-                  
+
                 </div>
               </div>
             </Col>

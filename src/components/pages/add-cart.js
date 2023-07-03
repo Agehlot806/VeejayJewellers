@@ -1,94 +1,121 @@
 import React from 'react'
 import Header from '../../directives/header'
-import { Button, Col, Row } from 'react-bootstrap'
+import { Button, Col, Container, Row } from 'react-bootstrap'
 import ring2 from '../../assets/images/img/ring2.png'
 import Footer from '../../directives/footer'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import border from '../../assets/images/banner/border.png'
 import { BASE_URL } from '../../Constant/Index'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import axios from 'axios'
 function Addcart() {
-    useEffect(()=>{
+    useEffect(() => {
         latestsapidata()
     })
-const[carddata,setCardData]=useState()
-const[variantdata,setvariantdata]=useState()
+    const cardaddnavigate = useParams()
+    const loginId = localStorage.getItem("id");
+    const state = localStorage.getItem("state");
+    const city = localStorage.getItem("city");
+    const pincode = localStorage.getItem("pincode");
+    // console.log("state",state,"city",city,"pincode",pincode,"loginId",loginId);
+    const [carddata, setCardData] = useState()
+    const [variantdata, setvariantdata] = useState()
     const latestsapidata = () => {
         axios
-          .get(`${BASE_URL}/products/card`)
-          .then((response) => {
-            console.log(response.data);
-            setCardData(response.data.data);
-            setvariantdata(response.data.data.variant)
-          })
-          .catch((error) => {
-            console.error("Error fetching data:", error);
-          });
-      };
-      console.error("Error fetching data:", variantdata);
-      const deleteDataById = (id) => {
-        console.log("ididididiidd",id);
+            .get(`${BASE_URL}/products/card`)
+            .then((response) => {
+                console.log(response.data);
+                setCardData(response.data.data);
+                setvariantdata(response.data.data.variant)
+            })
+            .catch((error) => {
+                console.error("Error fetching data:", error);
+            });
+    };
+    console.error("Error fetching data:", variantdata);
+    const deleteDataById = (id) => {
+        console.log("ididididiidd", id);
         axios
-          .post(`${BASE_URL}/products/discard?id=${id}`)
-          .then((response) => {
-            console.log(response);
-            console.log("Delete Successful");
-            // Perform any additional actions after successful deletion
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      };
+            .post(`${BASE_URL}/products/discard?id=${id}`)
+            .then((response) => {
+                console.log(response);
+                console.log("Delete Successful");
+                // Perform any additional actions after successful deletion
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+    const handlePlaceOrder = () => {
+        const cartData = carddata.map((item) => ({
+            product_id: item.product_id,
+            quantity: item.quantity,
+            variantion: item.variantion,
+        }));
+        const deliveryAddress = {
+            state,
+            city,
+            pincode,
+        };
+        console.log("deliveryAddressdeliveryAddress", deliveryAddress);
+        const orderData = {
+            user_id: loginId,
+            delivery_address: deliveryAddress,
+            cart: cartData,
+        };
+        axios
+            .post("https://veejayjewels.com/api/v1/products/place", orderData)
+            .then((response) => {
+                console.log(response);
+                // Handle success response
+                cardaddnavigate("/check-invoice")
+            })
+            .catch((error) => {
+                console.log(error);
+                // Handle error
+            });
+    };
     return (
         <>
             <Header />
             <section className="section-padding">
-            {carddata ? (
+                <Container>
+                    {carddata ? (
                         carddata.map((item, index) => (
-                <Row className="justify-content-center mb-3" key={index}>
-                    <Col lg={10}>
                             <div className='add-card-AREA'>
-                                <div className='add-cart'>
-                                    <div>
-                                        <img src={item.image} />
-                                    </div>
-                                    <div className='add-cart-content'>
-                                        <Row>
-                                            <Col lg={10}>
-                                        <h2>{item.product_name}</h2>
-                                            </Col>
-                                            <Col lg={2}>
-                                            <div className='text-center'>
-                                                <button onClick={(e)=>deleteDataById(item.id)}className="showSize">Remove</button>
-                                           </div> </Col>
-                                        </Row>
-                                        <h5>Weight 10gms</h5>
-                                        <p>Size: 45 <span>Quantity: 4</span></p>
-                                    </div>
-                                </div>
-                                <Row>
-                                    <Col lg={10}></Col>
-                                    <Col lg={2}><h5 className='p-2'>Weight 40gms</h5></Col>
-                                   </Row>
-                                <div className=''>
-                                    <img src={border} />
-                                </div>
+                                <Row className="justify-content-center mb-3" key={index}>
+                                    <Col lg={3} xs={3}>
+                                        <div className='add-cart'>
+                                            <img src={item.image} />
+                                        </div>
+                                    </Col>
+                                    <Col lg={6} xs={6}>
+                                        <div className='add-cart-content'>
+                                            <h2>{item.product_name}</h2>
+                                            <h5>Weight 10gms</h5>
+                                            <p>Size: 45 <span>Quantity: 4</span></p>
+                                        </div>
+                                    </Col>
+                                    <Col lg={3} xs={3} className='align-self-end'>
+                                        <div className='text-center'>
+                                            <button onClick={(e) => deleteDataById(item.id)} className="showSize">Remove</button>
+                                        </div>
+                                    </Col>
+                                </Row>
                             </div>
-                    </Col>
-                </Row>
-                ))
-                ) : null}
-                 <div className='text-center mt-3'>
-                    <Link to='/check-invoice' className="showSize">
+                        ))
+                    ) : null}
+                </Container>
+
+                <div className='text-center mt-3'>
+                    <Link className="showSize" onClick={handlePlaceOrder}>
                         Submit
                     </Link>
-                    </div>
-            </section>
+                </div>
+            </section >
             <Footer />
         </>
     )
 }
 export default Addcart
-

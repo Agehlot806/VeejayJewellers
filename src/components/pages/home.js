@@ -66,7 +66,7 @@ const newArrivals = {
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 1,
+    items: 2,
     slidesToSlide: 1, // optional, default to 1.
   },
 };
@@ -80,6 +80,7 @@ function Home(props) {
   const [videoUrl, setVideoUrl] = useState('');
   const [data, setData] = useState([]);
   const [secondbanner, setsecondbanner] = useState([])
+  const [thirdbanner, setthirdbanner] = useState([])
   const [bangledata, setbangledata] = useState([])
 
 
@@ -99,6 +100,7 @@ function Home(props) {
     fetchnewProduct();
     secondBanner();
     bangleProduct();
+    thirdBanner();
   }, []);
   useEffect(() => {
     axios
@@ -187,16 +189,27 @@ function Home(props) {
         console.error("Error fetching data:", error);
       });
   };
+  const thirdBanner = () => {
+    axios
+      .get(`${BASE_URL}/banners1`)
+      .then((response) => {
+        console.log(response.data.data)
+        setthirdbanner(response.data.data)
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
   const bangleProduct = async () => {
-  try {
-    const response = await fetch(`${BASE_URL}/products/latest`);
-    const data = await response.json();
-    const latestPosts = data.data.slice(0, 3);
-    setbangledata(latestPosts);
-  } catch (error) {
-    console.log(error);
-  }
-};
+    try {
+      const response = await fetch(`${BASE_URL}/products/latest`);
+      const data = await response.json();
+      const latestPosts = data.data.slice(0, 3);
+      setbangledata(latestPosts);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 
 
@@ -334,11 +347,11 @@ function Home(props) {
       <section className="section-padding"></section>
 
       <section className="section-padding">
-        <Container>
+      <Container>
           <Row className="justify-content-center">
             <Col lg={7}>
               <div className="bestseller">
-                <h4 className="main-heading">Veejay Jeweller Brands </h4>
+                <h4 className="main-heading">Veejay Jewels Brands </h4>
               </div>
             </Col>
           </Row>
@@ -351,27 +364,20 @@ function Home(props) {
                   <Link to={`/brands/${item.id}/${item.name}`}>
                     <i className="fa fa-angle-double-right" /> Read More
                   </Link>
-
                   {/* {item.name === "Aaraha"
                     ? <Link to='/ARHA-brands'><i className="fa fa-angle-double-right" /> Read More</Link>
                     :
-              
                       item.name === "Vedanta" ? <Link to='/VDANA-brands'><i className="fa fa-angle-double-right" /> Read More</Link>
                         : <Link to='/IRKA-brands'><i className="fa fa-angle-double-right" /> Read More</Link>
                     } */}
                 </div>
               </Col>
             ))}
-
             {/* <Col lg={4} sm={6} className='mb-3'>
-             
-
-
                 <div className="brandsCard">
                   <h3></h3>
                   <Link to='/VDANA-brands'><i className="fa fa-angle-double-right" /> Read More</Link>
                 </div>
-             
             </Col>
             <Col lg={4} sm={6} className='mb-3'>
               <div className="brandsCard">
@@ -420,34 +426,86 @@ function Home(props) {
             </div>
             <div className="main-space">
               <Row>
-                <Col lg={4} sm={4} xs={6}>
-                  <div className="bangleHomeCard">
-                    <img src={Group1} />
-                    <h3>Handmade Jewelry Bangle</h3>
-                    <h6>10 Gram</h6>
-                    <Link to="" className="main-addBtn">
-                      Add To Cart
-                    </Link>
+
+                <Col lg={4} sm={4} xs={6} className="mb-4">
+                  <div className="mainProductcard">
+                    <img src={product1} />
+                    <h4>Handmade Jewelry Bangle</h4>
+                    <p>10 Gram</p>
+                    <a>
+                      <i className="fa fa-star" />
+                    </a>
+                    <a>
+                      <i className="fa fa-star" />
+                    </a>
+                    <a>
+                      <i className="fa fa-star" />
+                    </a>
+                    <a>
+                      <i className="fa fa-star" />
+                    </a>
+                    <a>
+                      <i className="fa fa-star-o" />
+                    </a>
+                    <div className="product-btnarea">
+                      <Link to="/product-details" className="product-addBtn">
+                        Add To Cart
+                      </Link>
+                    </div>
                   </div>
                 </Col>
-                <Col lg={4} sm={4} xs={6}>
-                  <div className="bangleHomeCard">
-                    <img src={Group2} />
-                    <h3>Handmade Jewelry Bangle</h3>
-                    <h6>10 Gram</h6>
-                    <Link to="" className="main-addBtn">
-                      Add To Cart
-                    </Link>
+                <Col lg={4} sm={4} xs={6} className="mb-4">
+                  <div className="mainProductcard">
+                    <img src={product4} />
+                    <h4>Handmade Jewelry Bangle</h4>
+                    <p>10 Gram</p>
+                    <a>
+                      <i className="fa fa-star" />
+                    </a>
+                    <a>
+                      <i className="fa fa-star" />
+                    </a>
+                    <a>
+                      <i className="fa fa-star" />
+                    </a>
+                    <a>
+                      <i className="fa fa-star" />
+                    </a>
+                    <a>
+                      <i className="fa fa-star-o" />
+                    </a>
+                    <div className="product-btnarea">
+                      <Link to="/product-details" className="product-addBtn">
+                        Add To Cart
+                      </Link>
+                    </div>
                   </div>
                 </Col>
-                <Col lg={4} sm={4} xs={6}>
-                  <div className="bangleHomeCard">
-                    <img src={Group3} />
-                    <h3>Handmade Jewelry Bangle</h3>
-                    <h6>10 Gram</h6>
-                    <Link to="" className="main-addBtn">
-                      Add To Cart
-                    </Link>
+                <Col lg={4} sm={4} xs={6} className="mb-4">
+                  <div className="mainProductcard">
+                    <img src={product2} />
+                    <h4>Handmade Jewelry Bangle</h4>
+                    <p>10 Gram</p>
+                    <a>
+                      <i className="fa fa-star" />
+                    </a>
+                    <a>
+                      <i className="fa fa-star" />
+                    </a>
+                    <a>
+                      <i className="fa fa-star" />
+                    </a>
+                    <a>
+                      <i className="fa fa-star" />
+                    </a>
+                    <a>
+                      <i className="fa fa-star-o" />
+                    </a>
+                    <div className="product-btnarea">
+                      <Link to="/product-details" className="product-addBtn">
+                        Add To Cart
+                      </Link>
+                    </div>
                   </div>
                 </Col>
               </Row>
@@ -480,9 +538,9 @@ function Home(props) {
             {secondbanner ? (
               secondbanner.map((item, index) => (
                 item.type === 'second' && (
-                    <div key={item.id} className="homeBack-bg">
-                      <img src={item.image} alt="" />
-                    </div>
+                  <div key={item.id} className="homeBack-bg">
+                    <img src={item.image} alt="" />
+                  </div>
                 )
               ))
             ) : null}
@@ -507,10 +565,10 @@ function Home(props) {
             </Col>
           </Row>
 
-          <Row className="mt-4 mb-4">
+          {/* <Row className="mt-4 mb-4">
             {latestproduct &&
               latestproduct.map((item) => (
-                <Col lg={3} sm={4} xs={6} className="mb-3">
+                <Col lg={3} sm={4} xs={6} className="mb-5">
                   <div className="bestseller-card" key={item.id}>
                     <div className="bestseller-cardImg">
 
@@ -544,9 +602,41 @@ function Home(props) {
                 </Col>
               ))}
 
+          </Row> */}
+          <Row className="mt-3 mb-3">
+            {latestproduct &&
+              latestproduct.map((item) => (
+                <Col lg={3} sm={4} xs={6} className="mb-4">
+                  <div className="mainProductcard" key={item.id}>
+                    <img src={cleanImageUrl(item.image)} />
+                    <h4>{item.name}</h4>
+                    <p>{item.unit}</p>
+                    <a>
+                      <i className="fa fa-star" />
+                    </a>
+                    <a>
+                      <i className="fa fa-star" />
+                    </a>
+                    <a>
+                      <i className="fa fa-star" />
+                    </a>
+                    <a>
+                      <i className="fa fa-star" />
+                    </a>
+                    <a>
+                      <i className="fa fa-star-o" />
+                    </a>
+                    <div className="product-btnarea">
+                      <Link to={`/product-details/${item.id}`} className="product-addBtn">
+                        Add To Cart
+                      </Link>
+                    </div>
+                  </div>
+                </Col>
+              ))}
           </Row>
           <div className="text-center">
-            <Link to="/all-products" className="main-btn">
+            <Link to="/products" className="main-btn">
               <i className="fa fa-angle-double-right" /> See All Jewelery
             </Link>
           </div>
@@ -636,7 +726,7 @@ function Home(props) {
             <Col lg={6} xs={6}>
               <div className="New-ProductsLink">
                 <h5>
-                  <Link to="/all-products">
+                  <Link to="/products">
                     Get Similiar Product{" "}
                     <i className="fa fa-long-arrow-right" />
                   </Link>
@@ -647,15 +737,10 @@ function Home(props) {
           <Row className="mt-4 mb-4">
             {allproduct &&
               allproduct.map((item) => (
-                <Col lg={3} sm={4} xs={6} className="mb-3">
-                  <div className="bestseller-card" key={item.id}>
-                    <div className="bestseller-cardImg">
-
-                      <img src={cleanImageUrl(item.image)} alt="" />
-                    </div>
-                  </div>
-                  <div className="bestseller-cardText">
-                    <h5>{item.name}</h5>
+                <Col lg={3} sm={4} xs={6} className="mb-4">
+                  <div className="mainProductcard" key={item.id}>
+                    <img src={cleanImageUrl(item.image)} />
+                    <h4>{item.name}</h4>
                     <p>{item.unit}</p>
                     <a>
                       <i className="fa fa-star" />
@@ -786,8 +871,8 @@ function Home(props) {
         </Container>
       </section>
 
-      <section className="section-padding ourStore-bg">
-        <Container className="p-0">
+      <section className="">
+        <Container fluid className="p-0">
           <Carousel
             swipeable={true}
             draggable={true}
@@ -806,7 +891,7 @@ function Home(props) {
             dotListClass="custom-dot-list-style"
             itemClass="carousel-item-padding-40-px"
           >
-            <Row>
+            {/* <Row>
               <Col lg={5} sm={5}>
                 <div className="ourStore-gift">
                   <img src={product1} />
@@ -833,7 +918,16 @@ function Home(props) {
                   </Link>
                 </div>
               </Col>
-            </Row>
+            </Row> */}
+            {thirdbanner ? (
+              thirdbanner.map((item, index) => (
+                item.type === 'thrid' && (
+                  <div key={item.id} className="homeBack-bg">
+                    <img src={item.image} alt="" />
+                  </div>
+                )
+              ))
+            ) : null}
           </Carousel>
         </Container>
 

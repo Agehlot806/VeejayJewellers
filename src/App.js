@@ -17,7 +17,7 @@ import Women from "./components/catalogue/women";
 import Men from "./components/catalogue/men";
 import Kids from "./components/catalogue/kids";
 import Blog from "./components/pages/blog";
-import ARHA from "./components/Brands/ARHA";
+// import ARHA from "./components/Brands/ARHA";
 // import VDANA from "./components/Brands/VDANA";
 import Login from "./components/pages/login";
 import SignupUser from "./components/pages/signupUser";
@@ -67,7 +67,7 @@ const App = ({ item }) => {
           <Route path="/signUp-wholesaler" element={<SignupWholesaler />} />
           <Route path="/custom-design" element={<Customdesign />} />
           <Route path="/all-products" element={<Allproduct />} />
-          <Route path="/products" element={<Product />} />
+          <Route path="/products" element={<Product item={item}/>} />
           <Route path="/product-variety" element={<Productvariety />} />
           <Route path="/product-details/:id" element={<ProductDetails />} />
           <Route path="/add-to-cart" element={<Addcart />} />
@@ -78,7 +78,7 @@ const App = ({ item }) => {
           <Route path="/forgot-password" element={<Forgotpassword />} />
 
           {/* Brands pages */}
-          <Route path="/brands" element={<ARHA item={item} />} />
+          {/* <Route path="/brands" element={<ARHA item={item} />} /> */}
           {/* <Route path="/ARHA-brands" element={<ARHA />} /> */}
           {/* <Route path="/VDANA-brands" element={<VDANA />} /> */}
           {/* <Route path="/IRKA-brands" element={<IRKA />} /> */}

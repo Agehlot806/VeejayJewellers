@@ -7,7 +7,7 @@ body {
   font-family: "Inter", sans-serif;
   font-family: "Playfair Display", serif;
   /* background: #f0efef !important; */
-  background: url(../images/banner/Frame\ 100.png);
+  background: url(../images/banner/Frame\ 100.png) !important;
 }
 
 p {
@@ -58,7 +58,7 @@ span.validationErr {
 /* ==================================== Header area css =================================== */
 nav.header-bg {
   /* height: 121px; */
-  background: #ffffff;
+  /* background: #ffffff; */
   box-shadow: 0px 1px 30px rgba(0, 0, 0, 0.05);
 }
 
@@ -426,6 +426,38 @@ nav.header-bg {
   color: #000;
   float: right;
 }
+
+
+/* === */
+.mainProductcard {
+  text-align: center;
+  background: linear-gradient(356deg, #fff 32%, #93620747 100% , #fff 100%);
+  border-radius: 30px;
+  height: 100%;
+  padding: 10px 20px 20px;
+}
+
+.mainProductcard img {
+  width: 130px;
+  height: 130px;
+}
+.mainProductcard h4 {
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  margin: 14px 0 8px;
+}
+.mainProductcard p {
+  font-weight: 600;
+  font-size: 14px;
+  color: #818181;
+  margin: 0;
+}
+.mainProductcard a i {
+  color: #ffc107;
+  margin: 0 3px 0 2px;
+}
+
 
 /* ================================= Silver-Dimonds area css =================================*/
 .Silver-Dimonds {
@@ -1914,7 +1946,10 @@ nav.header-bg {
   width: 100%;
 }
 .productDetailTable.table {
-  /* text-align: center; */
+  background: none !important;
+}
+.productdetails-bg {
+  text-align: center;
 }
 table.productDetailTable.table tbody tr td {
   vertical-align: middle;
@@ -1933,8 +1968,8 @@ table.productDetailTable.table tr td label {
   background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%);
   color: #fff;
   border: none !important;
-  padding: 16px 25px;
-  border-radius: 12px;
+  padding: 10px 30px;
+  border-radius: 10px;
   font-weight: 500;
   font-size: 20px;
   font-family: Playfair sans-serif;
@@ -1956,14 +1991,13 @@ table.productDetailTable.table tr td label {
   width: 50px;
   height: 50px;
 }
-
 .product-addBtn {
   background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%);
   color: #fff;
   font-weight: 600;
-  padding: 10px;
+  padding: 10px 20px;
   border-radius: 8px;
-  font-size: 19px;
+  font-size: 18px;
   font-family: "Playfair Display";
 }
 .product-btnarea {
@@ -1989,6 +2023,7 @@ table.productDetailTable.table tr td label {
   font-size: 20px;
   font-family: "Playfair Display";
   border: none;
+  margin-left: 25px;
 }
 
 
@@ -1998,11 +2033,10 @@ table.productDetailTable.table tr td label {
   color: #000;
   border-radius: 20px;
   padding: 20px;
-  text-align: left;
-  width: 100%;
+  margin-bottom: 20px;
 }
 .add-cart {
-  display: inline-flex;
+  text-align: center;
 }
 .add-cart img {
   width: 100px;
@@ -2291,4 +2325,13 @@ span.quantity {
 
 input.rangeinput {
   margin: 30px 0 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
