@@ -280,21 +280,21 @@ function Home(props) {
       <section className=" details-area">
         <Container>
           <Row>
-            <Col lg={4} sm={6} xs={6} className="mb-4">
+            <Col lg={4} sm={4} xs={6} className="mb-4">
               <div className="details-card">
                 <img src={imgIcon1} />
                 <h3>amazing Value every day</h3>
                 <p>Items Prices that fit your Budget </p>
               </div>
             </Col>
-            <Col lg={4} sm={6} xs={6} className="mb-4">
+            <Col lg={4} sm={4} xs={6} className="mb-4">
               <div className="details-card">
                 <img src={imgIcon2} />
                 <h3>Successful Customer Service</h3>
                 <p>Items Prices that fit your Budget </p>
               </div>
             </Col>
-            <Col lg={4} sm={6} xs={6} className="mb-4">
+            <Col lg={4} sm={4} xs={6} className="mb-4">
               <div className="details-card">
                 <img src={imgIcon3} />
                 <h3>Successful Customer Service</h3>
@@ -357,7 +357,7 @@ function Home(props) {
           </Row>
           <Row className="mt-3">
             {brandcategories.map((item) => (
-              <Col lg={4} sm={6} xs={6} className="mb-3" key={item.id}>
+              <Col lg={4} sm={4} xs={6} className="mb-3" key={item.id}>
                 <div className="brandsCard">
                   <img src={item.image} alt="" />
                   <h3>{item.name}</h3>

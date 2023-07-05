@@ -290,7 +290,7 @@ function ProductDetails(props) {
                   </div>
                   <div className="show-contentS">
                     <Row>
-                      <Col lg={4}>
+                      <Col lg={4} sm={4}>
                         <label className="radio-inline">
                           <input
                             type="checkbox"
@@ -300,7 +300,7 @@ function ProductDetails(props) {
                           {variationstype}
                         </label>
                       </Col>
-                      <Col lg={8}><div className="text-right">
+                      <Col lg={8} sm={8}><div className="text-right">
                         <div className="quantity-btn">
                           <button onClick={handleDecrementone}>-</button>
                           <span>{quantity}</span>

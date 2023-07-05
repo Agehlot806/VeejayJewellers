@@ -66,7 +66,7 @@ function Footer() {
                 </div>
                 <hr />
                 <div className='footer-content'>
-                    <h6>@ 2022 Veejay jewels  company limited. All right reserved. <br />
+                    <h6>@ 2023 Veejay jewels  company limited. All right reserved. <br />
                         Tearm & conditions  |  Privacy policy
                     </h6>
                 </div>

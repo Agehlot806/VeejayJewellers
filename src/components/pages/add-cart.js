@@ -48,16 +48,18 @@ function Addcart() {
             });
     };
     const handlePlaceOrder = () => {
-        const cartData = carddata.map((item) => ({
-            product_id: item.product_id,
-            quantity: item.quantity,
-            variantion: item.variantion,
-        }));
-        const deliveryAddress = {
-            state,
-            city,
-            pincode,
-        };
+        const cartData = carddata.map((item) => {
+            const variants = item.variant && JSON.parse(item.variant);
+            const mappedVariants = variants.map((variant) => ({
+              quantity: variant.quantity,
+              variantion: variant.variant,
+            }));
+            return {
+              product_id: item.product_id,
+              ...(variants && variants.length > 0 && { variants: mappedVariants }),
+            };
+          });
+        const deliveryAddress =`${state},${city},${pincode}`
         console.log("deliveryAddressdeliveryAddress", deliveryAddress);
         const orderData = {
             user_id: loginId,
@@ -83,18 +85,22 @@ function Addcart() {
                 <Container>
                     {carddata ? (
                         carddata.map((item, index) => (
-                            <div className='add-card-AREA'>
-                                <Row className="justify-content-center mb-3" key={index}>
+                            <div className='add-card-AREA' key={index}>
+                                <Row className="justify-content-center mb-3">
                                     <Col lg={3} xs={3}>
                                         <div className='add-cart'>
-                                            <img src={item.image} />
+                                            <img src={item.image} alt={item.product_name} />
                                         </div>
                                     </Col>
                                     <Col lg={6} xs={6}>
                                         <div className='add-cart-content'>
                                             <h2>{item.product_name}</h2>
-                                            <h5>Weight 10gms</h5>
-                                            <p>Size: 45 <span>Quantity: 4</span></p>
+                                            {item.variant && JSON.parse(item.variant).map((variant, variantIndex) => (
+                                                <p key={variantIndex}>
+                                                    Variant: {variant.variant}
+                                                    <span>Quantity: {variant.quantity}</span>
+                                                </p>
+                                            ))}
                                         </div>
                                     </Col>
                                     <Col lg={3} xs={3} className='align-self-end'>
@@ -107,7 +113,6 @@ function Addcart() {
                         ))
                     ) : null}
                 </Container>
-
                 <div className='text-center mt-3'>
                     <Link className="showSize" onClick={handlePlaceOrder}>
                         Submit
@@ -119,3 +124,4 @@ function Addcart() {
     )
 }
 export default Addcart
+

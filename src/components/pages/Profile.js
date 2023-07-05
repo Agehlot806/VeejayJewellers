@@ -193,7 +193,7 @@ function Profile() {
                     <Form.Label>Last Name</Form.Label>
                     <Form.Control
                       type="text"
-                      placeholder="Enter full name"
+                      placeholder="Enter last name"
                       value={lastName}
                       onChange={(e) => setLastName(e.target.value)}
                     />

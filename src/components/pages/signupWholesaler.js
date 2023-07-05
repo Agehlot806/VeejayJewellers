@@ -115,7 +115,7 @@ function SignupWholesaler() {
       .then((Response) => Response.json())
       .then((Response) => {
         setStateall(Response.state);
-        console.log("respostate", Response);
+        console.log("99999999999999999999", Response);
         // Getdatacity()
       })
       .catch((error) => {
@@ -461,7 +461,7 @@ function SignupWholesaler() {
                             GST Number<span style={{ color: "red" }}>*</span>
                           </Form.Label>
                           <Form.Control
-                            type="number"
+                            type="text"
                             placeholder="Enter gst number"
                             value={gst_number}
                             onChange={(e) => setgst_number(e.target.value)}
