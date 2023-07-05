@@ -95,12 +95,12 @@ function Addcart() {
                                     <Col lg={6} xs={6}>
                                         <div className='add-cart-content'>
                                             <h2>{item.product_name}</h2>
-                                            {item.variant && JSON.parse(item.variant).map((variant, variantIndex) => (
+                                            {/* {item.variant && JSON.parse(item.variant).map((variant, variantIndex) => (
                                                 <p key={variantIndex}>
                                                     Variant: {variant.variant}
                                                     <span>Quantity: {variant.quantity}</span>
                                                 </p>
-                                            ))}
+                                            ))} */}
                                         </div>
                                     </Col>
                                     <Col lg={3} xs={3} className='align-self-end'>

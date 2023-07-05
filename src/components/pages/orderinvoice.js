@@ -4,12 +4,43 @@ import { Col, Row, Table } from 'react-bootstrap'
 import ring2 from '../../assets/images/img/ring2.png'
 import Footer from '../../directives/footer'
 import border from "../../assets/images/banner/border.png";
-import { Link } from 'react-router-dom'
-
+import { Link, useParams } from 'react-router-dom'
+import { useEffect } from 'react'
+import { BASE_URL } from '../../Constant/Index'
+import { useState } from 'react'
+import axios from 'axios'
 function Orderinvoice() {
+    const{id}=useParams()
+    console.log("id",id);
+    const [orderlistdata, setOrderListData] = useState("")
+    // useEffect(()=>{
+    //     productsList();
+    // },[])
+    const productsList =  () => {
+        axios
+        .get(`https://veejayjewels.com/api/v1/products/details`, {
+          params: {
+            id: id
+          },
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "http://localhost:3000/",
+          }
+        })
+        .then((response) => {
+          console.log("responseresponse",response);
+          setOrderListData(response.data.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    };
+    console.log("orderlistdataorderlistdata",orderlistdata);
     return (
         <>
             <Header />
+            <button onClick={productsList}>button</button>
             <section className="section-padding">
                 <Row className="justify-content-center mb-3">
                     <Col lg={5}>
@@ -64,5 +95,5 @@ function Orderinvoice() {
         </>
     )
 }
-
 export default Orderinvoice
+

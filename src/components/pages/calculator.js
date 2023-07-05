@@ -12,7 +12,7 @@ import {
 import { useState } from "react";
 function Calculator() {
   const [value, setValue] = useState(1);
-  const [price, setPrice] = useState(630);
+  const [price, setPrice] = useState(130);
   const handleRangeChange = (event) => {
     setValue(event.target.value);
     setPrice(price * event.target.value);
@@ -49,7 +49,7 @@ function Calculator() {
                   <Col sm={12}>
                     <div className="calcutor">
                       <Form.Group controlId="exampleForm.SelectCustom">
-                        <Form.Label>18 Carat Gold:</Form.Label>
+                        <Form.Label>18 Karat Gold:</Form.Label>
                         <Form.Control
                           as="select"
                           value={selectedValue}

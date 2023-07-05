@@ -58,6 +58,16 @@ function Login() {
     setphone(formattedNumber);
   };
 
+  const handlepasswordDigit = (event) => {
+    const input = event.target.value;
+    const numericValue = input.replace(/\D/g, ''); // Remove non-digit characters
+
+    // Restrict to 10 digits
+    const formattedNumber = numericValue.slice(0, 8);
+
+    setpassword(formattedNumber);
+  };
+
   // useEffect(() => {
   //   if (success) {
   //     // Redirect to another page
@@ -117,7 +127,8 @@ function Login() {
                       type="password"
                       placeholder="Enter password"
                       value={password}
-                      onChange={(e) => setpassword(e.target.value)}
+                      onChange={handlepasswordDigit}
+                      onInput={(e) => setpassword(e.target.value)}
                     />
                   </Form.Group>
                   <div className="mainForm-right">

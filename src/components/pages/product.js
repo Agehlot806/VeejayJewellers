@@ -102,7 +102,7 @@ function Product(props) {
   };
   return (
 
-<>
+    <>
       <Header />
       <div className='allPage-bgtwo'> <Container fluid className='p-0'> <img src={bannertwo} /> </Container> </div>
       <section className="section-padding">
@@ -156,8 +156,22 @@ function Product(props) {
                     </div>
                     <h3>Filter</h3>
                     <div className="range-bg">
-                      <label>18 carat gold
+                      <label>Select Gold Karat 
                       </label>
+                      <div>
+                        <div className="form-check form-check-inline">
+                          <input className="form-check-input" type="checkbox" id="inlineCheckbox1" defaultValue="option1" />
+                          <label className="form-check-label" htmlFor="inlineCheckbox1">18</label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                          <input className="form-check-input" type="checkbox" id="inlineCheckbox2" defaultValue="option2" />
+                          <label className="form-check-label" htmlFor="inlineCheckbox2">22</label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                          <input className="form-check-input" type="checkbox" id="inlineCheckbox3" defaultValue="option3" />
+                          <label className="form-check-label" htmlFor="inlineCheckbox3">24</label>
+                        </div>
+                      </div>
                       <input
                         type="range"
                         min={0}

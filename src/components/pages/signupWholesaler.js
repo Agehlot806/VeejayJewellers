@@ -186,6 +186,28 @@ function SignupWholesaler() {
     setphone(formattedNumber);
   };
 
+  const handlepasswordDigit = (event) => {
+    const input = event.target.value;
+    const numericValue = input.replace(/\D/g, ''); // Remove non-digit characters
+
+    // Restrict to 10 digits
+    const formattedNumber = numericValue.slice(0, 8);
+
+    setpassword(formattedNumber);
+  };
+  const handleconfirmpass = (event) => {
+    const input = event.target.value;
+    const numericValue = input.replace(/\D/g, ''); // Remove non-digit characters
+
+    // Restrict to 10 digits
+    const formattedNumber = numericValue.slice(0, 8);
+
+    setconfirmpassword(formattedNumber);
+  };
+
+  
+
+
   return (
     <>
       <Toaster />
@@ -310,7 +332,8 @@ function SignupWholesaler() {
                             autoComplete="new-password"
                             placeholder="Enter set password"
                             value={password}
-                            onChange={(e) => setpassword(e.target.value)}
+                            onChange={handlepasswordDigit}
+                            onInput={(e) => setpassword(e.target.value)}
                           />
                           {error && password.length <= 0 ? (
                             <span className="validationErr">
@@ -330,7 +353,8 @@ function SignupWholesaler() {
                             autoComplete="new-password"
                             placeholder="Enter confirm password"
                             value={confirmpassword}
-                            onChange={(e) => setconfirmpassword(e.target.value)}
+                            onChange={handleconfirmpass}
+                            onInput={(e) => setconfirmpassword(e.target.value)}
                           />
                           {error && password.length <= 0 ? (
                             <span className="validationErr">

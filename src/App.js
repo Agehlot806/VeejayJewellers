@@ -72,7 +72,7 @@ const App = ({ item }) => {
           <Route path="/product-details/:id" element={<ProductDetails />} />
           <Route path="/add-to-cart" element={<Addcart />} />
           <Route path="/check-invoice" element={<Checkinvoice />} />
-          <Route path="/order-invoice" element={<Orderinvoice />} />
+          <Route path="/order-invoice/:id" element={<Orderinvoice />} />
           <Route path="/product-lock" element={<Productlock />} />
           <Route path="/calculator" element={<Calculator />} />
           <Route path="/forgot-password" element={<Forgotpassword />} />
