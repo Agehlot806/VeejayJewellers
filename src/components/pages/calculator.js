@@ -49,7 +49,7 @@ function Calculator() {
                   <Col sm={12}>
                     <div className="calcutor">
                       <Form.Group controlId="exampleForm.SelectCustom">
-                        <Form.Label>18 Karat Gold:</Form.Label>
+                        <Form.Label>Select Gold Karat :</Form.Label>
                         <Form.Control
                           as="select"
                           value={selectedValue}
