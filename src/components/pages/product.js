@@ -156,7 +156,7 @@ function Product(props) {
                     </div>
                     <h3>Filter</h3>
                     <div className="range-bg">
-                      <label>Select Gold Karat 
+                      <label>Select Gold Karat
                       </label>
                       <div>
                         <div className="form-check form-check-inline">
@@ -206,41 +206,8 @@ function Product(props) {
                       {allproduct.map((item) => (
                         <Col lg={4} sm={4} xs={6} className="mb-4">
                           <div className="mainProductcard" key={item.id}>
-                            <img src={cleanImageUrl(item.image)} />
-                            <h4>{item.name}</h4>
-                            <p>{item.unit}</p>
-                            <a>
-                              <i className="fa fa-star" />
-                            </a>
-                            <a>
-                              <i className="fa fa-star" />
-                            </a>
-                            <a>
-                              <i className="fa fa-star" />
-                            </a>
-                            <a>
-                              <i className="fa fa-star" />
-                            </a>
-                            <a>
-                              <i className="fa fa-star-o" />
-                            </a>
-                            <div className="product-btnarea">
-                              <Link to={`/product-details/${item.id}`} className="product-addBtn">
-                                Add To Cart
-                              </Link>
-                            </div>
-                          </div>
-                        </Col>
-                      ))}
-                    </Row>
-                  </Tab.Pane>
-                  <Tab.Pane eventKey={data}>
-                    <Row>
-                      {filter && dataList ? (
-                        dataList.map((item) => (
-                          <Col lg={4} className="mb-4" key={item.id}>
-                            <div className="mainProductcard">
-                              <img src={cleanImageUrl(item.image)} alt={item.name} />
+                            <Link to={`/product-details/${item.id}`}>
+                              <img src={cleanImageUrl(item.image)} />
                               <h4>{item.name}</h4>
                               <p>{item.unit}</p>
                               <a>
@@ -259,10 +226,47 @@ function Product(props) {
                                 <i className="fa fa-star-o" />
                               </a>
                               <div className="product-btnarea">
-                                <Link to={`/product-details/${item.id}`} className="product-addBtn">
+                                <Link to="/add-to-cart" className="product-addBtn">
                                   Add To Cart
                                 </Link>
                               </div>
+                            </Link>
+                          </div>
+                        </Col>
+                      ))}
+                    </Row>
+                  </Tab.Pane>
+                  <Tab.Pane eventKey={data}>
+                    <Row>
+                      {filter && dataList ? (
+                        dataList.map((item) => (
+                          <Col lg={4} className="mb-4" key={item.id}>
+                            <div className="mainProductcard">
+                              <Link to={`/product-details/${item.id}`}>
+                                <img src={cleanImageUrl(item.image)} alt={item.name} />
+                                <h4>{item.name}</h4>
+                                <p>{item.unit}</p>
+                                <a>
+                                  <i className="fa fa-star" />
+                                </a>
+                                <a>
+                                  <i className="fa fa-star" />
+                                </a>
+                                <a>
+                                  <i className="fa fa-star" />
+                                </a>
+                                <a>
+                                  <i className="fa fa-star" />
+                                </a>
+                                <a>
+                                  <i className="fa fa-star-o" />
+                                </a>
+                                <div className="product-btnarea">
+                                  <Link to="/add-to-cart" className="product-addBtn">
+                                    Add To Cart
+                                  </Link>
+                                </div>
+                                </Link>
                             </div>
                           </Col>
                         ))

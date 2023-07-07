@@ -988,4 +988,16 @@
   .add-cart-content h5 {
     font-size: 6px;
   }
+  .mainProductcard a {
+    font-size: 8px;
+}
+.mainProductcard h4 {
+  font-size: 6px;
+}
+.mainProductcard p {
+  font-size: 7px;
+}
+.product-btnarea {
+  margin: 0;
+}
 }

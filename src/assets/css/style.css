@@ -455,6 +455,7 @@ nav.header-bg {
   font-size: 14px;
   letter-spacing: 0.12em;
   margin: 14px 0 8px;
+  color: #000;
 }
 
 .mainProductcard p {
@@ -1988,7 +1989,8 @@ nav.header-bg {
 }
 
 .productdetails-bg img {
-  width: 100%;
+  width: 200px;
+  margin: 0 0 30px;
 }
 
 .productDetailTable.table {

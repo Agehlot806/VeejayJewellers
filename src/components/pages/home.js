@@ -66,7 +66,7 @@ const newArrivals = {
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 2,
+    items: 1,
     slidesToSlide: 1, // optional, default to 1.
   },
 };
@@ -249,13 +249,13 @@ function Home(props) {
               <Col lg={4}>
                 {showAlert === "unverified" && (
                   <div className="verified-area" role="alert">
-                     {/* <button type="button" className="close" onClick={handleDismiss}>
+                    {/* <button type="button" className="close" onClick={handleDismiss}>
                       <span aria-hidden="true">&times;</span>
                     </button> */}
                     <h5>Verification Request</h5>
                     <h6>You are not verified</h6>
                     <div className="ok-btn">
-                    <button onClick={handleDismiss}>OK</button>
+                      <button onClick={handleDismiss}>OK</button>
                     </div>
                   </div>
                 )}
@@ -377,13 +377,14 @@ function Home(props) {
               </div>
             </Col>
           </Row>
-          <Row className="mt-3">
+          <Row className="mt-3 justify-content-center">
             {brandcategories.map((item) => (
               <Col lg={4} sm={4} xs={6} className="mb-3" key={item.id}>
                 <div className="brandsCard">
                   <img src={item.image} alt="" />
                   <h3>{item.name}</h3>
-                  <Link to={`/brands/${item.id}/${item.name}`}>
+                  {/* <Link to={`/products/${item.id}/${item.name}`}> */}
+                  <Link to='/products'>
                     <i className="fa fa-angle-double-right" /> Read More
                   </Link>
                   {/* {item.name === "Aaraha"
@@ -630,29 +631,31 @@ function Home(props) {
               latestproduct.map((item) => (
                 <Col lg={3} sm={4} xs={6} className="mb-4">
                   <div className="mainProductcard" key={item.id}>
-                    <img src={cleanImageUrl(item.image)} />
-                    <h4>{item.name}</h4>
-                    <p>{item.unit}</p>
-                    <a>
-                      <i className="fa fa-star" />
-                    </a>
-                    <a>
-                      <i className="fa fa-star" />
-                    </a>
-                    <a>
-                      <i className="fa fa-star" />
-                    </a>
-                    <a>
-                      <i className="fa fa-star" />
-                    </a>
-                    <a>
-                      <i className="fa fa-star-o" />
-                    </a>
-                    <div className="product-btnarea">
-                      <Link to={`/product-details/${item.id}`} className="product-addBtn">
-                        Add To Cart
-                      </Link>
-                    </div>
+                    <Link to={`/product-details/${item.id}`}>
+                      <img src={cleanImageUrl(item.image)} />
+                      <h4>{item.name}</h4>
+                      <p>{item.unit}</p>
+                      <a>
+                        <i className="fa fa-star" />
+                      </a>
+                      <a>
+                        <i className="fa fa-star" />
+                      </a>
+                      <a>
+                        <i className="fa fa-star" />
+                      </a>
+                      <a>
+                        <i className="fa fa-star" />
+                      </a>
+                      <a>
+                        <i className="fa fa-star-o" />
+                      </a>
+                      <div className="product-btnarea">
+                        <Link to="/add-to-cart" className="product-addBtn">
+                          Add To Cart
+                        </Link>
+                      </div>
+                    </Link>
                   </div>
                 </Col>
               ))}
@@ -663,7 +666,7 @@ function Home(props) {
             </Link>
           </div>
         </Container>
-      </section>
+      </section >
 
       <section className="new-arr">
         <Container fluid className="p-0">
@@ -729,29 +732,31 @@ function Home(props) {
               allproduct.map((item) => (
                 <Col lg={3} sm={4} xs={6} className="mb-4">
                   <div className="mainProductcard" key={item.id}>
-                    <img src={cleanImageUrl(item.image)} />
-                    <h4>{item.name}</h4>
-                    <p>{item.unit}</p>
-                    <a>
-                      <i className="fa fa-star" />
-                    </a>
-                    <a>
-                      <i className="fa fa-star" />
-                    </a>
-                    <a>
-                      <i className="fa fa-star" />
-                    </a>
-                    <a>
-                      <i className="fa fa-star" />
-                    </a>
-                    <a>
-                      <i className="fa fa-star-o" />
-                    </a>
-                    <div className="product-btnarea">
-                      <Link to={`/product-details/${item.id}`} className="product-addBtn">
-                        Add To Cart
+                    <Link to={`/product-details/${item.id}`}>
+                      <img src={cleanImageUrl(item.image)} />
+                      <h4>{item.name}</h4>
+                      <p>{item.unit}</p>
+                      <a>
+                        <i className="fa fa-star" />
+                      </a>
+                      <a>
+                        <i className="fa fa-star" />
+                      </a>
+                      <a>
+                        <i className="fa fa-star" />
+                      </a>
+                      <a>
+                        <i className="fa fa-star" />
+                      </a>
+                      <a>
+                        <i className="fa fa-star-o" />
+                      </a>
+                      <div className="product-btnarea">
+                        <Link to='/add-to-cart' className="product-addBtn">
+                          Add To Cart
+                        </Link>
+                      </div>
                       </Link>
-                    </div>
                   </div>
                 </Col>
               ))}

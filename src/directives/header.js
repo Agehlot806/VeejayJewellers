@@ -60,7 +60,7 @@ function Header({ profileImage }) {
               <Link to="/">
                 <img src={logo} className="logo" alt="" />
               </Link>
-              <Link to="/" className="text-center">
+              <Link className="text-center">
                 <Dropdown className="dropdown-rate">
                   <Dropdown.Toggle id="dropdown-basic">Rate</Dropdown.Toggle>
                   <Dropdown.Menu>
