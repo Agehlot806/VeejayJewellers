@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./assets/css/style.css";
 import "./assets/css/responsive.css";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
@@ -49,6 +49,18 @@ const ScrollToTop = () => {
 };
 
 const App = ({ item }) => {
+
+  useEffect(() => {
+    const disableRightClick = (e) => {
+      e.preventDefault();
+    };
+    document.addEventListener('contextmenu', disableRightClick);
+    return () => {
+      document.removeEventListener('contextmenu', disableRightClick);
+    };
+  }, []);
+  
+  
   return (
     <>
       <BrowserRouter>

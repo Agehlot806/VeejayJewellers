@@ -34,7 +34,7 @@ import homeBanner3 from "../../assets/images/banner/banner3.webp";
 import { Fade } from "react-reveal";
 import homeBanner2 from "../../assets/images/banner/home-banner2.png";
 import { BASE_URL } from "../../Constant/Index";
-
+import "../../assets/css/alert.css";
 const clinetreview = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
@@ -83,6 +83,11 @@ function Home(props) {
   const [thirdbanner, setthirdbanner] = useState([])
   const [bangledata, setbangledata] = useState([])
 
+  const [showAlert, setShowAlert] = useState(localStorage.getItem("status"));
+  // const profile = localStorage.getItem("profileImage");
+  const handleDismiss = () => {
+    setShowAlert(false);
+  };
 
 
   useEffect(() => {
@@ -240,9 +245,26 @@ function Home(props) {
       <div className="home-bg">
         <div className="home-area">
           <Container>
+            <Row className="justify-content-center">
+              <Col lg={4}>
+                {showAlert === "unverified" && (
+                  <div className="verified-area" role="alert">
+                     {/* <button type="button" className="close" onClick={handleDismiss}>
+                      <span aria-hidden="true">&times;</span>
+                    </button> */}
+                    <h5>Verification Request</h5>
+                    <h6>You are not verified</h6>
+                    <div className="ok-btn">
+                    <button onClick={handleDismiss}>OK</button>
+                    </div>
+                  </div>
+                )}
+              </Col>
+            </Row>
             <Row>
               <Col lg={7} sm={7}>
                 <div className="home-content">
+
                   <h1>Veejay Jewels</h1>
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -347,7 +369,7 @@ function Home(props) {
       <section className="section-padding"></section>
 
       <section className="section-padding">
-      <Container>
+        <Container>
           <Row className="justify-content-center">
             <Col lg={7}>
               <div className="bestseller">
@@ -448,7 +470,7 @@ function Home(props) {
                       <i className="fa fa-star-o" />
                     </a>
                     <div className="product-btnarea">
-                      <Link to="/product-details" className="product-addBtn">
+                      <Link to='/product-details' className="product-addBtn">
                         Add To Cart
                       </Link>
                     </div>
@@ -475,7 +497,7 @@ function Home(props) {
                       <i className="fa fa-star-o" />
                     </a>
                     <div className="product-btnarea">
-                      <Link to="/product-details" className="product-addBtn">
+                      <Link to='/product-details' className="product-addBtn">
                         Add To Cart
                       </Link>
                     </div>
@@ -502,7 +524,7 @@ function Home(props) {
                       <i className="fa fa-star-o" />
                     </a>
                     <div className="product-btnarea">
-                      <Link to="/product-details" className="product-addBtn">
+                      <Link to='/product-details' className="product-addBtn">
                         Add To Cart
                       </Link>
                     </div>
@@ -681,38 +703,6 @@ function Home(props) {
             )}
           </Carousel>
         </Container>
-      </section>
-
-      <section className="section-padding">
-        <div className="Silver-Dimonds">
-          <Container fluid>
-            {/* <video controls loop autoPlay muted>
-        {videoUrl ? (
-          <source src={videoUrl} type="video/mp4"/>
-        ) : (
-          <p>Loading video...</p>
-        )}
-      </video> */}
-            {/* <Row>
-              <Col lg={3} sm={3} className="align-self-center mt-5 mb-5">
-                <img src={product7} />
-              </Col>
-              <Col lg={6} sm={6} className="align-self-center">
-                <h5>Silver-Dimonds Earrings </h5>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet
-                  integer lorem amet arcu egestas congue. Rhoncus scelerisque m
-                  aenean ac. Cursus in at sagittis vivamus Rhoncus scelerisque m
-                  aenean{" "}
-                </p>
-                <Link to="">learn more</Link>
-              </Col>
-              <Col lg={3} sm={3}>
-                <img src={img2} />
-              </Col>
-            </Row> */}
-          </Container>
-        </div>
       </section>
 
       <section className="section-padding pb-0">
@@ -934,6 +924,8 @@ function Home(props) {
       </section>
       <Footer />
     </>
+
+
   );
 }
 

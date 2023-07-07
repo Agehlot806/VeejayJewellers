@@ -35,6 +35,7 @@ function Login() {
             toast.error("Invalid credential");
           }
           localStorage.setItem("id", data.data.id);
+          localStorage.setItem("status", data.data.status);
           localStorage.setItem("profileImage", data.data.image);
           if (data.message === "Login Successfull") {
             navigate("/");

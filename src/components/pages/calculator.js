@@ -13,19 +13,23 @@ import { useState } from "react";
 function Calculator() {
   const [value, setValue] = useState(1);
   const [price, setPrice] = useState(130);
-  const handleRangeChange = (event) => {
-    setValue(event.target.value);
-    setPrice(price * event.target.value);
-    // handlePrice();
-  };
-  //   alert(value);
-  const [selectedValue, setSelectedValue] = useState(1);
+ 
+  const [selectedValue, setSelectedValue] = useState("");
+
   const minProductValue = 1; // Minimum value for the quantity
   const maxProductValue = 50; // Maximum value for the quantity
   const [quantity, setQuantity] = useState(minProductValue);
+
+  const handleRangeChange = (event) => {
+    setValue(event.target.value);
+    setPrice(130 * event.target.value);
+
+  };
+
   const handleIncrement = () => {
     if (quantity < maxProductValue) {
       setQuantity(quantity + 1);
+
     }
   };
   const handleDecrement = () => {
@@ -33,6 +37,7 @@ function Calculator() {
       setQuantity(quantity - 1);
     }
   };
+
   const totalPrice = quantity * price;
   const handleSelectChange = (event) => {
     setSelectedValue(event.target.value);
@@ -102,7 +107,7 @@ function Calculator() {
                     <h5>Total Price</h5>
                   </Col>
                   <Col sm={6}>
-                    <h6>₹ {totalPrice}</h6>
+                    <h6>₹ {selectedValue ? totalPrice : "00"}</h6>
                   </Col>
                 </Row>
               </div>

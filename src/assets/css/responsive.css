@@ -673,6 +673,33 @@
     padding: 5px 12px;
     font-size: 8px;
   }
+  .mainProductcard a {
+    font-size: 10px;
+}
+.mainProductcard p {
+  font-size: 10px;
+}
+.mainProductcard h4 {
+  margin: 3px 0;
+}
+.mainProductcard img {
+  width: 55px;
+  height: 55px;
+}
+.mainProductcard {
+  padding: 10px;
+  border-radius: 10px;
+}
+.brandsCard img {
+  width: 50px;
+  height: 50px;
+}
+.brandsCard a {
+  font-size: 13px;
+}
+.brandsCard h3 {
+  margin: 0;
+}
 }
 
 @media only screen and (max-width: 393px) {
@@ -822,6 +849,10 @@
   .bestseller-cardText h5 {
     font-size: 10px;
   }
+}
+
+@media only screen and (max-width: 375px) {
+  
 }
 
 @media only screen and (max-width: 280px) {
