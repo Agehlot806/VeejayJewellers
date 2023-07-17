@@ -120,6 +120,8 @@ function Product(props) {
   const [file, setfile] = useState("");
   const [title, settitle] = useState("");
   const [check, setCheck] = useState();
+  const [filterdata, setfilterdata] = useState([]);
+
   const SubCategory = (thumnail, title, file) => {
     console.log("categoery", thumnail, title);
     setimage(thumnail)
@@ -127,10 +129,24 @@ function Product(props) {
     setfile(file)
   };
 
-  const handleCheck = () => {
-    setCheck(24);
+  const handleCheck24 = (event) => {
+    setCheck(event.target.value);
+    setallproduct(allproduct.filter((item) => item.purity === "24k"))
   }
-  console.log("4t", check);
+  console.log("filterdatafilterdatafilterdatafilterdata", filterdata);
+
+
+  const handleCheck22 = (event) => {
+    setCheck(event.target.value);
+    setallproduct(allproduct.filter((item) => item.purity === "22k"))
+  }
+
+  const handleCheck18 = (event) => {
+    setCheck(event.target.value);
+    setallproduct(allproduct.filter((item) => item.purity === "18k"))
+  }
+
+
   return (
 
     <>
@@ -191,16 +207,18 @@ function Product(props) {
                       </label>
                       <div>
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="checkbox" id="inlineCheckbox1" defaultValue="option1" />
+                          <input className="form-check-input" type="checkbox" id="inlineCheckbox1" onClick={handleCheck18} />
                           <label className="form-check-label" htmlFor="inlineCheckbox1">18</label>
                         </div>
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="checkbox" id="inlineCheckbox2" defaultValue="option2" />
+                          <input className="form-check-input" type="checkbox" id="inlineCheckbox2" onClick={handleCheck22} />
                           <label className="form-check-label" htmlFor="inlineCheckbox2">22</label>
                         </div>
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="checkbox" id="inlineCheckbox3" defaultValue="option3" onClick={handleCheck} />
+                          {/* <div> */}
+                          <input className="form-check-input" type="checkbox" id="inlineCheckbox3" onClick={handleCheck24} />
                           <label className="form-check-label" htmlFor="inlineCheckbox3">24</label>
+                          {/* </div> */}
                         </div>
                       </div>
                       {/* <input
@@ -234,13 +252,14 @@ function Product(props) {
                 <Tab.Content>
                   <Tab.Pane eventKey="AllProduct">
                     <Row>
-                      {/* {allproduct.map((item) => (
-                        <Col lg={4} sm={4} xs={6} className="mb-4">
-                          <div className="mainProductcard" key={item.id}>
+                      {allproduct.map((item) => (
+                        <Col lg={4} sm={4} xs={6} className="mb-4" key={item.id}>
+                          <div className="mainProductcard">
                             <Link to={`/product-details/${item.id}`}>
                               <img src={cleanImageUrl(item.image)} />
                               <h4>{item.name}</h4>
-                              <p>{item.unit}</p>
+                              <p>{item.unit_value} {item.unit}</p>
+                              <span>Karat : {item.purity}</span>
                               <div className="product-btnarea">
                                 <Link to="/add-to-cart" className="product-addBtn">
                                   Add To Cart
@@ -249,40 +268,23 @@ function Product(props) {
                             </Link>
                           </div>
                         </Col>
-                      ))} */}
-
-                      {allproduct.map((item) => (
+                      ))
+                      }
+                      {check && filterdata.map((item) => (
                         <Col lg={4} sm={4} xs={6} className="mb-4" key={item.id}>
-                          {check == "24" && item.purity == "24k" ?
-                            <div className="mainProductcard">
-                              <Link to={`/product-details/${item.id}`}>
-                                <img src={cleanImageUrl(item.image)} />
-                                <h4>{item.name}</h4>
-                                <p>{item.unit_value} {item.unit}</p>
-                                <span>Karat : {item.purity}</span>
-                                <div className="product-btnarea">
-                                  <Link to="/add-to-cart" className="product-addBtn">
-                                    Add To Cart
-                                  </Link>
-                                </div>
-                              </Link>
-                            </div>
-                            :
-                                <div className="mainProductcard">
-                                  <Link to={`/product-details/${item.id}`}>
-                                    <img src={cleanImageUrl(item.image)} />
-                                    <h4>{item.name}</h4>
-                                    <p>{item.unit_value} {item.unit}</p>
-                                    <span>Karat : {item.purity}</span>
-                                    <div className="product-btnarea">
-                                      <Link to="/add-to-cart" className="product-addBtn">
-                                        Add To Cart
-                                      </Link>
-                                    </div>
-                                  </Link>
-                                </div>
-                          }
-
+                          <div className="mainProductcard">
+                            <Link to={`/product-details/${item.id}`}>
+                              <img src={cleanImageUrl(item.image)} />
+                              <h4>{item.name}</h4>
+                              <p>{item.unit_value} {item.unit}</p>
+                              <span>Karat : {item.purity}</span>
+                              <div className="product-btnarea">
+                                <Link to="/add-to-cart" className="product-addBtn">
+                                  Add To Cart
+                                </Link>
+                              </div>
+                            </Link>
+                          </div>
                         </Col>
                       ))
                       }
@@ -346,7 +348,8 @@ function Product(props) {
                                         <Link to={`/product-details/${item.id}`}>
                                           <img src={cleanImageUrl(item.image)} alt={item.name} />
                                           <h4>{item.name}</h4>
-                                          <p>{item.unit}</p>
+                                          <p>{item.unit_value} {item.unit}</p>
+                                          <span>Karat : {item.purity}</span>
                                           <div className="product-btnarea">
                                             <Link to="/add-to-cart" className="product-addBtn">
                                               Add To Cart

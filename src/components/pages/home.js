@@ -593,7 +593,8 @@ function Home(props) {
                     <Link to={`/product-details/${item.id}`}>
                       <img src={cleanImageUrl(item.image)} />
                       <h4>{item.name}</h4>
-                      <p>{item.unit}</p>
+                      <p>{item.unit_value} {item.unit}</p>
+                                    <span>Karat : {item.purity}</span>
                       <div className="product-btnarea">
                         <Link to="/add-to-cart" className="product-addBtn">
                           Add To Cart
@@ -679,7 +680,8 @@ function Home(props) {
                     <Link to={`/product-details/${item.id}`}>
                       <img src={cleanImageUrl(item.image)} />
                       <h4>{item.name}</h4>
-                      <p>{item.unit}</p>
+                      <p>{item.unit_value} {item.unit}</p>
+                                    <span>Karat : {item.purity}</span>
                       <div className="product-btnarea">
                         <Link to='/add-to-cart' className="product-addBtn">
                           Add To Cart

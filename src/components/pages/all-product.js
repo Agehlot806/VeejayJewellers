@@ -64,7 +64,8 @@ function Allproduct() {
                                 </div>
                                 <div className="bestseller-cardText">
                                     <h5>{item.name}</h5>
-                                    <p>{item.unit}</p>
+                                    <p>{item.unit_value} {item.unit}</p>
+                                    <span>Karat : {item.purity}</span>
                                     <div className="product-btnarea">
                                         <Link to={`/product-details/${item.id}`} className="product-addBtn">
                                             Add To Cart

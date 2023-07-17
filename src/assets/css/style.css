@@ -1989,7 +1989,7 @@ nav.header-bg {
 }
 
 .productdetails-bg img {
-  width: 200px;
+  width: 250px;
   margin: 0 0 30px;
 }
 
@@ -2020,11 +2020,15 @@ table.productDetailTable.table tr td label {
   background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%);
   color: #fff;
   border: none !important;
-  padding: 10px 30px;
+  padding: 5px 12px;
   border-radius: 10px;
   font-weight: 500;
   font-size: 20px;
   font-family: Playfair sans-serif;
+  margin: 0 3px 0 3px;
+}
+.showSize a{
+  color: #fff;
 }
 
 /* raksha csss */
@@ -2093,7 +2097,8 @@ table.productDetailTable.table tr td label {
   border-radius: 20px;
   padding: 20px;
   margin-bottom: 20px;
-  box-shadow: rgb(139 92 6) 0px 1px 4px;
+  /* box-shadow: rgb(139 92 6) 0px 1px 4px; */
+  background: linear-gradient(270deg, #fff 66%, #93620747 100%, #fff 100%);
 }
 
 .add-cart {
@@ -2101,8 +2106,8 @@ table.productDetailTable.table tr td label {
 }
 
 .add-cart img {
-  width: 100px;
-  height: 100px;
+  width: 140px;
+  height: 140px;
 }
 
 .add-cart-content h2 {
@@ -2446,4 +2451,12 @@ input::-webkit-inner-spin-button {
   font-weight: 700;
   font-size: 15px;
   margin: 10px 0;
+}
+.add-cart-content ul {
+  margin: 0 0 10px;
+  padding: 0 20px;
+}
+.mainProductcard span {
+  color: #000;
+  font-weight: 600;
 }

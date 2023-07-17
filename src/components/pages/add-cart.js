@@ -110,16 +110,16 @@ function Addcart() {
       <Header />
       <section className="section-padding">
         <Container>
-          {carddata
-            ? carddata.map((item, index) => (
-              <div className="add-card-AREA" key={index}>
-                <Row className="justify-content-center mb-3">
-                  <Col lg={3} xs={3}>
+            {carddata
+              ? carddata.map((item, index) => (
+          <div className="add-card-AREA" key={index}>
+                <Row className="align-self-center mb-3" >
+                  <Col lg={4} xs={3}>
                     <div className="add-cart">
                       <img src={item.image} alt={item.product_name} />
                     </div>
                   </Col>
-                  <Col lg={6} xs={6}>
+                  <Col lg={8} xs={6} className="">
                     <div className="add-cart-content">
                       <h2>{item.product_name}</h2>
 
@@ -133,46 +133,31 @@ function Addcart() {
                                   ? variantItem.variant
                                   : "N/A"}
                                 , Quantity: {variantItem.quantity}
-                                <div className="calcutor">
-                                  <div>
-                                    <Button
-                                      className="quality"
-                                      onClick={handleDecrement}
-                                      disabled={quantity <= minProductValue}
-                                    >
-                                      -
-                                    </Button>
-                                    <span className="quantity">{quantity}</span>
-                                    <Button
-                                      className="quality"
-                                      onClick={handleIncrement}
-                                      disabled={quantity >= maxProductValue}
-                                    >
-                                      +
-                                    </Button>
-                                  </div>
-                                </div>
+                                
                               </li>
                             )
                           )}
                         </ul>
                       )}
-                    </div>
-                  </Col>
-                  <Col lg={3} xs={3} className="align-self-end">
-                    <div className="text-center">
-                      <button
+                       <button
                         onClick={(e) => deleteDataById(item.id)}
                         className="showSize"
                       >
-                        Remove
+                        <i className="fa fa-trash-o" />
+                      </button>
+                      <button
+                        className="showSize"
+                      >
+                        <Link to={`/product-details/${item.id}`}><i className="fa fa-pencil" /></Link>
                       </button>
                     </div>
+                   
                   </Col>
-                </Row>
-              </div>
-            ))
-            : null}
+                  
+                </Row>  
+          </div>
+              ))
+              : null}
         </Container>
         <div className="text-center mt-3">
           <Link className="showSize" onClick={handlePlaceOrder}>

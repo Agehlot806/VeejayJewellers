@@ -292,11 +292,11 @@ function ProductDetails(props) {
                     <Row>
                       <Col lg={4} sm={4}>
                         <label className="radio-inline">
-                          <input
+                          {/* <input
                             type="checkbox"
                             name="optradio"
                             onChange={() => setSelectedVariant(variationstype)}
-                          />{" "}
+                          />{" "} */}
                           {variationstype}
                         </label>
                       </Col>
@@ -541,11 +541,11 @@ function ProductDetails(props) {
                   <tr key={index}>
                     <td>
                       <label className="radio-inline">
-                        <input
+                        {/* <input
                           type="checkbox"
                           name="optradio"
                           onChange={() => handleVariantSelection(item.type)}
-                        />{" "}
+                        />{" "} */}
                         {item.type}
                       </label>
                     </td>
