@@ -350,21 +350,6 @@ function ProductDetails(props) {
                 <img src={product2} />
                 <h4>Bangle "MURATO"</h4>
                 <p>10gms</p>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star-o" />
-                </a>
                 <div className="product-btnarea">
                   <Link to="/product-details" className="product-addBtn">
                     Add To Cart
@@ -377,21 +362,6 @@ function ProductDetails(props) {
                 <img src={product2} />
                 <h4>Bangle "MURATO"</h4>
                 <p>10gms</p>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star-o" />
-                </a>
                 <div className="product-btnarea">
                   <Link to="/product-details" className="product-addBtn">
                     Add To Cart
@@ -404,21 +374,6 @@ function ProductDetails(props) {
                 <img src={product3} />
                 <h4>Bangle "MURATO"</h4>
                 <p>10gms</p>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star-o" />
-                </a>
                 <div className="product-btnarea">
                   <Link to="/product-details" className="product-addBtn">
                     Add To Cart
@@ -431,21 +386,6 @@ function ProductDetails(props) {
                 <img src={product4} />
                 <h4>Bangle "MURATO"</h4>
                 <p>10gms</p>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star-o" />
-                </a>
                 <div className="product-btnarea">
                   <Link to="/product-details" className="product-addBtn">
                     Add To Cart
@@ -459,21 +399,6 @@ function ProductDetails(props) {
                 <img src={product6} />
                 <h4>Bangle "MURATO"</h4>
                 <p>10gms</p>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star-o" />
-                </a>
                 <div className="product-btnarea">
                   <Link to="/product-details" className="product-addBtn">
                     Add To Cart
@@ -486,21 +411,6 @@ function ProductDetails(props) {
                 <img src={product2} />
                 <h4>Bangle "MURATO"</h4>
                 <p>10gms</p>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star-o" />
-                </a>
                 <div className="product-btnarea">
                   <Link to="/product-details" className="product-addBtn">
                     Add To Cart
@@ -513,21 +423,6 @@ function ProductDetails(props) {
                 <img src={product2} />
                 <h4>Bangle "MURATO"</h4>
                 <p>10gms</p>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star-o" />
-                </a>
                 <div className="product-btnarea">
                   <Link to="/product-details" className="product-addBtn">
                     Add To Cart
@@ -540,21 +435,6 @@ function ProductDetails(props) {
                 <img src={product2} />
                 <h4>Bangle "MURATO"</h4>
                 <p>10gms</p>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star-o" />
-                </a>
                 <div className="product-btnarea">
                   <Link to="/product-details" className="product-addBtn">
                     Add To Cart
@@ -567,21 +447,6 @@ function ProductDetails(props) {
                 <img src={product2} />
                 <h4>Bangle "MURATO"</h4>
                 <p>10gms</p>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star" />
-                </a>
-                <a>
-                  <i className="fa fa-star-o" />
-                </a>
                 <div className="product-btnarea">
                   <Link to="/product-details" className="product-addBtn">
                     Add To Cart

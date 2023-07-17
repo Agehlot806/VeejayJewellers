@@ -35,6 +35,7 @@ import { Fade } from "react-reveal";
 import homeBanner2 from "../../assets/images/banner/home-banner2.png";
 import { BASE_URL } from "../../Constant/Index";
 import "../../assets/css/alert.css";
+
 const clinetreview = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
@@ -106,6 +107,7 @@ function Home(props) {
     secondBanner();
     bangleProduct();
     thirdBanner();
+    banglethirds();
   }, []);
   useEffect(() => {
     axios
@@ -217,6 +219,18 @@ function Home(props) {
   };
 
 
+  const [banglethirddata, setbanglethirdData] = useState([])
+  const banglethirds = () => {
+    axios
+      .get(`${BASE_URL}/products/latest`)
+      .then((response) => {
+        console.log(response.data.data)
+        setbanglethirdData(response.data.data)
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
 
   return (
     <>
@@ -270,8 +284,7 @@ function Home(props) {
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Amet integer lorem amet arcu egestas congue. Rhoncus
                     scelerisque mi, ac sed lacus aliquam at tortor. Risus nulla
-                    massa ut vitae phasellus dictum. Lacus feugiat mollis aenean
-                    ac. Cursus in at sagittis vivamus consequat.{" "}
+                    massa ut vitae phasellus dictum.
                   </p>
                   <Link to="/login">Login</Link>
                   <Link to="/custom-design">
@@ -449,54 +462,30 @@ function Home(props) {
             </div>
             <div className="main-space">
               <Row>
-
-                <Col lg={4} sm={4} xs={6} className="mb-4">
-                  <div className="mainProductcard">
-                    <img src={product1} />
-                    <h4>Handmade Jewelry Bangle</h4>
-                    <p>10 Gram</p>
-                    <a>
-                      <i className="fa fa-star" />
-                    </a>
-                    <a>
-                      <i className="fa fa-star" />
-                    </a>
-                    <a>
-                      <i className="fa fa-star" />
-                    </a>
-                    <a>
-                      <i className="fa fa-star" />
-                    </a>
-                    <a>
-                      <i className="fa fa-star-o" />
-                    </a>
-                    <div className="product-btnarea">
-                      <Link to='/product-details' className="product-addBtn">
-                        Add To Cart
-                      </Link>
-                    </div>
-                  </div>
-                </Col>
-                <Col lg={4} sm={4} xs={6} className="mb-4">
+                {banglethirddata ? (
+                  banglethirddata.map((item, index) => (
+                    item.name === 'Bangle' && (
+                      <Col lg={4} sm={4} xs={6} className="mb-4">
+                        <div className="mainProductcard">
+                          <img src={cleanImageUrl(item.image)} />
+                          <h4>{item.name}</h4>
+                          <p>{item.unit_value} {item.unit}</p>
+                          <span>Karat : {item.purity}</span>
+                          <div className="product-btnarea">
+                            <Link to='/product-details' className="product-addBtn">
+                              Add To Cart
+                            </Link>
+                          </div>
+                        </div>
+                      </Col>
+                    )
+                  ))
+                ) : null}
+                {/* <Col lg={4} sm={4} xs={6} className="mb-4">
                   <div className="mainProductcard">
                     <img src={product4} />
                     <h4>Handmade Jewelry Bangle</h4>
                     <p>10 Gram</p>
-                    <a>
-                      <i className="fa fa-star" />
-                    </a>
-                    <a>
-                      <i className="fa fa-star" />
-                    </a>
-                    <a>
-                      <i className="fa fa-star" />
-                    </a>
-                    <a>
-                      <i className="fa fa-star" />
-                    </a>
-                    <a>
-                      <i className="fa fa-star-o" />
-                    </a>
                     <div className="product-btnarea">
                       <Link to='/product-details' className="product-addBtn">
                         Add To Cart
@@ -509,28 +498,13 @@ function Home(props) {
                     <img src={product2} />
                     <h4>Handmade Jewelry Bangle</h4>
                     <p>10 Gram</p>
-                    <a>
-                      <i className="fa fa-star" />
-                    </a>
-                    <a>
-                      <i className="fa fa-star" />
-                    </a>
-                    <a>
-                      <i className="fa fa-star" />
-                    </a>
-                    <a>
-                      <i className="fa fa-star" />
-                    </a>
-                    <a>
-                      <i className="fa fa-star-o" />
-                    </a>
                     <div className="product-btnarea">
                       <Link to='/product-details' className="product-addBtn">
                         Add To Cart
                       </Link>
                     </div>
                   </div>
-                </Col>
+                </Col> */}
               </Row>
             </div>
           </div>
@@ -601,21 +575,6 @@ function Home(props) {
                   <div className="bestseller-cardText">
                     <h5>{item.name}</h5>
                     <p>{item.unit}</p>
-                    <a>
-                      <i className="fa fa-star" />
-                    </a>
-                    <a>
-                      <i className="fa fa-star" />
-                    </a>
-                    <a>
-                      <i className="fa fa-star" />
-                    </a>
-                    <a>
-                      <i className="fa fa-star" />
-                    </a>
-                    <a>
-                      <i className="fa fa-star-o" />
-                    </a>
                     <div className="product-btnarea">
                       <Link to={`/product-details/${item.id}`} className="product-addBtn">
                         Add To Cart
@@ -635,21 +594,6 @@ function Home(props) {
                       <img src={cleanImageUrl(item.image)} />
                       <h4>{item.name}</h4>
                       <p>{item.unit}</p>
-                      <a>
-                        <i className="fa fa-star" />
-                      </a>
-                      <a>
-                        <i className="fa fa-star" />
-                      </a>
-                      <a>
-                        <i className="fa fa-star" />
-                      </a>
-                      <a>
-                        <i className="fa fa-star" />
-                      </a>
-                      <a>
-                        <i className="fa fa-star-o" />
-                      </a>
                       <div className="product-btnarea">
                         <Link to="/add-to-cart" className="product-addBtn">
                           Add To Cart
@@ -736,27 +680,12 @@ function Home(props) {
                       <img src={cleanImageUrl(item.image)} />
                       <h4>{item.name}</h4>
                       <p>{item.unit}</p>
-                      <a>
-                        <i className="fa fa-star" />
-                      </a>
-                      <a>
-                        <i className="fa fa-star" />
-                      </a>
-                      <a>
-                        <i className="fa fa-star" />
-                      </a>
-                      <a>
-                        <i className="fa fa-star" />
-                      </a>
-                      <a>
-                        <i className="fa fa-star-o" />
-                      </a>
                       <div className="product-btnarea">
                         <Link to='/add-to-cart' className="product-addBtn">
                           Add To Cart
                         </Link>
                       </div>
-                      </Link>
+                    </Link>
                   </div>
                 </Col>
               ))}

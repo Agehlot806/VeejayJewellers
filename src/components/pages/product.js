@@ -100,6 +100,31 @@ function Product(props) {
       console.log("Errorr", error);
     }
   };
+
+  useEffect(() => {
+    arhaProduct()
+  }, [])
+  const [arhadata, setarhadata] = useState([])
+  const arhaProduct = () => {
+    axios
+      .get(`${BASE_URL}/products/latest`)
+      .then((response) => {
+        console.log(response.data.data)
+        setarhadata(response.data.data)
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
+  const [image, setimage] = useState("");
+  const [file, setfile] = useState("");
+  const [title, settitle] = useState("");
+  const SubCategory = (thumnail, title, file) => {
+    console.log("categoery", thumnail, title);
+    setimage(thumnail)
+    settitle(title)
+    setfile(file)
+  };
   return (
 
     <>
@@ -172,17 +197,17 @@ function Product(props) {
                           <label className="form-check-label" htmlFor="inlineCheckbox3">24</label>
                         </div>
                       </div>
-                      <input
-                        type="range"
-                        min={0}
-                        max={1000000}
-                        value={value}
-                        onChange={handleRangeChange}
-                        className='rangeinput'
-                      />
-                      <div className="text-center">
-                        <h2>₹ {value}</h2>
-                      </div>
+                      {/* <input
+                          type="range"
+                          min={0}
+                          max={1000000}
+                          value={value}
+                          onChange={handleRangeChange}
+                          className='rangeinput'
+                        />
+                        <div className="text-center">
+                          <h2>₹ {value}</h2>
+                        </div> */}
                     </div>
                   </div>
                 </Nav>
@@ -210,21 +235,6 @@ function Product(props) {
                               <img src={cleanImageUrl(item.image)} />
                               <h4>{item.name}</h4>
                               <p>{item.unit}</p>
-                              <a>
-                                <i className="fa fa-star" />
-                              </a>
-                              <a>
-                                <i className="fa fa-star" />
-                              </a>
-                              <a>
-                                <i className="fa fa-star" />
-                              </a>
-                              <a>
-                                <i className="fa fa-star" />
-                              </a>
-                              <a>
-                                <i className="fa fa-star-o" />
-                              </a>
                               <div className="product-btnarea">
                                 <Link to="/add-to-cart" className="product-addBtn">
                                   Add To Cart
@@ -238,41 +248,78 @@ function Product(props) {
                   </Tab.Pane>
                   <Tab.Pane eventKey={data}>
                     <Row>
-                      {filter && dataList ? (
-                        dataList.map((item) => (
-                          <Col lg={4} className="mb-4" key={item.id}>
-                            <div className="mainProductcard">
-                              <Link to={`/product-details/${item.id}`}>
-                                <img src={cleanImageUrl(item.image)} alt={item.name} />
-                                <h4>{item.name}</h4>
-                                <p>{item.unit}</p>
-                                <a>
-                                  <i className="fa fa-star" />
-                                </a>
-                                <a>
-                                  <i className="fa fa-star" />
-                                </a>
-                                <a>
-                                  <i className="fa fa-star" />
-                                </a>
-                                <a>
-                                  <i className="fa fa-star" />
-                                </a>
-                                <a>
-                                  <i className="fa fa-star-o" />
-                                </a>
-                                <div className="product-btnarea">
-                                  <Link to="/add-to-cart" className="product-addBtn">
-                                    Add To Cart
-                                  </Link>
-                                </div>
-                                </Link>
-                            </div>
-                          </Col>
-                        ))
-                      ) : (
-                        <div>No data available.</div>
-                      )}
+                      <div className="brands-tabs-all">
+                        <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                          <li className="nav-item">
+                            <a className="nav-link active" id="arhaallproduct-tab" data-toggle="pill" href="#arhaallproduct" role="tab" aria-controls="arhaallproduct" aria-selected="true">All Products</a>
+                          </li>
+                          {arhadata ? (
+                            arhadata.map((item, index) => (
+                              item.brand === 'Araha' && (
+                                <li className="nav-item">
+                                  <a className="nav-link" id="pills-arha-tab" data-toggle="pill" href="#pills-arha" role="tab" aria-controls="pills-profile" aria-selected="false">
+                                    <div onClick={(e) => SubCategory(item.thumnail, item.title, item.file)}
+                                    >{item.name}</div>
+                                  </a>
+                                </li>
+                              )
+                            ))
+                          ) : null}
+
+                        </ul>
+                        <div className="tab-content" id="pills-tabContent">
+                          <div className="tab-pane fade show active" id="arhaallproduct" role="tabpanel" aria-labelledby="arhaallproduct-tab">
+                            <Row>
+                            {filter && dataList ? (
+                              dataList.map((item) => (
+                                <Col lg={4} className="mb-4" key={item.id}>
+                                  <div className="mainProductcard">
+                                    <Link to={`/product-details/${item.id}`}>
+                                      <img src={cleanImageUrl(item.image)} alt={item.name} />
+                                      <h4>{item.name}</h4>
+                                      <p>{item.unit}</p>
+                                      <div className="product-btnarea">
+                                        <Link to="/add-to-cart" className="product-addBtn">
+                                          Add To Cart
+                                        </Link>
+                                      </div>
+                                    </Link>
+                                  </div>
+                                </Col>
+                              ))
+                            ) : (
+                              <div>No data available.</div>
+                            )}
+                            </Row>
+                          </div>
+                          <div className="tab-pane fade" id="pills-arha" role="tabpanel" aria-labelledby="pills-arha-tab">
+                            <Row>
+                              {arhadata ? (
+                                arhadata.map((item, index) => (
+                                  item.brand === 'Araha' && (
+                                    <Col lg={4} className="mb-4" key={item.id}>
+                                      <div className="mainProductcard">
+                                        <Link to={`/product-details/${item.id}`}>
+                                          <img src={cleanImageUrl(item.image)} alt={item.name} />
+                                          <h4>{item.name}</h4>
+                                          <p>{item.unit}</p>
+                                          <div className="product-btnarea">
+                                            <Link to="/add-to-cart" className="product-addBtn">
+                                              Add To Cart
+                                            </Link>
+                                          </div>
+                                        </Link>
+                                      </div>
+                                    </Col>
+                                  )
+                                ))
+                              ) : null}
+                            </Row>
+                          </div>
+                        </div>
+                      </div>
+
+
                     </Row>
                   </Tab.Pane>
                 </Tab.Content>

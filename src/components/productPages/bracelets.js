@@ -37,11 +37,6 @@ function Bracelets() {
                             <div className='bestseller-cardText'>
                                 <h5>Bangle "MURATO"</h5>
                                 <p>15gms</p>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star-o" /></a>
                                 <div className="product-btnarea">
                                     <Link to="" className="product-addBtn">
                                         Add To Cart
@@ -59,11 +54,6 @@ function Bracelets() {
                             <div className='bestseller-cardText'>
                                 <h5>Bangle "MURATO"</h5>
                                 <p>15gms</p>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star-o" /></a>
                                 <div className="product-btnarea">
                                     <Link to="" className="product-addBtn">
                                         Add To Cart
@@ -81,11 +71,6 @@ function Bracelets() {
                             <div className='bestseller-cardText'>
                                 <h5>Bangle "MURATO"</h5>
                                 <p>15gms</p>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star-o" /></a>
                                 <div className="product-btnarea">
                                     <Link to="" className="product-addBtn">
                                         Add To Cart
@@ -103,11 +88,6 @@ function Bracelets() {
                             <div className='bestseller-cardText'>
                                 <h5>Bangle "MURATO"</h5>
                                 <p>15gms</p>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star-o" /></a>
                                 <div className="product-btnarea">
                                     <Link to="" className="product-addBtn">
                                         Add To Cart

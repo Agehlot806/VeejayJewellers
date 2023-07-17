@@ -30,11 +30,6 @@ function Productvariety() {
                                 <div className='bestseller-cardText'>
                                     <h5>Bangle "MURATO"</h5>
                                     <p>15gms</p>
-                                    <a><i className="fa fa-star" /></a>
-                                    <a><i className="fa fa-star" /></a>
-                                    <a><i className="fa fa-star" /></a>
-                                    <a><i className="fa fa-star" /></a>
-                                    <a><i className="fa fa-star-o" /></a>
                                     <div className='addCard-btn'>
                                         <Link to='/product-add-card'>Add to cart</Link>
                                     </div>
@@ -53,11 +48,6 @@ function Productvariety() {
                                 <div className='bestseller-cardText'>
                                     <h5>Bangle "MURATO"</h5>
                                     <p>15gms</p>
-                                    <a><i className="fa fa-star" /></a>
-                                    <a><i className="fa fa-star" /></a>
-                                    <a><i className="fa fa-star" /></a>
-                                    <a><i className="fa fa-star" /></a>
-                                    <a><i className="fa fa-star-o" /></a>
                                     <div className='addCard-btn'>
                                         <Link to='/product-add-card'>Add to cart</Link>
                                     </div>
@@ -75,11 +65,6 @@ function Productvariety() {
                                 <div className='bestseller-cardText'>
                                     <h5>Bangle "MURATO"</h5>
                                     <p>15gms</p>
-                                    <a><i className="fa fa-star" /></a>
-                                    <a><i className="fa fa-star" /></a>
-                                    <a><i className="fa fa-star" /></a>
-                                    <a><i className="fa fa-star" /></a>
-                                    <a><i className="fa fa-star-o" /></a>
                                     <div className='addCard-btn'>
                                         <Link to='/product-add-card'>Add to cart</Link>
                                     </div>
@@ -97,11 +82,6 @@ function Productvariety() {
                                 <div className='bestseller-cardText'>
                                     <h5>Bangle "MURATO"</h5>
                                     <p>15gms</p>
-                                    <a><i className="fa fa-star" /></a>
-                                    <a><i className="fa fa-star" /></a>
-                                    <a><i className="fa fa-star" /></a>
-                                    <a><i className="fa fa-star" /></a>
-                                    <a><i className="fa fa-star-o" /></a>
                                     <div className='addCard-btn'>
                                         <Link to=''>Add to cart</Link>
                                     </div>

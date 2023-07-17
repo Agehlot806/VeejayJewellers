@@ -89,6 +89,22 @@ function Addcart() {
       return [];
     }
   };
+
+  const minProductValue = 1; // Minimum value for the quantity
+  const maxProductValue = 50; // Maximum value for the quantity
+  const [quantity, setQuantity] = useState(minProductValue);
+
+  const handleIncrement = () => {
+    if (quantity < maxProductValue) {
+      setQuantity(quantity + 1);
+
+    }
+  };
+  const handleDecrement = () => {
+    if (quantity > minProductValue) {
+      setQuantity(quantity - 1);
+    }
+  };
   return (
     <>
       <Header />
@@ -96,47 +112,66 @@ function Addcart() {
         <Container>
           {carddata
             ? carddata.map((item, index) => (
-                <div className="add-card-AREA" key={index}>
-                  <Row className="justify-content-center mb-3">
-                    <Col lg={3} xs={3}>
-                      <div className="add-cart">
-                        <img src={item.image} alt={item.product_name} />
-                      </div>
-                    </Col>
-                    <Col lg={6} xs={6}>
-                      <div className="add-cart-content">
-                        <h2>{item.product_name}</h2>
+              <div className="add-card-AREA" key={index}>
+                <Row className="justify-content-center mb-3">
+                  <Col lg={3} xs={3}>
+                    <div className="add-cart">
+                      <img src={item.image} alt={item.product_name} />
+                    </div>
+                  </Col>
+                  <Col lg={6} xs={6}>
+                    <div className="add-cart-content">
+                      <h2>{item.product_name}</h2>
 
-                        {item.variant && (
-                          <ul>
-                            {parseVariant(item.variant).map(
-                              (variantItem, index) => (
-                                <li key={index}>
-                                  Variant:{" "}
-                                  {variantItem.variant
-                                    ? variantItem.variant
-                                    : "N/A"}
-                                  , Quantity: {variantItem.quantity}
-                                </li>
-                              )
-                            )}
-                          </ul>
-                        )}
-                      </div>
-                    </Col>
-                    <Col lg={3} xs={3} className="align-self-end">
-                      <div className="text-center">
-                        <button
-                          onClick={(e) => deleteDataById(item.id)}
-                          className="showSize"
-                        >
-                          Remove
-                        </button>
-                      </div>
-                    </Col>
-                  </Row>
-                </div>
-              ))
+                      {item.variant && (
+                        <ul>
+                          {parseVariant(item.variant).map(
+                            (variantItem, index) => (
+                              <li key={index}>
+                                Variant:{" "}
+                                {variantItem.variant
+                                  ? variantItem.variant
+                                  : "N/A"}
+                                , Quantity: {variantItem.quantity}
+                                <div className="calcutor">
+                                  <div>
+                                    <Button
+                                      className="quality"
+                                      onClick={handleDecrement}
+                                      disabled={quantity <= minProductValue}
+                                    >
+                                      -
+                                    </Button>
+                                    <span className="quantity">{quantity}</span>
+                                    <Button
+                                      className="quality"
+                                      onClick={handleIncrement}
+                                      disabled={quantity >= maxProductValue}
+                                    >
+                                      +
+                                    </Button>
+                                  </div>
+                                </div>
+                              </li>
+                            )
+                          )}
+                        </ul>
+                      )}
+                    </div>
+                  </Col>
+                  <Col lg={3} xs={3} className="align-self-end">
+                    <div className="text-center">
+                      <button
+                        onClick={(e) => deleteDataById(item.id)}
+                        className="showSize"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  </Col>
+                </Row>
+              </div>
+            ))
             : null}
         </Container>
         <div className="text-center mt-3">

@@ -68,12 +68,7 @@ function VDANA() {
                                 </div>
                                 <div className='bestseller-cardText'>
                                     <h5>{item.name}</h5>
-                                    <p>15gms</p>
-                                    <a><i className="fa fa-star" /></a>
-                                    <a><i className="fa fa-star" /></a>
-                                    <a><i className="fa fa-star" /></a>
-                                    <a><i className="fa fa-star" /></a>
-                                    <a><i className="fa fa-star-o" /></a>
+                                    <p>1
                                 </div>
                             </Col>
                         ))}
@@ -134,11 +129,6 @@ function VDANA() {
                                                 <div className='bestseller-cardText'>
                                                     <h5>Bangle "MURATO"</h5>
                                                     <p>15gms</p>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
                                             <Col lg={4} sm={6} className='mb-5'>
@@ -151,11 +141,6 @@ function VDANA() {
                                                 <div className='bestseller-cardText'>
                                                     <h5>NECKLACE "MURATO"</h5>
                                                     <p>15gms</p>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
                                             <Col lg={4} sm={6} className='mb-5'>
@@ -168,11 +153,6 @@ function VDANA() {
                                                 <div className='bestseller-cardText'>
                                                     <h5>NECKLACE "MURATO"</h5>
                                                     <p>15gms</p>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
                                             <Col lg={4} sm={6} className='mb-5'>
@@ -185,11 +165,6 @@ function VDANA() {
                                                 <div className='bestseller-cardText'>
                                                     <h5>Bangle "MURATO"</h5>
                                                     <p>15gms</p>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
                                             <Col lg={4} sm={6} className='mb-5'>
@@ -202,11 +177,6 @@ function VDANA() {
                                                 <div className='bestseller-cardText'>
                                                     <h5>NECKLACE "MURATO"</h5>
                                                     <p>15gms</p>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
                                             <Col lg={4} sm={6} className='mb-5'>
@@ -219,11 +189,6 @@ function VDANA() {
                                                 <div className='bestseller-cardText'>
                                                     <h5>NECKLACE "MURATO"</h5>
                                                     <p>15gms</p>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
                                         </Row>
@@ -240,11 +205,6 @@ function VDANA() {
                                                 <div className='bestseller-cardText'>
                                                     <h5>Bangle "MURATO"</h5>
                                                     <p>15gms</p>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
                                             <Col lg={4} sm={6} className='mb-5'>
@@ -257,11 +217,6 @@ function VDANA() {
                                                 <div className='bestseller-cardText'>
                                                     <h5>Bangle "MURATO"</h5>
                                                     <p>15gms</p>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
                                             <Col lg={4} sm={6} className='mb-5'>
@@ -274,11 +229,6 @@ function VDANA() {
                                                 <div className='bestseller-cardText'>
                                                     <h5>Bangle "MURATO"</h5>
                                                     <p>15gms</p>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
                                         </Row>
@@ -295,11 +245,6 @@ function VDANA() {
                                                 <div className='bestseller-cardText'>
                                                     <h5>Bangle "MURATO"</h5>
                                                     <p>15gms</p>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
                                             <Col lg={4} sm={6} className='mb-5'>
@@ -312,11 +257,6 @@ function VDANA() {
                                                 <div className='bestseller-cardText'>
                                                     <h5>NECKLACE "MURATO"</h5>
                                                     <p>15gms</p>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
                                             <Col lg={4} sm={6} className='mb-5'>
@@ -329,11 +269,6 @@ function VDANA() {
                                                 <div className='bestseller-cardText'>
                                                     <h5>Bangle "MURATO"</h5>
                                                     <p>15gms</p>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
                                         </Row>
@@ -350,11 +285,6 @@ function VDANA() {
                                                 <div className='bestseller-cardText'>
                                                     <h5>NECKLACE "MURATO"</h5>
                                                     <p>15gms</p>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
                                             <Col lg={4} sm={6} className='mb-5'>
@@ -367,11 +297,6 @@ function VDANA() {
                                                 <div className='bestseller-cardText'>
                                                     <h5>NECKLACE "MURATO"</h5>
                                                     <p>15gms</p>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
                                             <Col lg={4} sm={6} className='mb-5'>
@@ -384,11 +309,6 @@ function VDANA() {
                                                 <div className='bestseller-cardText'>
                                                     <h5>Bangle "MURATO"</h5>
                                                     <p>15gms</p>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
                                             <Col lg={4} sm={6} className='mb-5'>
@@ -401,11 +321,6 @@ function VDANA() {
                                                 <div className='bestseller-cardText'>
                                                     <h5>NECKLACE "MURATO"</h5>
                                                     <p>15gms</p>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
                                         </Row>
@@ -422,11 +337,6 @@ function VDANA() {
                                                 <div className='bestseller-cardText'>
                                                     <h5>Bangle "MURATO"</h5>
                                                     <p>15gms</p>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
                                             <Col lg={4} sm={6} className='mb-5'>
@@ -439,11 +349,6 @@ function VDANA() {
                                                 <div className='bestseller-cardText'>
                                                     <h5>Bangle "MURATO"</h5>
                                                     <p>15gms</p>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
                                             <Col lg={4} sm={6} className='mb-5'>
@@ -456,11 +361,6 @@ function VDANA() {
                                                 <div className='bestseller-cardText'>
                                                     <h5>Bangle "MURATO"</h5>
                                                     <p>15gms</p>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
                                         </Row>
@@ -477,11 +377,6 @@ function VDANA() {
                                                 <div className='bestseller-cardText'>
                                                     <h5>Bangle "MURATO"</h5>
                                                     <p>15gms</p>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
                                             <Col lg={4} sm={6} className='mb-5'>
@@ -494,11 +389,6 @@ function VDANA() {
                                                 <div className='bestseller-cardText'>
                                                     <h5>NECKLACE "MURATO"</h5>
                                                     <p>15gms</p>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
                                             <Col lg={4} sm={6} className='mb-5'>
@@ -511,11 +401,6 @@ function VDANA() {
                                                 <div className='bestseller-cardText'>
                                                     <h5>NECKLACE "MURATO"</h5>
                                                     <p>15gms</p>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
                                         </Row>
@@ -532,11 +417,6 @@ function VDANA() {
                                                 <div className='bestseller-cardText'>
                                                     <h5>Bangle "MURATO"</h5>
                                                     <p>15gms</p>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
                                             <Col lg={4} sm={6} className='mb-5'>
@@ -549,11 +429,6 @@ function VDANA() {
                                                 <div className='bestseller-cardText'>
                                                     <h5>NECKLACE "MURATO"</h5>
                                                     <p>15gms</p>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
                                             <Col lg={4} sm={6} className='mb-5'>
@@ -566,11 +441,6 @@ function VDANA() {
                                                 <div className='bestseller-cardText'>
                                                     <h5>Bangle "MURATO"</h5>
                                                     <p>15gms</p>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
                                         </Row>
@@ -587,11 +457,6 @@ function VDANA() {
                                                 <div className='bestseller-cardText'>
                                                     <h5>Bangle "MURATO"</h5>
                                                     <p>15gms</p>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
                                             <Col lg={4} sm={6} className='mb-5'>
@@ -604,11 +469,6 @@ function VDANA() {
                                                 <div className='bestseller-cardText'>
                                                     <h5>Bangle "MURATO"</h5>
                                                     <p>15gms</p>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
                                             <Col lg={4} sm={6} className='mb-5'>
@@ -621,11 +481,6 @@ function VDANA() {
                                                 <div className='bestseller-cardText'>
                                                     <h5>Bangle "MURATO"</h5>
                                                     <p>15gms</p>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star" /></a>
-                                                    <a><i className="fa fa-star-o" /></a>
                                                 </div>
                                             </Col>
                                         </Row>

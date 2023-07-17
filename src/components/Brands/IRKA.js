@@ -45,11 +45,6 @@ function IRKA() {
                             <div className='bestseller-cardText'>
                                 <h5>Bangle "MURATO"</h5>
                                 <p>15gms</p>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star-o" /></a>
                             </div>
                         </Col>
                         <Col lg={3} sm={6} className='mb-5'>
@@ -62,11 +57,6 @@ function IRKA() {
                             <div className='bestseller-cardText'>
                                 <h5>NECKLACE "MURATO"</h5>
                                 <p>15gms</p>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star-o" /></a>
                             </div>
                         </Col>
                         <Col lg={3} sm={6} className='mb-5'>
@@ -79,11 +69,6 @@ function IRKA() {
                             <div className='bestseller-cardText'>
                                 <h5>NECKLACE "MURATO"</h5>
                                 <p>15gms</p>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star-o" /></a>
                             </div>
                         </Col>
                         <Col lg={3} sm={6} className='mb-5'>
@@ -96,11 +81,6 @@ function IRKA() {
                             <div className='bestseller-cardText'>
                                 <h5>bangle "MURATO"</h5>
                                 <p>15gms</p>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star-o" /></a>
                             </div>
                         </Col>
                         <Col lg={3} sm={6} className='mb-5'>
@@ -113,11 +93,6 @@ function IRKA() {
                             <div className='bestseller-cardText'>
                                 <h5>Bangle "MURATO"</h5>
                                 <p>15gms</p>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star-o" /></a>
                             </div>
                         </Col>
                         <Col lg={3} sm={6} className='mb-5'>
@@ -130,11 +105,6 @@ function IRKA() {
                             <div className='bestseller-cardText'>
                                 <h5>Bangle "MURATO"</h5>
                                 <p>15gms</p>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star-o" /></a>
                             </div>
                         </Col>
                         <Col lg={3} sm={6} className='mb-5'>
@@ -147,11 +117,6 @@ function IRKA() {
                             <div className='bestseller-cardText'>
                                 <h5>Bangle "MURATO"</h5>
                                 <p>15gms</p>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star-o" /></a>
                             </div>
                         </Col>
                         <Col lg={3} sm={6} className='mb-5'>
@@ -164,11 +129,6 @@ function IRKA() {
                             <div className='bestseller-cardText'>
                                 <h5>Bangle "MURATO"</h5>
                                 <p>15gms</p>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star-o" /></a>
                             </div>
                         </Col>
                         <Col lg={3} sm={6} className='mb-5'>
@@ -181,11 +141,6 @@ function IRKA() {
                             <div className='bestseller-cardText'>
                                 <h5>Bangle "MURATO"</h5>
                                 <p>15gms</p>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star-o" /></a>
                             </div>
                         </Col>
                         <Col lg={3} sm={6} className='mb-5'>
@@ -198,11 +153,6 @@ function IRKA() {
                             <div className='bestseller-cardText'>
                                 <h5>Bangle "MURATO"</h5>
                                 <p>15gms</p>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star-o" /></a>
                             </div>
                         </Col>
                         <Col lg={3} sm={6} className='mb-5'>
@@ -215,11 +165,6 @@ function IRKA() {
                             <div className='bestseller-cardText'>
                                 <h5>Bangle "MURATO"</h5>
                                 <p>15gms</p>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star-o" /></a>
                             </div>
                         </Col>
                         <Col lg={3} sm={6} className='mb-5'>
@@ -232,11 +177,6 @@ function IRKA() {
                             <div className='bestseller-cardText'>
                                 <h5>Bangle "MURATO"</h5>
                                 <p>15gms</p>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star-o" /></a>
                             </div>
                         </Col>
                         <Col lg={3} sm={6} className='mb-5'>
@@ -249,11 +189,6 @@ function IRKA() {
                             <div className='bestseller-cardText'>
                                 <h5>Bangle "MURATO"</h5>
                                 <p>15gms</p>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star-o" /></a>
                             </div>
                         </Col>
                         <Col lg={3} sm={6} className='mb-5'>
@@ -266,11 +201,6 @@ function IRKA() {
                             <div className='bestseller-cardText'>
                                 <h5>Bangle "MURATO"</h5>
                                 <p>15gms</p>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star" /></a>
-                                <a><i className="fa fa-star-o" /></a>
                             </div>
                         </Col>
                     </Row>

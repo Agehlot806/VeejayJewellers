@@ -26,11 +26,11 @@ function Women() {
   const [image, setimage] = useState("");
   const [file, setfile] = useState("");
   const [title, settitle] = useState("");
-  const SubCategory =  (thumnail,title,file) => {
-    console.log("categoery", thumnail,title);
+  const SubCategory = (thumnail, title, file) => {
+    console.log("categoery", thumnail, title);
     setimage(thumnail)
     settitle(title)
-  setfile(file)
+    setfile(file)
   };
   return (
     <>
@@ -66,7 +66,7 @@ function Women() {
                   item.type === 'women' && (
                     <li className="nav-item">
                       <a className="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">
-                        <div onClick={(e) => SubCategory(item.thumnail,item.title,item.file)}
+                        <div onClick={(e) => SubCategory(item.thumnail, item.title, item.file)}
                         >{item.categoery}</div>
                       </a>
                     </li>
@@ -86,8 +86,8 @@ function Women() {
                               <Link to={"https://veejayjewels.com/storage/app/public/pdf/" + item.file}>
                                 <Col sm={12} className='mb-3'>
                                   <img src={"https://veejayjewels.com/storage/app/public/catalog/" + item.thumnail} />
-                                  <h2>{item.title}</h2>
-                                  <p>Read More</p>
+                                  {/* <h2>{item.title}</h2>
+                                  <p>Read More</p> */}
                                 </Col>
                               </Link>
                             </Row>
@@ -99,21 +99,21 @@ function Women() {
                 </Row>
               </div>
               <div className="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                  <Row>
+                <Row>
                   <Col lg={4} className='mt-2 mb-2'>
-                          <div className='catlogOne'>
-                            <Row>
-                              <Link to={"https://veejayjewels.com/storage/app/public/pdf/"+file}>
-                                <Col sm={12} className='mb-3'>
-                                  <img src={"https://veejayjewels.com/storage/app/public/catalog/"+image} />
-                                  <h2>{title}</h2>
-                                  <p>Read More</p>
-                                </Col>
-                              </Link>
-                            </Row>
-                          </div>
-                        </Col>
-                  </Row>
+                    <div className='catlogOne'>
+                      <Row>
+                        <Link to={"https://veejayjewels.com/storage/app/public/pdf/" + file}>
+                          <Col sm={12} className='mb-3'>
+                            <img src={"https://veejayjewels.com/storage/app/public/catalog/" + image} />
+                            {/* <h2>{title}</h2>
+                                  <p>Read More</p> */}
+                          </Col>
+                        </Link>
+                      </Row>
+                    </div>
+                  </Col>
+                </Row>
               </div>
             </div>
           </div>

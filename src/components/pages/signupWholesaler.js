@@ -231,7 +231,7 @@ function SignupWholesaler() {
                     SignUp User
                   </Link> */}
                   <Link to="/signUp-wholesaler" className="btn-theme-3">
-                    SignUp Wholesaler
+                    SignUp User
                   </Link>
                 </div>
               </div>
@@ -239,7 +239,7 @@ function SignupWholesaler() {
             <Col lg={6}>
               <div className="mainForm-content">
                 <h3>Welcome!</h3>
-                <h4>Create Wholesaler Account</h4>
+                <h4>Create User Account</h4>
                 <div className="form-card">
                   {step === 1 && (
                     <div className="stepform">
@@ -332,8 +332,8 @@ function SignupWholesaler() {
                             autoComplete="new-password"
                             placeholder="Enter set password"
                             value={password}
-                            onChange={handlepasswordDigit}
-                            onInput={(e) => setpassword(e.target.value)}
+                            // onChange={handlepasswordDigit}
+                            onChange={(e) => setpassword(e.target.value)}
                           />
                           {error && password.length <= 0 ? (
                             <span className="validationErr">
@@ -353,8 +353,8 @@ function SignupWholesaler() {
                             autoComplete="new-password"
                             placeholder="Enter confirm password"
                             value={confirmpassword}
-                            onChange={handleconfirmpass}
-                            onInput={(e) => setconfirmpassword(e.target.value)}
+                            // onChange={handleconfirmpass}
+                            onChange={(e) => setconfirmpassword(e.target.value)}
                           />
                           {error && password.length <= 0 ? (
                             <span className="validationErr">
@@ -394,7 +394,7 @@ function SignupWholesaler() {
                         </Form.Group>
                         <Form.Group as={Col}>
                           <Form.Label>
-                            Date Formulation
+                            Foundation Date
                             <span style={{ color: "red" }}>*</span>
                           </Form.Label>
                           <Form.Control

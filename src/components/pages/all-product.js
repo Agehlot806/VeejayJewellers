@@ -65,21 +65,6 @@ function Allproduct() {
                                 <div className="bestseller-cardText">
                                     <h5>{item.name}</h5>
                                     <p>{item.unit}</p>
-                                    <a>
-                                        <i className="fa fa-star" />
-                                    </a>
-                                    <a>
-                                        <i className="fa fa-star" />
-                                    </a>
-                                    <a>
-                                        <i className="fa fa-star" />
-                                    </a>
-                                    <a>
-                                        <i className="fa fa-star" />
-                                    </a>
-                                    <a>
-                                        <i className="fa fa-star-o" />
-                                    </a>
                                     <div className="product-btnarea">
                                         <Link to={`/product-details/${item.id}`} className="product-addBtn">
                                             Add To Cart

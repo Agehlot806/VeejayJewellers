@@ -47,24 +47,35 @@
 
 @media only screen and (max-width: 912px) {
   .navbar-collapse {
-    animation: 1s slide-right;
+    /* transform: translateX(320px);
+    transition: transform 260ms ease-in-out; */
+    flex-basis: 0;
   }
-
+  
   .header-menu {
     width: 100%;
     background: #fff;
-    position: absolute;
+    /* position: absolute; */
+    animation-name: moveInleft;
   }
+  .header-menu a {
+    align-self: baseline;
+}
 
-  @keyframes slide-right {
-    from {
-      margin-left: 100%;
+  @keyframes moveInleft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
     }
 
-    to {
-      margin-left: 0%;
+    80% {
+        transform: translateX(10px);
     }
-  }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
   p {
     font-size: 15px;
   }

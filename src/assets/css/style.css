@@ -2093,6 +2093,7 @@ table.productDetailTable.table tr td label {
   border-radius: 20px;
   padding: 20px;
   margin-bottom: 20px;
+  box-shadow: rgb(139 92 6) 0px 1px 4px;
 }
 
 .add-cart {
@@ -2220,6 +2221,12 @@ table.productDetailTable.table tr td label {
   height: 70px;
   border-radius: 20px;
   margin: 0 0 20px;
+}
+.blog-comment a {
+  font-size: 16px;
+  margin: 0 5px 0 5px;
+  color: #626262;
+  font-weight: 400;
 }
 
 .product_details h1 {
@@ -2431,3 +2438,12 @@ input::-webkit-inner-spin-button {
 }
 
 
+.brands-tabs-all .tab-content {
+  margin: 25px 0;
+}
+.brands-tabs-all ul li a {
+  color: #000;
+  font-weight: 700;
+  font-size: 15px;
+  margin: 10px 0;
+}

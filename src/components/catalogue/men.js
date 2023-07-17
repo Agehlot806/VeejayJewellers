@@ -86,8 +86,8 @@ function Men() {
                               <Link to={"https://veejayjewels.com/storage/app/public/pdf/" + item.file}>
                                 <Col sm={12} className='mb-3'>
                                   <img src={"https://veejayjewels.com/storage/app/public/catalog/" + item.thumnail} />
-                                  <h2>{item.title}</h2>
-                                  <p>Read More</p>
+                                  {/* <h2>{item.title}</h2>
+                                  <p>Read More</p> */}
                                 </Col>
                               </Link>
                             </Row>
@@ -106,8 +106,8 @@ function Men() {
                               <Link to={"https://veejayjewels.com/storage/app/public/pdf/"+file}>
                                 <Col sm={12} className='mb-3'>
                                   <img src={"https://veejayjewels.com/storage/app/public/catalog/"+image} />
-                                  <h2>{title}</h2>
-                                  <p>Read More</p>
+                                  {/* <h2>{title}</h2>
+                                  <p>Read More</p> */}
                                 </Col>
                               </Link>
                             </Row>

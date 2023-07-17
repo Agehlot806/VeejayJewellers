@@ -59,15 +59,15 @@ function Login() {
     setphone(formattedNumber);
   };
 
-  const handlepasswordDigit = (event) => {
-    const input = event.target.value;
-    const numericValue = input.replace(/\D/g, ''); // Remove non-digit characters
+  // const handlepasswordDigit = (event) => {
+  //   const input = event.target.value;
+  //   const numericValue = input.replace(/\D/g, ''); // Remove non-digit characters
 
-    // Restrict to 10 digits
-    const formattedNumber = numericValue.slice(0, 8);
+  //   // Restrict to 10 digits
+  //   const formattedNumber = numericValue.slice(0, 8);
 
-    setpassword(formattedNumber);
-  };
+  //   setpassword(formattedNumber);
+  // };
 
   // useEffect(() => {
   //   if (success) {
@@ -98,7 +98,7 @@ function Login() {
                     SignUp User
                   </Link> */}
                   <Link to="/signUp-wholesaler" className="btn-theme-2">
-                    SignUp Wholesaler
+                    SignUp User
                   </Link>
                 </div>
               </div>
@@ -128,8 +128,8 @@ function Login() {
                       type="password"
                       placeholder="Enter password"
                       value={password}
-                      onChange={handlepasswordDigit}
-                      onInput={(e) => setpassword(e.target.value)}
+                      // onChange={handlepasswordDigit}
+                      onChange={(e) => setpassword(e.target.value)}
                     />
                   </Form.Group>
                   <div className="mainForm-right">
@@ -145,7 +145,7 @@ function Login() {
                     Don't have an account?{" "}
                     <Link to="/signUp-wholesaler" class="thembo">
                       {" "}
-                      Signup Wholesaler here
+                      Signup User here
                     </Link>
                   </p>
 
