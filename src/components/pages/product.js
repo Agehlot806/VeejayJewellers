@@ -119,12 +119,18 @@ function Product(props) {
   const [image, setimage] = useState("");
   const [file, setfile] = useState("");
   const [title, settitle] = useState("");
+  const [check, setCheck] = useState();
   const SubCategory = (thumnail, title, file) => {
     console.log("categoery", thumnail, title);
     setimage(thumnail)
     settitle(title)
     setfile(file)
   };
+
+  const handleCheck = () => {
+    setCheck(24);
+  }
+  console.log("4t", check);
   return (
 
     <>
@@ -193,7 +199,7 @@ function Product(props) {
                           <label className="form-check-label" htmlFor="inlineCheckbox2">22</label>
                         </div>
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="checkbox" id="inlineCheckbox3" defaultValue="option3" />
+                          <input className="form-check-input" type="checkbox" id="inlineCheckbox3" defaultValue="option3" onClick={handleCheck} />
                           <label className="form-check-label" htmlFor="inlineCheckbox3">24</label>
                         </div>
                       </div>
@@ -228,7 +234,7 @@ function Product(props) {
                 <Tab.Content>
                   <Tab.Pane eventKey="AllProduct">
                     <Row>
-                      {allproduct.map((item) => (
+                      {/* {allproduct.map((item) => (
                         <Col lg={4} sm={4} xs={6} className="mb-4">
                           <div className="mainProductcard" key={item.id}>
                             <Link to={`/product-details/${item.id}`}>
@@ -243,7 +249,44 @@ function Product(props) {
                             </Link>
                           </div>
                         </Col>
-                      ))}
+                      ))} */}
+
+                      {allproduct.map((item) => (
+                        <Col lg={4} sm={4} xs={6} className="mb-4" key={item.id}>
+                          {check == "24" && item.purity == "24k" ?
+                            <div className="mainProductcard">
+                              <Link to={`/product-details/${item.id}`}>
+                                <img src={cleanImageUrl(item.image)} />
+                                <h4>{item.name}</h4>
+                                <p>{item.unit_value} {item.unit}</p>
+                                <span>Karat : {item.purity}</span>
+                                <div className="product-btnarea">
+                                  <Link to="/add-to-cart" className="product-addBtn">
+                                    Add To Cart
+                                  </Link>
+                                </div>
+                              </Link>
+                            </div>
+                            :
+                                <div className="mainProductcard">
+                                  <Link to={`/product-details/${item.id}`}>
+                                    <img src={cleanImageUrl(item.image)} />
+                                    <h4>{item.name}</h4>
+                                    <p>{item.unit_value} {item.unit}</p>
+                                    <span>Karat : {item.purity}</span>
+                                    <div className="product-btnarea">
+                                      <Link to="/add-to-cart" className="product-addBtn">
+                                        Add To Cart
+                                      </Link>
+                                    </div>
+                                  </Link>
+                                </div>
+                          }
+
+                        </Col>
+                      ))
+                      }
+
                     </Row>
                   </Tab.Pane>
                   <Tab.Pane eventKey={data}>
@@ -270,26 +313,27 @@ function Product(props) {
                         <div className="tab-content" id="pills-tabContent">
                           <div className="tab-pane fade show active" id="arhaallproduct" role="tabpanel" aria-labelledby="arhaallproduct-tab">
                             <Row>
-                            {filter && dataList ? (
-                              dataList.map((item) => (
-                                <Col lg={4} className="mb-4" key={item.id}>
-                                  <div className="mainProductcard">
-                                    <Link to={`/product-details/${item.id}`}>
-                                      <img src={cleanImageUrl(item.image)} alt={item.name} />
-                                      <h4>{item.name}</h4>
-                                      <p>{item.unit}</p>
-                                      <div className="product-btnarea">
-                                        <Link to="/add-to-cart" className="product-addBtn">
-                                          Add To Cart
-                                        </Link>
-                                      </div>
-                                    </Link>
-                                  </div>
-                                </Col>
-                              ))
-                            ) : (
-                              <div>No data available.</div>
-                            )}
+                              {filter && dataList ? (
+                                dataList.map((item) => (
+                                  <Col lg={4} className="mb-4" key={item.id}>
+                                    <div className="mainProductcard">
+                                      <Link to={`/product-details/${item.id}`}>
+                                        <img src={cleanImageUrl(item.image)} alt={item.name} />
+                                        <h4>{item.name}</h4>
+                                        <p>{item.unit_value} {item.unit}</p>
+                                        <span>Karat : {item.purity}</span>
+                                        <div className="product-btnarea">
+                                          <Link to="/add-to-cart" className="product-addBtn">
+                                            Add To Cart
+                                          </Link>
+                                        </div>
+                                      </Link>
+                                    </div>
+                                  </Col>
+                                ))
+                              ) : (
+                                <div>No data available.</div>
+                              )}
                             </Row>
                           </div>
                           <div className="tab-pane fade" id="pills-arha" role="tabpanel" aria-labelledby="pills-arha-tab">
