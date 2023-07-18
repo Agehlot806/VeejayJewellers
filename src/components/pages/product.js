@@ -103,6 +103,7 @@ function Product(props) {
 
   useEffect(() => {
     arhaProduct()
+    womens()
   }, [])
   const [arhadata, setarhadata] = useState([])
   const arhaProduct = () => {
@@ -146,6 +147,19 @@ function Product(props) {
     setallproduct(allproduct.filter((item) => item.purity === "18k"))
   }
 
+
+  const [womendata, setWomenData] = useState([])
+  const womens = () => {
+    axios
+      .get(`${BASE_URL}/products/latest`)
+      .then((response) => {
+        console.log(response.data.data)
+        setWomenData(response.data.data)
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
 
   return (
 
@@ -207,18 +221,16 @@ function Product(props) {
                       </label>
                       <div>
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="checkbox" id="inlineCheckbox1" onClick={handleCheck18} />
-                          <label className="form-check-label" htmlFor="inlineCheckbox1">18</label>
+                          <input className="form-check-input" type="checkbox" onClick={handleCheck18} />
+                          <label className="form-check-label" >18</label>
                         </div>
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="checkbox" id="inlineCheckbox2" onClick={handleCheck22} />
-                          <label className="form-check-label" htmlFor="inlineCheckbox2">22</label>
+                          <input className="form-check-input" type="checkbox" onClick={handleCheck22} />
+                          <label className="form-check-label" >22</label>
                         </div>
                         <div className="form-check form-check-inline">
-                          {/* <div> */}
-                          <input className="form-check-input" type="checkbox" id="inlineCheckbox3" onClick={handleCheck24} />
-                          <label className="form-check-label" htmlFor="inlineCheckbox3">24</label>
-                          {/* </div> */}
+                          <input className="form-check-input" type="checkbox" onClick={handleCheck24} />
+                          <label className="form-check-label" >24</label>
                         </div>
                       </div>
                       {/* <input
@@ -240,9 +252,10 @@ function Product(props) {
                 </div>
                 <div className="tabBrands">
                   <h3>Catalogue</h3>
-                  <h5>Bangle</h5>
-                  <h5>Ring</h5>
-                  <h5>bracelets</h5><h5>Gold</h5><h5>NECKLACE</h5>
+
+                  {womendata.map((item, index) => (
+                    <h5>{item.name}</h5>
+                  ))}
                 </div>
                 <div className="product-banner">
                   <img src={image14} />

@@ -94,7 +94,7 @@ function Blog() {
                           <Row>
                             <Col lg={8}>
                             <div className="blog-comment">
-                              <Link><i className="fa fa-user" /> alexa</Link>
+                              <Link><i className="fa fa-user" /> {blog.author}</Link>
                               <Link><i className="fa fa-commenting-o" /> 20 Comment</Link>
                               </div>
                             </Col>

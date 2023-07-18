@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from 'react';
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
@@ -205,7 +205,49 @@ function SignupWholesaler() {
     setconfirmpassword(formattedNumber);
   };
 
-  
+  const [states, setStates] = useState([]);
+  const [selectedState, setSelectedState] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+  useEffect(() => {
+    fetchDataAll();
+  }, []);
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+  const fetchDataAll = async () => {
+    try {
+      const response = await fetch('http://veejayjewels.com/api/v1/auth/state');
+      const data = await response.json();
+      setStates(data.state);
+    } catch (error) {
+      console.error('ERROR FOUND---->>>>', error);
+    }
+  };
+  const toggleDropdown = () => {
+    setIsDropdownOpen((prevState) => !prevState);
+  };
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setIsDropdownOpen(false);
+    }
+  };
+  const inputSearch = (e) => {
+    setSearchTerm(e.target.value);
+    setIsDropdownOpen(true); // Show the dropdown when typing in the input
+  };
+  const handleOptionClick = (state) => {
+    setSelectedState(state);
+    setIsDropdownOpen(false);
+    setSearchTerm('');
+  };
+  const filteredStates = states.filter((item) =>
+    item.state_name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
 
   return (
@@ -311,7 +353,7 @@ function SignupWholesaler() {
                             autoComplete="new-email"
                             value={email}
                             onChange={handleChangeEmail}
-                            // {/* onChange={(e) => setemail(e.target.value)} */}
+                          // {/* onChange={(e) => setemail(e.target.value)} */}
                           />
                           {error && email.length <= 0 ? (
                             <span className="validationErr">
@@ -430,6 +472,26 @@ function SignupWholesaler() {
                               </option>
                             ))}
                           </Form.Select>
+                          <div ref={dropdownRef} className="searchable-select">
+                            <div className="select-input" onClick={toggleDropdown}>
+                              <Form.Label>{selectedState ? selectedState.state_name : 'Select a state'}</Form.Label>
+                            </div>
+                            <input
+                              type="text"
+                              value={searchTerm}
+                              onChange={inputSearch}
+                              placeholder="Search state..."
+                            />
+                            {isDropdownOpen && (
+                              <Form.Select className="select-options">
+                                {filteredStates.map((state) => (
+                                  <option key={state.id} onClick={() => handleOptionClick(state)}>
+                                    {state.state_name}
+                                  </option>
+                                ))}
+                              </Form.Select>
+                            )}
+                          </div>
                           {error && state.length <= 0 ? (
                             <span className="validationErr">
                               State is required.
@@ -438,6 +500,7 @@ function SignupWholesaler() {
                             ""
                           )}
                         </Form.Group>
+                        
                         <Form.Group as={Col}>
                           <Form.Label>
                             City<span style={{ color: "red" }}>*</span>
