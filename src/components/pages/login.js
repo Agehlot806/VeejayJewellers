@@ -11,7 +11,6 @@ function Login() {
   const [phone, setphone] = useState("");
   const [password, setpassword] = useState("");
 
-
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -35,7 +34,10 @@ function Login() {
             toast.error("Invalid credential");
           }
           localStorage.setItem("id", data.data.id);
+          localStorage.setItem("city", data.data.city);
+          localStorage.setItem("pincode", data.data.pincode);
           localStorage.setItem("status", data.data.status);
+          localStorage.setItem("state", data.data.state);
           localStorage.setItem("profileImage", data.data.image);
           if (data.message === "Login Successfull") {
             navigate("/");
@@ -51,7 +53,7 @@ function Login() {
   };
   const handlePhoneNumberChange = (event) => {
     const input = event.target.value;
-    const numericValue = input.replace(/\D/g, ''); // Remove non-digit characters
+    const numericValue = input.replace(/\D/g, ""); // Remove non-digit characters
 
     // Restrict to 10 digits
     const formattedNumber = numericValue.slice(0, 10);
@@ -109,7 +111,9 @@ function Login() {
                 <h4>Sign Into Your Account</h4>
                 <div>
                   <Form.Group className="mb-3">
-                    <Form.Label>Mobile Number <span style={{ color: "red" }}>*</span></Form.Label>
+                    <Form.Label>
+                      Mobile Number <span style={{ color: "red" }}>*</span>
+                    </Form.Label>
                     <Form.Control
                       autoComplete="new-number"
                       type="number"
@@ -122,7 +126,9 @@ function Login() {
                   </Form.Group>
 
                   <Form.Group className="mb-3">
-                    <Form.Label>Password <span style={{ color: "red" }}>*</span></Form.Label>
+                    <Form.Label>
+                      Password <span style={{ color: "red" }}>*</span>
+                    </Form.Label>
                     <Form.Control
                       autoComplete="new-password"
                       type="password"
@@ -148,7 +154,6 @@ function Login() {
                       Signup User here
                     </Link>
                   </p>
-
                 </div>
               </div>
             </Col>

@@ -142,8 +142,9 @@ function Profile() {
   };
 
   useEffect(() => {
-    getDataAll();
     EditProfile();
+    getDataAll();
+   
     if (city) {
       Getdatacity(city);
     }

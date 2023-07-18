@@ -1,52 +1,54 @@
-import React from 'react'
-import Header from '../../directives/header'
-import { Col, Row, Table, Container } from 'react-bootstrap'
-import ring2 from '../../assets/images/img/ring2.png'
-import Footer from '../../directives/footer'
+import React from "react";
+import Header from "../../directives/header";
+import { Col, Row, Table, Container } from "react-bootstrap";
+import ring2 from "../../assets/images/img/ring2.png";
+import Footer from "../../directives/footer";
 import border from "../../assets/images/banner/border.png";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import product2 from "../../assets/images/img/product2.png";
-import { BASE_URL } from '../../Constant/Index'
+import { BASE_URL } from "../../Constant/Index";
 import logo from "../../assets/images/logo/logo.png";
-import { useState } from 'react'
-import { useEffect } from 'react'
+import { useState } from "react";
+import { useEffect } from "react";
 function Checkinvoice() {
-useEffect(()=>{
+  const Id = localStorage.getItem("id");
+  console.log("id", Id);
+
+  useEffect(() => {
     productsList();
-},[])
-    const loginId = localStorage.getItem("id");
-    // console.log("loginId", loginId);
-    const [orderlistdata, setOrderListData] = useState("")
-    const productsList = async () => {
-        var headers = {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "http://localhost:3000/",
-        };
-        await fetch(
-            `${BASE_URL}/products/list`,
-            {
-                method: "POST",
-                body: {
-                    id: loginId
-                },
-                headers: headers,
-            }
-        )
-            .then((Response) => Response.json())
-            .then((data) => {
-                console.log("ResponseResponseResponseResponse", data);
-                setOrderListData(data.data)
-            })
-            .catch((error) => {
-                console.error("ERROR FOUND---->>>>" + error);
-            });
+  }, []);
+
+  const loginId = localStorage.getItem("id");
+  // console.log("loginId", loginId);
+  const [orderlistdata, setOrderListData] = useState([]);
+
+  const productsList = async () => {
+    const requestBody = {
+      id: Id,
     };
-    // console.log("orderlistdata", orderlistdata);
-    return (
-        <>
-            <Header />
-            {/* <section className="section-padding">
+
+    fetch("https://veejayjewels.com/api/v1/products/list", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestBody),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Handle the response data here
+        setOrderListData(data.data);
+      })
+      .catch((error) => {
+        // Handle errors here
+        console.error("Error:", error);
+      });
+  };
+  // console.log("orderlistdata", orderlistdata);
+  return (
+    <>
+      <Header />
+      {/* <section className="section-padding">
                 <Row className="justify-content-center mb-3">
                     <Col lg={5}>
                         <Table responsive className="productDetailTable">
@@ -107,38 +109,37 @@ useEffect(()=>{
                     </Link>
                 </div>
             </section> */}
-            {/* <button onClick={productsList}>productsList</button> */}
-            <section className="section-padding">
-                <Container>
-                    <Row className="justify-content-center">
-                        <Col lg={7}>
-                            <div className="aboutHome">
-                                <h3>Orders Products</h3>
-                                <img src={border} />
-                            </div>
-                        </Col>
-                    </Row>
-                    <Row className="mt-4 mb-4">
-                        {orderlistdata ? (
-                            orderlistdata.map((item, index) => (
-                                <Col lg={4} sm={4} xs={6} className="mb-4">
-                                    <Link to={"/order-invoice/"+item.id}>
-                                    <div className="mainProductcard">
-                                        <img src={logo} />
-                                        <h4>Order Id: {item.id}</h4>
-                                        <h4>Order Status: {item.order_status}</h4>
-                                        <h4>Order address: {item.delivery_address}</h4>
-                                    </div>
-                                    </Link>
-                                </Col>
-                            ))
-                        ) : null}
-                    </Row>
-                </Container>
-            </section>
-            <Footer />
-        </>
-    )
+      {/* <button onClick={productsList}>productsList</button> */}
+      <section className="section-padding">
+        <Container>
+          <Row className="justify-content-center">
+            <Col lg={7}>
+              <div className="aboutHome">
+                <h3>Orders Products</h3>
+                <img src={border} />
+              </div>
+            </Col>
+          </Row>
+          <Row className="mt-4 mb-4">
+            {orderlistdata
+              ? orderlistdata.map((item, index) => (
+                  <Col lg={4} sm={4} xs={6} className="mb-4">
+                    <Link to={"/order-invoice/" + item.id}>
+                      <div className="mainProductcard">
+                        <img src={logo} />
+                        <h4>Order Id: {item.id}</h4>
+                        <h4>Order Status: {item.order_status}</h4>
+                        <h4>Order address: {item.delivery_address}</h4>
+                      </div>
+                    </Link>
+                  </Col>
+                ))
+              : null}
+          </Row>
+        </Container>
+      </section>
+      <Footer />
+    </>
+  );
 }
-export default Checkinvoice
-
+export default Checkinvoice;

@@ -77,19 +77,18 @@ function Home(props) {
   const [latestproduct, setlatestproduct] = useState([]);
   const [allproduct, setallproduct] = useState([]);
   const [posts, setPosts] = useState([]);
-  const [videos, setVideoUrls] = useState('');
-  const [videoUrl, setVideoUrl] = useState('');
+  const [videos, setVideoUrls] = useState("");
+  const [videoUrl, setVideoUrl] = useState("");
   const [data, setData] = useState([]);
-  const [secondbanner, setsecondbanner] = useState([])
-  const [thirdbanner, setthirdbanner] = useState([])
-  const [bangledata, setbangledata] = useState([])
+  const [secondbanner, setsecondbanner] = useState([]);
+  const [thirdbanner, setthirdbanner] = useState([]);
+  const [bangledata, setbangledata] = useState([]);
 
   const [showAlert, setShowAlert] = useState(localStorage.getItem("status"));
   // const profile = localStorage.getItem("profileImage");
   const handleDismiss = () => {
     setShowAlert(false);
   };
-
 
   useEffect(() => {
     // Fetch the data
@@ -109,6 +108,7 @@ function Home(props) {
     thirdBanner();
     banglethirds();
   }, []);
+
   useEffect(() => {
     axios
       .get(`${BASE_URL}/banners1`)
@@ -120,7 +120,7 @@ function Home(props) {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  })
+  }, []);
 
   const fetchBlogs = async () => {
     try {
@@ -183,14 +183,14 @@ function Home(props) {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  })
+  }, []);
 
   const secondBanner = () => {
     axios
       .get(`${BASE_URL}/banners1`)
       .then((response) => {
-        console.log(response.data.data)
-        setsecondbanner(response.data.data)
+        console.log(response.data.data);
+        setsecondbanner(response.data.data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -200,8 +200,8 @@ function Home(props) {
     axios
       .get(`${BASE_URL}/banners1`)
       .then((response) => {
-        console.log(response.data.data)
-        setthirdbanner(response.data.data)
+        console.log(response.data.data);
+        setthirdbanner(response.data.data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -218,14 +218,13 @@ function Home(props) {
     }
   };
 
-
-  const [banglethirddata, setbanglethirdData] = useState([])
+  const [banglethirddata, setbanglethirdData] = useState([]);
   const banglethirds = () => {
     axios
       .get(`${BASE_URL}/products/latest`)
       .then((response) => {
-        console.log(response.data.data)
-        setbanglethirdData(response.data.data)
+        console.log(response.data.data);
+        setbanglethirdData(response.data.data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -278,7 +277,6 @@ function Home(props) {
             <Row>
               <Col lg={7} sm={7}>
                 <div className="home-content">
-
                   <h1>Veejay Jewels</h1>
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -397,7 +395,7 @@ function Home(props) {
                   <img src={item.image} alt="" />
                   <h3>{item.name}</h3>
                   {/* <Link to={`/products/${item.id}/${item.name}`}> */}
-                  <Link to='/products'>
+                  <Link to="/products">
                     <i className="fa fa-angle-double-right" /> Read More
                   </Link>
                   {/* {item.name === "Aaraha"
@@ -425,7 +423,6 @@ function Home(props) {
         </Container>
       </section>
       <section className="sliderBangle">
-
         <Container fluid className="p-0">
           <Carousel
             swipeable={true}
@@ -462,25 +459,31 @@ function Home(props) {
             </div>
             <div className="main-space">
               <Row>
-                {banglethirddata ? (
-                  banglethirddata.map((item, index) => (
-                    item.name === 'Bangle' && (
-                      <Col lg={4} sm={4} xs={6} className="mb-4">
-                        <div className="mainProductcard">
-                          <img src={cleanImageUrl(item.image)} />
-                          <h4>{item.name}</h4>
-                          <p>{item.unit_value} {item.unit}</p>
-                          <span>Karat : {item.purity}</span>
-                          <div className="product-btnarea">
-                            <Link to='/product-details' className="product-addBtn">
-                              Add To Cart
-                            </Link>
-                          </div>
-                        </div>
-                      </Col>
+                {banglethirddata
+                  ? banglethirddata.map(
+                      (item, index) =>
+                        item.name === "Bangle" && (
+                          <Col lg={4} sm={4} xs={6} className="mb-4">
+                            <div className="mainProductcard">
+                              <img src={cleanImageUrl(item.image)} />
+                              <h4>{item.name}</h4>
+                              <p>
+                                {item.unit_value} {item.unit}
+                              </p>
+                              <span>Karat : {item.purity}</span>
+                              <div className="product-btnarea">
+                                <Link
+                                  to="/product-details"
+                                  className="product-addBtn"
+                                >
+                                  Add To Cart
+                                </Link>
+                              </div>
+                            </div>
+                          </Col>
+                        )
                     )
-                  ))
-                ) : null}
+                  : null}
                 {/* <Col lg={4} sm={4} xs={6} className="mb-4">
                   <div className="mainProductcard">
                     <img src={product4} />
@@ -531,16 +534,16 @@ function Home(props) {
             dotListClass="custom-dot-list-style"
             itemClass="carousel-item-padding-40-px"
           >
-
-            {secondbanner ? (
-              secondbanner.map((item, index) => (
-                item.type === 'second' && (
-                  <div key={item.id} className="homeBack-bg">
-                    <img src={item.image} alt="" />
-                  </div>
+            {secondbanner
+              ? secondbanner.map(
+                  (item, index) =>
+                    item.type === "second" && (
+                      <div key={item.id} className="homeBack-bg">
+                        <img src={item.image} alt="" />
+                      </div>
+                    )
                 )
-              ))
-            ) : null}
+              : null}
             {/* <div>
               <img src={one} />
             </div>
@@ -593,8 +596,10 @@ function Home(props) {
                     <Link to={`/product-details/${item.id}`}>
                       <img src={cleanImageUrl(item.image)} />
                       <h4>{item.name}</h4>
-                      <p>{item.unit_value} {item.unit}</p>
-                                    <span>Karat : {item.purity}</span>
+                      <p>
+                        {item.unit_value} {item.unit}
+                      </p>
+                      <span>Karat : {item.purity}</span>
                       <div className="product-btnarea">
                         <Link to="/add-to-cart" className="product-addBtn">
                           Add To Cart
@@ -611,7 +616,7 @@ function Home(props) {
             </Link>
           </div>
         </Container>
-      </section >
+      </section>
 
       <section className="new-arr">
         <Container fluid className="p-0">
@@ -635,7 +640,7 @@ function Home(props) {
           >
             {Array.isArray(videos) && videos.length > 0 ? (
               videos
-                .filter((video) => video.type === 'video')
+                .filter((video) => video.type === "video")
                 .map((video) => (
                   // <Col lg={6}>
                   <div key={video.id} className="videoarea">
@@ -680,10 +685,12 @@ function Home(props) {
                     <Link to={`/product-details/${item.id}`}>
                       <img src={cleanImageUrl(item.image)} />
                       <h4>{item.name}</h4>
-                      <p>{item.unit_value} {item.unit}</p>
-                                    <span>Karat : {item.purity}</span>
+                      <p>
+                        {item.unit_value} {item.unit}
+                      </p>
+                      <span>Karat : {item.purity}</span>
                       <div className="product-btnarea">
-                        <Link to='/add-to-cart' className="product-addBtn">
+                        <Link to="/add-to-cart" className="product-addBtn">
                           Add To Cart
                         </Link>
                       </div>
@@ -787,7 +794,6 @@ function Home(props) {
                   </div>
                 </Col>
               ))}
-
           </Row>
           <div className="text-center mt-3">
             <Link to="/blog" className="main-btn">
@@ -845,23 +851,21 @@ function Home(props) {
                 </div>
               </Col>
             </Row> */}
-            {thirdbanner ? (
-              thirdbanner.map((item, index) => (
-                item.type === 'thrid' && (
-                  <div key={item.id} className="homeBack-bg">
-                    <img src={item.image} alt="" />
-                  </div>
+            {thirdbanner
+              ? thirdbanner.map(
+                  (item, index) =>
+                    item.type === "thrid" && (
+                      <div key={item.id} className="homeBack-bg">
+                        <img src={item.image} alt="" />
+                      </div>
+                    )
                 )
-              ))
-            ) : null}
+              : null}
           </Carousel>
         </Container>
-
       </section>
       <Footer />
     </>
-
-
   );
 }
 
