@@ -8,11 +8,47 @@ import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { BASE_URL } from "../../Constant/Index";
 import { useState } from "react";
+import Modal from "react-modal";
 import axios from "axios";
+import { Button } from "reactstrap";
+
+const customStyles = {
+  content: {
+    width: "50%",
+    height: "50%",
+    maxWidth: "300px",
+    margin: "0 auto",
+    border: "1px solid #ccc",
+    borderRadius: "5px",
+    padding: "20px",
+  },
+};
+
 function Orderinvoice() {
   const { id } = useParams();
-  console.log("id", id);
+  const [productName, setProductName] = useState("");
   const [orderlistdata, setOrderListData] = useState([]);
+  const [productOrderId, setProductOrderId] = useState("");
+  const [productId, setProductId] = useState("");
+  const [productPrice, setProductPrice] = useState("");
+  const [quantity, setProductQuantity] = useState("");
+  const [variation, setVariation] = useState("");
+  const [textAmount, setTextAmount] = useState("");
+  const [isPrPopupOpen, setIsPrPopupOpen] = useState(false);
+
+  const handleOpenPrPopup = () => {
+    setIsPrPopupOpen(true);
+  };
+
+  const handleClosePrPopup = () => {
+    setIsPrPopupOpen(false);
+  };
+  const handleSubmitPr = () => {
+    // Handle PR submission logic here
+    // You can send the PR data to the server or perform other actions
+    // After submission, close the popup
+    handleClosePrPopup();
+  };
 
   useEffect(() => {
     productsList();
@@ -32,12 +68,21 @@ function Orderinvoice() {
       })
       .then((response) => {
         setOrderListData(response.data.data);
+        setProductOrderId(response.data.data[0].order_id);
+        setProductId(response.data.data[0].product_id);
+        setProductQuantity(response.data.data[0].quantity);
+        setProductPrice(response.data.data[0].price);
+        setProductName(response.data.data[0].productName);
+        setVariation(response.data.data[0].variation);
+        setTextAmount(response.data.data[0].tax_amount);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
   };
-  console.log("orderlistdataorderlistdata", orderlistdata);
+  console.log("====================================");
+  console.log("productname", productName);
+  console.log("====================================");
   return (
     <>
       <Header />
@@ -45,75 +90,75 @@ function Orderinvoice() {
       <section className="section-padding">
         <Row className="justify-content-center mb-3">
           <Col lg={5}>
-            {/* <Table responsive className="productDetailTable">
+            <Table responsive className="productDetailTable">
               <tbody>
                 <tr>
-                  <th>Product Name</th>
-                  <td>Gold Ring</td>
+                  <th>Product Id</th>
+                  <td>{productId}</td>
                 </tr>
                 <tr>
-                  <th>Size</th>
-                  <td>2.5</td>
-                </tr>
-                <tr>
-                  <th>Quantity</th>
-                  <td>4 Pcs</td>
-                </tr>
-                <tr>
-                  <th>Weight</th>
-                  <td>10 gms</td>
-                </tr>
-                <tr>
-                  <th>Product Name</th>
-                  <td>Gold Ring</td>
-                </tr>
-                <tr>
-                  <th>Size</th>
-                  <td>2.5</td>
+                  <th>Order Id</th>
+                  <td>{productOrderId}</td>
                 </tr>
                 <tr>
                   <th>Quantity</th>
-                  <td>4 Pcs</td>
+                  <td>{quantity}</td>
                 </tr>
                 <tr>
+                  <th>Price</th>
+                  <td>{productPrice}</td>
+                </tr>
+                <tr>
+                  <th>Product Name</th>
+                  <td>{productName}</td>
+                </tr>
+                <tr>
+                  <th>Variation</th>
+                  <td>{variation}</td>
+                </tr>
+                <tr>
+                  <th>Text Amount</th>
+                  <td>{textAmount}</td>
+                </tr>
+                {/* <tr>
                   <th>Weight</th>
                   <td>10 gms</td>
-                </tr>
+                </tr> */}
               </tbody>
-            </Table> */}
-                       <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>User ID</th>
-          <th>Product ID</th>
-          <th>Product Name</th>
-          {/* Add other table headers here */}
-        </tr>
-      </thead>
-      <tbody>
-        {orderlistdata.map((item) => (
-          <tr key={item.id}>
-            <td>{item.id}</td>
-            <td>{item.user_id}</td>
-            <td>{item.product_id}</td>
-            <td>{item.product_name}</td>
-            {/* Add other table data here */}
-          </tr>
-        ))}
-      </tbody>
-    </table>
+            </Table>
+
             <div className="add-border">
               <img src={border} />
             </div>
           </Col>
         </Row>
         <div className="text-center">
-          <Link to="/" className="showSize">
+          <Link className="showSize" onClick={handleOpenPrPopup}>
             Submit
           </Link>
         </div>
+        <Modal
+          isOpen={isPrPopupOpen}
+          onRequestClose={handleClosePrPopup}
+          ariaHideApp={false}
+          style={customStyles}
+        >
+          <h2>Confirm Order</h2>
+          {/* Add form fields for PR details */}
+          {/* Implement submit and close buttons */}
+          <Button
+            className="btn btn-danger"
+            style={{ marginRight: "30px" }}
+            onClick={handleClosePrPopup}
+          >
+            No
+          </Button>
+          <Button className="btn btn-success" onClick={handleSubmitPr}>
+            Yes
+          </Button>
+        </Modal>
       </section>
+
       <Footer />
     </>
   );

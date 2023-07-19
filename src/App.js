@@ -50,7 +50,6 @@ const ScrollToTop = () => {
 };
 
 const App = ({ item }) => {
-
   // useEffect(() => {
   //   const disableRightClick = (e) => {
   //     e.preventDefault();
@@ -60,8 +59,7 @@ const App = ({ item }) => {
   //     document.removeEventListener('contextmenu', disableRightClick);
   //   };
   // }, []);
-  
-  
+
   return (
     <>
       <BrowserRouter>
@@ -80,12 +78,12 @@ const App = ({ item }) => {
           <Route path="/signUp-wholesaler" element={<SignupWholesaler />} />
           <Route path="/custom-design" element={<Customdesign />} />
           <Route path="/all-products" element={<Allproduct />} />
-          <Route path="/products" element={<Product item={item}/>} />
+          <Route path="/products" element={<Product item={item} />} />
           <Route path="/product-variety" element={<Productvariety />} />
           <Route path="/product-details/:id" element={<ProductDetails />} />
           <Route path="/add-to-cart" element={<Addcart />} />
           <Route path="/check-invoice" element={<Checkinvoice />} />
-          <Route path="/order-invoice" element={<Orderinvoice />} />
+          <Route path="/order-invoice/:id" element={<Orderinvoice />} />
           <Route path="/product-lock" element={<Productlock />} />
           <Route path="/calculator" element={<Calculator />} />
           <Route path="/forgot-password" element={<Forgotpassword />} />

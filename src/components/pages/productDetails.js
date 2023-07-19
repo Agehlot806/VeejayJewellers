@@ -141,7 +141,7 @@ function ProductDetails(props) {
         console.error("Error fetching data:", error);
       });
   };
-  console.log("variationstype", variationstype);
+  console.log("variationstype", name);
   useEffect(() => {
     GetProductDetails();
     thirdBanner();
