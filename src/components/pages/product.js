@@ -10,6 +10,8 @@ import image14 from '../../assets/images/banner/image 14.png'
 import image15 from '../../assets/images/banner/image 15.png'
 // import ApiHelper from '../utils/ApiHelper';
 import Carousel from "react-multi-carousel";
+import _ from 'lodash';
+
 const clinetreview = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
@@ -33,11 +35,19 @@ function Product(props) {
   const [brandcategories, setbrandcategories] = useState([]);
   const [allproduct, setallproduct] = useState([]);
   const [thirdbanner, setthirdbanner] = useState([])
+  const pageSize = 24;
+  // const [brandcategories, setBrandCategories] = useState([]);
+  const [paginatedCategories, setPaginatedCategories] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
   useEffect(() => {
     categorys();
     allProduct();
     thirdBanner();
   }, []);
+  useEffect(() => {
+    // Update the paginated categories whenever brandcategories or currentPage changes
+    pagination(currentPage);
+  }, [allproduct, currentPage]);
   const categorys = () => {
     axios
       .get(`${BASE_URL}/categories`)
@@ -103,7 +113,6 @@ function Product(props) {
 
   useEffect(() => {
     arhaProduct()
-    womens()
   }, [])
   const [arhadata, setarhadata] = useState([])
   const arhaProduct = () => {
@@ -147,19 +156,16 @@ function Product(props) {
     setallproduct(allproduct.filter((item) => item.purity === "18k"))
   }
 
+  const pageCount = allproduct ? Math.ceil(allproduct.length / pageSize) : 0;
+  const pages = _.range(1, pageCount + 1);
 
-  const [womendata, setWomenData] = useState([])
-  const womens = () => {
-    axios
-      .get(`${BASE_URL}/products/latest`)
-      .then((response) => {
-        console.log(response.data.data)
-        setWomenData(response.data.data)
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
+  const pagination = (pageNo) => {
+    setCurrentPage(pageNo);
+    const startIndex = (pageNo - 1) * pageSize;
+    const paginated = _(allproduct).slice(startIndex).take(pageSize).value();
+    setPaginatedCategories(paginated);
   };
+ 
 
   return (
 
@@ -188,6 +194,8 @@ function Product(props) {
                         </Nav.Item>
                       ))
                     ) : null}
+
+
                     <h3>Sort by</h3>
                     <div className="checkbox-bg">
                       <div className="form-check">
@@ -252,10 +260,9 @@ function Product(props) {
                 </div>
                 <div className="tabBrands">
                   <h3>Catalogue</h3>
-
-                  {womendata.map((item, index) => (
-                    <h5>{item.name}</h5>
-                  ))}
+                  <h5><Link to="/women" >Women</Link></h5>
+                  <h5><Link to="/men" >Men</Link></h5>
+                  <h5><Link to="/kids" >Kids</Link></h5>
                 </div>
                 <div className="product-banner">
                   <img src={image14} />
@@ -265,7 +272,7 @@ function Product(props) {
                 <Tab.Content>
                   <Tab.Pane eventKey="AllProduct">
                     <Row>
-                      {allproduct.map((item) => (
+                      {paginatedCategories.map((item) => (
                         <Col lg={4} sm={4} xs={6} className="mb-4" key={item.id}>
                           <div className="mainProductcard">
                             <Link to={`/product-details/${item.id}`}>
@@ -303,6 +310,20 @@ function Product(props) {
                       }
 
                     </Row>
+                    <nav>
+        <ul className="pagination">
+          {pages.map((page) => (
+            <li
+              key={page}
+              className={page === currentPage ? 'page-item active' : 'page-item'}
+            >
+              <button className="page-link" onClick={() => pagination(page)}>
+                {page}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </nav>
                   </Tab.Pane>
                   <Tab.Pane eventKey={data}>
                     <Row>

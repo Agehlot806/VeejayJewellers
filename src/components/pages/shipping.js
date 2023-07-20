@@ -91,6 +91,12 @@ function Addcart() {
   const handlePlaceOrder = () => {
     const cards = carddata.map((item) => {
       const variantData = JSON.parse(item.variant);
+      if (!Array.isArray(variantData) || variantData.length === 0) {
+        // Handle the case when variantData is not an array or is empty
+        console.error("Invalid variant data for item:", item);
+        return null;
+      }
+
       const { product_id, quantity, variant } = variantData[0];
 
       return {
@@ -224,21 +230,27 @@ function Addcart() {
           backdrop="static"
           keyboard={false}
         >
-          <Modal.Header closeButton>
-            <Modal.Title>Order Confirmation</Modal.Title>
-          </Modal.Header>
-          {/* <Modal.Body>
-            I will not close if you click outside me. Don not even try to press
-            escape key.
-          </Modal.Body> */}
-          <Modal.Footer>
-            <Button variant="btn btn-danger" onClick={handleClose}>
-              No
-            </Button>
-            <Button variant="primary" onClick={handlePlaceOrder}>
-              Yes
-            </Button>
-          </Modal.Footer>
+          {/* <Modal.Header closeButton>
+            <Modal.Title></Modal.Title>
+          </Modal.Header> */}
+          <Modal.Body>
+            <div className="show-area">
+              <div className="show-areatext">
+                <div className="text-center">
+                  <h3>Order Confirmation</h3>
+                </div>
+              </div>
+
+              <div className="showSizearea">
+                <Button variant="btn" onClick={handleClose}>
+                  <i className="fa fa-times" /> No
+                </Button>
+                <Button variant="btn" onClick={handlePlaceOrder}>
+                  <i className="fa fa-check" /> Yes
+                </Button>
+              </div>
+            </div>
+          </Modal.Body>
         </Modal>
       </section>
       <Footer />

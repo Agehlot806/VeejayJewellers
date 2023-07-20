@@ -1427,7 +1427,9 @@ nav.header-bg {
   font-weight: 600;
   font-size: 18px;
 }
-
+.blogs-card h5 {
+  color: #000;
+}
 /* ======================== Login area css ==================================== */
 
 .mainForm-bg {
@@ -2188,7 +2190,10 @@ table.productDetailTable.table tr td label {
   letter-spacing: 0em;
   margin: 20px 0;
 }
-
+.tabBrands h5 a {
+  color: #000;
+  margin: 10px 0;
+}
 .product-banner img {
   width: 100%;
   margin: 25px 0;
@@ -2474,4 +2479,56 @@ input::-webkit-inner-spin-button {
 }
 .add-card-AREA table td {
   border-bottom-width: 0 !important;
+}
+.Newsletter img {
+  width: 150px;
+}
+.Newsletter {
+  background: linear-gradient(356deg, #fff 32%, #93620747 100%, #fff 100%);
+  border-radius: 30px;
+  padding: 10px 0 70px;
+  text-align: center;
+}
+.Newsletter h1 {
+  font-family: David Libre;
+  font-size: 40px;
+  font-weight: 700;
+  text-align: center;
+}
+.Newsletter input {
+  background: hsl(38.18deg 34.37% 87.45%);
+  border: none;
+  border-radius: 10px;
+  height: 50px;
+}
+.Newsletter button {
+  background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%);
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  position: absolute;
+  right: 20px;
+  top: 7px;
+}
+.Newsletter form {
+  margin: 30px 0 0;
+  position: relative;
+}
+
+.pagination {
+    --bs-pagination-color: #8b5d06 !important;
+    --bs-pagination-active-bg: #8b5d06!important;
+    --bs-pagination-active-border-color: #8b5d06!important;
+}
+.page-link:focus {
+  color: #000!important;
+  box-shadow: none!important;
+
+}
+.showSizearea button {
+  background: linear-gradient(280deg, #6A4500 0%, #936207 100%);
+  color: #fff !important;
+  margin: 0 5px 0 5px;
+  padding: 5px 30px;
+  font-size: 20px;
 }
