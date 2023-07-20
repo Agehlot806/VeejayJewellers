@@ -465,20 +465,22 @@ function Home(props) {
                         item.name === "Bangle" && (
                           <Col lg={4} sm={4} xs={6} className="mb-4">
                             <div className="mainProductcard">
-                              <img src={cleanImageUrl(item.image)} />
-                              <h4>{item.name}</h4>
-                              <p>
-                                {item.unit_value} {item.unit}
-                              </p>
-                              <span>Karat : {item.purity}</span>
-                              <div className="product-btnarea">
-                                <Link
-                                  to="/product-details"
-                                  className="product-addBtn"
-                                >
-                                  Add To Cart
-                                </Link>
-                              </div>
+                              <Link to={`/product-details/${item.id}`}>
+                                <img src={cleanImageUrl(item.image)} />
+                                <h4>{item.name}</h4>
+                                <p>
+                                  {item.unit_value} {item.unit}
+                                </p>
+                                <span>Karat : {item.purity}</span>
+                                <div className="product-btnarea">
+                                  <Link
+                                    to={`/product-details/${item.id}`}
+                                    className="product-addBtn"
+                                  >
+                                    Add To Cart
+                                  </Link>
+                                </div>
+                              </Link>
                             </div>
                           </Col>
                         )
@@ -601,7 +603,10 @@ function Home(props) {
                       </p>
                       <span>Karat : {item.purity}</span>
                       <div className="product-btnarea">
-                        <Link to="/add-to-cart" className="product-addBtn">
+                        <Link
+                          to={`/product-details/${item.id}`}
+                          className="product-addBtn"
+                        >
                           Add To Cart
                         </Link>
                       </div>
