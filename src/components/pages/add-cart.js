@@ -24,6 +24,7 @@ function Addcart() {
   const [carddata, setCardData] = useState([]);
 
   const latestsapidata = () => {
+    // alert("")
     axios
       .get(`${BASE_URL}/products/card`)
       .then((response) => {
@@ -34,7 +35,7 @@ function Addcart() {
         console.error("Error fetching data:", error);
       });
   };
-  //   console.error("Error fetching data:", variantdata);
+  console.error("Error fetching data:", carddata);
   const deleteDataById = (id) => {
     axios
       .post(`${BASE_URL}/products/discard?id=${id}`)
@@ -121,7 +122,7 @@ function Addcart() {
     // const deliveryAddress = `${state},${city},${pincode}`;
     const postData = {
       user_id: loginId,
-      delivery_address: state + ", " + city + ", " + pincode,
+      delivery_address: state + " " + city + ", " + pincode,
       cart: cards,
     };
 
@@ -138,7 +139,7 @@ function Addcart() {
     })
       .then((response) => response.json())
       .then((data) => {
-        navigate("/check-invoice");
+        navigate("/shipping");
 
         // Handle the response data here
         console.log(data);
@@ -154,56 +155,75 @@ function Addcart() {
       <Header />
       <section className="section-padding">
         <Container>
-          {carddata
-            ? carddata.map((item, index) => (
-                <div className="add-card-AREA" key={index}>
-                  <Row className="align-self-center mb-3">
-                    <Col lg={4} xs={3}>
-                      <div className="add-cart">
-                        <img src={item.image} alt={item.product_name} />
-                      </div>
-                    </Col>
-                    <Col lg={8} xs={6} className="">
-                      <div className="add-cart-content">
-                        <h2>{item.product_name}</h2>
+          <Row className="justify-content-center">
+            <Col lg={7}>
+              <div className="add-card-AREA">
+                {carddata ? (
+                  carddata.map((item, index) => (
+                    <Row className="align-self-center mb-3" key={index}>
+                      <Col lg={4} xs={3}>
+                        <div className="add-cart">
+                          <img src={item.image} alt={item.product_name} />
+                        </div>
+                      </Col>
+                      <Col lg={8} xs={6} className="">
+                        <div className="add-cart-content">
+                          <h2>{item.product_name}</h2>
 
-                        {item.variant && (
-                          <ul>
-                            {parseVariant(item.variant).map(
-                              (variantItem, index) => (
-                                <li key={index}>
-                                  Variant:{" "}
-                                  {variantItem.variant
-                                    ? variantItem.variant
-                                    : "N/A"}
-                                  , Quantity: {variantItem.quantity}
-                                </li>
-                              )
-                            )}
-                          </ul>
-                        )}
-                        <button
-                          onClick={(e) => deleteDataById(item.id)}
-                          className="showSize"
-                        >
-                          <i className="fa fa-trash-o" />
-                        </button>
-                        {/* <button
+                          {item.variant && (
+                            <ul>
+                              {parseVariant(item.variant).map(
+                                (variantItem, index) => (
+                                  <li key={index}>
+                                    Variant:{" "}
+                                    {variantItem.variant
+                                      ? variantItem.variant
+                                      : "N/A"}
+                                    , Quantity: {variantItem.quantity}
+                                  </li>
+                                )
+                              )}
+                            </ul>
+                          )}
+                          <button
+                            onClick={(e) => deleteDataById(item.id)}
+                            className="showSize"
+                          >
+                            <i className="fa fa-trash-o" />
+                          </button>
+                          {/* <button
                         className="showSize"
                       >
                         <Link to={`/product-details/${item.id}`}><i className="fa fa-pencil" /></Link>
                       </button> */}
+                        </div>
+                      </Col>
+                      <div className="text-center">
+                        <hr />
                       </div>
-                    </Col>
-                  </Row>
-                </div>
-              ))
-            : null}
+                    </Row>
+                  ))
+                ) : (
+                  <span style={{ backgroundColor: "green" }}>
+                    carddataNo Item Add
+                  </span>
+                )}
+              </div>
+            </Col>
+          </Row>
         </Container>
-        <div className="text-center mt-3">
-          <Link className="showSize" onClick={handlePlaceOrder}>
-            Submit
-          </Link>
+
+        <div>
+          <div className="text-center mt-3">
+            <Link className="showSize" to="/shipping">
+              Submit
+            </Link>
+          </div>
+          <div className="text-center mt-3">
+            <Link className="showSize" to="/">
+              Continue Shooping
+            </Link>
+          </div>
         </div>
       </section>
       <Footer />

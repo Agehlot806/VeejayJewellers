@@ -37,6 +37,7 @@ import Orderinvoice from "./components/pages/orderinvoice";
 import Product from "./components/pages/product";
 import Blogdetails from "./components/pages/blog-details";
 import Demo from "./components/pages/demo";
+import Shipping from "./components/pages/shipping";
 
 // ScrollToTop component
 const ScrollToTop = () => {
@@ -102,6 +103,7 @@ const App = ({ item }) => {
           <Route path="/rings" element={<Ring />} />
           <Route path="/earrings" element={<Earrings />} />
           <Route path="/bracelets" element={<Bracelets />} />
+          <Route path="/shipping" element={<Shipping />} />
 
           {/* Catalogue */}
           <Route path="/women" element={<Women />} />

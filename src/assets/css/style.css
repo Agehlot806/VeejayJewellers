@@ -2460,3 +2460,18 @@ input::-webkit-inner-spin-button {
   color: #000;
   font-weight: 600;
 }
+
+.add-card-AREA hr {
+  margin: 26px 0 2px 0;
+  border-top: 1.5px solid #000;
+  width: 80%;
+}
+.add-card-AREA table {
+    --bs-table-bg: transparent !important;
+}
+.add-card-AREA table th {
+  border-bottom-width: 0 !important;
+}
+.add-card-AREA table td {
+  border-bottom-width: 0 !important;
+}

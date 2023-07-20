@@ -115,7 +115,7 @@ function Checkinvoice() {
           <Row className="justify-content-center">
             <Col lg={7}>
               <div className="aboutHome">
-                <h3>Orders Products</h3>
+                <h3>My Orders</h3>
                 <img src={border} />
               </div>
             </Col>

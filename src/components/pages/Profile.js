@@ -11,6 +11,7 @@ function Profile() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
   const [id, setId] = useState(null);
   const [state, setState] = useState("");
@@ -68,6 +69,7 @@ function Profile() {
         setState(response.data.state);
         setPhone(response.data.phone);
         setCity(response.data.city);
+        setAddress(response.data.address);
 
         const imageUrl = `https://veejayjewels.com/public/${response.data.image}`;
         setUploadImage(imageUrl);
@@ -83,7 +85,7 @@ function Profile() {
 
   const updateProfileData = (e) => {
     e.preventDefault();
-
+    console.log("7876876767676");
     const formData = new FormData();
     formData.append("f_name", firstName);
     formData.append("l_name", lastName);
@@ -94,6 +96,7 @@ function Profile() {
     formData.append("state", state);
     formData.append("city", city);
     formData.append("pincode", pincode);
+    formData.append("address", address);
 
     axios
       .post(`${BASE_URL}/customer/update-profile`, formData, {
@@ -144,7 +147,7 @@ function Profile() {
   useEffect(() => {
     EditProfile();
     getDataAll();
-   
+
     if (city) {
       Getdatacity(city);
     }
@@ -231,6 +234,15 @@ function Profile() {
                         </option>
                       ))}
                     </Form.Select>
+                  </Form.Group>
+                  <Form.Group as={Col}>
+                    <Form.Label>Shipping Address</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Enter Full Address"
+                      value={address}
+                      onChange={(e) => setAddress(e.target.value)}
+                    />
                   </Form.Group>
 
                   <Form.Group as={Col}>

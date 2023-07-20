@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "../../directives/header";
-import { Col, Row, Table } from "react-bootstrap";
+import { Button, Modal, Col, Row, Table } from "react-bootstrap";
 import ring2 from "../../assets/images/img/ring2.png";
 import Footer from "../../directives/footer";
 import border from "../../assets/images/banner/border.png";
@@ -8,10 +8,8 @@ import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { BASE_URL } from "../../Constant/Index";
 import { useState } from "react";
-import Modal from "react-modal";
-import axios from "axios";
-import { Button } from "reactstrap";
 
+import axios from "axios";
 const customStyles = {
   content: {
     width: "50%",
@@ -34,21 +32,10 @@ function Orderinvoice() {
   const [quantity, setProductQuantity] = useState("");
   const [variation, setVariation] = useState("");
   const [textAmount, setTextAmount] = useState("");
-  const [isPrPopupOpen, setIsPrPopupOpen] = useState(false);
+  const [show, setShow] = useState(false);
 
-  const handleOpenPrPopup = () => {
-    setIsPrPopupOpen(true);
-  };
-
-  const handleClosePrPopup = () => {
-    setIsPrPopupOpen(false);
-  };
-  const handleSubmitPr = () => {
-    // Handle PR submission logic here
-    // You can send the PR data to the server or perform other actions
-    // After submission, close the popup
-    handleClosePrPopup();
-  };
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   useEffect(() => {
     productsList();
@@ -133,29 +120,29 @@ function Orderinvoice() {
           </Col>
         </Row>
         <div className="text-center">
-          <Link className="showSize" onClick={handleOpenPrPopup}>
+          <Link className="showSize" onClick={handleShow}>
             Submit
           </Link>
         </div>
         <Modal
-          isOpen={isPrPopupOpen}
-          onRequestClose={handleClosePrPopup}
-          ariaHideApp={false}
-          style={customStyles}
+          show={show}
+          onHide={handleClose}
+          backdrop="static"
+          keyboard={false}
         >
-          <h2>Confirm Order</h2>
-          {/* Add form fields for PR details */}
-          {/* Implement submit and close buttons */}
-          <Button
-            className="btn btn-danger"
-            style={{ marginRight: "30px" }}
-            onClick={handleClosePrPopup}
-          >
-            No
-          </Button>
-          <Button className="btn btn-success" onClick={handleSubmitPr}>
-            Yes
-          </Button>
+          <Modal.Header closeButton>
+            <Modal.Title>Modal title</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            I will not close if you click outside me. Don not even try to press
+            escape key.
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary">Understood</Button>
+          </Modal.Footer>
         </Modal>
       </section>
 

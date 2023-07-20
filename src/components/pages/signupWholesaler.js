@@ -1,14 +1,18 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef } from "react";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { useEffect } from "react";
 import axios from "axios";
 import { BASE_URL } from "../../Constant/Index";
+import { useNavigate } from "react-router-dom";
+
 
 function SignupWholesaler() {
+  const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [f_name, setf_name] = useState("");
+  const [address, setAddress] = useState("");
   const [l_name, setl_name] = useState("");
   const [phone, setphone] = useState("");
   const [email, setEmail] = useState("");
@@ -50,6 +54,7 @@ function SignupWholesaler() {
     ) {
       const formData = new FormData();
       formData.append("f_name", f_name);
+      formData.append("address", address);
       formData.append("l_name", l_name);
       formData.append("phone", phone);
       formData.append("email", email);
@@ -73,6 +78,8 @@ function SignupWholesaler() {
         .then((response) => {
           console.log(response);
           toast.success("Registration Successfull");
+          navigate("/login");
+
           // history.push("/all-events");mmit
           // if (
           //   f_name.length == 0 ||
@@ -178,7 +185,7 @@ function SignupWholesaler() {
 
   const handlePhoneNumberChange = (event) => {
     const input = event.target.value;
-    const numericValue = input.replace(/\D/g, ''); // Remove non-digit characters
+    const numericValue = input.replace(/\D/g, ""); // Remove non-digit characters
 
     // Restrict to 10 digits
     const formattedNumber = numericValue.slice(0, 10);
@@ -188,7 +195,7 @@ function SignupWholesaler() {
 
   const handlepasswordDigit = (event) => {
     const input = event.target.value;
-    const numericValue = input.replace(/\D/g, ''); // Remove non-digit characters
+    const numericValue = input.replace(/\D/g, ""); // Remove non-digit characters
 
     // Restrict to 10 digits
     const formattedNumber = numericValue.slice(0, 8);
@@ -197,7 +204,7 @@ function SignupWholesaler() {
   };
   const handleconfirmpass = (event) => {
     const input = event.target.value;
-    const numericValue = input.replace(/\D/g, ''); // Remove non-digit characters
+    const numericValue = input.replace(/\D/g, ""); // Remove non-digit characters
 
     // Restrict to 10 digits
     const formattedNumber = numericValue.slice(0, 8);
@@ -207,25 +214,25 @@ function SignupWholesaler() {
 
   const [states, setStates] = useState([]);
   const [selectedState, setSelectedState] = useState(null);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   useEffect(() => {
     fetchDataAll();
   }, []);
   useEffect(() => {
-    document.addEventListener('click', handleClickOutside);
+    document.addEventListener("click", handleClickOutside);
     return () => {
-      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener("click", handleClickOutside);
     };
   }, []);
   const fetchDataAll = async () => {
     try {
-      const response = await fetch('http://veejayjewels.com/api/v1/auth/state');
+      const response = await fetch("http://veejayjewels.com/api/v1/auth/state");
       const data = await response.json();
       setStates(data.state);
     } catch (error) {
-      console.error('ERROR FOUND---->>>>', error);
+      console.error("ERROR FOUND---->>>>", error);
     }
   };
   const toggleDropdown = () => {
@@ -243,12 +250,11 @@ function SignupWholesaler() {
   const handleOptionClick = (state) => {
     setSelectedState(state);
     setIsDropdownOpen(false);
-    setSearchTerm('');
+    setSearchTerm("");
   };
   const filteredStates = states.filter((item) =>
     item.state_name.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
 
   return (
     <>
@@ -353,7 +359,7 @@ function SignupWholesaler() {
                             autoComplete="new-email"
                             value={email}
                             onChange={handleChangeEmail}
-                          // {/* onChange={(e) => setemail(e.target.value)} */}
+                            // {/* onChange={(e) => setemail(e.target.value)} */}
                           />
                           {error && email.length <= 0 ? (
                             <span className="validationErr">
@@ -472,26 +478,7 @@ function SignupWholesaler() {
                               </option>
                             ))}
                           </Form.Select>
-                          <div ref={dropdownRef} className="searchable-select">
-                            <div className="select-input" onClick={toggleDropdown}>
-                              <Form.Label>{selectedState ? selectedState.state_name : 'Select a state'}</Form.Label>
-                            </div>
-                            <input
-                              type="text"
-                              value={searchTerm}
-                              onChange={inputSearch}
-                              placeholder="Search state..."
-                            />
-                            {isDropdownOpen && (
-                              <Form.Select className="select-options">
-                                {filteredStates.map((state) => (
-                                  <option key={state.id} onClick={() => handleOptionClick(state)}>
-                                    {state.state_name}
-                                  </option>
-                                ))}
-                              </Form.Select>
-                            )}
-                          </div>
+
                           {error && state.length <= 0 ? (
                             <span className="validationErr">
                               State is required.
@@ -500,7 +487,7 @@ function SignupWholesaler() {
                             ""
                           )}
                         </Form.Group>
-                        
+
                         <Form.Group as={Col}>
                           <Form.Label>
                             City<span style={{ color: "red" }}>*</span>
@@ -524,6 +511,25 @@ function SignupWholesaler() {
                           )}
                         </Form.Group>
                       </Row>
+                      <Form.Group className="mb-3">
+                        <Form.Label>
+                          Shipping Address{" "}
+                          <span style={{ color: "red" }}>*</span>
+                        </Form.Label>
+                        <Form.Control
+                          type="text"
+                          placeholder="Full Address"
+                          value={address}
+                          onChange={(e) => setAddress(e.target.value)}
+                        />
+                        {error && pincode.length <= 0 ? (
+                          <span className="validationErr">
+                            Pincode is required.
+                          </span>
+                        ) : (
+                          ""
+                        )}
+                      </Form.Group>
                       <Row className="mb-3">
                         <Form.Group as={Col}>
                           <Form.Label>
