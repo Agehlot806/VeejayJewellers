@@ -786,6 +786,7 @@ function Home(props) {
             {posts &&
               posts.map((blog) => (
                 <Col lg={4} sm={4} xs={12} className="mt-2 mb-3">
+                   <Link to="/blog">
                   <div className="blogs-card" key={blog.id}>
                     <img
                       src={
@@ -797,6 +798,7 @@ function Home(props) {
                     />
                     <h5>{blog.title}</h5>
                   </div>
+                  </Link>
                 </Col>
               ))}
           </Row>

@@ -102,7 +102,7 @@ function ProductDetails(props) {
       })
       .then((response) => {
         console.log(response);
-        addtocard("/add-to-cart");
+        // addtocard("/add-to-cart");
       })
       .catch((error) => {
         console.log(error);
@@ -181,7 +181,7 @@ function ProductDetails(props) {
       })
       .then((response) => {
         console.log(response);
-        addtocard("/add-to-cart");
+        // addtocard("/add-to-cart");
         // history.push("/all-events");
       })
       .catch((error) => {
@@ -275,7 +275,8 @@ function ProductDetails(props) {
                     </tr>
                   </tbody>
                 </Table>
-                <Button className="showSize" onClick={handleSubmitone}>
+                <Button className="showSize" onClick={handleShow} >
+                {/* onClick={handleSubmitone} */}
                   Add To Cart
                 </Button>
               </Col>
