@@ -2460,3 +2460,38 @@ input::-webkit-inner-spin-button {
   color: #000;
   font-weight: 600;
 }
+
+.Newsletter img {
+  width: 150px;
+}
+.Newsletter {
+  background: linear-gradient(356deg, #fff 32%, #93620747 100%, #fff 100%);
+  border-radius: 30px;
+  padding: 10px 0 70px;
+  text-align: center;
+}
+.Newsletter h1 {
+  font-family: David Libre;
+  font-size: 40px;
+  font-weight: 700;
+  text-align: center;
+}
+.Newsletter input {
+  background: hsl(38.18deg 34.37% 87.45%);
+  border: none;
+  border-radius: 10px;
+  height: 50px;
+}
+.Newsletter button {
+  background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%);
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  position: absolute;
+  right: 20px;
+  top: 7px;
+}
+.Newsletter form {
+  margin: 30px 0 0;
+  position: relative;
+}

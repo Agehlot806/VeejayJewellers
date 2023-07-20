@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "../../directives/header";
 import { Link } from "react-router-dom";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { AnimationOnScroll } from "react-animation-on-scroll";
 import Carousel from "react-multi-carousel";
 import "animate.css/animate.min.css";
@@ -30,7 +30,7 @@ import aboutimgicon from "../../assets/images/img/aboutimgicon.png";
 
 import Footer from "../../directives/footer";
 import border from "../../assets/images/banner/border.png";
-import homeBanner3 from "../../assets/images/banner/banner3.webp";
+import send from "../../assets/images/icons/send.png";
 import { Fade } from "react-reveal";
 import homeBanner2 from "../../assets/images/banner/home-banner2.png";
 import { BASE_URL } from "../../Constant/Index";
@@ -803,7 +803,7 @@ function Home(props) {
         </Container>
       </section>
 
-      <section className="">
+      <section className="section-padding">
         <Container fluid className="p-0">
           <Carousel
             swipeable={true}
@@ -862,6 +862,35 @@ function Home(props) {
                 )
               : null}
           </Carousel>
+        </Container>
+      </section>
+
+      <section className="section-padding">
+        <Container>
+          <Row >
+            <Col lg={12}>
+              <div className="Newsletter">
+                <Row className="justify-content-center">
+                  <Col sm={6}>
+                    <img src={send} />
+                    <h1 className="main-head">Get Or Promo Code by Subscribing To our Newsletter</h1>
+                    <Form className="d-flex">
+                      <Form.Control
+                        type="search"
+                        placeholder="Enter your email"
+                        className="me-2"
+                        aria-label="Search"
+                      />
+                      <Button variant="outline-success">Subscribe</Button>
+                    </Form>
+                  </Col>
+                </Row>
+              </div>
+            </Col>
+          </Row>
+
+
+
         </Container>
       </section>
       <Footer />
