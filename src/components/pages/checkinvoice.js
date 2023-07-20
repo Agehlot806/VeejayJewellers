@@ -120,16 +120,26 @@ function Checkinvoice() {
               </div>
             </Col>
           </Row>
-          <Row className="mt-4 mb-4">
+          <Row className="justify-content-center mt-4 mb-4">
             {orderlistdata
               ? orderlistdata.map((item, index) => (
-                  <Col lg={4} sm={4} xs={6} className="mb-4">
+                  <Col lg={8} className="mb-4">
                     <Link to={"/order-invoice/" + item.id}>
-                      <div className="mainProductcard">
+                    <div className="mainProductcard">
+                      <Row >
+                        <Col lg={4}>
                         <img src={logo} />
+                        </Col>
+                        <Col lg={8}>
+                          <div className="text-left">
                         <h4>Order Id: {item.id}</h4>
                         <h4>Order Status: {item.order_status}</h4>
-                        <h4>Order address: {item.delivery_address}</h4>
+                            <h4>Order address: {item.delivery_address}</h4>
+                            </div>
+                        </Col>
+                      </Row>
+                        
+                       
                       </div>
                     </Link>
                   </Col>
