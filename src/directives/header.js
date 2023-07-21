@@ -22,9 +22,7 @@ function Header({ profileImage }) {
     notification();
   }, []);
 
-  const navigateToProfileEdit = () => {
-    navigate("/profile");
-  };
+  
   const categorys = () => {
     axios
       .get(`${BASE_URL}/categories`)
@@ -180,7 +178,38 @@ function Header({ profileImage }) {
                 <i className="fa fa-bell-o" onClick={handleShow}></i>
                 {/* <span className="ball-count">1</span> */}
               </Nav.Link>
-              <Nav.Link className="">
+              
+              <Nav.Link>
+                <Dropdown>
+                  <Dropdown.Toggle id="dropdown-basic" className="hidearrow">
+                  <img
+                  className="profile-icon"
+                  // src={ProfileImage}
+                  src={
+                    profileImage
+                      ? latestProfile
+                      : profile
+                        ? imageUrl
+                        : ProfileImage
+                  }
+                  alt=""
+                ></img>
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu>
+                    <Dropdown.Item href="">
+                      <i className="fa fa-angle-double-right" />{" "}
+                      <Link to="/check-invoice">My Order</Link>
+                    </Dropdown.Item>
+                    <Dropdown.Item href="">
+                      <i className="fa fa-angle-double-right" />{" "}
+                      <Link to="/profile">Profile</Link>
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </Nav.Link>
+
+              {/* <Nav.Link className="">
                 <img
                   className="profile-icon"
                   // src={ProfileImage}
@@ -195,7 +224,7 @@ function Header({ profileImage }) {
                   onClick={navigateToProfileEdit}
                 ></img>
 
-              </Nav.Link>
+              </Nav.Link> */}
             </Nav>
           </Navbar.Collapse>
         </Container>
