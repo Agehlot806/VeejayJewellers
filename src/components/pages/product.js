@@ -5,12 +5,12 @@ import { Container, Row, Col, Nav, Tab, Form } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "../../Constant/Index";
-import bannertwo from '../../assets/images/banner/image 12.png'
-import image14 from '../../assets/images/banner/image 14.png'
-import image15 from '../../assets/images/banner/image 15.png'
+import bannertwo from "../../assets/images/banner/image 12.png";
+import image14 from "../../assets/images/banner/image 14.png";
+import image15 from "../../assets/images/banner/image 15.png";
 // import ApiHelper from '../utils/ApiHelper';
 import Carousel from "react-multi-carousel";
-import _ from 'lodash';
+import _ from "lodash";
 
 const clinetreview = {
   desktop: {
@@ -34,20 +34,23 @@ function Product(props) {
   console.log("name", name);
   const [brandcategories, setbrandcategories] = useState([]);
   const [allproduct, setallproduct] = useState([]);
-  const [thirdbanner, setthirdbanner] = useState([])
+  const [thirdbanner, setthirdbanner] = useState([]);
   const pageSize = 24;
   // const [brandcategories, setBrandCategories] = useState([]);
   const [paginatedCategories, setPaginatedCategories] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [categories, setCategory] = useState([]);
   useEffect(() => {
     categorys();
     allProduct();
     thirdBanner();
   }, []);
+  
   useEffect(() => {
     // Update the paginated categories whenever brandcategories or currentPage changes
     pagination(currentPage);
   }, [allproduct, currentPage]);
+
   const categorys = () => {
     axios
       .get(`${BASE_URL}/categories`)
@@ -78,8 +81,8 @@ function Product(props) {
     axios
       .get(`${BASE_URL}/banners1`)
       .then((response) => {
-        console.log(response.data.data)
-        setthirdbanner(response.data.data)
+        console.log(response.data.data);
+        setthirdbanner(response.data.data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -92,9 +95,10 @@ function Product(props) {
   const [data, setData] = useState(true);
   const [dataList, setDataList] = useState([]);
   const [filter, setFilter] = useState(false);
+
   const handleDataList = async (name) => {
     console.log(name);
-    setData(name)
+    setData(name);
     try {
       const response = await fetch(
         "https://veejayjewels.com/api/v1/products/latest"
@@ -106,21 +110,26 @@ function Product(props) {
       const filteredData = nestedData.filter((item) => item.brand === name);
       setDataList(filteredData);
       setFilter(true);
+
+      const categoryNames = filteredData.map((item) => item.category);
+      setCategory(categoryNames);
     } catch (error) {
       console.log("Errorr", error);
     }
   };
+  console.log(categories);
 
   useEffect(() => {
-    arhaProduct()
-  }, [])
-  const [arhadata, setarhadata] = useState([])
+    arhaProduct();
+  }, []);
+
+  const [arhadata, setarhadata] = useState([]);
   const arhaProduct = () => {
     axios
       .get(`${BASE_URL}/products/latest`)
       .then((response) => {
-        console.log(response.data.data)
-        setarhadata(response.data.data)
+        console.log(response.data.data);
+        setarhadata(response.data.data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -134,27 +143,26 @@ function Product(props) {
 
   const SubCategory = (thumnail, title, file) => {
     console.log("categoery", thumnail, title);
-    setimage(thumnail)
-    settitle(title)
-    setfile(file)
+    setimage(thumnail);
+    settitle(title);
+    setfile(file);
   };
 
   const handleCheck24 = (event) => {
     setCheck(event.target.value);
-    setallproduct(allproduct.filter((item) => item.purity === "24k"))
-  }
+    setallproduct(allproduct.filter((item) => item.purity === "24k"));
+  };
   console.log("filterdatafilterdatafilterdatafilterdata", filterdata);
-
 
   const handleCheck22 = (event) => {
     setCheck(event.target.value);
-    setallproduct(allproduct.filter((item) => item.purity === "22k"))
-  }
+    setallproduct(allproduct.filter((item) => item.purity === "22k"));
+  };
 
   const handleCheck18 = (event) => {
     setCheck(event.target.value);
-    setallproduct(allproduct.filter((item) => item.purity === "18k"))
-  }
+    setallproduct(allproduct.filter((item) => item.purity === "18k"));
+  };
 
   const pageCount = allproduct ? Math.ceil(allproduct.length / pageSize) : 0;
   const pages = _.range(1, pageCount + 1);
@@ -165,13 +173,17 @@ function Product(props) {
     const paginated = _(allproduct).slice(startIndex).take(pageSize).value();
     setPaginatedCategories(paginated);
   };
- 
 
   return (
-
     <>
       <Header />
-      <div className='allPage-bgtwo'> <Container fluid className='p-0'> <img src={bannertwo} /> </Container> </div>
+      <div className="allPage-bgtwo">
+        {" "}
+        <Container fluid className="p-0">
+          {" "}
+          <img src={bannertwo} />{" "}
+        </Container>{" "}
+      </div>
       <section className="section-padding">
         <Container>
           <Tab.Container id="left-tabs-example" defaultActiveKey="AllProduct">
@@ -183,62 +195,110 @@ function Product(props) {
                     <Nav.Item>
                       <Nav.Link eventKey="AllProduct">All Product</Nav.Link>
                     </Nav.Item>
-                    {brandcategories ? (
-                      brandcategories.map((item, index) => (
-                        <Nav.Item key={index}>
-                          <Nav.Link eventKey={item.name}
-                            onClick={(e) => handleDataList(item.name)}
-                          >
-                            {item.name}
-                          </Nav.Link>
-                        </Nav.Item>
-                      ))
-                    ) : null}
-
+                    {brandcategories
+                      ? brandcategories.map((item, index) => (
+                          <Nav.Item key={index}>
+                            <Nav.Link
+                              eventKey={item.name}
+                              onClick={(e) => handleDataList(item.name)}
+                            >
+                              {item.name}
+                            </Nav.Link>
+                          </Nav.Item>
+                        ))
+                      : null}
 
                     <h3>Sort by</h3>
                     <div className="checkbox-bg">
                       <div className="form-check">
-                        <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" defaultValue="option1" defaultChecked />
-                        <label className="form-check-label" htmlFor="exampleRadios1">
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          name="exampleRadios"
+                          id="exampleRadios1"
+                          defaultValue="option1"
+                          defaultChecked
+                        />
+                        <label
+                          className="form-check-label"
+                          htmlFor="exampleRadios1"
+                        >
                           Last First
                         </label>
                       </div>
                       <div className="form-check">
-                        <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" defaultValue="option2" />
-                        <label className="form-check-label" htmlFor="exampleRadios2">
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          name="exampleRadios"
+                          id="exampleRadios2"
+                          defaultValue="option2"
+                        />
+                        <label
+                          className="form-check-label"
+                          htmlFor="exampleRadios2"
+                        >
                           Oldest First
                         </label>
                       </div>
                       <div className="form-check">
-                        <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" defaultValue="option2" />
-                        <label className="form-check-label" htmlFor="exampleRadios3">
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          name="exampleRadios"
+                          id="exampleRadios3"
+                          defaultValue="option2"
+                        />
+                        <label
+                          className="form-check-label"
+                          htmlFor="exampleRadios3"
+                        >
                           Gross Wt high to Low
                         </label>
                       </div>
                       <div className="form-check">
-                        <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" defaultValue="option2" />
-                        <label className="form-check-label" htmlFor="exampleRadios4">
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          name="exampleRadios"
+                          id="exampleRadios4"
+                          defaultValue="option2"
+                        />
+                        <label
+                          className="form-check-label"
+                          htmlFor="exampleRadios4"
+                        >
                           Gross Wt Low to high
                         </label>
                       </div>
                     </div>
                     <h3>Filter</h3>
                     <div className="range-bg">
-                      <label>Select Gold Karat
-                      </label>
+                      <label>Select Gold Karat</label>
                       <div>
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="checkbox" onClick={handleCheck18} />
-                          <label className="form-check-label" >18</label>
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            onClick={handleCheck18}
+                          />
+                          <label className="form-check-label">18</label>
                         </div>
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="checkbox" onClick={handleCheck22} />
-                          <label className="form-check-label" >22</label>
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            onClick={handleCheck22}
+                          />
+                          <label className="form-check-label">22</label>
                         </div>
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="checkbox" onClick={handleCheck24} />
-                          <label className="form-check-label" >24</label>
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            onClick={handleCheck24}
+                          />
+                          <label className="form-check-label">24</label>
                         </div>
                       </div>
                       {/* <input
@@ -260,9 +320,15 @@ function Product(props) {
                 </div>
                 <div className="tabBrands">
                   <h3>Catalogue</h3>
-                  <h5><Link to="/women" >Women</Link></h5>
-                  <h5><Link to="/men" >Men</Link></h5>
-                  <h5><Link to="/kids" >Kids</Link></h5>
+                  <h5>
+                    <Link to="/women">Women</Link>
+                  </h5>
+                  <h5>
+                    <Link to="/men">Men</Link>
+                  </h5>
+                  <h5>
+                    <Link to="/kids">Kids</Link>
+                  </h5>
                 </div>
                 <div className="product-banner">
                   <img src={image14} />
@@ -273,93 +339,162 @@ function Product(props) {
                   <Tab.Pane eventKey="AllProduct">
                     <Row>
                       {paginatedCategories.map((item) => (
-                        <Col lg={4} sm={4} xs={6} className="mb-4" key={item.id}>
+                        <Col
+                          lg={4}
+                          sm={4}
+                          xs={6}
+                          className="mb-4"
+                          key={item.id}
+                        >
                           <div className="mainProductcard">
                             <Link to={`/product-details/${item.id}`}>
                               <img src={cleanImageUrl(item.image)} />
                               <h4>{item.name}</h4>
-                              <p>{item.unit_value} {item.unit}</p>
+                              <p>
+                                {item.unit_value} {item.unit}
+                              </p>
                               <span>Karat : {item.purity}</span>
                               <div className="product-btnarea">
-                                <Link to="/add-to-cart" className="product-addBtn">
+                                <Link
+                                  to="/add-to-cart"
+                                  className="product-addBtn"
+                                >
                                   Add To Cart
                                 </Link>
                               </div>
                             </Link>
                           </div>
                         </Col>
-                      ))
-                      }
-                      {check && filterdata.map((item) => (
-                        <Col lg={4} sm={4} xs={6} className="mb-4" key={item.id}>
-                          <div className="mainProductcard">
-                            <Link to={`/product-details/${item.id}`}>
-                              <img src={cleanImageUrl(item.image)} />
-                              <h4>{item.name}</h4>
-                              <p>{item.unit_value} {item.unit}</p>
-                              <span>Karat : {item.purity}</span>
-                              <div className="product-btnarea">
-                                <Link to="/add-to-cart" className="product-addBtn">
-                                  Add To Cart
-                                </Link>
-                              </div>
-                            </Link>
-                          </div>
-                        </Col>
-                      ))
-                      }
-
+                      ))}
+                      {check &&
+                        filterdata.map((item) => (
+                          <Col
+                            lg={4}
+                            sm={4}
+                            xs={6}
+                            className="mb-4"
+                            key={item.id}
+                          >
+                            <div className="mainProductcard">
+                              <Link to={`/product-details/${item.id}`}>
+                                <img src={cleanImageUrl(item.image)} />
+                                <h4>{item.name}</h4>
+                                <p>
+                                  {item.unit_value} {item.unit}
+                                </p>
+                                <span>Karat : {item.purity}</span>
+                                <div className="product-btnarea">
+                                  <Link
+                                    to="/add-to-cart"
+                                    className="product-addBtn"
+                                  >
+                                    Add To Cart
+                                  </Link>
+                                </div>
+                              </Link>
+                            </div>
+                          </Col>
+                        ))}
                     </Row>
                     <nav>
-        <ul className="pagination">
-          {pages.map((page) => (
-            <li
-              key={page}
-              className={page === currentPage ? 'page-item active' : 'page-item'}
-            >
-              <button className="page-link" onClick={() => pagination(page)}>
-                {page}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </nav>
+                      <ul className="pagination">
+                        {pages.map((page) => (
+                          <li
+                            key={page}
+                            className={
+                              page === currentPage
+                                ? "page-item active"
+                                : "page-item"
+                            }
+                          >
+                            <button
+                              className="page-link"
+                              onClick={() => pagination(page)}
+                            >
+                              {page}
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    </nav>
                   </Tab.Pane>
                   <Tab.Pane eventKey={data}>
                     <Row>
                       <div className="brands-tabs-all">
-                        <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        <ul
+                          className="nav nav-pills mb-3"
+                          id="pills-tab"
+                          role="tablist"
+                        >
                           <li className="nav-item">
-                            <a className="nav-link active" id="arhaallproduct-tab" data-toggle="pill" href="#arhaallproduct" role="tab" aria-controls="arhaallproduct" aria-selected="true">All Products</a>
+                            <a
+                              className="nav-link active"
+                              id="arhaallproduct-tab"
+                              data-toggle="pill"
+                              href="#arhaallproduct"
+                              role="tab"
+                              aria-controls="arhaallproduct"
+                              aria-selected="true"
+                            >
+                              All Products
+                            </a>
                           </li>
-                          {arhadata ? (
-                            arhadata.map((item, index) => (
-                              item.brand === 'Araha' && (
-                                <li className="nav-item">
-                                  <a className="nav-link" id="pills-arha-tab" data-toggle="pill" href="#pills-arha" role="tab" aria-controls="pills-profile" aria-selected="false">
-                                    <div onClick={(e) => SubCategory(item.thumnail, item.title, item.file)}
-                                    >{item.name}</div>
+                          {filter && dataList ?(
+                             dataList.map( (item) =>(
+                                  <li className="nav-item">
+                                  <a
+                                    className="nav-link"
+                                    id="pills-arha-tab"
+                                    data-toggle="pill"
+                                    href="#pills-arha"
+                                    role="tab"
+                                    aria-controls="pills-profile"
+                                    aria-selected="false"
+                                  >
+                                    <div
+                                    onClick={(e) =>
+                                      SubCategory(
+                                        item.thumnail,
+                                        item.title,
+                                        item.file
+                                      )
+                                    }
+                                    >
+                                      {item.category}
+                                    </div>
                                   </a>
                                 </li>
-                              )
-                            ))
-                          ) : null}
-
+                                ))
+                               )
+                            : null}
                         </ul>
                         <div className="tab-content" id="pills-tabContent">
-                          <div className="tab-pane fade show active" id="arhaallproduct" role="tabpanel" aria-labelledby="arhaallproduct-tab">
+                          <div
+                            className="tab-pane fade show active"
+                            id="arhaallproduct"
+                            role="tabpanel"
+                            aria-labelledby="arhaallproduct-tab"
+                          >
                             <Row>
-                              {filter && dataList ? (
+                              {filter && dataList.length >= 1 ? (
                                 dataList.map((item) => (
                                   <Col lg={4} className="mb-4" key={item.id}>
                                     <div className="mainProductcard">
                                       <Link to={`/product-details/${item.id}`}>
-                                        <img src={cleanImageUrl(item.image)} alt={item.name} />
+                                        <img
+                                          src={cleanImageUrl(item.image)}
+                                          alt={item.name}
+                                        />
                                         <h4>{item.name}</h4>
-                                        <p>{item.unit_value} {item.unit}</p>
+                                        <p>
+                                          {item.unit_value} {item.unit}
+                                        </p>
                                         <span>Karat : {item.purity}</span>
                                         <div className="product-btnarea">
-                                          <Link to="/add-to-cart" className="product-addBtn">
+                                          <Link
+                                            to="/add-to-cart"
+                                            className="product-addBtn"
+                                          >
                                             Add To Cart
                                           </Link>
                                         </div>
@@ -372,35 +507,53 @@ function Product(props) {
                               )}
                             </Row>
                           </div>
-                          <div className="tab-pane fade" id="pills-arha" role="tabpanel" aria-labelledby="pills-arha-tab">
+                          <div
+                            className="tab-pane fade"
+                            id="pills-arha"
+                            role="tabpanel"
+                            aria-labelledby="pills-arha-tab"
+                          >
                             <Row>
-                              {arhadata ? (
-                                arhadata.map((item, index) => (
-                                  item.brand === 'Araha' && (
-                                    <Col lg={4} className="mb-4" key={item.id}>
-                                      <div className="mainProductcard">
-                                        <Link to={`/product-details/${item.id}`}>
-                                          <img src={cleanImageUrl(item.image)} alt={item.name} />
-                                          <h4>{item.name}</h4>
-                                          <p>{item.unit_value} {item.unit}</p>
-                                          <span>Karat : {item.purity}</span>
-                                          <div className="product-btnarea">
-                                            <Link to="/add-to-cart" className="product-addBtn">
-                                              Add To Cart
+                              {arhadata
+                                ? arhadata.map(
+                                    (item, index) =>
+                                      item.brand === "Araha" && (
+                                        <Col
+                                          lg={4}
+                                          className="mb-4"
+                                          key={item.id}
+                                        >
+                                          <div className="mainProductcard">
+                                            <Link
+                                              to={`/product-details/${item.id}`}
+                                            >
+                                              <img
+                                                src={cleanImageUrl(item.image)}
+                                                alt={item.name}
+                                              />
+                                              <h4>{item.name}</h4>
+                                              <p>
+                                                {item.unit_value} {item.unit}
+                                              </p>
+                                              <span>Karat : {item.purity}</span>
+                                              <div className="product-btnarea">
+                                                <Link
+                                                  to="/add-to-cart"
+                                                  className="product-addBtn"
+                                                >
+                                                  Add To Cart
+                                                </Link>
+                                              </div>
                                             </Link>
                                           </div>
-                                        </Link>
-                                      </div>
-                                    </Col>
+                                        </Col>
+                                      )
                                   )
-                                ))
-                              ) : null}
+                                : null}
                             </Row>
                           </div>
                         </div>
                       </div>
-
-
                     </Row>
                   </Tab.Pane>
                 </Tab.Content>
@@ -429,15 +582,16 @@ function Product(props) {
             dotListClass="custom-dot-list-style"
             itemClass="carousel-item-padding-40-px"
           >
-            {thirdbanner ? (
-              thirdbanner.map((item, index) => (
-                item.type === 'thrid' && (
-                  <div key={item.id} className="homeBack-bg">
-                    <img src={item.image} alt="" />
-                  </div>
+            {thirdbanner
+              ? thirdbanner.map(
+                  (item, index) =>
+                    item.type === "thrid" && (
+                      <div key={item.id} className="homeBack-bg">
+                        <img src={item.image} alt="" />
+                      </div>
+                    )
                 )
-              ))
-            ) : null}
+              : null}
           </Carousel>
         </Container>
       </section>

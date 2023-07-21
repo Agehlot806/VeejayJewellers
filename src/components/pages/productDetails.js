@@ -15,7 +15,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import Carousel from "react-multi-carousel";
 import product1 from "../../assets/images/img/product1.png";
 import productdetails2 from "../../assets/images/img/productdetails2.jpg";
-import bannertwo from '../../assets/images/banner/image 12.png'
+import bannertwo from "../../assets/images/banner/image 12.png";
 import product2 from "../../assets/images/img/product2.png";
 import product3 from "../../assets/images/img/product3.png";
 import product4 from "../../assets/images/img/product4.png";
@@ -57,7 +57,7 @@ const productdetails = {
   },
 };
 function ProductDetails(props) {
-  const [thirdbanner, setthirdbanner] = useState([])
+  const [thirdbanner, setthirdbanner] = useState([]);
   const [quantity1, setQuantity1] = useState(0);
   const [quantity2, setQuantity2] = useState(0);
   const [show, setShow] = useState(false);
@@ -65,13 +65,17 @@ function ProductDetails(props) {
   const [productType, setProductType] = useState("");
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
-  const [description, setdescription] = useState("")
-  const [variations, setvariations] = useState("")
+  const [description, setdescription] = useState("");
+  const [variations, setvariations] = useState("");
   // const [variationstype, setvariationstype] = useState("")
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [categoies, setCategoies] = useState("");
+  const [allproduct, setallproduct] = useState([]);
+  const [filterData, setFilterData] = useState([]);
+
   const { id } = useParams();
-  const addtocard = useNavigate()
+  const addtocard = useNavigate();
   const [selectedVariant, setSelectedVariant] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [variationstype, setVariationstype] = useState("");
@@ -134,14 +138,40 @@ function ProductDetails(props) {
         setImage(response.data.data.image);
         setProductType(response.data.data.product_type);
         setdescription(response.data.data.description);
-        setvariations(response.data.data.variations)
+        setvariations(response.data.data.variations);
         setVariationstype(response.data.data.variations[0].type);
+        setCategoies(response.data.data.category);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
   };
-  console.log("variationstype", name);
+
+  useEffect(() => {
+    handleAllProduct();
+    handleFilterData(categoies);
+  }, [categoies]);
+
+  const handleAllProduct = () => {
+    axios
+      .get(`${BASE_URL}/products/latest`)
+      .then((response) => {
+        console.log(response.data);
+        setallproduct(response.data.data);
+        handleFilterData();
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
+  const handleFilterData = (data) => {
+    console.log("categoies", data);
+    const filterData = allproduct.filter((item) => item.category === categoies);
+    console.log(filterData);
+    setFilterData(filterData);
+  };
+  console.log("allproduct", filterData);
+  
   useEffect(() => {
     GetProductDetails();
     thirdBanner();
@@ -188,20 +218,18 @@ function ProductDetails(props) {
         console.log(error);
       });
   };
-  const [typevariant, setTypeVeriant] = useState()
+  const [typevariant, setTypeVeriant] = useState();
   const typeValue = (e) => {
-    setTypeVeriant(e.target.value)
-  }
+    setTypeVeriant(e.target.value);
+  };
   console.log("typevarianttypevariant", typevariant);
-
-
 
   const thirdBanner = () => {
     axios
       .get(`${BASE_URL}/banners1`)
       .then((response) => {
-        console.log(response.data.data)
-        setthirdbanner(response.data.data)
+        console.log(response.data.data);
+        setthirdbanner(response.data.data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -211,8 +239,8 @@ function ProductDetails(props) {
   return (
     <>
       <Header />
-      <div className='allPage-bgtwo'>
-        <Container fluid className='p-0'>
+      <div className="allPage-bgtwo">
+        <Container fluid className="p-0">
           <img src={bannertwo} />
         </Container>
       </div>
@@ -240,13 +268,28 @@ function ProductDetails(props) {
                   itemClass="carousel-item-padding-40-px"
                 >
                   <div className="productdetails-bg">
-                    <img src={"https://veejayjewels.com/storage/app/public/product/" + image} />
+                    <img
+                      src={
+                        "https://veejayjewels.com/storage/app/public/product/" +
+                        image
+                      }
+                    />
                   </div>
                   <div className="productdetails-bg">
-                    <img src={"https://veejayjewels.com/storage/app/public/product/" + image} />
+                    <img
+                      src={
+                        "https://veejayjewels.com/storage/app/public/product/" +
+                        image
+                      }
+                    />
                   </div>
                   <div className="productdetails-bg">
-                    <img src={"https://veejayjewels.com/storage/app/public/product/" + image} />
+                    <img
+                      src={
+                        "https://veejayjewels.com/storage/app/public/product/" +
+                        image
+                      }
+                    />
                   </div>
                 </Carousel>
               </Col>
@@ -275,18 +318,23 @@ function ProductDetails(props) {
                     </tr>
                   </tbody>
                 </Table>
-                <Button className="showSize" onClick={handleShow} >
-                {/* onClick={handleSubmitone} */}
+                <Button className="showSize" onClick={handleShow}>
+                  {/* onClick={handleSubmitone} */}
                   Add To Cart
                 </Button>
               </Col>
               <Col lg={4} sm={4}>
-
                 <div className="show-area">
                   <div className="show-areatext">
                     <Row>
-                      <Col lg={4} xs={4}><h6>Size</h6></Col>
-                      <Col lg={8} xs={8}><div className="text-right"><h6>Pcs Quantity</h6></div></Col>
+                      <Col lg={4} xs={4}>
+                        <h6>Size</h6>
+                      </Col>
+                      <Col lg={8} xs={8}>
+                        <div className="text-right">
+                          <h6>Pcs Quantity</h6>
+                        </div>
+                      </Col>
                     </Row>
                   </div>
                   <div className="show-contentS">
@@ -301,13 +349,14 @@ function ProductDetails(props) {
                           {variationstype}
                         </label>
                       </Col>
-                      <Col lg={8} sm={8}><div className="text-right">
-                        <div className="quantity-btn">
-                          <button onClick={handleDecrementone}>-</button>
-                          <span>{quantity}</span>
-                          <button onClick={handleIncrementone}>+</button>
+                      <Col lg={8} sm={8}>
+                        <div className="text-right">
+                          <div className="quantity-btn">
+                            <button onClick={handleDecrementone}>-</button>
+                            <span>{quantity}</span>
+                            <button onClick={handleIncrementone}>+</button>
+                          </div>
                         </div>
-                      </div>
                       </Col>
                     </Row>
                     <hr />
@@ -326,11 +375,13 @@ function ProductDetails(props) {
       </section>
       <section className="section-padding">
         <Container className="productCardbg">
-          <div className='product_details'>
+          <div className="product_details">
             <h1 className="p-3">Product Description</h1>
           </div>
           <div className="product-text p-3">
-            <h3><div dangerouslySetInnerHTML={{ __html: description }}></div></h3>
+            <h3>
+              <div dangerouslySetInnerHTML={{ __html: description }}></div>
+            </h3>
           </div>
         </Container>
       </section>
@@ -455,7 +506,6 @@ function ProductDetails(props) {
                 </div>
               </div>
             </Col>
-
           </Row>
         </Container>
       </section>
@@ -479,19 +529,18 @@ function ProductDetails(props) {
             dotListClass="custom-dot-list-style"
             itemClass="carousel-item-padding-40-px"
           >
-
-            {thirdbanner ? (
-              thirdbanner.map((item, index) => (
-                item.type === 'thrid' && (
-                  <div key={item.id} className="homeBack-bg">
-                    <img src={item.image} alt="" />
-                  </div>
+            {thirdbanner
+              ? thirdbanner.map(
+                  (item, index) =>
+                    item.type === "thrid" && (
+                      <div key={item.id} className="homeBack-bg">
+                        <img src={item.image} alt="" />
+                      </div>
+                    )
                 )
-              ))
-            ) : null}
+              : null}
           </Carousel>
         </Container>
-
       </section>
       <Footer />
       <Modal show={show} onHide={handleClose}>
@@ -532,11 +581,11 @@ function ProductDetails(props) {
           {variations ? (
             <Table className="productDetailTable">
               <thead>
-              <tr>
-                <th>Size</th>
-                <th>Pcs Quantity</th>
-              </tr>
-            </thead>
+                <tr>
+                  <th>Size</th>
+                  <th>Pcs Quantity</th>
+                </tr>
+              </thead>
               <tbody>
                 {variations.map((item, index) => (
                   <tr key={index}>
@@ -552,9 +601,13 @@ function ProductDetails(props) {
                     </td>
                     <td>
                       <div className="quantity-btn">
-                        <button onClick={() => handleDecrement(item.type)}>-</button>
+                        <button onClick={() => handleDecrement(item.type)}>
+                          -
+                        </button>
                         <span>{selectedQuantities[item.type] || 1}</span>
-                        <button onClick={() => handleIncrement(item.type)}>+</button>
+                        <button onClick={() => handleIncrement(item.type)}>
+                          +
+                        </button>
                       </div>
                     </td>
                   </tr>
@@ -564,7 +617,6 @@ function ProductDetails(props) {
           ) : null}
           {/* <button onClick={handleSubmit}>Add to Cart</button> */}
         </Modal.Body>
-
 
         <Modal.Footer>
           {/* <Button variant="primary" onClick={handleClose} > */}
