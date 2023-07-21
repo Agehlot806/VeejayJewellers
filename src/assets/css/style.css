@@ -312,7 +312,7 @@ nav.header-bg {
 .brandsCard {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   padding: 20px;
-  background: #fff;
+  background: linear-gradient(356deg, #fff 32%, #93620747 100%, #fff 100%);
   border-radius: 10px;
   text-align: center;
   height: 100%;
@@ -328,6 +328,7 @@ nav.header-bg {
   font-family: "Playfair Display";
   font-size: 25px;
   font-weight: 700;
+  color: #000;
 }
 
 .brandsCard a {
@@ -2590,6 +2591,7 @@ table.productDetailTable.table tr th {
   font-family: "Playfair Display";
   opacity: 3;
   width: 180px;
+}
 .order-confi .model-content {
   --bs-modal-bg: transparent !important;
   --bs-modal-border-color: none !important;
@@ -2597,4 +2599,9 @@ table.productDetailTable.table tr th {
 .order-confi1 .modal-content {
   --bs-modal-bg: transparent !important;
   --bs-modal-border-color: none !important;
+}
+
+.order-confi .modal-content {
+  background-color: transparent;
+  border: none;
 }

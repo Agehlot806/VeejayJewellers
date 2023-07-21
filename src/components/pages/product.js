@@ -30,6 +30,8 @@ const clinetreview = {
   },
 };
 function Product(props) {
+  const { brand } = useParams();
+  console.log("banddddddd", brand);
   const { id, name } = useParams();
   console.log("name", name);
   const [brandcategories, setbrandcategories] = useState([]);
@@ -123,6 +125,7 @@ function Product(props) {
     arhaProduct();
   }, []);
 
+
   const [arhadata, setarhadata] = useState([]);
   const arhaProduct = () => {
     axios
@@ -156,24 +159,30 @@ function Product(props) {
 
   const handleCheck22 = (event) => {
     setCheck(event.target.value);
-    setallproduct(allproduct.filter((item) => item.purity === "22k"));
+    setallproduct(allproduct.filter((item) => item.purity === "14k" || item.purity === "16k" || item.purity === "18k" || item.purity === "20k" || item.purity === "22k" || item.purity === "24k"));
+
   };
+  console.log("1010101010110", allproduct);
 
   const handleCheck18 = (event) => {
     setCheck(event.target.value);
-    setallproduct(allproduct.filter((item) => item.purity === "18k"))
+    setallproduct(allproduct.filter((item) => item.purity === "14k" || item.purity === "16k" || item.purity === "18k" || item.purity === "20k" || item.purity === "22k" || item.purity === "24k"));
+
   }
   const handleCheck14 = (event) => {
     setCheck(event.target.value);
-    setallproduct(allproduct.filter((item) => item.purity === "14k"))
+    setallproduct(allproduct.filter((item) => item.purity === "14k" || item.purity === "16k" || item.purity === "18k" || item.purity === "20k" || item.purity === "22k" || item.purity === "24k"));
+
   }
   const handleCheck20 = (event) => {
     setCheck(event.target.value);
-    setallproduct(allproduct.filter((item) => item.purity === "20k"))
+    setallproduct(allproduct.filter((item) => item.purity === "14k" || item.purity === "16k" || item.purity === "18k" || item.purity === "20k" || item.purity === "22k" || item.purity === "24k"));
+
   }
   const handleCheck16 = (event) => {
     setCheck(event.target.value);
-    setallproduct(allproduct.filter((item) => item.purity === "16k"))
+    setallproduct(allproduct.filter((item) => item.purity === "14k" || item.purity === "16k" || item.purity === "18k" || item.purity === "20k" || item.purity === "22k" || item.purity === "24k"));
+
   }
 
   const pageCount = allproduct ? Math.ceil(allproduct.length / pageSize) : 0;
@@ -205,19 +214,19 @@ function Product(props) {
                   <div className="tabBrands">
                     <h3>Brand</h3>
                     <Nav.Item>
-                      <Nav.Link eventKey="AllProduct">All Product</Nav.Link>
+                      <Nav.Link eventKey={brand ? brand : "AllProduct"}>All Product</Nav.Link>
                     </Nav.Item>
                     {brandcategories
                       ? brandcategories.map((item, index) => (
-                          <Nav.Item key={index}>
-                            <Nav.Link
-                              eventKey={item.name}
-                              onClick={(e) => handleDataList(item.name)}
-                            >
-                              {item.name}
-                            </Nav.Link>
-                          </Nav.Item>
-                        ))
+                        <Nav.Item key={index}>
+                          <Nav.Link
+                            eventKey={item.name == brand ? brand : item.name}
+                            onClick={(e) => handleDataList(item.name)}
+                          >
+                            {item.name}
+                          </Nav.Link>
+                        </Nav.Item>
+                      ))
                       : null}
 
                     <h3>Sort by</h3>
@@ -288,7 +297,7 @@ function Product(props) {
                     <div className="range-bg">
                       <label>Select Gold Karat</label>
                       <div>
-                      <div className="form-check form-check-inline">
+                        <div className="form-check form-check-inline">
                           <input className="form-check-input" type="checkbox" onClick={handleCheck14} />
                           <label className="form-check-label" >14 Karat</label>
                         </div>
@@ -453,30 +462,30 @@ function Product(props) {
                           </li>
                           {filter && dataList
                             ? dataList.map((item) => (
-                                <li className="nav-item">
-                                  <a
-                                    className="nav-link"
-                                    id="pills-arha-tab"
-                                    data-toggle="pill"
-                                    href="#pills-arha"
-                                    role="tab"
-                                    aria-controls="pills-profile"
-                                    aria-selected="false"
+                              <li className="nav-item">
+                                <a
+                                  className="nav-link"
+                                  id="pills-arha-tab"
+                                  data-toggle="pill"
+                                  href="#pills-arha"
+                                  role="tab"
+                                  aria-controls="pills-profile"
+                                  aria-selected="false"
+                                >
+                                  <div
+                                    onClick={(e) =>
+                                      SubCategory(
+                                        item.thumnail,
+                                        item.title,
+                                        item.file
+                                      )
+                                    }
                                   >
-                                    <div
-                                      onClick={(e) =>
-                                        SubCategory(
-                                          item.thumnail,
-                                          item.title,
-                                          item.file
-                                        )
-                                      }
-                                    >
-                                      {item.category}
-                                    </div>
-                                  </a>
-                                </li>
-                              ))
+                                    {item.category}
+                                  </div>
+                                </a>
+                              </li>
+                            ))
                             : null}
                         </ul>
                         <div className="tab-content" id="pills-tabContent">
@@ -527,39 +536,39 @@ function Product(props) {
                             <Row>
                               {arhadata
                                 ? arhadata.map(
-                                    (item, index) =>
-                                      item.brand === "Araha" && (
-                                        <Col
-                                          lg={4}
-                                          className="mb-4"
-                                          key={item.id}
-                                        >
-                                          <div className="mainProductcard">
-                                            <Link
-                                              to={`/product-details/${item.id}`}
-                                            >
-                                              <img
-                                                src={cleanImageUrl(item.image)}
-                                                alt={item.name}
-                                              />
-                                              <h4>{item.name}</h4>
-                                              <p>
-                                                {item.unit_value} {item.unit}
-                                              </p>
-                                              <span>Karat : {item.purity}</span>
-                                              <div className="product-btnarea">
-                                                <Link
-                                                  to="/add-to-cart"
-                                                  className="product-addBtn"
-                                                >
-                                                  Add To Cart
-                                                </Link>
-                                              </div>
-                                            </Link>
-                                          </div>
-                                        </Col>
-                                      )
-                                  )
+                                  (item, index) =>
+                                    item.brand === "Araha" && (
+                                      <Col
+                                        lg={4}
+                                        className="mb-4"
+                                        key={item.id}
+                                      >
+                                        <div className="mainProductcard">
+                                          <Link
+                                            to={`/product-details/${item.id}`}
+                                          >
+                                            <img
+                                              src={cleanImageUrl(item.image)}
+                                              alt={item.name}
+                                            />
+                                            <h4>{item.name}</h4>
+                                            <p>
+                                              {item.unit_value} {item.unit}
+                                            </p>
+                                            <span>Karat : {item.purity}</span>
+                                            <div className="product-btnarea">
+                                              <Link
+                                                to="/add-to-cart"
+                                                className="product-addBtn"
+                                              >
+                                                Add To Cart
+                                              </Link>
+                                            </div>
+                                          </Link>
+                                        </div>
+                                      </Col>
+                                    )
+                                )
                                 : null}
                             </Row>
                           </div>
@@ -595,13 +604,13 @@ function Product(props) {
           >
             {thirdbanner
               ? thirdbanner.map(
-                  (item, index) =>
-                    item.type === "thrid" && (
-                      <div key={item.id} className="homeBack-bg">
-                        <img src={item.image} alt="" />
-                      </div>
-                    )
-                )
+                (item, index) =>
+                  item.type === "thrid" && (
+                    <div key={item.id} className="homeBack-bg">
+                      <img src={item.image} alt="" />
+                    </div>
+                  )
+              )
               : null}
           </Carousel>
         </Container>

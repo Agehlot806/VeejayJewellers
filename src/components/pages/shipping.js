@@ -33,14 +33,7 @@ function Addcart() {
   const pincode = localStorage.getItem("pincode");
 
   const [carddata, setCardData] = useState([]);
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setOrder(false);
-      navigate("/order-invoice"); // Close the modal after 5 seconds
-    }, 5000);
-
-    return () => clearTimeout(timer); // Clear the timer when the component unmounts
-  }, []);
+ 
 
   useEffect(() => {
     latestsapidata();

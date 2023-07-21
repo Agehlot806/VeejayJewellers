@@ -391,20 +391,22 @@ function Home(props) {
           <Row className="mt-3 justify-content-center">
             {brandcategories.map((item) => (
               <Col lg={4} sm={4} xs={6} className="mb-3" key={item.id}>
-                <div className="brandsCard">
-                  <img src={item.image} alt="" />
-                  <h3>{item.name}</h3>
-                  {/* <Link to={`/products/${item.id}/${item.name}`}> */}
-                  {/* <Link to="/products">
+                <Link to={`/products/${item.name}`}>
+                  <div className="brandsCard">
+                    <img src={item.image} alt="" />
+                    <h3>{item.name}</h3>
+                    {/* <Link to={`/products/${item.id}/${item.name}`}> */}
+                    {/* <Link to="/products">
                     <i className="fa fa-angle-double-right" /> Read More
                   </Link> */}
-                  {/* {item.name === "Aaraha"
+                    {/* {item.name === "Aaraha"
                     ? <Link to='/ARHA-brands'><i className="fa fa-angle-double-right" /> Read More</Link>
                     :
                       item.name === "Vedanta" ? <Link to='/VDANA-brands'><i className="fa fa-angle-double-right" /> Read More</Link>
                         : <Link to='/IRKA-brands'><i className="fa fa-angle-double-right" /> Read More</Link>
                     } */}
-                </div>
+                  </div>
+                </Link>
               </Col>
             ))}
             {/* <Col lg={4} sm={6} className='mb-3'>
@@ -461,32 +463,32 @@ function Home(props) {
               <Row>
                 {banglethirddata
                   ? banglethirddata.map(
-                      (item, index) =>
-                        item.name === "Bangle" && (
-                          <Col lg={4} sm={4} xs={6} className="mb-4">
-                            <div className="mainProductcard">
-                              <Link to={`/product-details/${item.id}`}>
-                                <img src={cleanImageUrl(item.image)} />
-                                <h4>{item.name}</h4>
-                                <p>
-                                  {item.unit_value} {item.unit}
-                                </p>
-                                <span>Karat : {item.purity}</span>
-                                <div className="product-btnarea">
-                                  <Link
-                                    to={`/product-details/${item.id}`}
-                                    className="product-addBtn"
-                                  >
-                                    Add To Cart
-                                  </Link>
-                                </div>
-                              </Link>
-                            </div>
-                          </Col>
-                        )
-                    )
+                    (item, index) =>
+                      item.name === "Bangle" && (
+                        <Col lg={4} sm={4} xs={6} className="mb-4">
+                          <div className="mainProductcard">
+                            <Link to={`/product-details/${item.id}`}>
+                              <img src={cleanImageUrl(item.image)} />
+                              <h4>{item.name}</h4>
+                              <p>
+                                {item.unit_value} {item.unit}
+                              </p>
+                              <span>Karat : {item.purity}</span>
+                              <div className="product-btnarea">
+                                <Link
+                                  to={`/product-details/${item.id}`}
+                                  className="product-addBtn"
+                                >
+                                  Add To Cart
+                                </Link>
+                              </div>
+                            </Link>
+                          </div>
+                        </Col>
+                      )
+                  )
                   : null}
-              
+
               </Row>
             </div>
           </div>
@@ -515,13 +517,13 @@ function Home(props) {
           >
             {secondbanner
               ? secondbanner.map(
-                  (item, index) =>
-                    item.type === "second" && (
-                      <div key={item.id} className="homeBack-bg">
-                        <img src={item.image} alt="" />
-                      </div>
-                    )
-                )
+                (item, index) =>
+                  item.type === "second" && (
+                    <div key={item.id} className="homeBack-bg">
+                      <img src={item.image} alt="" />
+                    </div>
+                  )
+              )
               : null}
             {/* <div>
               <img src={one} />
@@ -763,18 +765,18 @@ function Home(props) {
             {posts &&
               posts.map((blog) => (
                 <Col lg={4} sm={4} xs={12} className="mt-2 mb-3">
-                   <Link to="/blog">
-                  <div className="blogs-card" key={blog.id}>
-                    <img
-                      src={
-                        blog.image
-                          ? `https://veejayjewels.com/storage/app/public/banner/${blog.image}`
-                          : blog1
-                      }
-                      alt=""
-                    />
-                    <h5>{blog.title}</h5>
-                  </div>
+                  <Link to="/blog">
+                    <div className="blogs-card" key={blog.id}>
+                      <img
+                        src={
+                          blog.image
+                            ? `https://veejayjewels.com/storage/app/public/banner/${blog.image}`
+                            : blog1
+                        }
+                        alt=""
+                      />
+                      <h5>{blog.title}</h5>
+                    </div>
                   </Link>
                 </Col>
               ))}
@@ -837,13 +839,13 @@ function Home(props) {
             </Row> */}
             {thirdbanner
               ? thirdbanner.map(
-                  (item, index) =>
-                    item.type === "thrid" && (
-                      <div key={item.id} className="homeBack-bg">
-                        <img src={item.image} alt="" />
-                      </div>
-                    )
-                )
+                (item, index) =>
+                  item.type === "thrid" && (
+                    <div key={item.id} className="homeBack-bg">
+                      <img src={item.image} alt="" />
+                    </div>
+                  )
+              )
               : null}
           </Carousel>
         </Container>
