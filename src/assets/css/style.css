@@ -1999,12 +1999,15 @@ nav.header-bg {
 
 .productDetailTable.table {
   background: none !important;
+  --bs-table-bg: none !important;
 }
 
 .productdetails-bg {
   text-align: center;
 }
-
+.showssss {
+  text-align: right;
+}
 table.productDetailTable.table tbody tr td {
   vertical-align: middle;
 }
@@ -2339,8 +2342,13 @@ table.productDetailTable.table tr td label {
 
 .show-area {
   border-radius: 30px;
-  background: #fff;
+  background: url(../images/banner/Frame\ 100.png) !important;
   border: 1px solid #93620747;
+  text-align: center;
+}
+.hidearrow::after {
+  border-right: 0 !important;
+  border-left: 0 !important;
 }
 
 .show-areatext {
@@ -2356,7 +2364,7 @@ table.productDetailTable.table tr td label {
 }
 
 .showSizearea {
-  padding: 40px 10px;
+  padding: 60px 10px;
   text-align: center;
 }
 
@@ -2582,4 +2590,11 @@ table.productDetailTable.table tr th {
   font-family: "Playfair Display";
   opacity: 3;
   width: 180px;
+.order-confi .model-content {
+  --bs-modal-bg: transparent !important;
+  --bs-modal-border-color: none !important;
+}
+.order-confi1 .modal-content {
+  --bs-modal-bg: transparent !important;
+  --bs-modal-border-color: none !important;
 }

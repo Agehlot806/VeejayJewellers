@@ -395,9 +395,9 @@ function Home(props) {
                   <img src={item.image} alt="" />
                   <h3>{item.name}</h3>
                   {/* <Link to={`/products/${item.id}/${item.name}`}> */}
-                  <Link to="/products">
+                  {/* <Link to="/products">
                     <i className="fa fa-angle-double-right" /> Read More
-                  </Link>
+                  </Link> */}
                   {/* {item.name === "Aaraha"
                     ? <Link to='/ARHA-brands'><i className="fa fa-angle-double-right" /> Read More</Link>
                     :
@@ -486,30 +486,7 @@ function Home(props) {
                         )
                     )
                   : null}
-                {/* <Col lg={4} sm={4} xs={6} className="mb-4">
-                  <div className="mainProductcard">
-                    <img src={product4} />
-                    <h4>Handmade Jewelry Bangle</h4>
-                    <p>10 Gram</p>
-                    <div className="product-btnarea">
-                      <Link to='/product-details' className="product-addBtn">
-                        Add To Cart
-                      </Link>
-                    </div>
-                  </div>
-                </Col>
-                <Col lg={4} sm={4} xs={6} className="mb-4">
-                  <div className="mainProductcard">
-                    <img src={product2} />
-                    <h4>Handmade Jewelry Bangle</h4>
-                    <p>10 Gram</p>
-                    <div className="product-btnarea">
-                      <Link to='/product-details' className="product-addBtn">
-                        Add To Cart
-                      </Link>
-                    </div>
-                  </div>
-                </Col> */}
+              
               </Row>
             </div>
           </div>
