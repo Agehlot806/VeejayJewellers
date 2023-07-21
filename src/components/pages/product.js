@@ -161,20 +161,20 @@ function Product(props) {
 
   const handleCheck18 = (event) => {
     setCheck(event.target.value);
-    setallproduct(allproduct.filter((item) => item.purity === "18k"))
-  }
+    setallproduct(allproduct.filter((item) => item.purity === "18k"));
+  };
   const handleCheck14 = (event) => {
     setCheck(event.target.value);
-    setallproduct(allproduct.filter((item) => item.purity === "14k"))
-  }
+    setallproduct(allproduct.filter((item) => item.purity === "14k"));
+  };
   const handleCheck20 = (event) => {
     setCheck(event.target.value);
-    setallproduct(allproduct.filter((item) => item.purity === "20k"))
-  }
+    setallproduct(allproduct.filter((item) => item.purity === "20k"));
+  };
   const handleCheck16 = (event) => {
     setCheck(event.target.value);
-    setallproduct(allproduct.filter((item) => item.purity === "16k"))
-  }
+    setallproduct(allproduct.filter((item) => item.purity === "16k"));
+  };
 
   const pageCount = allproduct ? Math.ceil(allproduct.length / pageSize) : 0;
   const pages = _.range(1, pageCount + 1);
@@ -288,29 +288,53 @@ function Product(props) {
                     <div className="range-bg">
                       <label>Select Gold Karat</label>
                       <div>
-                      <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="checkbox" onClick={handleCheck14} />
-                          <label className="form-check-label" >14 Karat</label>
+                        <div className="form-check form-check-inline">
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            onClick={handleCheck14}
+                          />
+                          <label className="form-check-label">14 Karat</label>
                         </div>
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="checkbox" onClick={handleCheck16} />
-                          <label className="form-check-label" >16 Karat</label>
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            onClick={handleCheck16}
+                          />
+                          <label className="form-check-label">16 Karat</label>
                         </div>
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="checkbox" onClick={handleCheck18} />
-                          <label className="form-check-label" >18 Karat</label>
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            onClick={handleCheck18}
+                          />
+                          <label className="form-check-label">18 Karat</label>
                         </div>
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="checkbox" onClick={handleCheck20} />
-                          <label className="form-check-label" >20 Karat</label>
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            onClick={handleCheck20}
+                          />
+                          <label className="form-check-label">20 Karat</label>
                         </div>
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="checkbox" onClick={handleCheck22} />
-                          <label className="form-check-label" >22 Karat</label>
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            onClick={handleCheck22}
+                          />
+                          <label className="form-check-label">22 Karat</label>
                         </div>
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="checkbox" onClick={handleCheck24} />
-                          <label className="form-check-label" >24 Karat</label>
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            onClick={handleCheck24}
+                          />
+                          <label className="form-check-label">24 Karat</label>
                         </div>
                       </div>
                       {/* <input
@@ -368,7 +392,7 @@ function Product(props) {
                               <span>Karat : {item.purity}</span>
                               <div className="product-btnarea">
                                 <Link
-                                  to="/add-to-cart"
+                                  to={`/product-details/${item.id}`}
                                   className="product-addBtn"
                                 >
                                   Add To Cart
