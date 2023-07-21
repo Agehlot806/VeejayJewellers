@@ -40,15 +40,16 @@ function Orderinvoice() {
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-
+  const [orderList, setOrderList] = useState([]);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   useEffect(() => {
     productsList();
     EditProfile();
-    handleProductsList();
-  }, []);
+    handleProductsList(orderId);
+  }, [orderId]);
+
   const EditProfile = async (e) => {
     var headers = {
       Accept: "application/json",
@@ -73,7 +74,8 @@ function Orderinvoice() {
       });
   };
 
-  const handleProductsList = async () => {
+  const handleProductsList = async (orderId) => {
+    console.log(orderId);
     const requestBody = {
       id: storedId,
     };
@@ -88,13 +90,19 @@ function Orderinvoice() {
       .then((response) => response.json())
       .then((data) => {
         // Handle the response data here
-        // setOrderListData(data.data);
-        console.log(data);
+        setOrderList(data.data);
+        handleInvoiceFilter(data.data);
       })
       .catch((error) => {
         // Handle errors here
         console.error("Error:", error);
       });
+  };
+  const handleInvoiceFilter = (data) => {
+    console.log(data);
+
+    const filteredOrder = data.find((order) => console.log(order.id));
+    console.log(filteredOrder);
   };
   const productsList = () => {
     axios

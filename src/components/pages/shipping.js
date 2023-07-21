@@ -11,8 +11,6 @@ import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 
 function Addcart() {
-  const handleModelClose = () => setOrder(false);
-  const handleModelShow = () => setOrder(true);
   const [show, setShow] = useState(false);
   const [order, setOrder] = useState(false);
   const [orderId, setOrderId] = useState(null);
@@ -33,13 +31,27 @@ function Addcart() {
   const pincode = localStorage.getItem("pincode");
 
   const [carddata, setCardData] = useState([]);
- 
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setOrder(false);
+  //     navigate("/order-invoice"); // Close the modal after 5 seconds
+  //   }, 5000);
+
+  //   return () => clearTimeout(timer); // Clear the timer when the component unmounts
+  // }, []);
 
   useEffect(() => {
     latestsapidata();
     EditProfile();
   }, []);
-
+  const handleModelClose = () => {
+    setOrder(false);
+    navigate("/order-invoice");
+  };
+  const handleModelShow = () => {
+    setOrder(true);
+    handleClose();
+  };
   const latestsapidata = () => {
     axios
       .get(`${BASE_URL}/products/card`)
@@ -134,7 +146,7 @@ function Addcart() {
         setOrder(true);
         localStorage.setItem("order_id", data.order_id);
         handleModelShow();
-        handleClose();
+        // handleClose();
       })
       .catch((error) => {
         // Handle errors here
@@ -241,7 +253,7 @@ function Addcart() {
           {/* <Modal.Header closeButton>
             <Modal.Title></Modal.Title>
           </Modal.Header> */}
-          <Modal.Body >
+          <Modal.Body>
             <div className="show-area">
               <div className="show-areatext">
                 <div className="text-center">
