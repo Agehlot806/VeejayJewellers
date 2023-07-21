@@ -229,11 +229,12 @@ function Addcart() {
           onHide={handleClose}
           backdrop="static"
           keyboard={false}
+          className="order-confi"
         >
           {/* <Modal.Header closeButton>
             <Modal.Title></Modal.Title>
           </Modal.Header> */}
-          <Modal.Body>
+          <Modal.Body >
             <div className="show-area">
               <div className="show-areatext">
                 <div className="text-center">

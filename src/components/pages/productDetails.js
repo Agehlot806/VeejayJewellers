@@ -276,7 +276,7 @@ function ProductDetails(props) {
                   </tbody>
                 </Table>
                 <Button className="showSize" onClick={handleShow} >
-                {/* onClick={handleSubmitone} */}
+                  {/* onClick={handleSubmitone} */}
                   Add To Cart
                 </Button>
               </Col>
@@ -494,85 +494,58 @@ function ProductDetails(props) {
 
       </section>
       <Footer />
-      <Modal show={show} onHide={handleClose}>
-        {/* <Modal.Header closeButton>
-                    <Modal.Title>Modal heading</Modal.Title>
-                </Modal.Header> */}
-        {/* <Modal.Body>
-          <Table responsive className="productDetailTable">
-            <thead>
-              <tr>
-                <th>Size</th>
-                <th>Pcs Quantity</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  {variations ? (
-                    variations.map((item, index) => (
-                      <label className="radio-inline" key={index}>
-                        <input type="checkbox" name="optradio" /> {item.type}
-                      </label>
-                    ))
-                  ) : null}
-                </td>
-                <td>
-                  <div className="quantity-btn">
-                    <button onClick={handleDecrement}>-</button>
-                    <span>{quantity}</span>
-                    <button onClick={handleIncrement}>+</button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </Table>
-        </Modal.Body> */}
+      <Modal show={show} onHide={handleClose} className="order-confi1">
         <Modal.Body>
-          {variations ? (
-            <Table className="productDetailTable">
-              <thead>
-              <tr>
-                <th>Size</th>
-                <th>Pcs Quantity</th>
-              </tr>
-            </thead>
-              <tbody>
-                {variations.map((item, index) => (
-                  <tr key={index}>
-                    <td>
-                      <label className="radio-inline">
-                        {/* <input
+          <div className="show-area">
+            <div className="show-areatext">
+              <Row>
+                <Col lg={4} xs={4}><h6>Size</h6></Col>
+                <Col lg={8} xs={8}><div className="text-right"><h6>Pcs Quantity</h6></div></Col>
+              </Row>
+            </div>
+            <div className="show-contentS">
+              <Row>
+                {variations ? (
+                  <Table className="productDetailTable">
+                    <tbody>
+                      {variations.map((item, index) => (
+                        <tr key={index}>
+                          <td>
+                            <label className="radio-inline">
+                              {/* <input
                           type="checkbox"
                           name="optradio"
                           onChange={() => handleVariantSelection(item.type)}
                         />{" "} */}
-                        {item.type}
-                      </label>
-                    </td>
-                    <td>
-                      <div className="quantity-btn">
-                        <button onClick={() => handleDecrement(item.type)}>-</button>
-                        <span>{selectedQuantities[item.type] || 1}</span>
-                        <button onClick={() => handleIncrement(item.type)}>+</button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </Table>
-          ) : null}
+                              {item.type}
+                            </label>
+                          </td>
+                          <td>
+                            <div className="quantity-btn">
+                              <button onClick={() => handleDecrement(item.type)}>-</button>
+                              <span>{selectedQuantities[item.type] || 1}</span>
+                              <button onClick={() => handleIncrement(item.type)}>+</button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </Table>
+                ) : null}
+              </Row>
+              <hr />
+              <div className="showssss">
+              <Button onClick={handleSubmit} className="showSize">
+                Add To Cart
+              </Button>
+              </div>
+            </div>
+          </div>
           {/* <button onClick={handleSubmit}>Add to Cart</button> */}
         </Modal.Body>
 
 
-        <Modal.Footer>
-          {/* <Button variant="primary" onClick={handleClose} > */}
-          <Button onClick={handleSubmit} className="showSize">
-            Add To Cart
-          </Button>
-          {/* </Button> */}
-        </Modal.Footer>
+
       </Modal>
     </>
   );

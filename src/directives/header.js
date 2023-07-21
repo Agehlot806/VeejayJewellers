@@ -177,7 +177,8 @@ function Header({ profileImage }) {
                 </Link>
               </Nav.Link>
               <Nav.Link className="header-bag">
-                <i className="fa fa-bell-o" onClick={handleShow} />
+                <i className="fa fa-bell-o" onClick={handleShow}></i>
+                {/* <span className="ball-count">1</span> */}
               </Nav.Link>
               <Nav.Link className="">
                 <img
