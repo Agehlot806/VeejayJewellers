@@ -45,7 +45,7 @@ function Product(props) {
     allProduct();
     thirdBanner();
   }, []);
-  
+
   useEffect(() => {
     // Update the paginated categories whenever brandcategories or currentPage changes
     pagination(currentPage);
@@ -439,9 +439,9 @@ function Product(props) {
                               All Products
                             </a>
                           </li>
-                          {filter && dataList ?(
-                             dataList.map( (item) =>(
-                                  <li className="nav-item">
+                          {filter && dataList
+                            ? dataList.map((item) => (
+                                <li className="nav-item">
                                   <a
                                     className="nav-link"
                                     id="pills-arha-tab"
@@ -452,20 +452,19 @@ function Product(props) {
                                     aria-selected="false"
                                   >
                                     <div
-                                    onClick={(e) =>
-                                      SubCategory(
-                                        item.thumnail,
-                                        item.title,
-                                        item.file
-                                      )
-                                    }
+                                      onClick={(e) =>
+                                        SubCategory(
+                                          item.thumnail,
+                                          item.title,
+                                          item.file
+                                        )
+                                      }
                                     >
                                       {item.category}
                                     </div>
                                   </a>
                                 </li>
-                                ))
-                               )
+                              ))
                             : null}
                         </ul>
                         <div className="tab-content" id="pills-tabContent">
@@ -492,7 +491,7 @@ function Product(props) {
                                         <span>Karat : {item.purity}</span>
                                         <div className="product-btnarea">
                                           <Link
-                                            to="/add-to-cart"
+                                            to={`/product-details/${item.id}`}
                                             className="product-addBtn"
                                           >
                                             Add To Cart

@@ -28,14 +28,14 @@ function Addcart() {
     axios
       .get(`${BASE_URL}/products/card`)
       .then((response) => {
-        console.log(response.data);
         setCardData(response.data.data);
+        console.log(response.data.data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
   };
-  console.error("Error fetching data:", carddata);
+  console.error("Error fetching data:", carddata.length);
   const deleteDataById = (id) => {
     axios
       .post(`${BASE_URL}/products/discard?id=${id}`)

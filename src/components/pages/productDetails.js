@@ -166,12 +166,14 @@ function ProductDetails(props) {
   };
   const handleFilterData = (data) => {
     console.log("categoies", data);
-    const filterData = allproduct.filter((item) => item.category === categoies);
-    console.log(filterData);
-    setFilterData(filterData);
+    const handlefilter = allproduct.filter(
+      (item) => item.category === categoies
+    );
+    console.log(handlefilter);
+    setFilterData(handlefilter);
   };
   console.log("allproduct", filterData);
-  
+
   useEffect(() => {
     GetProductDetails();
     thirdBanner();
@@ -211,6 +213,7 @@ function ProductDetails(props) {
       })
       .then((response) => {
         console.log(response);
+        handleClose();
         // addtocard("/add-to-cart");
         // history.push("/all-events");
       })
@@ -234,6 +237,10 @@ function ProductDetails(props) {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
+  };
+  const cleanImageUrl = (imageUrl) => {
+    // Remove square brackets and escape characters
+    return imageUrl.replace(/[\[\]\\"]/g, "");
   };
 
   return (
@@ -397,115 +404,33 @@ function ProductDetails(props) {
             </Col>
           </Row>
           <Row className="mt-4 mb-4">
-            <Col lg={3} sm={4} xs={6} className="mb-4">
-              <div className="mainProductcard">
-                <img src={product2} />
-                <h4>Bangle "MURATO"</h4>
-                <p>10gms</p>
-                <div className="product-btnarea">
-                  <Link to="/product-details" className="product-addBtn">
-                    Add To Cart
-                  </Link>
-                </div>
-              </div>
-            </Col>
-            <Col lg={3} sm={4} xs={6} className="mb-4">
-              <div className="mainProductcard">
-                <img src={product2} />
-                <h4>Bangle "MURATO"</h4>
-                <p>10gms</p>
-                <div className="product-btnarea">
-                  <Link to="/product-details" className="product-addBtn">
-                    Add To Cart
-                  </Link>
-                </div>
-              </div>
-            </Col>
-            <Col lg={3} sm={4} xs={6} className="mb-4">
-              <div className="mainProductcard">
-                <img src={product3} />
-                <h4>Bangle "MURATO"</h4>
-                <p>10gms</p>
-                <div className="product-btnarea">
-                  <Link to="/product-details" className="product-addBtn">
-                    Add To Cart
-                  </Link>
-                </div>
-              </div>
-            </Col>
-            <Col lg={3} sm={4} xs={6} className="mb-4">
-              <div className="mainProductcard">
-                <img src={product4} />
-                <h4>Bangle "MURATO"</h4>
-                <p>10gms</p>
-                <div className="product-btnarea">
-                  <Link to="/product-details" className="product-addBtn">
-                    Add To Cart
-                  </Link>
-                </div>
-              </div>
-            </Col>
-
-            <Col lg={3} sm={4} xs={6} className="mb-4">
-              <div className="mainProductcard">
-                <img src={product6} />
-                <h4>Bangle "MURATO"</h4>
-                <p>10gms</p>
-                <div className="product-btnarea">
-                  <Link to="/product-details" className="product-addBtn">
-                    Add To Cart
-                  </Link>
-                </div>
-              </div>
-            </Col>
-            <Col lg={3} sm={4} xs={6} className="mb-4">
-              <div className="mainProductcard">
-                <img src={product2} />
-                <h4>Bangle "MURATO"</h4>
-                <p>10gms</p>
-                <div className="product-btnarea">
-                  <Link to="/product-details" className="product-addBtn">
-                    Add To Cart
-                  </Link>
-                </div>
-              </div>
-            </Col>
-            <Col lg={3} sm={4} xs={6} className="mb-4">
-              <div className="mainProductcard">
-                <img src={product2} />
-                <h4>Bangle "MURATO"</h4>
-                <p>10gms</p>
-                <div className="product-btnarea">
-                  <Link to="/product-details" className="product-addBtn">
-                    Add To Cart
-                  </Link>
-                </div>
-              </div>
-            </Col>
-            <Col lg={3} sm={4} xs={6} className="mb-4">
-              <div className="mainProductcard">
-                <img src={product2} />
-                <h4>Bangle "MURATO"</h4>
-                <p>10gms</p>
-                <div className="product-btnarea">
-                  <Link to="/product-details" className="product-addBtn">
-                    Add To Cart
-                  </Link>
-                </div>
-              </div>
-            </Col>
-            <Col lg={3} sm={4} xs={6} className="mb-4">
-              <div className="mainProductcard">
-                <img src={product2} />
-                <h4>Bangle "MURATO"</h4>
-                <p>10gms</p>
-                <div className="product-btnarea">
-                  <Link to="/product-details" className="product-addBtn">
-                    Add To Cart
-                  </Link>
-                </div>
-              </div>
-            </Col>
+            {filterData ? (
+              filterData.map((item) => (
+                <Col lg={3} sm={4} xs={6} className="mb-4">
+                  <div className="mainProductcard">
+                    <Link to={`/product-details/${item.id}`}>
+                      <img src={cleanImageUrl(item.image)} alt="" />
+                      <h4>{item.name}</h4>
+                      <p>
+                        {item.unit_value} {item.unit}
+                        Pcs Quantity{" "}
+                      </p>
+                      <span>Karat : {item.purity}</span>
+                      <div className="product-btnarea">
+                        <Link
+                          to={`/product-details/${item.id}`}
+                          className="product-addBtn"
+                        >
+                          Add To Cart
+                        </Link>
+                      </div>
+                    </Link>
+                  </div>
+                </Col>
+              ))
+            ) : (
+              <div>No data available.</div>
+            )}
           </Row>
         </Container>
       </section>

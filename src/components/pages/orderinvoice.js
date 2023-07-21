@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../../directives/header";
 import { Button, Modal, Col, Row, Table } from "react-bootstrap";
-import ring2 from "../../assets/images/img/ring2.png";
+import logo from "../../assets/images/logo/logo.png";
 import Footer from "../../directives/footer";
 import border from "../../assets/images/banner/border.png";
 import { Link, useParams } from "react-router-dom";
@@ -23,6 +23,9 @@ const customStyles = {
 };
 
 function Orderinvoice() {
+  const storedId = localStorage.getItem("id");
+  const orderId = localStorage.getItem("order_id");
+  const address = localStorage.getItem("address");
   const { id } = useParams();
   const [productName, setProductName] = useState("");
   const [orderlistdata, setOrderListData] = useState([]);
@@ -33,19 +36,71 @@ function Orderinvoice() {
   const [variation, setVariation] = useState("");
   const [textAmount, setTextAmount] = useState("");
   const [show, setShow] = useState(false);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   useEffect(() => {
     productsList();
+    EditProfile();
+    handleProductsList();
   }, []);
+  const EditProfile = async (e) => {
+    var headers = {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    };
+    await fetch(`${BASE_URL}/customer/info?id=${storedId}`, {
+      method: "GET",
+      headers: headers,
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        console.log("response", response);
+        setFirstName(response.data.f_name);
+        setLastName(response.data.l_name);
 
+        setEmail(response.data.email);
+
+        setPhone(response.data.phone);
+      })
+      .catch((error) => {
+        console.error("ERROR FOUND---->>>>" + error);
+      });
+  };
+
+  const handleProductsList = async () => {
+    const requestBody = {
+      id: storedId,
+    };
+
+    fetch("https://veejayjewels.com/api/v1/products/list", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestBody),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Handle the response data here
+        // setOrderListData(data.data);
+        console.log(data);
+      })
+      .catch((error) => {
+        // Handle errors here
+        console.error("Error:", error);
+      });
+  };
   const productsList = () => {
     axios
       .get(`https://veejayjewels.com/api/v1/products/details`, {
         params: {
-          id: id,
+          id: orderId,
         },
         headers: {
           Accept: "application/json",
@@ -54,22 +109,23 @@ function Orderinvoice() {
         },
       })
       .then((response) => {
+        console.log(response.data.data);
         setOrderListData(response.data.data);
         setProductOrderId(response.data.data[0].order_id);
         setProductId(response.data.data[0].product_id);
         setProductQuantity(response.data.data[0].quantity);
         setProductPrice(response.data.data[0].price);
-        setProductName(response.data.data[0].productName);
-        setVariation(response.data.data[0].variation);
+        setProductName(response.data.data[0].product_name);
+        setVariation(response.data.data[0].variant);
         setTextAmount(response.data.data[0].tax_amount);
+        setProductPrice(response.data.data[0].price);
+        setProductPrice(response.data.data[0].price);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
   };
-  console.log("====================================");
-  console.log("productname", productName);
-  console.log("====================================");
+  console.log("productName", productName);
   return (
     <>
       <Header />
@@ -77,53 +133,67 @@ function Orderinvoice() {
       <section className="section-padding">
         <Row className="justify-content-center mb-3">
           <Col lg={5}>
-            <Table responsive className="productDetailTable">
-              <tbody>
-                <tr>
-                  <th>Product Id</th>
-                  <td>{productId}</td>
-                </tr>
-                <tr>
-                  <th>Order Id</th>
-                  <td>{productOrderId}</td>
-                </tr>
-                <tr>
-                  <th>Quantity</th>
-                  <td>{quantity}</td>
-                </tr>
-                <tr>
-                  <th>Price</th>
-                  <td>{productPrice}</td>
-                </tr>
-                <tr>
-                  <th>Product Name</th>
-                  <td>{productName}</td>
-                </tr>
-                <tr>
-                  <th>Variation</th>
-                  <td>{variation}</td>
-                </tr>
-                <tr>
-                  <th>Text Amount</th>
-                  <td>{textAmount}</td>
-                </tr>
-                {/* <tr>
-                  <th>Weight</th>
-                  <td>10 gms</td>
-                </tr> */}
-              </tbody>
-            </Table>
-
-            <div className="add-border">
-              <img src={border} />
+            <div className="invoice-cardnew-area">
+              <div className="invoice-cardnew">
+                <img src={logo} />
+                <h3>
+                  Order Id: <span>{orderId}</span>
+                </h3>
+                <h3>
+                  Invoice Id: <span>12345</span>
+                </h3>
+              </div>
+              <div className="add-border">
+                <img src={border} />
+              </div>
+              <div className="order-invoiceN">
+                <Table responsive className="productDetailTable">
+                  <tbody>
+                    <tr>
+                      <th>Product Name:</th>
+                      <td>{productName}</td>
+                    </tr>
+                    <tr>
+                      <th>Variant:</th>
+                      <td>{variation}</td>
+                    </tr>
+                    <tr>
+                      <th>Quantity</th>
+                      <td>{quantity}</td>
+                    </tr>
+                    {/* <div className="add-border">
+                  <img src={border} />
+                    </div> */}
+                    <tr>
+                      <th>Name:</th>
+                      <td>
+                        {firstName}
+                        {lastName}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>Email:</th>
+                      <td>{email}</td>
+                    </tr>
+                    <tr>
+                      <th>Phone:</th>
+                      <td>{phone}</td>
+                    </tr>
+                    <tr>
+                      <th>Address:</th>
+                      <td>{address}</td>
+                    </tr>
+                  </tbody>
+                </Table>
+              </div>
             </div>
           </Col>
         </Row>
-        <div className="text-center">
+        {/* <div className="text-center">
           <Link className="showSize" onClick={handleShow}>
             Submit
           </Link>
-        </div>
+        </div> */}
         <Modal
           show={show}
           onHide={handleClose}

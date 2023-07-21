@@ -121,9 +121,11 @@ nav.header-bg {
 }
 
 .main-btn {
-  background: linear-gradient(271.8deg,
-      rgba(106, 69, 0, 0.2) 0.65%,
-      rgba(147, 98, 7, 0.2) 98.14%) !important;
+  background: linear-gradient(
+    271.8deg,
+    rgba(106, 69, 0, 0.2) 0.65%,
+    rgba(147, 98, 7, 0.2) 98.14%
+  ) !important;
   box-shadow: 0px 1px 30px rgba(0, 0, 0, 0.05);
   padding: 12px 20px;
   font-weight: 700;
@@ -144,10 +146,6 @@ nav.header-bg {
     width: 100%;
     border: 1px solid #6A4500;
 } */
-
-
-
-
 
 /* ========================= Home area css ============================= */
 
@@ -435,7 +433,6 @@ nav.header-bg {
   float: right;
 }
 
-
 /* === */
 .mainProductcard {
   text-align: center;
@@ -469,7 +466,6 @@ nav.header-bg {
   color: #ffc107;
   margin: 0 3px 0 2px;
 }
-
 
 /* ================================= Silver-Dimonds area css =================================*/
 .Silver-Dimonds {
@@ -566,7 +562,6 @@ nav.header-bg {
 
 .catloggg ul li a:hover {
   color: #6a4500 !important;
-
 }
 
 /* ============================= Our store area css ==================================== */
@@ -891,9 +886,11 @@ nav.header-bg {
 }
 
 .faqs-list .accordion-button:not(.collapsed) {
-  background: linear-gradient(271.8deg,
-      rgba(106, 69, 0, 0.2) 0.65%,
-      rgba(147, 98, 7, 0.2) 98.14%) !important;
+  background: linear-gradient(
+    271.8deg,
+    rgba(106, 69, 0, 0.2) 0.65%,
+    rgba(147, 98, 7, 0.2) 98.14%
+  ) !important;
 }
 
 .faqs-list .accordion-header button {
@@ -1268,9 +1265,11 @@ nav.header-bg {
 }
 
 .contact-form button {
-  background: linear-gradient(271.8deg,
-      rgba(106, 69, 0, 0.2) 0.65%,
-      rgba(147, 98, 7, 0.2) 98.14%) !important;
+  background: linear-gradient(
+    271.8deg,
+    rgba(106, 69, 0, 0.2) 0.65%,
+    rgba(147, 98, 7, 0.2) 98.14%
+  ) !important;
   box-shadow: 0px 1px 30px rgba(0, 0, 0, 0.05);
   padding: 12px 20px;
   position: relative;
@@ -1348,7 +1347,6 @@ nav.header-bg {
   height: 100px;
   margin: 20px 0;
 }
-
 
 /* ======================== Catalogue area css ====================== */
 .catlogOne img {
@@ -1734,9 +1732,11 @@ nav.header-bg {
 
 .mainForm-btn button {
   width: 100%;
-  background: linear-gradient(271.8deg,
-      #6a4500 0.65%,
-      #936207 98.14%) !important;
+  background: linear-gradient(
+    271.8deg,
+    #6a4500 0.65%,
+    #936207 98.14%
+  ) !important;
   color: #fff;
   padding: 0 50px;
   line-height: 55px;
@@ -1915,10 +1915,12 @@ nav.header-bg {
 }
 
 .nav-pills .nav-link.active,
-.nav-pills .show>.nav-link {
-  background: linear-gradient(271.8deg,
-      #6a4500 0.65%,
-      #936207 98.14%) !important;
+.nav-pills .show > .nav-link {
+  background: linear-gradient(
+    271.8deg,
+    #6a4500 0.65%,
+    #936207 98.14%
+  ) !important;
   color: #fff !important;
 }
 
@@ -2029,7 +2031,7 @@ table.productDetailTable.table tr td label {
   font-family: Playfair sans-serif;
   margin: 0 3px 0 3px;
 }
-.showSize a{
+.showSize a {
   color: #fff;
 }
 
@@ -2082,7 +2084,11 @@ table.productDetailTable.table tr td label {
 }
 
 .dropdown-rate button {
-  background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%) !important;
+  background: linear-gradient(
+    271.8deg,
+    #6a4500 0.65%,
+    #936207 98.14%
+  ) !important;
   padding: 4px 25px;
   font-weight: 400;
   font-size: 20px;
@@ -2090,7 +2096,6 @@ table.productDetailTable.table tr td label {
   border: none;
   margin-left: 25px;
 }
-
 
 /* add cart area css */
 .add-card-AREA {
@@ -2178,7 +2183,7 @@ table.productDetailTable.table tr td label {
 }
 
 .tabBrands {
-  background: #E1E1E1;
+  background: #e1e1e1;
   border-radius: 20px;
   padding: 15px;
 }
@@ -2223,7 +2228,6 @@ table.productDetailTable.table tr td label {
   border-radius: 40px;
   height: 100%;
   padding: 22px;
-
 }
 
 .blogs-card img {
@@ -2240,13 +2244,13 @@ table.productDetailTable.table tr td label {
 }
 
 .product_details h1 {
-  background: linear-gradient(271.8deg, #6A4500 0.65%, #936207 98.14%);
+  background: linear-gradient(271.8deg, #6a4500 0.65%, #936207 98.14%);
   color: #fff;
   border-radius: 10px;
   font-family: Playfair Display;
   font-size: 30px;
   font-weight: 700;
-  letter-spacing: 0em
+  letter-spacing: 0em;
 }
 
 .product-text h3 {
@@ -2265,14 +2269,14 @@ table.productDetailTable.table tr td label {
 }
 
 .productCardbg {
-  background: #E1E1E1;
+  background: #e1e1e1;
   padding: 0 !important;
   border-radius: 20px;
 }
 
 .form-check-input:checked {
-  background-color: #6A4500 !important;
-  border-color: #6A4500 !important;
+  background-color: #6a4500 !important;
+  border-color: #6a4500 !important;
 
   .checkbox-bg label {
     font-weight: 500;
@@ -2294,7 +2298,6 @@ table.productDetailTable.table tr td label {
 .checkbox-bg .form-check {
   margin: 13px 0;
 }
-
 
 .range-bg {
   border-radius: 30px;
@@ -2342,7 +2345,7 @@ table.productDetailTable.table tr td label {
 
 .show-areatext {
   border-radius: 30px 30px 0px 0px;
-  background: linear-gradient(280deg, #6A4500 0%, #936207 100%);
+  background: linear-gradient(280deg, #6a4500 0%, #936207 100%);
   padding: 18px;
   color: #fff;
   font-weight: 600;
@@ -2356,7 +2359,6 @@ table.productDetailTable.table tr td label {
   padding: 40px 10px;
   text-align: center;
 }
-
 
 /* === range theme and appearance === */
 input[type="range"] {
@@ -2374,7 +2376,6 @@ input[type="range"] {
   --clip-edges: 0.125em;
 }
 
-
 /* === range commons === */
 input[type="range"] {
   position: relative;
@@ -2391,41 +2392,43 @@ input[type="range"]::-webkit-slider-thumb {
   height: var(--thumb-height);
 }
 
-
 input[type="range"]::-webkit-slider-thumb {
   --clip-top: calc((var(--thumb-height) - var(--track-height)) * 0.5 - 0.5px);
   --clip-bottom: calc(var(--thumb-height) - var(--clip-top));
   --clip-further: calc(100% + 1px);
-  --box-fill: calc(-100vmax - var(--thumb-width, var(--thumb-height))) 0 0 100vmax currentColor;
+  --box-fill: calc(-100vmax - var(--thumb-width, var(--thumb-height))) 0 0
+    100vmax currentColor;
 
   width: var(--thumb-width, var(--thumb-height));
-  background: linear-gradient(currentColor 0 0) scroll no-repeat left center / 50% calc(var(--track-height) + 1px);
+  background: linear-gradient(currentColor 0 0) scroll no-repeat left center /
+    50% calc(var(--track-height) + 1px);
   background-color: currentColor;
   box-shadow: var(--box-fill);
   border-radius: var(--thumb-width, var(--thumb-height));
 
   filter: brightness(100%);
-  clip-path: polygon(100% -1px,
-      var(--clip-edges) -1px,
-      0 var(--clip-top),
-      -100vmax var(--clip-top),
-      -100vmax var(--clip-bottom),
-      0 var(--clip-bottom),
-      var(--clip-edges) 100%,
-      var(--clip-further) var(--clip-further));
+  clip-path: polygon(
+    100% -1px,
+    var(--clip-edges) -1px,
+    0 var(--clip-top),
+    -100vmax var(--clip-top),
+    -100vmax var(--clip-bottom),
+    0 var(--clip-bottom),
+    var(--clip-edges) 100%,
+    var(--clip-further) var(--clip-further)
+  );
 }
 
-
 input[type="range"]::-webkit-slider-runnable-track {
-  background: linear-gradient(var(--track-color) 0 0) scroll no-repeat center / 100% calc(var(--track-height) + 1px);
+  background: linear-gradient(var(--track-color) 0 0) scroll no-repeat center /
+    100% calc(var(--track-height) + 1px);
 }
 
 button.quality {
   border-radius: 50%;
-  background: linear-gradient(280deg, #6A4500 0%, #936207 100%) !important;
+  background: linear-gradient(280deg, #6a4500 0%, #936207 100%) !important;
   border: none;
   padding: 3px 20px 6px;
-
 }
 
 span.quantity {
@@ -2437,7 +2440,7 @@ input.rangeinput {
   margin: 30px 0 0;
 }
 
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 
@@ -2446,7 +2449,6 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
 
 .brands-tabs-all .tab-content {
   margin: 25px 0;
@@ -2472,7 +2474,7 @@ input::-webkit-inner-spin-button {
   width: 80%;
 }
 .add-card-AREA table {
-    --bs-table-bg: transparent !important;
+  --bs-table-bg: transparent !important;
 }
 .add-card-AREA table th {
   border-bottom-width: 0 !important;
@@ -2516,19 +2518,68 @@ input::-webkit-inner-spin-button {
 }
 
 .pagination {
-    --bs-pagination-color: #8b5d06 !important;
-    --bs-pagination-active-bg: #8b5d06!important;
-    --bs-pagination-active-border-color: #8b5d06!important;
+  --bs-pagination-color: #8b5d06 !important;
+  --bs-pagination-active-bg: #8b5d06 !important;
+  --bs-pagination-active-border-color: #8b5d06 !important;
 }
 .page-link:focus {
-  color: #000!important;
-  box-shadow: none!important;
-
+  color: #000 !important;
+  box-shadow: none !important;
 }
 .showSizearea button {
-  background: linear-gradient(280deg, #6A4500 0%, #936207 100%);
+  background: linear-gradient(280deg, #6a4500 0%, #936207 100%);
   color: #fff !important;
   margin: 0 5px 0 5px;
   padding: 5px 30px;
   font-size: 20px;
+}
+
+/* order successfully */
+
+/* OrderSuccessPage.css */
+
+.order-success-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.order-success-heading {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.order-success-message {
+  font-size: 18px;
+  color: #555;
+}
+.invoice-cardnew-area {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  padding: 15px;
+  border-radius: 6px;
+}
+.invoice-cardnew {
+  text-align: center;
+  font-family: "Playfair Display";
+}
+.order-invoiceN table {
+  --bs-table-bg: transparent;
+}
+.invoice-cardnew h3 {
+  font-size: 27px;
+  font-weight: 600;
+}
+.invoice-cardnew img {
+  margin: 20px 0;
+}
+
+table.productDetailTable.table tr th {
+  font-size: 20px;
+  font-family: "Playfair Display";
+  opacity: 3;
+  width: 180px;
 }

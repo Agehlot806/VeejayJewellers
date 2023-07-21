@@ -11,22 +11,20 @@ import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 
 function Addcart() {
+  const handleModelClose = () => setOrder(false);
+  const handleModelShow = () => setOrder(true);
   const [show, setShow] = useState(false);
-
+  const [order, setOrder] = useState(false);
+  const [orderId, setOrderId] = useState(null);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const address = localStorage.getItem("address");
-  console.log("span", address);
+
   const storedId = localStorage.getItem("id");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-
-  useEffect(() => {
-    latestsapidata();
-    EditProfile();
-  }, []);
 
   const navigate = useNavigate();
   const loginId = localStorage.getItem("id");
@@ -35,6 +33,19 @@ function Addcart() {
   const pincode = localStorage.getItem("pincode");
 
   const [carddata, setCardData] = useState([]);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setOrder(false);
+      navigate("/order-invoice"); // Close the modal after 5 seconds
+    }, 5000);
+
+    return () => clearTimeout(timer); // Clear the timer when the component unmounts
+  }, []);
+
+  useEffect(() => {
+    latestsapidata();
+    EditProfile();
+  }, []);
 
   const latestsapidata = () => {
     axios
@@ -125,10 +136,12 @@ function Addcart() {
     })
       .then((response) => response.json())
       .then((data) => {
-        toast.success("Order Successfully");
-
-        // Handle the response data here
-        console.log(data);
+        // toast.success("Order Successfully");
+        setOrderId(data.order_id);
+        setOrder(true);
+        localStorage.setItem("order_id", data.order_id);
+        handleModelShow();
+        handleClose();
       })
       .catch((error) => {
         // Handle errors here
@@ -224,6 +237,7 @@ function Addcart() {
             Submit
           </Link>
         </div>
+
         <Modal
           show={show}
           onHide={handleClose}
@@ -250,6 +264,18 @@ function Addcart() {
                 </Button>
               </div>
             </div>
+          </Modal.Body>
+        </Modal>
+        <Modal show={order} onHide={handleModelClose}>
+          <Modal.Header closeButton></Modal.Header>
+          <Modal.Body>
+            {" "}
+            <h2 className="order-success-heading">
+              Order Successfully Placed!
+            </h2>
+            <p className="order-success-message">
+              Thank you for your order. Your purchase was successful.
+            </p>
           </Modal.Body>
         </Modal>
       </section>
