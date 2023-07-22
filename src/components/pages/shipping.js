@@ -9,6 +9,7 @@ import { BASE_URL } from "../../Constant/Index";
 import { useState, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
+import { Input } from "reactstrap";
 
 function Addcart() {
   const [show, setShow] = useState(false);
@@ -17,7 +18,10 @@ function Addcart() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const address = localStorage.getItem("address");
-
+  const [shippingOrder, setShippingModel] = useState(false);
+  const minProductValue = 1; // Minimum value for the quantity
+  const maxProductValue = 50; // Maximum value for the quantity
+  const [quantity, setQuantity] = useState(minProductValue);
   const storedId = localStorage.getItem("id");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -73,10 +77,6 @@ function Addcart() {
       return [];
     }
   };
-
-  const minProductValue = 1; // Minimum value for the quantity
-  const maxProductValue = 50; // Maximum value for the quantity
-  const [quantity, setQuantity] = useState(minProductValue);
 
   // raksha code
 
@@ -152,6 +152,14 @@ function Addcart() {
         // Handle errors here
         console.error("Error:", error);
       });
+  };
+
+  const openShippingModel = () => {
+    setShippingModel(true);
+  };
+
+  const handleShiipngClose = () => {
+    setShippingModel(false);
   };
   return (
     <>
@@ -233,6 +241,11 @@ function Addcart() {
                     </tr>
                   </tbody>
                 </Table>
+                <div>
+                  <Button onClick={openShippingModel}>
+                    New Shipping Address
+                  </Button>
+                </div>
               </div>
             </Col>
           </Row>
@@ -242,7 +255,6 @@ function Addcart() {
             Submit
           </Link>
         </div>
-
         <Modal
           show={show}
           onHide={handleClose}
@@ -272,6 +284,31 @@ function Addcart() {
             </div>
           </Modal.Body>
         </Modal>
+        {/* shiiping  */}
+        <Modal show={openShippingModel} onHide={handleShiipngClose}>
+          {/* <Modal.Header closeButton>
+            <Modal.Title></Modal.Title>
+          </Modal.Header> */}
+          <Modal.Body>
+            <div className="show-area">
+              <div className="show-areatext">
+                <div className="text-center">
+                  {/* <h3>Order Confirmation</h3> */}
+                  <input type="text" />
+                </div>
+              </div>
+
+              <div className="showSizearea">
+                {/* <Button variant="btn" onClick={handleShiipngClose}>
+                  <i className="fa fa-times" /> No
+                </Button>
+                <Button variant="btn" onClick={handlePlaceOrder}>
+                  <i className="fa fa-check" /> Yes
+                </Button> */}
+              </div>
+            </div>
+          </Modal.Body>
+        </Modal>{" "}
         <Modal show={order} onHide={handleModelClose}>
           <Modal.Header closeButton></Modal.Header>
           <Modal.Body>
