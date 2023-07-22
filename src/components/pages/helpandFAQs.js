@@ -28,54 +28,47 @@ function HelpandFAQs() {
                 <Container>
                     <Accordion defaultActiveKey="0">
                                 <Accordion.Item eventKey="0">
-                                    <Accordion.Header>How to setup a page with custom fields?</Accordion.Header>
+                                    <Accordion.Header>What Shipping Methods Are Available?</Accordion.Header>
                                     <Accordion.Body>
-                                        By creating an account you will be able to shop faster, be up to date on an order's status, and keep track of the orders you have previously made.By creating an account you will be able to shop faster, be up to date on an order's status, and keep track of the orders you have previously made.
+                                    Oneself endless holiest society philosophy dept valuation Contradicts gains nobless end lose preju dice battle hope the battle philosophy Gains endless capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps
                                     </Accordion.Body>
                                 </Accordion.Item>
                                 <Accordion.Item eventKey="1">
-                                    <Accordion.Header>At an these still no dried folly stood thing</Accordion.Header>
+                                    <Accordion.Header>How Do I Track My Order?</Accordion.Header>
                                     <Accordion.Body>
-                                        And sir dare view but over man. So at within mr to simple assure. Mr disposing continued it offending arranging in we. Extremity as if breakfast agreement. Off now mistress provided out horrible opinions.
+                                    Swag slow-carb quinoa VHS typewriter pork belly brunch, paleo single-origin coffee Wes Anderson. Flexitarian Pitchfork forage, literally paleo fap pour-over. Wes Anderson Pinterest YOLO fanny pack meggings.
                                     </Accordion.Body>
                                 </Accordion.Item>
                                 <Accordion.Item eventKey="3">
-                                    <Accordion.Header>Ham now amounted absolute not</Accordion.Header>
+                                    <Accordion.Header>How do I place an Order?</Accordion.Header>
                                     <Accordion.Body>
-                                        And sir dare view but over man. So at within mr to simple assure. Mr disposing continued it offending arranging in we. Extremity as if breakfast agreement. Off now mistress provided out horrible opinions.
+                                    Keytar cray slow-carb, Godard banh mi salvia pour-over. Slow-carb Odd Future seitan normcore. Master cleanse American Apparel gentrify flexitarian beard slow-carb next level. Raw denim polaroid paleo farm-to-table, put a bird on it lo-fi tattooed Wes Anderson Pinterest letterpress. Fingerstache McSweeney’s pour-over, letterpress Schlitz photo booth master cleanse bespoke hashtag chillwave gentrify.
                                     </Accordion.Body>
                                 </Accordion.Item>
                                 <Accordion.Item eventKey="4">
-                                    <Accordion.Header>Rapid it on hours hills it seven years</Accordion.Header>
+                                    <Accordion.Header>Do You Ship Internationally?</Accordion.Header>
                                     <Accordion.Body>
-                                        And sir dare view but over man. So at within mr to simple assure. Mr disposing continued it offending arranging in we. Extremity as if breakfast agreement. Off now mistress provided out horrible opinions.
+                                    Oneself endless holiest society philosophy dept valuation Contradicts gains nobless end lose preju dice battle hope the battle philosophy Gains endless capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps
                                     </Accordion.Body>
                                 </Accordion.Item>
                                 <Accordion.Item eventKey="5">
-                                    <Accordion.Header>How to setup a page with custom fields?</Accordion.Header>
+                                    <Accordion.Header>How Long Will It Take To Get My Package?</Accordion.Header>
                                     <Accordion.Body>
                                         And sir dare view but over man. So at within mr to simple assure. Mr disposing continued it offending arranging in we. Extremity as if breakfast agreement. Off now mistress provided out horrible opinions.
                                     </Accordion.Body>
                                 </Accordion.Item>
                                 <Accordion.Item eventKey="6">
-                                    <Accordion.Header>Ham now amounted absolute not</Accordion.Header>
+                                    <Accordion.Header>Can I send gifts to my loved ones?</Accordion.Header>
                                     <Accordion.Body>
-                                        And sir dare view but over man. So at within mr to simple assure. Mr disposing continued it offending arranging in we. Extremity as if breakfast agreement. Off now mistress provided out horrible opinions.
+                                    gifts to your loved ones along with a personalized message.
                                     </Accordion.Body>
                                 </Accordion.Item>
                                 <Accordion.Item eventKey="7">
-                                    <Accordion.Header>Rapid it on hours hills it seven years</Accordion.Header>
+                                    <Accordion.Header>What happens if my order is lost in transit?</Accordion.Header>
                                     <Accordion.Body>
-                                        And sir dare view but over man. So at within mr to simple assure. Mr disposing continued it offending arranging in we. Extremity as if breakfast agreement. Off now mistress provided out horrible opinions.
+                                    In the unlikely event that an order gets lost during transit, we wait for 15 days to track your lost order and if we are still unsuccessful, then we process your refund through the payment mode that you had opted for at the time of placing the order.
                                     </Accordion.Body>
                                 </Accordion.Item>
-                                <Accordion.Item eventKey="8">
-                                    <Accordion.Header>How to setup a page with custom fields?</Accordion.Header>
-                                    <Accordion.Body>
-                                        And sir dare view but over man. So at within mr to simple assure. Mr disposing continued it offending arranging in we. Extremity as if breakfast agreement. Off now mistress provided out horrible opinions.
-                                    </Accordion.Body>
-                                </Accordion.Item>
-
                     </Accordion>
                 </Container>
             </section>

@@ -8,6 +8,7 @@ body {
   font-family: "Playfair Display", serif;
   /* background: #f0efef !important; */
   background: url(../images/banner/Frame\ 100.png) !important;
+  overflow-x: hidden;
 }
 
 p {
@@ -2609,4 +2610,20 @@ table.productDetailTable.table tr th {
 
 .order-confi .modal-header {
   border-bottom: none !important;
+}
+.like-icon {
+  text-align: right;
+  margin: 15px 0 0 0;
+}
+.like-icon i {
+  color: #704901 !important;
+  font-size: 25px;
+}
+.brands-tabs-all ul li a {
+  border: 1.5px solid #916006;
+  margin: 0 3px 0 3px;
+}
+.brands-tabs-all ul li .nav-link:hover {
+  color: #000 !important;
+  margin: 0 3px 0 3px;
 }

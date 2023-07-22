@@ -53,7 +53,9 @@ function Contact() {
                                 <div><i className="fa fa-phone-square" /></div>
                                 <div className='contact-iconsText'>
                                     <h5>Telephone</h5>
-                                    <h6>+91 00000000 , +91 00000000</h6>
+                                    <h6>+91 9699919991 , +91 845490604</h6>
+                                    <h5>Business WhatsApp</h5>
+                                    <h6>+91 9227259227</h6>
                                 </div>
                             </div>
 
@@ -76,8 +78,8 @@ function Contact() {
                             <div className='contact-icons'>
                                 <div><i className="fa fa-address-card-o" /></div>
                                 <div className='contact-iconsText'>
-                                    <h5>Telephone</h5>
-                                    <h6>1 Kundamal House, 67, N S Patkar Marg, Opposite - Mercedes Benz, Mumbai, Maharashtra 400007</h6>
+                                    <h5>Address</h5>
+                                    <h6>Veejay Jewels  A/305, 3rd Floor, Vaishali Indstrial Estate-1, Mhatrewadi Road, Dahisar (W). Mumbai Pin Code : 400068 </h6>
                                 </div>
                             </div>
                         </Col>

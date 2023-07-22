@@ -79,7 +79,8 @@ const App = ({ item }) => {
           <Route path="/signUp-wholesaler" element={<SignupWholesaler />} />
           <Route path="/custom-design" element={<Customdesign />} />
           <Route path="/all-products" element={<Allproduct />} />
-          <Route path="/products" element={<Product item={item} />} />
+          <Route path="/products/:name" element={<Product item={item} />} />
+          <Route path="/products" element={<Product />} />
           <Route path="/product-variety" element={<Productvariety />} />
           <Route path="/product-details/:id" element={<ProductDetails />} />
           <Route path="/add-to-cart" element={<Addcart />} />

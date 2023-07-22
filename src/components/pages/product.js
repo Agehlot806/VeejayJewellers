@@ -30,13 +30,17 @@ const clinetreview = {
   },
 };
 function Product(props) {
+  const {  name } = useParams();
   const { brand } = useParams();
   console.log("banddddddd", brand);
-  const { id, name } = useParams();
+  // const { id, name } = useParams();
   console.log("name", name);
   const [brandcategories, setbrandcategories] = useState([]);
   const [allproduct, setallproduct] = useState([]);
   const [thirdbanner, setthirdbanner] = useState([]);
+  const [activeCategory, setActiveCategory] = useState(name);
+console.log('====================================',activeCategory);
+
   const pageSize = 24;
   // const [brandcategories, setBrandCategories] = useState([]);
   const [paginatedCategories, setPaginatedCategories] = useState([]);
@@ -100,6 +104,7 @@ function Product(props) {
 
   const handleDataList = async (name) => {
     console.log(name);
+    setActiveCategory(name);
     setData(name);
     try {
       const response = await fetch(
@@ -112,6 +117,7 @@ function Product(props) {
       const filteredData = nestedData.filter((item) => item.brand === name);
       setDataList(filteredData);
       setFilter(true);
+      
 
       const categoryNames = filteredData.map((item) => item.category);
       setCategory(categoryNames);
@@ -214,19 +220,26 @@ function Product(props) {
                   <div className="tabBrands">
                     <h3>Brand</h3>
                     <Nav.Item>
-                      <Nav.Link eventKey="AllProduct">All Product</Nav.Link>
-                    </Nav.Item>
+        <Nav.Link
+          eventKey="AllProduct"
+          onClick={() => handleDataList('AllProduct')}
+          active={activeCategory === 'AllProduct'}
+        >
+          All Product
+        </Nav.Link>
+      </Nav.Item>
                     {brandcategories
                       ? brandcategories.map((item, index) => (
                         <Nav.Item key={index}>
-                          <Nav.Link
-                            eventKey={item.name}
-                            onClick={(e) => handleDataList(item.name)}
-                          >
-                            {item.name}
-                          </Nav.Link>
-                        </Nav.Item>
-                      ))
+                        <Nav.Link
+                          eventKey={item.name}
+                          onClick={() => handleDataList(item.name)}
+                          active={activeCategory === item.name}
+                        >
+                          {item.name}
+                        </Nav.Link>
+                      </Nav.Item>
+                        ))
                       : null}
 
                     <h3>Sort by</h3>
@@ -389,6 +402,9 @@ function Product(props) {
                         >
                           <div className="mainProductcard">
                             <Link to={`/product-details/${item.id}`}>
+                            <div className="like-icon">
+                                <i class="fa fa-heart-o" />
+                              </div>
                               <img src={cleanImageUrl(item.image)} />
                               <h4>{item.name}</h4>
                               <p>
@@ -418,6 +434,9 @@ function Product(props) {
                           >
                             <div className="mainProductcard">
                               <Link to={`/product-details/${item.id}`}>
+                              <div className="like-icon">
+                                <i class="fa fa-heart-o" />
+                              </div>
                                 <img src={cleanImageUrl(item.image)} />
                                 <h4>{item.name}</h4>
                                 <p>
@@ -521,6 +540,9 @@ function Product(props) {
                                   <Col lg={4} className="mb-4" key={item.id}>
                                     <div className="mainProductcard">
                                       <Link to={`/product-details/${item.id}`}>
+                                      <div className="like-icon">
+                                <i class="fa fa-heart-o" />
+                              </div>
                                         <img
                                           src={cleanImageUrl(item.image)}
                                           alt={item.name}
@@ -567,6 +589,9 @@ function Product(props) {
                                           <Link
                                             to={`/product-details/${item.id}`}
                                           >
+                                            <div className="like-icon">
+                                <i class="fa fa-heart-o" />
+                              </div>
                                             <img
                                               src={cleanImageUrl(item.image)}
                                               alt={item.name}

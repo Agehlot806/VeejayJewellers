@@ -220,7 +220,7 @@ function Addcart() {
             </Link>
           </div>
           <div className="text-center mt-3">
-            <Link className="showSize" to="/product">
+            <Link className="showSize" to="/products">
               Continue Shooping
             </Link>
           </div>

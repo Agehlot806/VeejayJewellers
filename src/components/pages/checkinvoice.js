@@ -123,27 +123,27 @@ function Checkinvoice() {
           <Row className="justify-content-center mt-4 mb-4">
             {orderlistdata
               ? orderlistdata.map((item, index) => (
-                  <Col lg={8} className="mb-4">
-                    <Link to={"/order-invoice/" + item.id}>
+                <Col lg={8} className="mb-4">
+                  <Link to={"/order-invoice/" + item.id}>
                     <div className="mainProductcard">
                       <Row >
                         <Col lg={4}>
-                        <img src={logo} />
+                          <img src={logo} />
                         </Col>
                         <Col lg={8}>
-                          <div className="text-left">
-                        <h4>Order Id: {item.id}</h4>
-                        <h4>Order Status: {item.order_status}</h4>
+                          <div style={{textAlign:"left"}}>
+                            <h4>Order Id: {item.id}</h4>
+                            <h4>Order Status: {item.order_status}</h4>
                             <h4>Order address: {item.delivery_address}</h4>
-                            </div>
+                          </div>
                         </Col>
                       </Row>
-                        
-                       
-                      </div>
-                    </Link>
-                  </Col>
-                ))
+
+
+                    </div>
+                  </Link>
+                </Col>
+              ))
               : null}
           </Row>
         </Container>

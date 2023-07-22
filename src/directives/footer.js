@@ -41,8 +41,8 @@ function Footer() {
                                 <div className='footer-list'>
                                     <h5>Contact Us</h5>
                                     <ul>
-                                        <li><Link><i className="fa fa-envelope-o" /> Mail Us</Link></li>
-                                        <li><Link><i className="fa fa-phone" /> +00-000000000</Link></li>
+                                        <li><Link><i className="fa fa-envelope-o" /> info@veejayjewels.com</Link></li>
+                                        <li><Link><i className="fa fa-phone" />  9699919991</Link></li>
                                         <li><Link><i className="fa fa-commenting-o" /> Chat Us</Link></li>
                                     </ul>
                                 </div>
@@ -56,7 +56,7 @@ function Footer() {
                                         <li className='social-media'><span>Follow Us On</span>
                                             <Link><i class="fa fa-facebook" /></Link>
                                             <Link><i class="fa fa-twitter" /></Link>
-                                            <Link><i class="fa fa-instagram" /></Link>
+                                            <Link to='https://instagram.com/veejayjewels?igshid=MzRlODBiNWFlZA=='><i class="fa fa-instagram" /></Link>
                                         </li>
                                     </ul>
                                 </div>

@@ -409,6 +409,9 @@ function ProductDetails(props) {
                 <Col lg={3} sm={4} xs={6} className="mb-4">
                   <div className="mainProductcard">
                     <Link to={`/product-details/${item.id}`}>
+                    <div className="like-icon">
+                                <i class="fa fa-heart-o" />
+                              </div>
                       <img src={cleanImageUrl(item.image)} alt="" />
                       <h4>{item.name}</h4>
                       <p>
