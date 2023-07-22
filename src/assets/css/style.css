@@ -312,7 +312,7 @@ nav.header-bg {
 .brandsCard {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   padding: 20px;
-  background: linear-gradient(356deg, #fff 32%, #93620747 100%, #fff 100%);
+  background: #dfd8cd;
   border-radius: 10px;
   text-align: center;
   height: 100%;
@@ -2007,7 +2007,7 @@ nav.header-bg {
   text-align: center;
 }
 .showssss {
-  text-align: right;
+  text-align: center;
 }
 table.productDetailTable.table tbody tr td {
   vertical-align: middle;
@@ -2054,6 +2054,7 @@ table.productDetailTable.table tr td label {
 .profile-icon {
   width: 50px;
   height: 50px;
+  border-radius: 50%;
 }
 
 .product-addBtn {
@@ -2604,4 +2605,8 @@ table.productDetailTable.table tr th {
 .order-confi .modal-content {
   background-color: transparent;
   border: none;
+}
+
+.order-confi .modal-header {
+  border-bottom: none !important;
 }

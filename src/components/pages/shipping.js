@@ -165,44 +165,44 @@ function Addcart() {
                 <div>
                   {carddata
                     ? carddata.map((item, index) => (
-                        <Row className="align-self-center mb-3" key={index}>
-                          <Col lg={4} xs={3}>
-                            <div className="add-cart">
-                              <img src={item.image} alt={item.product_name} />
-                            </div>
-                          </Col>
-                          <Col lg={8} xs={6} className="">
-                            <div className="add-cart-content">
-                              <h2>{item.product_name}</h2>
+                      <Row className="align-self-center mb-3" key={index}>
+                        <Col lg={4} xs={3}>
+                          <div className="add-cart">
+                            <img src={item.image} alt={item.product_name} />
+                          </div>
+                        </Col>
+                        <Col lg={8} xs={6} className="">
+                          <div className="add-cart-content">
+                            <h2>{item.product_name}</h2>
 
-                              {item.variant && (
-                                <ul>
-                                  {parseVariant(item.variant).map(
-                                    (variantItem, index) => (
-                                      <li key={index}>
-                                        Variant:{" "}
-                                        {variantItem.variant
-                                          ? variantItem.variant
-                                          : "N/A"}
-                                        , Quantity: {variantItem.quantity}
-                                      </li>
-                                    )
-                                  )}
-                                </ul>
-                              )}
+                            {item.variant && (
+                              <ul>
+                                {parseVariant(item.variant).map(
+                                  (variantItem, index) => (
+                                    <li key={index}>
+                                      Variant:{" "}
+                                      {variantItem.variant
+                                        ? variantItem.variant
+                                        : "N/A"}
+                                      , Quantity: {variantItem.quantity}
+                                    </li>
+                                  )
+                                )}
+                              </ul>
+                            )}
 
-                              {/* <button
+                            {/* <button
                         className="showSize"
                       >
                         <Link to={`/product-details/${item.id}`}><i className="fa fa-pencil" /></Link>
                       </button> */}
-                            </div>
-                          </Col>
-                          <div className="text-center">
-                            <hr />
                           </div>
-                        </Row>
-                      ))
+                        </Col>
+                        <div className="text-center">
+                          <hr />
+                        </div>
+                      </Row>
+                    ))
                     : null}
                 </div>
                 <h4>Shipping Address</h4>
@@ -272,16 +272,21 @@ function Addcart() {
             </div>
           </Modal.Body>
         </Modal>
-        <Modal show={order} onHide={handleModelClose}>
-          <Modal.Header closeButton></Modal.Header>
+        <Modal show={order} onHide={handleModelClose} className="order-confi">
+          {/* <Modal.Header closeButton></Modal.Header> */}
           <Modal.Body>
-            {" "}
-            <h2 className="order-success-heading">
-              Order Successfully Placed!
-            </h2>
-            <p className="order-success-message">
-              Thank you for your order. Your purchase was successful.
-            </p>
+            <div className="show-area">
+              <Modal.Header closeButton></Modal.Header>
+              <div className="showSizearea">
+                <h2 className="order-success-heading">
+                  Order Successfully Placed!
+                </h2>
+                <p className="order-success-message">
+                  Thank you for your order. Your purchase was successful.
+                </p>
+              </div>
+            </div>
+
           </Modal.Body>
         </Modal>
       </section>

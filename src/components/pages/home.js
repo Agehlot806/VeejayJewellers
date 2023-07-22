@@ -391,7 +391,7 @@ function Home(props) {
           <Row className="mt-3 justify-content-center">
             {brandcategories.map((item) => (
               <Col lg={4} sm={4} xs={6} className="mb-3" key={item.id}>
-                <Link to={`/products/${item.name}`}>
+                <Link to="/products">
                   <div className="brandsCard">
                     <img src={item.image} alt="" />
                     <h3>{item.name}</h3>
@@ -468,7 +468,9 @@ function Home(props) {
                         <Col lg={4} sm={4} xs={6} className="mb-4">
                           <div className="mainProductcard">
                             <Link to={`/product-details/${item.id}`}>
+                              <Link to={cleanImageUrl(item.image)}>
                               <img src={cleanImageUrl(item.image)} />
+                              </Link>
                               <h4>{item.name}</h4>
                               <p>
                                 {item.unit_value} {item.unit}
