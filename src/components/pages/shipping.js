@@ -154,13 +154,6 @@ function Addcart() {
       });
   };
 
-  const openShippingModel = () => {
-    setShippingModel(true);
-  };
-
-  const handleShiipngClose = () => {
-    setShippingModel(false);
-  };
   return (
     <>
       <Toaster />
@@ -241,11 +234,6 @@ function Addcart() {
                     </tr>
                   </tbody>
                 </Table>
-                <div>
-                  <Button onClick={openShippingModel}>
-                    New Shipping Address
-                  </Button>
-                </div>
               </div>
             </Col>
           </Row>
@@ -285,30 +273,7 @@ function Addcart() {
           </Modal.Body>
         </Modal>
         {/* shiiping  */}
-        <Modal show={openShippingModel} onHide={handleShiipngClose}>
-          {/* <Modal.Header closeButton>
-            <Modal.Title></Modal.Title>
-          </Modal.Header> */}
-          <Modal.Body>
-            <div className="show-area">
-              <div className="show-areatext">
-                <div className="text-center">
-                  {/* <h3>Order Confirmation</h3> */}
-                  <input type="text" />
-                </div>
-              </div>
 
-              <div className="showSizearea">
-                {/* <Button variant="btn" onClick={handleShiipngClose}>
-                  <i className="fa fa-times" /> No
-                </Button>
-                <Button variant="btn" onClick={handlePlaceOrder}>
-                  <i className="fa fa-check" /> Yes
-                </Button> */}
-              </div>
-            </div>
-          </Modal.Body>
-        </Modal>{" "}
         <Modal show={order} onHide={handleModelClose}>
           <Modal.Header closeButton></Modal.Header>
           <Modal.Body>

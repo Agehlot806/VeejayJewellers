@@ -463,32 +463,31 @@ function Home(props) {
               <Row>
                 {banglethirddata
                   ? banglethirddata.map(
-                    (item, index) =>
-                      item.name === "Bangle" && (
-                        <Col lg={4} sm={4} xs={6} className="mb-4">
-                          <div className="mainProductcard">
-                            <Link to={`/product-details/${item.id}`}>
-                              <img src={cleanImageUrl(item.image)} />
-                              <h4>{item.name}</h4>
-                              <p>
-                                {item.unit_value} {item.unit}
-                              </p>
-                              <span>Karat : {item.purity}</span>
-                              <div className="product-btnarea">
-                                <Link
-                                  to={`/product-details/${item.id}`}
-                                  className="product-addBtn"
-                                >
-                                  Add To Cart
-                                </Link>
-                              </div>
-                            </Link>
-                          </div>
-                        </Col>
-                      )
-                  )
+                      (item, index) =>
+                        item.name === "Bangle" && (
+                          <Col lg={4} sm={4} xs={6} className="mb-4">
+                            <div className="mainProductcard">
+                              <Link to={`/product-details/${item.id}`}>
+                                <img src={cleanImageUrl(item.image)} />
+                                <h4>{item.name}</h4>
+                                <p>
+                                  {item.unit_value} {item.unit}
+                                </p>
+                                <span>Karat : {item.purity}</span>
+                                <div className="product-btnarea">
+                                  <Link
+                                    to={`/product-details/${item.id}`}
+                                    className="product-addBtn"
+                                  >
+                                    Add To Cart
+                                  </Link>
+                                </div>
+                              </Link>
+                            </div>
+                          </Col>
+                        )
+                    )
                   : null}
-
               </Row>
             </div>
           </div>
@@ -517,13 +516,13 @@ function Home(props) {
           >
             {secondbanner
               ? secondbanner.map(
-                (item, index) =>
-                  item.type === "second" && (
-                    <div key={item.id} className="homeBack-bg">
-                      <img src={item.image} alt="" />
-                    </div>
-                  )
-              )
+                  (item, index) =>
+                    item.type === "second" && (
+                      <div key={item.id} className="homeBack-bg">
+                        <img src={item.image} alt="" />
+                      </div>
+                    )
+                )
               : null}
             {/* <div>
               <img src={one} />
@@ -839,13 +838,13 @@ function Home(props) {
             </Row> */}
             {thirdbanner
               ? thirdbanner.map(
-                (item, index) =>
-                  item.type === "thrid" && (
-                    <div key={item.id} className="homeBack-bg">
-                      <img src={item.image} alt="" />
-                    </div>
-                  )
-              )
+                  (item, index) =>
+                    item.type === "thrid" && (
+                      <div key={item.id} className="homeBack-bg">
+                        <img src={item.image} alt="" />
+                      </div>
+                    )
+                )
               : null}
           </Carousel>
         </Container>
@@ -853,13 +852,15 @@ function Home(props) {
 
       <section className="section-padding">
         <Container>
-          <Row >
+          <Row>
             <Col lg={12}>
               <div className="Newsletter">
                 <Row className="justify-content-center">
                   <Col sm={6}>
                     <img src={send} />
-                    <h1 className="main-head">Get Or Promo Code by Subscribing To our Newsletter</h1>
+                    <h1 className="main-head">
+                      Get Or Promo Code by Subscribing To our Newsletter
+                    </h1>
                     <Form className="d-flex">
                       <Form.Control
                         type="search"
@@ -874,9 +875,6 @@ function Home(props) {
               </div>
             </Col>
           </Row>
-
-
-
         </Container>
       </section>
       <Footer />

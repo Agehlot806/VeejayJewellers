@@ -16,7 +16,7 @@ function Header({ profileImage }) {
   // const uploadImageURL = localStorage.getItem("uploadImageURL");
   const imageUrl = `https://veejayjewels.com/public/${profile}`;
   const latestProfile = `https://veejayjewels.com/public/${profileImage}`;
-  console.log("imageUrl", profile, profileImage);
+  // console.log("imageUrl", profile, profileImage);
   useEffect(() => {
     categorys();
     notification();
@@ -30,7 +30,7 @@ function Header({ profileImage }) {
         setbrandcategories(response.data.data);
       })
       .catch((error) => {
-        console.error("Error fetching data:", error);
+        // console.error("Error fetching data:", error);
       });
   };
   // console.log("brandcategoriesbrandcategories", brandcategories);
@@ -43,7 +43,7 @@ function Header({ profileImage }) {
         setNotification(response.data.data)
       })
       .catch((error) => {
-        console.error("Error fetching data:", error);
+        // console.error("Error fetching data:", error);
       });
   };
 
