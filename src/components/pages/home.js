@@ -391,7 +391,7 @@ function Home(props) {
           <Row className="mt-3 justify-content-center">
             {brandcategories.map((item) => (
               <Col lg={4} sm={4} xs={6} className="mb-3" key={item.id}>
-                <Link to={`/products/${item.name}`}>
+                <Link to="/products">
                   <div className="brandsCard">
                     <img src={item.image} alt="" />
                     <h3>{item.name}</h3>
@@ -463,30 +463,32 @@ function Home(props) {
               <Row>
                 {banglethirddata
                   ? banglethirddata.map(
-                      (item, index) =>
-                        item.name === "Bangle" && (
-                          <Col lg={4} sm={4} xs={6} className="mb-4">
-                            <div className="mainProductcard">
-                              <Link to={`/product-details/${item.id}`}>
-                                <img src={cleanImageUrl(item.image)} />
-                                <h4>{item.name}</h4>
-                                <p>
-                                  {item.unit_value} {item.unit}
-                                </p>
-                                <span>Karat : {item.purity}</span>
-                                <div className="product-btnarea">
-                                  <Link
-                                    to={`/product-details/${item.id}`}
-                                    className="product-addBtn"
-                                  >
-                                    Add To Cart
-                                  </Link>
-                                </div>
+                    (item, index) =>
+                      item.name === "Bangle" && (
+                        <Col lg={4} sm={4} xs={6} className="mb-4">
+                          <div className="mainProductcard">
+                            <Link to={`/product-details/${item.id}`}>
+                              <Link to={cleanImageUrl(item.image)}>
+                              <img src={cleanImageUrl(item.image)} alt="" />
                               </Link>
-                            </div>
-                          </Col>
-                        )
-                    )
+                              <h4>{item.name}</h4>
+                              <p>
+                                {item.unit_value} {item.unit}
+                              </p>
+                              <span>Karat : {item.purity}</span>
+                              <div className="product-btnarea">
+                                <Link
+                                  to={`/product-details/${item.id}`}
+                                  className="product-addBtn"
+                                >
+                                  Add To Cart
+                                </Link>
+                              </div>
+                            </Link>
+                          </div>
+                        </Col>
+                      )
+                  )
                   : null}
               </Row>
             </div>

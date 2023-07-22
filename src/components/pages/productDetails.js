@@ -456,13 +456,13 @@ function ProductDetails(props) {
           >
             {thirdbanner
               ? thirdbanner.map(
-                  (item, index) =>
-                    item.type === "thrid" && (
-                      <div key={item.id} className="homeBack-bg">
-                        <img src={item.image} alt="" />
-                      </div>
-                    )
-                )
+                (item, index) =>
+                  item.type === "thrid" && (
+                    <div key={item.id} className="homeBack-bg">
+                      <img src={item.image} alt="" />
+                    </div>
+                  )
+              )
               : null}
           </Carousel>
         </Container>
@@ -509,9 +509,9 @@ function ProductDetails(props) {
               </Row>
               <hr />
               <div className="showssss">
-              <Button onClick={handleSubmit} className="showSize">
-                Add To Cart
-              </Button>
+                <Button onClick={handleSubmit} className="showSize">
+                  Add To Cart
+                </Button>
               </div>
             </div>
           </div>
