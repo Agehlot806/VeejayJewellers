@@ -26,6 +26,7 @@ function Orderinvoice() {
   const storedId = localStorage.getItem("id");
   const orderId = localStorage.getItem("order_id");
   const address = localStorage.getItem("address");
+  const [filterOrder, setFilterOrder] = useState("");
   const { id } = useParams();
   const [productName, setProductName] = useState("");
   const [orderlistdata, setOrderListData] = useState([]);
@@ -61,7 +62,6 @@ function Orderinvoice() {
     })
       .then((response) => response.json())
       .then((response) => {
-        console.log("response", response);
         setFirstName(response.data.f_name);
         setLastName(response.data.l_name);
 
@@ -75,7 +75,6 @@ function Orderinvoice() {
   };
 
   const handleProductsList = async (orderId) => {
-    console.log(orderId);
     const requestBody = {
       id: storedId,
     };
@@ -98,12 +97,20 @@ function Orderinvoice() {
         console.error("Error:", error);
       });
   };
-  const handleInvoiceFilter = (data) => {
-    console.log(data);
 
-    const filteredOrder = data.find((order) => console.log(order.id));
-    console.log(filteredOrder);
+  const capitalizeFirstLetter = (str) => {
+    if (!str || typeof str !== "string") {
+      return str; // Return the input as it is if it's not a valid string
+    }
+
+    return str.charAt(0).toUpperCase() + str.slice(1);
   };
+
+  const handleInvoiceFilter = (data) => {
+    const filteredOrder = data.find((order) => order.id == orderId);
+    setFilterOrder(filteredOrder.invoice);
+  };
+  console.log("filterOrder", filterOrder);
   const productsList = () => {
     axios
       .get(`https://veejayjewels.com/api/v1/products/details`, {
@@ -117,7 +124,6 @@ function Orderinvoice() {
         },
       })
       .then((response) => {
-        console.log(response.data.data);
         setOrderListData(response.data.data);
         setProductOrderId(response.data.data[0].order_id);
         setProductId(response.data.data[0].product_id);
@@ -133,7 +139,7 @@ function Orderinvoice() {
         console.error("Error fetching data:", error);
       });
   };
-  console.log("productName", productName);
+
   return (
     <>
       <Header />
@@ -148,7 +154,7 @@ function Orderinvoice() {
                   Order Id: <span>{orderId}</span>
                 </h3>
                 <h3>
-                  Invoice Id: <span>12345</span>
+                  Invoice Id: <span>{filterOrder}</span>
                 </h3>
               </div>
               <div className="add-border">
@@ -159,7 +165,7 @@ function Orderinvoice() {
                   <tbody>
                     <tr>
                       <th>Product Name:</th>
-                      <td>{productName}</td>
+                      <td>{capitalizeFirstLetter(productName)}</td>
                     </tr>
                     <tr>
                       <th>Variant:</th>
@@ -175,8 +181,8 @@ function Orderinvoice() {
                     <tr>
                       <th>Name:</th>
                       <td>
-                        {firstName}
-                        {lastName}
+                        {capitalizeFirstLetter(firstName)}
+                        {capitalizeFirstLetter(lastName)}
                       </td>
                     </tr>
                     <tr>
