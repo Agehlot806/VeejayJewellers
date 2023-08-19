@@ -86,7 +86,7 @@ function Login() {
           <Row>
             <Col lg={6} className="mainForm-bg">
               <div className="mainForm-text">
-                <h2>VEEJAY JEWELLER'S</h2>
+                <h2>VEEJAY <br />JEWEL'S</h2>
                 <p>
                   Lorem Ipsum is simply dummy text of the printing and
                   typesetting industry. Lorem Ipsum has been the industry's

@@ -39,6 +39,8 @@ import Blogdetails from "./components/pages/blog-details";
 import Demo from "./components/pages/demo";
 import Shipping from "./components/pages/shipping";
 import OrderSuccess from "./components/pages/orderSucuss";
+import Favouriteproduct from "./components/pages/favourite-product";
+import Customorder from "./components/pages/custom-order";
 // ScrollToTop component
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -85,12 +87,15 @@ const App = ({ item }) => {
           <Route path="/product-details/:id" element={<ProductDetails />} />
           <Route path="/add-to-cart" element={<Addcart />} />
           <Route path="/check-invoice" element={<Checkinvoice />} />
-          <Route path="/order-invoice" element={<Orderinvoice />} />
+          <Route path="/order-invoice/:id" element={<Orderinvoice />} />
           <Route path="/product-lock" element={<Productlock />} />
           <Route path="/calculator" element={<Calculator />} />
           <Route path="/forgot-password" element={<Forgotpassword />} />
           <Route path="/demo" element={<Demo />} />
           <Route path="/ordersuccessfully" element={<OrderSuccess />} />
+          <Route path="/favourite-product" element={<Favouriteproduct />} />
+          <Route path="/custom-order" element={<Customorder />} />
+
           {/* Brands pages */}
           {/* <Route path="/brands" element={<ARHA item={item} />} /> */}
           {/* <Route path="/ARHA-brands" element={<ARHA />} /> */}

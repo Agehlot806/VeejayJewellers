@@ -9,6 +9,7 @@ import { BASE_URL } from "../../Constant/Index";
 import { useState, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
+import { Input } from "reactstrap";
 
 function Addcart() {
   const [show, setShow] = useState(false);
@@ -16,8 +17,13 @@ function Addcart() {
   const [orderId, setOrderId] = useState(null);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const address = localStorage.getItem("address");
-
+  // const address = localStorage.getItem("address");
+  // const [addressEdit,setAddress]=useState("")
+  // setAddress(address)
+  const [shippingOrder, setShippingModel] = useState(false);
+  const minProductValue = 1; // Minimum value for the quantity
+  const maxProductValue = 50; // Maximum value for the quantity
+  const [quantity, setQuantity] = useState(minProductValue);
   const storedId = localStorage.getItem("id");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -26,11 +32,15 @@ function Addcart() {
 
   const navigate = useNavigate();
   const loginId = localStorage.getItem("id");
-  const state = localStorage.getItem("state");
-  const city = localStorage.getItem("city");
-  const pincode = localStorage.getItem("pincode");
+  console.log("loginIdloginIdloginId", loginId);
+  // const statedemo = localStorage.getItem("state");
+  // const city = localStorage.getItem("city");
+  // const pincode = localStorage.getItem("pincode");
 
   const [carddata, setCardData] = useState([]);
+
+ 
+
   // useEffect(() => {
   //   const timer = setTimeout(() => {
   //     setOrder(false);
@@ -39,10 +49,20 @@ function Addcart() {
 
   //   return () => clearTimeout(timer); // Clear the timer when the component unmounts
   // }, []);
+  const [address, setAddres] = useState('')
+  const [stateall, setstate] = useState('');
+  const [cityall, setcity] = useState('');
+  const [pincodeall, setpincode] = useState('');
+  // useEffect to retrieve and set the address from localStorage
+  // useEffect(() => {
+  //   const storedAddress = localStorage.getItem('address');
+  //   setAddressedit(storedAddress || ''); // If storedAddress is null or undefined, set an empty string as the initial state
+  // }, []);
 
   useEffect(() => {
     latestsapidata();
     EditProfile();
+    getDataAll();
   }, []);
   const handleModelClose = () => {
     setOrder(false);
@@ -53,16 +73,17 @@ function Addcart() {
     handleClose();
   };
   const latestsapidata = () => {
-    axios
-      .get(`${BASE_URL}/products/card`)
-      .then((response) => {
-        console.log(response.data);
-        setCardData(response.data.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  };
+  axios
+    .get(`${BASE_URL}/products/card`)
+    .then((response) => {
+      console.log(response.data);
+      setCardData(response.data.data);
+      console.log("shyam----------:", response);
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
+};
   //   console.error("Error fetching data:", variantdata);
 
   const parseVariant = (variant) => {
@@ -73,11 +94,7 @@ function Addcart() {
       return [];
     }
   };
-
-  const minProductValue = 1; // Minimum value for the quantity
-  const maxProductValue = 50; // Maximum value for the quantity
-  const [quantity, setQuantity] = useState(minProductValue);
-
+  console.log(stateall, "stateallstateall");
   // raksha code
 
   const EditProfile = async (e) => {
@@ -91,11 +108,15 @@ function Addcart() {
     })
       .then((response) => response.json())
       .then((response) => {
-        console.log("response", response);
+        console.log("response url " + `${BASE_URL}/customer/info?id=${storedId}`, response);
         setFirstName(response.data.f_name);
         setLastName(response.data.l_name);
 
         setEmail(response.data.email);
+        setAddres(response.data.address);
+        setstate(response.data.state)
+        setcity(response.data.city)
+        setpincode(response.data.pincode)
 
         setPhone(response.data.phone);
       })
@@ -106,53 +127,149 @@ function Addcart() {
 
   const handlePlaceOrder = () => {
     const cards = carddata.map((item) => {
-      const variantData = JSON.parse(item.variant);
+      // Parse the variant data
+      const variantData = parseVariant(item.variant);
+      
+      // Check if the variantData is an array and not empty
       if (!Array.isArray(variantData) || variantData.length === 0) {
-        // Handle the case when variantData is not an array or is empty
         console.error("Invalid variant data for item:", item);
         return null;
       }
-
-      const { product_id, quantity, variant } = variantData[0];
-
+  
+      const { product_id, quantity, variant } = variantData;
+      
       return {
         product_id: item.product_id,
         quantity,
         variation: variant,
+        image: item.image, // Add the image property to the card object
+        product_name: item.product_name, // Add the product_name property to the card object
       };
     });
-    // const deliveryAddress = `${state},${city},${pincode}`;
-    const postData = {
-      user_id: loginId,
-      delivery_address: state + " " + city + ", " + pincode,
-      cart: cards,
-    };
+    
+    // Rest of the code remains the same...
+  };
+  
 
-    // Convert the data to JSON
-    const jsonData = JSON.stringify(postData);
+  // console.log("addrescardscardssEdit", cards);
 
-    // Make the POST request using fetch
-    fetch("https://veejayjewels.com/api/v1/products/place", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: jsonData,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        // toast.success("Order Successfully");
-        setOrderId(data.order_id);
-        setOrder(true);
-        localStorage.setItem("order_id", data.order_id);
-        handleModelShow();
-        // handleClose();
+  // const updateProfileData1 = (e) => {
+  //   e.preventDefault();
+  //   console.log("7876876767676");
+  //   const formData = new FormData();
+
+  //   formData.append("address", address);
+
+  //   axios
+  //     .post(`${BASE_URL}/customer/update-profile`, formData, {
+  //       headers: { "Content-Type": "multipart/form-data" },
+  //       // withCredentials: true,
+  //     })
+  //     .then((response) => {
+  //       console.log(response);
+  //     })
+
+  //     .catch((error) => {
+  //       // console.log(error.response.data);
+  //     });
+  // };
+
+
+  const updateProfileData = (e) => {
+    e.preventDefault();
+    console.log("7876876767676");
+    const formData = new FormData();
+    formData.append("f_name", firstName);
+    formData.append("l_name", lastName);
+    formData.append("phone", phone);
+    formData.append("email", email);
+    // formData.append("image", uploadImage);
+    formData.append("id", storedId);
+    formData.append("state", selectedStateName);
+    formData.append("city", citydata);
+    formData.append("pincode", pincodeall);
+    formData.append("address", address);
+
+    axios
+      .post(`${BASE_URL}/customer/update-profile`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+        // withCredentials: true,
       })
+      .then((response) => {
+        // setImageProfile(response.data.data.image);
+        toast.success("Successfuly Updated");
+      })
+
       .catch((error) => {
-        // Handle errors here
-        console.error("Error:", error);
+        // console.log(error.response.data);
       });
   };
+
+  const [stateallCity, setStateallCity] = useState([]);
+  const [statealldata, setStatealldata] = useState([]);
+  const [statedata, setStatedata] = useState([]);
+  const [citydata, setCitydata] = useState([]);
+
+  const getDataAll = async () => {
+    var headers = {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    };
+
+    try {
+      const response = await fetch(`${BASE_URL}/auth/state`, {
+        method: "GET",
+        headers: headers,
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setStatealldata(data.state);
+        // console.log("respostate", data);
+      } else {
+        console.error("Error:", response.status);
+      }
+    } catch (error) {
+      console.error("ERROR FOUND---->>>>" + error);
+    }
+  };
+
+  const [selectedStateName, setSelectedStateName] = useState('');
+  // const [stateid, setStateid] = useState('');
+
+  const handleSelectChange = (event) => {
+    const selectedIdValue = event.target.value;
+    const selectedStateNameValue = event.target.options[event.target.selectedIndex].text;
+    Getdatacity(event.target.value);
+    setStatedata(selectedIdValue);
+    setSelectedStateName(selectedStateNameValue);
+  };
+
+  const Getdatacity = (statedata) => {
+    const formData = new FormData();
+    formData.append("state", statedata);
+    axios
+      .post(`${BASE_URL}/auth/city`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setStateallCity(response.data.state);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const Subscriptioncity = (event) => {
+    setCitydata(event.target.value);
+  };
+
+
+  const fieldpagerefresh = () => {
+    window.location.reload(false);
+  }
+
+
   return (
     <>
       <Toaster />
@@ -160,7 +277,7 @@ function Addcart() {
       <section className="section-padding">
         <Container>
           <Row className="justify-content-center">
-            <Col lg={7}>
+            <Col lg={9}>
               <div className="add-card-AREA">
                 <div>
                   {carddata
@@ -224,12 +341,24 @@ function Addcart() {
                       <td>{email}</td>
                     </tr>
                     <tr>
+                      <th>State</th>
+                      <td>{stateall}</td>
+                    </tr>
+                    <tr>
+                      <th>City</th>
+                      <td>{cityall}</td>
+                    </tr>
+                    <tr>
                       <th>Full Address</th>
                       <td>{address}</td>
                     </tr>
                     <tr>
+                      <th>New Address</th>
+                      <td><button className="neweditadd" data-toggle="modal" data-target="#exampleModal">Click for New Address</button></td>
+                    </tr>
+                    <tr>
                       <th>Pincode</th>
-                      <td>{pincode}</td>
+                      <td>{pincodeall}</td>
                     </tr>
                   </tbody>
                 </Table>
@@ -238,11 +367,10 @@ function Addcart() {
           </Row>
         </Container>
         <div className="text-center mt-3">
-          <Link className="showSize" onClick={handleShow}>
+          <Link className="showSize1" onClick={handleShow}>
             Submit
           </Link>
         </div>
-
         <Modal
           show={show}
           onHide={handleClose}
@@ -276,11 +404,13 @@ function Addcart() {
           {/* <Modal.Header closeButton></Modal.Header> */}
           <Modal.Body>
             <div className="show-area">
-              <Modal.Header closeButton></Modal.Header>
-              <div className="showSizearea">
-                <h2 className="order-success-heading">
+              <Modal.Header closeButton>
+              <h2 className="order-success-heading">
                   Order Successfully Placed!
                 </h2>
+              </Modal.Header>
+              <div className="showSizearea Order-Successfully">
+                
                 <p className="order-success-message">
                   Thank you for your order. Your purchase was successful.
                 </p>
@@ -291,6 +421,71 @@ function Addcart() {
         </Modal>
       </section>
       <Footer />
+
+
+      {/* Button trigger modal */}
+
+      {/* Modal */}
+      <div className="modal fade editAddress" id="exampleModal" tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">Edit For New Address</h5>
+              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" onClick={fieldpagerefresh}>×</span>
+              </button>
+            </div>
+            <div className="modal-body">
+              <div class="form-group">
+                <label for="exampleFormControlInput1">New address</label>
+                <input class="form-control" type="text" value={address} onChange={(e) => setAddres(e.target.value)} />
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">State</label>
+                <select class="form-control"
+                  aria-label="Default select example"
+                  onChange={handleSelectChange}
+                  value={statedata}
+                >
+                  <option>{stateall}</option>
+                  {statealldata.map((items) => (
+                    <option value={items.id} key={items.id}>
+                      {items.state_name}
+                    </option>
+                  ))}
+                </select>
+
+
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">City</label>
+                <select class="form-control"
+                  aria-label="Default select example"
+                  onChange={Subscriptioncity}
+                  value={citydata}
+                >
+                  <option>{cityall}</option>
+                  {stateallCity &&
+                    stateallCity.map((items) => (
+                      <option value={items.city_name} key={items.id}>
+                        {items.city_name}
+                      </option>
+                    ))}
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Pincode</label>
+                <input class="form-control" type="text" value={pincodeall} onChange={(e) => setpincode(e.target.value)} />
+              </div>
+
+            </div>
+            <div className="modal-footer">
+              {/* <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button> */}
+              <button type="button" className="btn btn-primary" onClick={updateProfileData} >Update</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

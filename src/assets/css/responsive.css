@@ -42,6 +42,35 @@
   .showSize {
     padding: 10px 20px;
   }
+
+  .dropdown-rate button {
+    padding: 2px;
+    font-size: 16px;
+    margin-left: 10px;
+  }
+
+  .btn-theme-home {
+    padding: 0 3px;
+    line-height: 25px;
+  }
+
+  .header-menu a .dropdown button {
+    padding: 0 3px;
+    line-height: 25px;
+  }
+
+  .aboutRight img {
+    width: 540px;
+  }
+
+  .mainProductcard img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .product-addBtn {
+    font-size: 16px;
+  }
 }
 
 
@@ -51,31 +80,34 @@
     transition: transform 260ms ease-in-out; */
     flex-basis: 0;
   }
-  
+
   .header-menu {
     width: 100%;
     background: #fff;
     /* position: absolute; */
     animation-name: moveInleft;
   }
+
   .header-menu a {
     align-self: baseline;
-}
+  }
 
   @keyframes moveInleft {
     0% {
-        opacity: 0;
-        transform: translateX(-100px);
+      opacity: 0;
+      transform: translateX(-100px);
     }
 
     80% {
-        transform: translateX(10px);
+      transform: translateX(10px);
     }
+
     100% {
-        opacity: 1;
-        transform: translate(0);
+      opacity: 1;
+      transform: translate(0);
     }
-}
+  }
+
   p {
     font-size: 15px;
   }
@@ -154,15 +186,40 @@
   .catlogOne p {
     font-size: 11px;
   }
+
   .product-addBtn {
     padding: 8px;
     border-radius: 4px;
     font-size: 12px;
   }
+
   .mainProductcard img {
     width: 80px;
     height: 80px;
-}
+  }
+
+  .dropdown-rate button {
+    padding: 10px;
+    font-size: 20px;
+    margin-left: 25px;
+  }
+
+  .btn-theme-home {
+    padding: 10px;
+    width: 140px;
+  }
+
+  .header-menu a {
+    font-size: 20px;
+  }
+
+  .header-menu a .dropdown button {
+    font-size: 20px;
+  }
+
+  .mainProductcard span {
+    font-size: 10px;
+  }
 }
 
 @media only screen and (max-width: 820px) {
@@ -175,7 +232,7 @@
   }
 
   .home-content a {
-    padding: 12px;
+    padding: 0px 20px;
     font-size: 15px;
   }
 
@@ -183,7 +240,7 @@
     font-size: 24px;
     margin: 0 0 5px;
   }
-  
+
 
   .theme-cardHead h3 {
     font-size: 24px;
@@ -471,6 +528,15 @@
     border-radius: 5px;
     font-size: 14px;
   }
+
+  .newletterarea {
+    padding: 30px;
+  }
+
+  .videoarea video {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 @media only screen and (max-width: 414px) {
@@ -485,7 +551,12 @@
 
   .home-content a {
     padding: 6px;
-    font-size: 8px;
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  .product-btnarea {
+    margin: 15px 0;
   }
 
   .home-content p {
@@ -685,38 +756,59 @@
     padding: 5px 12px;
     font-size: 8px;
   }
+
   .mainProductcard a {
     font-size: 10px;
-}
-.mainProductcard p {
-  font-size: 10px;
-}
-.mainProductcard h4 {
-  margin: 3px 0;
-}
-.mainProductcard img {
-  width: 55px;
-  height: 55px;
-}
-.mainProductcard {
-  padding: 10px;
-  border-radius: 10px;
-}
-.brandsCard img {
-  width: 50px;
-  height: 50px;
-}
-.brandsCard a {
-  font-size: 13px;
-}
-.brandsCard h3 {
-  margin: 0;
-}
+  }
+
+  .mainProductcard p {
+    font-size: 10px;
+  }
+
+  .mainProductcard h4 {
+    margin: 3px 0;
+  }
+
+  .mainProductcard img {
+    width: 55px;
+    height: 55px;
+  }
+
+  .mainProductcard {
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .brandsCard img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .brandsCard a {
+    font-size: 13px;
+  }
+
+  .brandsCard h3 {
+    margin: 0;
+  }
+
+  .mainForm-text h2 {
+    font-size: 50px;
+  }
 }
 
 @media only screen and (max-width: 393px) {
   .home-content a {
     font-size: 17px;
+  }
+
+  .blogs-card {
+    border-radius: 15px;
+  }
+
+  .Newsletter h1 {
+    font-family: David Libre;
+    font-size: 28px;
   }
 }
 
@@ -863,9 +955,7 @@
   }
 }
 
-@media only screen and (max-width: 375px) {
-  
-}
+@media only screen and (max-width: 375px) {}
 
 @media only screen and (max-width: 280px) {
   .allPage-bg a {
@@ -1000,16 +1090,63 @@
   .add-cart-content h5 {
     font-size: 6px;
   }
+
   .mainProductcard a {
     font-size: 8px;
+    padding: 4px;
+  }
+
+  .like-icon i {
+    font-size: 16px;
+  }
+
+  .mainProductcard h4 {
+    font-size: 6px;
+  }
+
+  .mainProductcard p {
+    font-size: 7px;
+  }
+
+  .product-btnarea {
+    margin: 8px 0;
+  }
+
+  .blogs-card img {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    margin: 0 0 10px;
+  }
+
+  .blogs-card {
+    padding: 10px;
+  }
+
+  .blogs-card h5 {
+    font-size: 9px;
+  }
+
+  .Newsletter h1 {
+    font-size: 18px;
+  }
+
+  /* .Newsletter form {
+  margin: 10px 0 0;
+  position: inherit;
 }
-.mainProductcard h4 {
-  font-size: 6px;
-}
-.mainProductcard p {
-  font-size: 7px;
-}
-.product-btnarea {
-  margin: 0;
-}
+.Newsletter input {
+  border-radius: 4px;
+  height: 40px;
+} */
+  .Newsletter button {
+    position: relative;
+    right: 0;
+    top: 0;
+    margin: 10px 0;
+  }
+
+  .subscribt-area {
+    display: block;
+  }
 }

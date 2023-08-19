@@ -35,6 +35,8 @@ import { Fade } from "react-reveal";
 import homeBanner2 from "../../assets/images/banner/home-banner2.png";
 import { BASE_URL } from "../../Constant/Index";
 import "../../assets/css/alert.css";
+import toast, { Toaster } from "react-hot-toast";
+
 
 const clinetreview = {
   desktop: {
@@ -67,7 +69,7 @@ const newArrivals = {
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 1,
+    items: 2,
     slidesToSlide: 1, // optional, default to 1.
   },
 };
@@ -85,6 +87,8 @@ function Home(props) {
   const [bangledata, setbangledata] = useState([]);
 
   const [showAlert, setShowAlert] = useState(localStorage.getItem("status"));
+  const loginId = localStorage.getItem("id");
+
   // const profile = localStorage.getItem("profileImage");
   const handleDismiss = () => {
     setShowAlert(false);
@@ -231,29 +235,53 @@ function Home(props) {
       });
   };
 
+
+  const addToWishlist = async (product_id) => {
+    const formData = new FormData();
+    formData.append("id", loginId);
+    formData.append("product_id", product_id);
+    axios
+      .post(`https://veejayjewels.com/api/v1/customer/wish-list/add-to-wishlist`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+      .then((response) => {
+        console.log("response143", response);
+        if (response.data.message) {
+          toast.success(response.data.message);
+
+        }
+
+      })
+      .catch((error) => {
+        toast.error("Already in your wishlist");
+      });
+  };
+
+
+
+  const [email, setEmail] = useState("");
+  const [responseMessage, setResponseMessage] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = {
+      email: email,
+    };
+    axios.post("https://veejayjewels.com/api/v1/auth/newsletter", data)
+      .then((response) => {
+        setResponseMessage(response.data.message);
+        toast.success("Add Successfull");
+      })
+      .catch((error) => {
+        console.error("Error sending email:", error);
+      });
+  };
+
+
   return (
     <>
+      <Toaster />
       <Header />
-
-      {/* <div id="rssBlock">
-        <p className="cnnContents">
-          <a className="marqueeStyle">
-            &nbsp;gold current price 10gms : ₹ 59,410
-          </a>
-          <a className="marqueeStyle">
-            &nbsp;gold current price 10gms : ₹ 59,410
-          </a>
-          <a className="marqueeStyle">
-            &nbsp;gold current price 10gms : ₹ 55,000
-          </a>
-          <a className="marqueeStyle">
-            &nbsp;gold current price 10gms : ₹ 71,000
-          </a>
-          <a className="marqueeStyle">
-            &nbsp;gold current price 10gms : ₹ 59,410
-          </a>
-        </p>
-      </div> */}
 
       <div className="home-bg">
         <div className="home-area">
@@ -277,15 +305,17 @@ function Home(props) {
             <Row>
               <Col lg={7} sm={7}>
                 <div className="home-content">
-                  <h1>Veejay Jewels</h1>
+                  <div className="mainForm-text homeee">
+                    <h2>Veejay Jewels</h2>
+                  </div>
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Amet integer lorem amet arcu egestas congue. Rhoncus
                     scelerisque mi, ac sed lacus aliquam at tortor. Risus nulla
                     massa ut vitae phasellus dictum.
                   </p>
-                  <Link to="/login">Login</Link>
-                  <Link to="/custom-design">
+                  <Link to="/login" className="btn-theme-4">Login</Link>
+                  <Link to="/custom-design" className="btn-theme-5">
                     <i className="fa fa-qrcode" /> Custom design
                   </Link>
                 </div>
@@ -312,7 +342,7 @@ function Home(props) {
 
       <section className=" details-area">
         <Container>
-          <Row>
+          <Row className="justify-content-center">
             <Col lg={4} sm={4} xs={6} className="mb-4">
               <div className="details-card">
                 <img src={imgIcon1} />
@@ -466,32 +496,31 @@ function Home(props) {
                     (item, index) =>
                       item.name === "Bangle" && (
                         <Col lg={4} sm={4} xs={6} className="mb-4">
-                          <div className="mainProductcard">
-                            <Link to={`/product-details/${item.id}`}>
+                          <Link to={`/product-details/${item.id}`}>
+                            <div className="mainProductcard">
                               <div className="like-icon">
-                                <i class="fa fa-heart-o" />
+                                <i class="fa fa-heart-o" onClick={() => addToWishlist(item.id)} />
                               </div>
                               <img src={cleanImageUrl(item.image)} />
                               <h4>{item.name}</h4>
                               <p>
                                 {item.unit_value} {item.unit}
                               </p>
-                              <span>Karat : {item.purity}</span>
+                              <span>Karat : {item.purity}</span><br />
+                              <span>Design Num : {item.design}</span>
                               <div className="product-btnarea">
                                 <Link
                                   to={`/product-details/${item.id}`}
-                                  className="product-addBtn"
-                                >
-                                  Add To Cart
+                                  className="product-addBtn">
+                                  View Products
                                 </Link>
                               </div>
-                            </Link>
-                          </div>
+                            </div>
+                          </Link>
                         </Col>
                       )
                   )
                   : null}
-
               </Row>
             </div>
           </div>
@@ -564,7 +593,7 @@ function Home(props) {
                     <p>{item.unit}</p>
                     <div className="product-btnarea">
                       <Link to={`/product-details/${item.id}`} className="product-addBtn">
-                        Add To Cart
+                        View Products
                       </Link>
                     </div>
                   </div>
@@ -577,25 +606,26 @@ function Home(props) {
               latestproduct.map((item) => (
                 <Col lg={3} sm={4} xs={6} className="mb-4">
                   <div className="mainProductcard" key={item.id}>
-                    <Link to={`/product-details/${item.id}`}>
+                    {/* <Link to={`/product-details/${item.id}`}> */}
                     <div className="like-icon">
-                                <i class="fa fa-heart-o" />
-                              </div>
-                      <img src={cleanImageUrl(item.image)} />
-                      <h4>{item.name}</h4>
-                      <p>
-                        {item.unit_value} {item.unit}
-                      </p>
-                      <span>Karat : {item.purity}</span>
-                      <div className="product-btnarea">
-                        <Link
-                          to={`/product-details/${item.id}`}
-                          className="product-addBtn"
-                        >
-                          Add To Cart
-                        </Link>
-                      </div>
-                    </Link>
+                      <i class="fa fa-heart-o" onClick={(id) => addToWishlist(item.id)} />
+                    </div>
+                    <img src={cleanImageUrl(item.image)} />
+                    <h4>{item.name}</h4>
+                    <p>
+                      {item.unit_value} {item.unit}
+                    </p>
+                    <span>Karat : {item.purity}</span><br />
+                    <span>Design Num : {item.design}</span>
+                    <div className="product-btnarea">
+                      <Link
+                        to={`/product-details/${item.id}`}
+                        className="product-addBtn"
+                      >
+                        View Products
+                      </Link>
+                    </div>
+                    {/* </Link> */}
                   </div>
                 </Col>
               ))}
@@ -672,22 +702,24 @@ function Home(props) {
               allproduct.map((item) => (
                 <Col lg={3} sm={4} xs={6} className="mb-4">
                   <div className="mainProductcard" key={item.id}>
-                    <Link to={`/product-details/${item.id}`}>
+                    {/* <Link to={`/product-details/${item.id}`}> */}
                     <div className="like-icon">
-                                <i class="fa fa-heart-o" />
-                              </div>
-                      <img src={cleanImageUrl(item.image)} />
-                      <h4>{item.name}</h4>
-                      <p>
-                        {item.unit_value} {item.unit}
-                      </p>
-                      <span>Karat : {item.purity}</span>
-                      <div className="product-btnarea">
-                        <Link to="/add-to-cart" className="product-addBtn">
-                          Add To Cart
-                        </Link>
-                      </div>
-                    </Link>
+                      <i class="fa fa-heart-o" onClick={(id) => addToWishlist(item.id)} />
+                    </div>
+                    <img src={cleanImageUrl(item.image)} />
+                    <h4>{item.name}</h4>
+                    <p>
+                      {item.unit_value} {item.unit}
+                    </p>
+                    <span>Karat : {item.purity}</span><br />
+                    <span>Design Num : {item.design}</span>
+                    <div className="product-btnarea">
+                      <Link to={`/product-details/${item.id}`} className="product-addBtn">
+                        View Products
+                      </Link>
+
+                    </div>
+                    {/* </Link> */}
                   </div>
                 </Col>
               ))}
@@ -770,10 +802,10 @@ function Home(props) {
               </div>
             </Col>
           </Row>
-          <Row className="mt-4">
+          <Row className="mt-4 justify-content-center">
             {posts &&
               posts.map((blog) => (
-                <Col lg={4} sm={4} xs={12} className="mt-2 mb-3">
+                <Col lg={4} sm={4} xs={6} className="mt-2 mb-3">
                   <Link to="/blog">
                     <div className="blogs-card" key={blog.id}>
                       <img
@@ -862,30 +894,33 @@ function Home(props) {
 
       <section className="section-padding">
         <Container>
-          <Row >
+          <Row>
             <Col lg={12}>
               <div className="Newsletter">
                 <Row className="justify-content-center">
                   <Col sm={6}>
-                    <img src={send} />
-                    <h1 className="main-head">Get Or Promo Code by Subscribing To our Newsletter</h1>
-                    <Form className="d-flex">
-                      <Form.Control
-                        type="search"
-                        placeholder="Enter your email"
-                        className="me-2"
-                        aria-label="Search"
-                      />
-                      <Button variant="outline-success">Subscribe</Button>
-                    </Form>
+                    <div className="newletterarea">
+                      <img src={send} />
+                      <h1 className="main-head">
+                        Signup To be a veejay jewels insider
+                      </h1>
+                      <Form className="subscribt-area" >
+                        <Form.Control
+                          type="search"
+                          placeholder="Enter your email"
+                          className="me-2"
+                          aria-label="Search"
+                          value={email} onChange={(e) => setEmail(e.target.value)}
+                        />
+                        <Button variant="outline-success" onClick={handleSubmit}>Subscribe</Button>
+                        {/* {responseMessage && <p>{responseMessage}</p>} */}
+                      </Form>
+                    </div>
                   </Col>
                 </Row>
               </div>
             </Col>
           </Row>
-
-
-
         </Container>
       </section>
       <Footer />

@@ -111,6 +111,15 @@ function Customdesign() {
                       />
                     </Form.Group>
                   </Row>
+                  <Form.Group className="mb-3">
+                      <Form.Label>Mobile Number</Form.Label>
+                      <Form.Control
+                        type="number"
+                        placeholder="Enter number"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                      />
+                    </Form.Group>
                   <Row className="mb-3">
                     <Form.Group as={Col}>
                       <Form.Label>Quantity</Form.Label>

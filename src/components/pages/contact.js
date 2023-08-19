@@ -33,7 +33,7 @@ function Contact() {
                     <Row className="justify-content-center">
                         <Col lg={9}>
                             <div className='text-center'>
-                                <h4 className='main-heading text-center'>ContactUs</h4>
+                                <h4 className='main-heading text-center'>Contact Us</h4>
                                 <div className='all-border'>
                                     <img src={border} />
                                 </div>

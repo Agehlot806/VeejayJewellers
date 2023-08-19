@@ -29,7 +29,7 @@ function Footer() {
                                 <div className='footer-list'>
                                     <h5>Information</h5>
                                     <ul>
-                                        <li><Link>Careers</Link></li>
+                                        {/* <li><Link>Careers</Link></li> */}
                                         <li><Link to='/about'>AboutUs</Link></li>
                                         {/* <li><Link to='/offers-details'>Offers Details</Link></li> */}
                                         <li><Link to='/helpandFAQs'>Help & FAQs</Link></li>
@@ -42,8 +42,8 @@ function Footer() {
                                     <h5>Contact Us</h5>
                                     <ul>
                                         <li><Link><i className="fa fa-envelope-o" /> info@veejayjewels.com</Link></li>
-                                        <li><Link><i className="fa fa-phone" />  9699919991</Link></li>
-                                        <li><Link><i className="fa fa-commenting-o" /> Chat Us</Link></li>
+                                        <li><Link><i className="fa fa-phone" />  9699919991,8454906041</Link></li>
+                                        <li><Link to='https://www.whatsapp.com/'><i className="fa fa-whatsapp" /> Chat Us</Link></li>
                                     </ul>
                                 </div>
                             </Col>

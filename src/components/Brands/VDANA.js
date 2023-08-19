@@ -26,7 +26,7 @@ function VDANA() {
         categorys()
     }, []);
     const categorys = () => {
-        axios.get(`http://veejayjewels.com/api/v1/categories/childes/${id}`)
+        axios.get(`https://veejayjewels.com/api/v1/categories/childes/${id}`)
             .then((response) => {
                 console.log(response.data);
                 setbrandcategories(response.data)

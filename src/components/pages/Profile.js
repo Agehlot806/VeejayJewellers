@@ -18,7 +18,7 @@ function Profile() {
   const [city, setCity] = useState("");
   const [pincode, setpincode] = useState("");
   const [stateallCity, setStateallCity] = useState([]);
-  const [stateall, setStateall] = useState([]);
+  // const [stateall, setStateall] = useState([]);
   const [uploadImage, setUploadImage] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
   const [showPreview, setShowPreview] = useState(false);
@@ -40,7 +40,7 @@ function Profile() {
 
       if (response.ok) {
         const data = await response.json();
-        setStateall(data.state);
+        setStatealldata(data.state);
         // console.log("respostate", data);
       } else {
         console.error("Error:", response.status);
@@ -66,7 +66,7 @@ function Profile() {
         setLastName(response.data.l_name);
         setpincode(response.data.pincode);
         setEmail(response.data.email);
-        setState(response.data.state);
+        setStateall(response.data.state);
         setPhone(response.data.phone);
         setCity(response.data.city);
         setAddress(response.data.address);
@@ -75,7 +75,7 @@ function Profile() {
         setUploadImage(imageUrl);
         setShowPreview(true);
         // setStateall(Response.state);
-        console.error("ERROR FOUND---->>>>", imageUrl);
+        // console.error("ERROR FOUND---->>>>", imageUrl);
       })
       .catch((error) => {
         console.error("ERROR FOUND---->>>>" + error);
@@ -91,9 +91,9 @@ function Profile() {
     formData.append("l_name", lastName);
     formData.append("phone", phone);
     formData.append("email", email);
-    formData.append("image", uploadImage);
+    // formData.append("image", uploadImage);
     formData.append("id", storedId);
-    formData.append("state", state);
+    formData.append("state", selectedStateName);
     formData.append("city", city);
     formData.append("pincode", pincode);
     formData.append("address", address);
@@ -104,7 +104,7 @@ function Profile() {
         // withCredentials: true,
       })
       .then((response) => {
-        setImageProfile(response.data.data.image);
+        // setImageProfile(response.data.data.image);
         toast.success("Successfuly Updated");
       })
 
@@ -117,13 +117,27 @@ function Profile() {
     setShowPreview(false);
     setUploadImage(event.target.files[0]);
     setSelectedImage(URL.createObjectURL(event.target.files[0]));
+
   };
 
-  const handleSelectChange = (e) => {
-    setState(e.target.value);
-    Getdatacity(e.target.value);
+  // const handleSelectChange = (e) => {
+  //   setState(e.target.value);
+  //   Getdatacity(e.target.value);
+  // };
+  // const [selectedId, setSelectedId] = useState(null);
+  const [selectedStateName, setSelectedStateName] = useState('');
+  // const [stateid, setStateid] = useState('');
+  const [statedata, setStatedata] = useState([]);
+
+  const handleSelectChange = (event) => {
+    const selectedIdValue = event.target.value;
+    const selectedStateNameValue = event.target.options[event.target.selectedIndex].text;
+    Getdatacity(event.target.value);
+    setStatedata(selectedIdValue);
+    setSelectedStateName(selectedStateNameValue);
   };
 
+  console.log(selectedStateName,state);
   const Getdatacity = (state) => {
     const formData = new FormData();
     formData.append("state", state);
@@ -162,6 +176,9 @@ function Profile() {
     }
     // GetdataAll();
   });
+  const [stateall, setStateall] = useState('');
+  const [statealldata, setStatealldata] = useState([]);
+
 
   return (
     <>
@@ -222,18 +239,18 @@ function Profile() {
                   </Form.Group>
                   <Form.Group as={Col}>
                     <Form.Label>State</Form.Label>
-                    <Form.Select
-                      aria-label="Default select example"
-                      onChange={handleSelectChange}
-                      value={state}
-                    >
-                      <option>Choose...</option>
-                      {stateall.map((items) => (
-                        <option value={items.id} key={items.id}>
-                          {items.state_name}
-                        </option>
-                      ))}
-                    </Form.Select>
+                    <select class="form-control"
+                  aria-label="Default select example"
+                  onChange={handleSelectChange}
+                  value={statedata}
+                >
+                  <option>{stateall}</option>
+                  {statealldata.map((items) => (
+                    <option value={items.id} key={items.id}>
+                      {items.state_name}
+                    </option>
+                  ))}
+                </select>
                   </Form.Group>
                   <Form.Group as={Col}>
                     <Form.Label>Shipping Address</Form.Label>
@@ -252,10 +269,10 @@ function Profile() {
                       onChange={Subscriptioncity}
                       value={city}
                     >
-                      <option>Choose...</option>
+                      <option>{city}</option>
                       {stateallCity &&
                         stateallCity.map((items) => (
-                          <option value={items.id} key={items.id}>
+                          <option value={items.city_name} key={items.id}>
                             {items.city_name}
                           </option>
                         ))}

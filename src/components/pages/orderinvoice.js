@@ -28,6 +28,7 @@ function Orderinvoice() {
   const address = localStorage.getItem("address");
   const [filterOrder, setFilterOrder] = useState("");
   const { id } = useParams();
+  console.log(id,"id");
   const [productName, setProductName] = useState("");
   const [orderlistdata, setOrderListData] = useState([]);
   const [productOrderId, setProductOrderId] = useState("");
@@ -35,12 +36,15 @@ function Orderinvoice() {
   const [productPrice, setProductPrice] = useState("");
   const [quantity, setProductQuantity] = useState("");
   const [variation, setVariation] = useState("");
+  const [variation1, setVariation1] = useState("");
+  const [variation2, setVariation2] = useState("");
   const [textAmount, setTextAmount] = useState("");
   const [show, setShow] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+  const [design, setdesign] = useState("");
   const [orderList, setOrderList] = useState([]);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -68,6 +72,7 @@ function Orderinvoice() {
         setEmail(response.data.email);
 
         setPhone(response.data.phone);
+        setdesign(response.data.design);
       })
       .catch((error) => {
         console.error("ERROR FOUND---->>>>" + error);
@@ -107,7 +112,8 @@ function Orderinvoice() {
   };
 
   const handleInvoiceFilter = (data) => {
-    const filteredOrder = data.find((order) => order.id == orderId);
+    console.log(data,"data");
+    const filteredOrder = data.find((order) => order.id == id);
     setFilterOrder(filteredOrder.invoice);
   };
   console.log("filterOrder", filterOrder);
@@ -115,22 +121,26 @@ function Orderinvoice() {
     axios
       .get(`https://veejayjewels.com/api/v1/products/details`, {
         params: {
-          id: orderId,
+          id: id,
         },
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "http://localhost:3000/",
+          "Access-Control-Allow-Origin": "https://localhost:3000/",
         },
       })
       .then((response) => {
+        console.log("products/details",response);
+        setProductName(response.data.data)
         setOrderListData(response.data.data);
         setProductOrderId(response.data.data[0].order_id);
         setProductId(response.data.data[0].product_id);
-        setProductQuantity(response.data.data[0].quantity);
+        // setProductQuantity(response.data.data[0].quantity);
         setProductPrice(response.data.data[0].price);
-        setProductName(response.data.data[0].product_name);
-        setVariation(response.data.data[0].variant);
+        // setProductName(response.data.data[0].product_name);
+        // setVariation(response.data.data[1].variation);invoice
+        // setVariation1(response.data.data[1].variation1);
+        // setVariation2(response.data.data[2].variation2);
         setTextAmount(response.data.data[0].tax_amount);
         setProductPrice(response.data.data[0].price);
         setProductPrice(response.data.data[0].price);
@@ -140,6 +150,7 @@ function Orderinvoice() {
       });
   };
 
+  console.log("productName  ",productName);
   return (
     <>
       <Header />
@@ -151,7 +162,7 @@ function Orderinvoice() {
               <div className="invoice-cardnew">
                 <img src={logo} />
                 <h3>
-                  Order Id: <span>{orderId}</span>
+                  Order Id: <span>{id}</span>
                 </h3>
                 <h3>
                   Invoice Id: <span>{filterOrder}</span>
@@ -163,21 +174,19 @@ function Orderinvoice() {
               <div className="order-invoiceN">
                 <Table responsive className="productDetailTable">
                   <tbody>
-                    <tr>
-                      <th>Product Name:</th>
-                      <td>{capitalizeFirstLetter(productName)}</td>
-                    </tr>
-                    <tr>
-                      <th>Variant:</th>
-                      <td>{variation}</td>
-                    </tr>
-                    <tr>
-                      <th>Quantity</th>
-                      <td>{quantity}</td>
-                    </tr>
-                    {/* <div className="add-border">
-                  <img src={border} />
-                    </div> */}
+                    {productName?( 
+                    productName.map((items,index)=>(
+
+                      <tr key={index}>
+                    <td>{items.product_name}</td>
+                    <td>{items.variation}</td>
+                    <td>{items.quantity}</td>
+                   </tr>
+               
+               ))
+               ):null}
+               {/* <hr/> */}
+                    
                     <tr>
                       <th>Name:</th>
                       <td>
@@ -194,12 +203,25 @@ function Orderinvoice() {
                       <td>{phone}</td>
                     </tr>
                     <tr>
-                      <th>Address:</th>
+                      <th>Design Num:</th>
+                      <td>{design}</td>
+                    </tr>
+                    <tr>
+                      <th>Delivery Address:</th>
                       <td>{address}</td>
                     </tr>
                   </tbody>
                 </Table>
               </div>
+              <div className="add-border">
+                <img src={border} />
+              </div>
+
+              <div className="text-center mt-3">
+            <Link className="showSize" to="/products">
+              Continue Shopping
+            </Link>
+          </div>
             </div>
           </Col>
         </Row>

@@ -95,13 +95,13 @@ function Blog() {
                             <Col lg={8}>
                             <div className="blog-comment">
                               <Link><i className="fa fa-user" /> {blog.author}</Link>
-                              <Link><i className="fa fa-commenting-o" /> 20 Comment</Link>
+                              {/* <Link><i className="fa fa-commenting-o" /> 20 Comment</Link> */}
                               </div>
                             </Col>
                             <Col lg={4}>
                               <div className="text-right">
-<h6>20 july,2020</h6>
-</div>
+                                <h6>20 july,2020</h6>
+                              </div>
                             </Col>
                           </Row>
                         </div>

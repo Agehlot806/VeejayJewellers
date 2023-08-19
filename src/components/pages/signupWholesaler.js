@@ -80,24 +80,7 @@ function SignupWholesaler() {
           toast.success("Registration Successfull");
           navigate("/login");
 
-          // history.push("/all-events");mmit
-          // if (
-          //   f_name.length == 0 ||
-          //   l_name.length == 0 ||
-          //   phone.length == 0 ||
-          //   email.length == 0 ||
-          //   password.length == 0 ||
-          //   company_name.length == 0 ||
-          //   foundation_date.length == 0 ||
-          //   pincode.length == 0 ||
-          //   gst_number.length == 0 ||
-          //   upload1.length == 0 ||
-          //   upload2.length == 0 ||
-          //   state.length == 0 ||
-          //   city.length == 0
-          // ) {
-          //   seterror(true);
-          // }
+        
         })
 
         .catch((error) => {
@@ -134,7 +117,7 @@ function SignupWholesaler() {
     formData.append("state", id);
 
     axios
-      .post(`http://veejayjewels.com/api/v1/auth/city`, formData, {
+      .post(`https://veejayjewels.com/api/v1/auth/city`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then((response) => {
@@ -228,7 +211,7 @@ function SignupWholesaler() {
   }, []);
   const fetchDataAll = async () => {
     try {
-      const response = await fetch("http://veejayjewels.com/api/v1/auth/state");
+      const response = await fetch("https://veejayjewels.com/api/v1/auth/state");
       const data = await response.json();
       setStates(data.state);
     } catch (error) {
@@ -264,7 +247,7 @@ function SignupWholesaler() {
           <Row>
             <Col lg={6} className="mainForm-bg">
               <div className="mainForm-text">
-                <h2>VEEJAY JEWELLER'S</h2>
+                <h2>VEEJAY <br />JEWEL'S</h2>
                 <p>
                   Lorem Ipsum is simply dummy text of the printing and
                   typesetting industry. Lorem Ipsum has been the industry's

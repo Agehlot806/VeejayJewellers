@@ -13,7 +13,7 @@ import { useState } from "react";
 function Calculator() {
   const [value, setValue] = useState(1);
   const [price, setPrice] = useState(130);
- 
+
   const [selectedValue, setSelectedValue] = useState("");
 
   const minProductValue = 1; // Minimum value for the quantity
@@ -54,16 +54,19 @@ function Calculator() {
                   <Col sm={12}>
                     <div className="calcutor">
                       <Form.Group controlId="exampleForm.SelectCustom">
-                        <Form.Label>Select Gold Karat :</Form.Label>
+                        <Form.Label>Select Gold Kt :</Form.Label>
                         <Form.Control
                           as="select"
                           value={selectedValue}
                           onChange={handleSelectChange}
                         >
                           <option value="">Select</option>
-                          <option value="18"> 18</option>
-                          <option value="22">22</option>
-                          <option value="24"> 24</option>
+                          <option value="14">14 Kt</option>
+                          <option value="16">16 Kt</option>
+                          <option value="18">18 Kt</option>
+                          <option value="20">20 Kt</option>
+                          <option value="22">22 Kt</option>
+                          <option value="24">24 Kt</option>
                         </Form.Control>
                       </Form.Group>
                     </div>

@@ -10,6 +10,8 @@ import { BASE_URL } from "../../Constant/Index";
 import logo from "../../assets/images/logo/logo.png";
 import { useState } from "react";
 import { useEffect } from "react";
+
+
 function Checkinvoice() {
   const Id = localStorage.getItem("id");
   console.log("id", Id);
@@ -36,7 +38,8 @@ function Checkinvoice() {
     })
       .then((response) => response.json())
       .then((data) => {
-        // Handle the response data here
+        console.log("data",data.data);
+        // localStorage.setItem("id");
         setOrderListData(data.data);
       })
       .catch((error) => {
@@ -44,6 +47,12 @@ function Checkinvoice() {
         console.error("Error:", error);
       });
   };
+
+  const getDateFromCreatedAt = (createdAt) => {
+    const dateObject = new Date(createdAt);
+    return dateObject.toLocaleDateString();
+  };
+
   // console.log("orderlistdata", orderlistdata);
   return (
     <>
@@ -125,6 +134,8 @@ function Checkinvoice() {
               ? orderlistdata.map((item, index) => (
                 <Col lg={8} className="mb-4">
                   <Link to={"/order-invoice/" + item.id}>
+                  {/* <Link to="/order-invoice"> */}
+
                     <div className="mainProductcard">
                       <Row >
                         <Col lg={4}>
@@ -132,7 +143,7 @@ function Checkinvoice() {
                         </Col>
                         <Col lg={8}>
                           <div style={{textAlign:"left"}}>
-                            <h4>Order Id: {item.id}</h4>
+                            <h4>Order Id: {item.id}  <span>Date:  {getDateFromCreatedAt(item.created_at)}</span></h4>
                             <h4>Order Status: {item.order_status}</h4>
                             <h4>Order address: {item.delivery_address}</h4>
                           </div>

@@ -16,7 +16,7 @@
 //   }, []);
 //   const fetchDataAll = async () => {
 //     try {
-//       const response = await fetch('http://veejayjewels.com/api/v1/auth/state');
+//       const response = await fetch('https://veejayjewels.com/api/v1/auth/state');
 //       const data = await response.json();
 //       setStates(data.state);
 //     } catch (error) {
@@ -174,65 +174,141 @@
 
 // export default Demo;
 
-import React from 'react'
+// import React from 'react'
 
-function Demo() {
+// function Demo() {
+//   return (
+//     <div>
+//         <div className="row">
+//           <div className="column">
+//             <img src="img_nature.jpg" style={{width: '100%'}} onclick="openModal();currentSlide(1)" className="hover-shadow cursor" />
+//           </div>
+//           <div className="column">
+//             <img src="img_snow.jpg" style={{width: '100%'}} onclick="openModal();currentSlide(2)" className="hover-shadow cursor" />
+//           </div>
+//           <div className="column">
+//             <img src="img_mountains.jpg" style={{width: '100%'}} onclick="openModal();currentSlide(3)" className="hover-shadow cursor" />
+//           </div>
+//           <div className="column">
+//             <img src="img_lights.jpg" style={{width: '100%'}} onclick="openModal();currentSlide(4)" className="hover-shadow cursor" />
+//           </div>
+//         </div>
+//         <div id="myModal" className="modal">
+//           <span className="close cursor" onclick="closeModal()">×</span>
+//           <div className="modal-content">
+//             <div className="mySlides">
+//               <div className="numbertext">1 / 4</div>
+//               <img src="img_nature_wide.jpg" style={{width: '100%'}} />
+//             </div>
+//             <div className="mySlides">
+//               <div className="numbertext">2 / 4</div>
+//               <img src="img_snow_wide.jpg" style={{width: '100%'}} />
+//             </div>
+//             <div className="mySlides">
+//               <div className="numbertext">3 / 4</div>
+//               <img src="img_mountains_wide.jpg" style={{width: '100%'}} />
+//             </div>
+//             <div className="mySlides">
+//               <div className="numbertext">4 / 4</div>
+//               <img src="img_lights_wide.jpg" style={{width: '100%'}} />
+//             </div>
+//             <a className="prev" onclick="plusSlides(-1)">❮</a>
+//             <a className="next" onclick="plusSlides(1)">❯</a>
+//             <div className="caption-container">
+//               <p id="caption" />
+//             </div>
+//             <div className="column">
+//               <img className="demo cursor" src="img_nature_wide.jpg" style={{width: '100%'}} onclick="currentSlide(1)" alt="Nature and sunrise" />
+//             </div>
+//             <div className="column">
+//               <img className="demo cursor" src="img_snow_wide.jpg" style={{width: '100%'}} onclick="currentSlide(2)" alt="Snow" />
+//             </div>
+//             <div className="column">
+//               <img className="demo cursor" src="img_mountains_wide.jpg" style={{width: '100%'}} onclick="currentSlide(3)" alt="Mountains and fjords" />
+//             </div>
+//             <div className="column">
+//               <img className="demo cursor" src="img_lights_wide.jpg" style={{width: '100%'}} onclick="currentSlide(4)" alt="Northern Lights" />
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//   )
+// }
+
+// export default Demo
+
+
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Col } from "react-bootstrap";
+
+const Demo = () => {
+  const [products, setProducts] = useState([]);
+  const [selectedPurity, setSelectedPurity] = useState(["24k"]); // Default to 24k as an array
+  const purities = ["24k", "22k", "21k", "20k"];
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Fetch data for each selected purity level
+        const promises = selectedPurity.map(async (purity) => {
+          const response = await axios.post(
+            "https://veejayjewels.com/api/v1/products/product_filter",
+            {
+              purity: purity,
+            }
+          );
+          return response.data.data;
+        });
+
+        // Wait for all the requests to complete
+        const allData = await Promise.all(promises);
+
+        // Combine all data into a single array
+        const combinedData = allData.reduce((acc, data) => [...acc, ...data], []);
+
+        setProducts(combinedData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, [selectedPurity]); // Run this effect whenever the selectedPurity state changes
+
+  const handlePurityChange = (event) => {
+    const { value, checked } = event.target;
+    if (checked) {
+      setSelectedPurity([...selectedPurity, value]); // Add the selected purity
+    } else {
+      setSelectedPurity(selectedPurity.filter((purity) => purity !== value)); // Remove the selected purity
+    }
+  };
+
   return (
-    <div>
-        <div className="row">
-          <div className="column">
-            <img src="img_nature.jpg" style={{width: '100%'}} onclick="openModal();currentSlide(1)" className="hover-shadow cursor" />
+    <>
+      {purities.map((purity) => (
+        <label key={purity}>
+          <input
+            type="checkbox"
+            value={purity}
+            checked={selectedPurity.includes(purity)}
+            onChange={handlePurityChange}
+          />
+          {purity}
+        </label>
+      ))}
+      {products.map((item) => (
+        <Col lg={4} sm={4} xs={6} className="mb-4" key={item.id}>
+          <div className="mainProductcard">
+            {/* Add your product card content here */}
+            <h2>{item.name}</h2>
+            <span>{item.purity}</span>
           </div>
-          <div className="column">
-            <img src="img_snow.jpg" style={{width: '100%'}} onclick="openModal();currentSlide(2)" className="hover-shadow cursor" />
-          </div>
-          <div className="column">
-            <img src="img_mountains.jpg" style={{width: '100%'}} onclick="openModal();currentSlide(3)" className="hover-shadow cursor" />
-          </div>
-          <div className="column">
-            <img src="img_lights.jpg" style={{width: '100%'}} onclick="openModal();currentSlide(4)" className="hover-shadow cursor" />
-          </div>
-        </div>
-        <div id="myModal" className="modal">
-          <span className="close cursor" onclick="closeModal()">×</span>
-          <div className="modal-content">
-            <div className="mySlides">
-              <div className="numbertext">1 / 4</div>
-              <img src="img_nature_wide.jpg" style={{width: '100%'}} />
-            </div>
-            <div className="mySlides">
-              <div className="numbertext">2 / 4</div>
-              <img src="img_snow_wide.jpg" style={{width: '100%'}} />
-            </div>
-            <div className="mySlides">
-              <div className="numbertext">3 / 4</div>
-              <img src="img_mountains_wide.jpg" style={{width: '100%'}} />
-            </div>
-            <div className="mySlides">
-              <div className="numbertext">4 / 4</div>
-              <img src="img_lights_wide.jpg" style={{width: '100%'}} />
-            </div>
-            <a className="prev" onclick="plusSlides(-1)">❮</a>
-            <a className="next" onclick="plusSlides(1)">❯</a>
-            <div className="caption-container">
-              <p id="caption" />
-            </div>
-            <div className="column">
-              <img className="demo cursor" src="img_nature_wide.jpg" style={{width: '100%'}} onclick="currentSlide(1)" alt="Nature and sunrise" />
-            </div>
-            <div className="column">
-              <img className="demo cursor" src="img_snow_wide.jpg" style={{width: '100%'}} onclick="currentSlide(2)" alt="Snow" />
-            </div>
-            <div className="column">
-              <img className="demo cursor" src="img_mountains_wide.jpg" style={{width: '100%'}} onclick="currentSlide(3)" alt="Mountains and fjords" />
-            </div>
-            <div className="column">
-              <img className="demo cursor" src="img_lights_wide.jpg" style={{width: '100%'}} onclick="currentSlide(4)" alt="Northern Lights" />
-            </div>
-          </div>
-        </div>
-      </div>
-  )
-}
+        </Col>
+      ))}
+    </>
+  );
+};
 
-export default Demo
+export default Demo;
+

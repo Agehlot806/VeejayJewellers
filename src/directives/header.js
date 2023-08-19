@@ -1,4 +1,4 @@
-import { Dropdown, Container, Form, Nav, Navbar, Table,Modal,Button } from "react-bootstrap";
+import { Dropdown, Container, Form, Nav, Navbar, Table, Modal, Button } from "react-bootstrap";
 import logo from "../assets/images/logo/logo.png";
 import shoppingIcon from "../assets/images/icons/bag-2.png";
 import { Link, useNavigate } from "react-router-dom";
@@ -16,13 +16,13 @@ function Header({ profileImage }) {
   // const uploadImageURL = localStorage.getItem("uploadImageURL");
   const imageUrl = `https://veejayjewels.com/public/${profile}`;
   const latestProfile = `https://veejayjewels.com/public/${profileImage}`;
-  console.log("imageUrl", profile, profileImage);
+  // console.log("imageUrl", profile, profileImage);
   useEffect(() => {
     categorys();
     notification();
   }, []);
 
-  
+
   const categorys = () => {
     axios
       .get(`${BASE_URL}/categories`)
@@ -30,7 +30,7 @@ function Header({ profileImage }) {
         setbrandcategories(response.data.data);
       })
       .catch((error) => {
-        console.error("Error fetching data:", error);
+        // console.error("Error fetching data:", error);
       });
   };
   // console.log("brandcategoriesbrandcategories", brandcategories);
@@ -43,7 +43,7 @@ function Header({ profileImage }) {
         setNotification(response.data.data)
       })
       .catch((error) => {
-        console.error("Error fetching data:", error);
+        // console.error("Error fetching data:", error);
       });
   };
 
@@ -52,7 +52,7 @@ function Header({ profileImage }) {
   return (
     <>
       <Navbar bg="white" expand="lg" className="header-bg">
-        <Container>
+        <Container fluid>
           <div className="header-rate">
             <Navbar.Brand>
               <Link to="/">
@@ -60,7 +60,7 @@ function Header({ profileImage }) {
               </Link>
               <Link className="text-center">
                 <Dropdown className="dropdown-rate">
-                  <Dropdown.Toggle id="dropdown-basic">Rate</Dropdown.Toggle>
+                  <Dropdown.Toggle id="dropdown-basic"> Live Rate</Dropdown.Toggle>
                   <Dropdown.Menu>
                     <Table id>
                       <tbody>
@@ -81,35 +81,33 @@ function Header({ profileImage }) {
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
-              className="header-menu ms-auto my-2 my-lg-0"
+              className="header-menu ml-auto my-2 my-lg-0"
               // style={{ maxHeight: '100px' }}
               navbarScroll
             >
               <Nav.Link>
-                <Link to="/">Home</Link>
+                <Link to="/" className="btn-theme-home">Home</Link>
+              </Nav.Link>
+
+              <Nav.Link>
+                <Link to="/products" className="btn-theme-home">Products</Link>
               </Nav.Link>
               <Nav.Link>
-                <Link to="/about">AboutUs</Link>
-              </Nav.Link>
-              <Nav.Link>
-                <Link to="/products">Product</Link>
-              </Nav.Link>
-              {/* <Nav.Link>
-                <Dropdown>
-                  <Dropdown.Toggle id="dropdown-basic">Brands</Dropdown.Toggle>
+                <Dropdown className="btn-theme-home">
+                  <Dropdown.Toggle id="dropdown-basic" >Brands</Dropdown.Toggle>
                   <Dropdown.Menu>
                     {brandcategories &&
                       brandcategories.map((item) => (
                         <Dropdown.Item href="" key={item.id}>
                           <i className="fa fa-angle-double-right" />{" "}
-                          <Link to={`/brands/${item.id}/${item.name}`}>
+                          <Link to={`/products/${item.name}`}>
                             {item.name}
                           </Link>
                         </Dropdown.Item>
                       ))}
                   </Dropdown.Menu>
                 </Dropdown>
-              </Nav.Link> */}
+              </Nav.Link>
               {/* <Nav.Link>
                 <Dropdown>
                   <Dropdown.Toggle id="dropdown-basic">Product</Dropdown.Toggle>
@@ -142,7 +140,7 @@ function Header({ profileImage }) {
                 </Dropdown>
               </Nav.Link> */}
               <Nav.Link>
-                <Dropdown>
+                <Dropdown className="btn-theme-home">
                   <Dropdown.Toggle id="dropdown-basic">Catalogue</Dropdown.Toggle>
 
                   <Dropdown.Menu>
@@ -162,7 +160,10 @@ function Header({ profileImage }) {
                 </Dropdown>
               </Nav.Link>
               <Nav.Link>
-                <Link to="/contact">Contacts</Link>
+                <Link to="/about" className="btn-theme-home">About Us</Link>
+              </Nav.Link>
+              <Nav.Link>
+                <Link to="/contact" className="btn-theme-home">Contact Us</Link>
               </Nav.Link>
               <Nav.Link className="header-bag">
                 <Link to="/calculator">
@@ -178,25 +179,33 @@ function Header({ profileImage }) {
                 <i className="fa fa-bell-o" onClick={handleShow}></i>
                 {/* <span className="ball-count">1</span> */}
               </Nav.Link>
-              
+
               <Nav.Link>
                 <Dropdown>
                   <Dropdown.Toggle id="dropdown-basic" className="hidearrow">
-                  <img
-                  className="profile-icon"
-                  // src={ProfileImage}
-                  src={
-                    profileImage
-                      ? latestProfile
-                      : profile
-                        ? imageUrl
-                        : ProfileImage
-                  }
-                  alt=""
-                ></img>
+                    <img
+                      className="profile-icon"
+                      // src={ProfileImage}
+                      src={
+                        profileImage
+                          ? latestProfile
+                          : profile
+                            ? imageUrl
+                            : ProfileImage
+                      }
+                      alt=""
+                    ></img>
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>
+                    <Dropdown.Item href="">
+                      <i className="fa fa-heart-o" />{" "}
+                      <Link to="/favourite-product">Favourite Product</Link>
+                    </Dropdown.Item>
+                    <Dropdown.Item href="">
+                      <i className="fa fa-angle-double-right" />{" "}
+                      <Link to="/custom-order">Custom Order</Link>
+                    </Dropdown.Item>
                     <Dropdown.Item href="">
                       <i className="fa fa-angle-double-right" />{" "}
                       <Link to="/check-invoice">My Order</Link>
@@ -205,6 +214,7 @@ function Header({ profileImage }) {
                       <i className="fa fa-angle-double-right" />{" "}
                       <Link to="/profile">Profile</Link>
                     </Dropdown.Item>
+
                   </Dropdown.Menu>
                 </Dropdown>
               </Nav.Link>
@@ -229,23 +239,23 @@ function Header({ profileImage }) {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      
+
 
       <Modal show={shownotifications} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Notifications</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <tbody>
-                {notifications ? notifications.map((items, index) => (
-                  <tr key={index}>
-                    <td><img src={"https://veejayjewels.com/storage/app/public/notification/" + items.image} /></td>
-                    <td className="p-2">{items.title}<br />{items.description}</td>
-                  </tr>
-                )) : ""}
-              </tbody>
+          <tbody>
+            {notifications ? notifications.map((items, index) => (
+              <tr key={index}>
+                <td><img src={"https://veejayjewels.com/storage/app/public/notification/" + items.image} /></td>
+                <td className="p-2">{items.title}<br />{items.description}</td>
+              </tr>
+            )) : ""}
+          </tbody>
         </Modal.Body>
-        
+
       </Modal>
     </>
 

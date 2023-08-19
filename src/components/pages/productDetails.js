@@ -22,6 +22,8 @@ import product4 from "../../assets/images/img/product4.png";
 import border from "../../assets/images/banner/border.png";
 import { BASE_URL } from "../../Constant/Index";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
+
 const clinetreview = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
@@ -62,6 +64,8 @@ function ProductDetails(props) {
   const [quantity2, setQuantity2] = useState(0);
   const [show, setShow] = useState(false);
   const [unit, setUnit] = useState("");
+  const [unit_value, setunit_value] = useState("");
+  const [design, setdesign] = useState("");
   const [productType, setProductType] = useState("");
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
@@ -134,6 +138,8 @@ function ProductDetails(props) {
       .then((response) => {
         console.log(response.data);
         setUnit(response.data.data.unit);
+        setunit_value(response.data.data.unit_value);
+        setdesign(response.data.data.design);
         setName(response.data.data.name);
         setImage(response.data.data.image);
         setProductType(response.data.data.product_type);
@@ -190,6 +196,7 @@ function ProductDetails(props) {
     }
   };
   const handleSubmit = () => {
+  
     const formData = new FormData();
     formData.append("user_id", loginId);
     formData.append("product_id", id);
@@ -207,6 +214,9 @@ function ProductDetails(props) {
       "image",
       "https://veejayjewels.com/storage/app/public/product/" + image
     );
+    // for (let pair of formData.entries()) {
+    //   console.log(pair[0], pair[1]);
+    // }
     axios
       .post(`${BASE_URL}/products/add_to_card`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
@@ -216,6 +226,7 @@ function ProductDetails(props) {
         handleClose();
         // addtocard("/add-to-cart");
         // history.push("/all-events");
+        toast.success("Add to Cart Successfuly");
       })
       .catch((error) => {
         console.log(error);
@@ -245,6 +256,7 @@ function ProductDetails(props) {
 
   return (
     <>
+      <Toaster />
       <Header />
       <div className="allPage-bgtwo">
         <Container fluid className="p-0">
@@ -255,7 +267,7 @@ function ProductDetails(props) {
         <Container>
           <div className="productDetailsBG">
             <Row>
-              <Col lg={4} sm={4}>
+              <Col lg={6} sm={6}>
                 <Carousel
                   swipeable={true}
                   draggable={true}
@@ -274,13 +286,16 @@ function ProductDetails(props) {
                   dotListClass="product-dot-list-style"
                   itemClass="carousel-item-padding-40-px"
                 >
-                  <div className="productdetails-bg">
-                    <img
-                      src={
-                        "https://veejayjewels.com/storage/app/public/product/" +
-                        image
-                      }
-                    />
+                  <div>
+                    <div className="productdetails-bg">
+                      <img
+                        src={
+                          "https://veejayjewels.com/storage/app/public/product/" +
+                          image
+                        }
+                      />
+                    </div>
+
                   </div>
                   <div className="productdetails-bg">
                     <img
@@ -299,39 +314,90 @@ function ProductDetails(props) {
                     />
                   </div>
                 </Carousel>
+                <div className="semi-products">
+                  <Row>
+                    <Col sm={4}>
+                      <div className="semi-produ-img">
+                        <img
+                          src={
+                            "https://veejayjewels.com/storage/app/public/product/" +
+                            image
+                          }
+                        />
+                      </div>
+                    </Col>
+                    <Col sm={4}>
+                      <div className="semi-produ-img">
+                        <img
+                          src={
+                            "https://veejayjewels.com/storage/app/public/product/" +
+                            image
+                          }
+                        />
+                      </div>
+                    </Col>
+                    <Col sm={4}>
+                      <div className="semi-produ-img">
+                        <img
+                          src={
+                            "https://veejayjewels.com/storage/app/public/product/" +
+                            image
+                          }
+                        />
+                      </div>
+                    </Col>
+                  </Row>
+                </div>
+
+
               </Col>
-              <Col lg={4} sm={4}>
-                <Table responsive className="productDetailTable">
+              <Col lg={6} sm={6}>
+                <Table className="productDetailTable">
                   <tbody>
                     <tr>
-                      <th>Product Name</th>
+                      <th>Product Name :</th>
                       <td>{name ? name : ""}</td>
                     </tr>
                     <tr>
-                      <th>Gram</th>
-                      <td>{unit ? unit : ""}</td>
+                      <th>Gram :</th>
+                      <td>{unit_value ? unit_value : ""} {unit ? unit : ""}</td>
                     </tr>
                     <tr>
-                      <th>Design Number</th>
-                      <td>EX1035</td>
+                      <th>Design Number :</th>
+                      <td>{design ? design : ""}</td>
                     </tr>
                     <tr>
-                      <th>Weight</th>
+                      <th>Weight :</th>
                       <td>67.00</td>
                     </tr>
                     <tr>
-                      <th>Jewelry Type</th>
+                      <th>Jewelry Type :</th>
                       <td>{productType ? productType : ""}</td>
+                    </tr>
+                    <tr>
+                      <th>Size</th>
+                      <td>
+                        {variations ? (
+                          <Row >
+                            {variations.map((item, index) => (
+                              <Col lg={1} className="radio-inline" key={index}>
+                                {item.type},
+                              </Col>
+                            ))}
+                          </Row>
+                        ) : null}
+                      </td>
                     </tr>
                   </tbody>
                 </Table>
                 <Button className="showSize" onClick={handleShow}>
                   {/* onClick={handleSubmitone} */}
-                  Add To Cart
+                  See More Size
                 </Button>
-              </Col>
-              <Col lg={4} sm={4}>
-                <div className="show-area">
+
+
+
+                {/* <div className="show-area">
                   <div className="show-areatext">
                     <Row>
                       <Col lg={4} xs={4}>
@@ -348,11 +414,11 @@ function ProductDetails(props) {
                     <Row>
                       <Col lg={4} sm={4}>
                         <label className="radio-inline">
-                          {/* <input
+                          <input
                             type="checkbox"
                             name="optradio"
                             onChange={() => setSelectedVariant(variationstype)}
-                          />{" "} */}
+                          />{" "}
                           {variationstype}
                         </label>
                       </Col>
@@ -370,16 +436,19 @@ function ProductDetails(props) {
                   </div>
 
                   <div className="showSizearea">
-                    <Link className="showSize" onClick={handleShow}>
-                      Show more size
-                    </Link>
+                    <div><Link className="showSize" onClick={handleShow}>
+                      Add to Cart
+                    </Link></div>
+                    <div className="like-icon">
+                      <i class="fa fa-heart-o" />
+                    </div>
                   </div>
-                </div>
+                </div> */}
               </Col>
             </Row>
-          </div>
-        </Container>
-      </section>
+          </div >
+        </Container >
+      </section >
       <section className="section-padding">
         <Container className="productCardbg">
           <div className="product_details">
@@ -409,9 +478,9 @@ function ProductDetails(props) {
                 <Col lg={3} sm={4} xs={6} className="mb-4">
                   <div className="mainProductcard">
                     <Link to={`/product-details/${item.id}`}>
-                    <div className="like-icon">
-                                <i class="fa fa-heart-o" />
-                              </div>
+                      <div className="like-icon">
+                        <i class="fa fa-heart-o" />
+                      </div>
                       <img src={cleanImageUrl(item.image)} alt="" />
                       <h4>{item.name}</h4>
                       <p>
@@ -424,8 +493,9 @@ function ProductDetails(props) {
                           to={`/product-details/${item.id}`}
                           className="product-addBtn"
                         >
-                          Add To Cart
+                          View Product
                         </Link>
+
                       </div>
                     </Link>
                   </div>
@@ -489,18 +559,22 @@ function ProductDetails(props) {
                         <tr key={index}>
                           <td>
                             <label className="radio-inline">
-                              {/* <input
-                          type="checkbox"
-                          name="optradio"
-                          onChange={() => handleVariantSelection(item.type)}
-                        />{" "} */}
-                              {item.type}
+                              <div className="form-check form-check-inline">
+                                <input
+                                  className="form-check-input"
+                                  type="checkbox"
+                                  name="optradio"
+                                  onChange={() => handleVariantSelection(item.type)}
+                                />
+                                {item.type}
+                              </div>
+                             
                             </label>
                           </td>
                           <td>
                             <div className="quantity-btn">
                               <button onClick={() => handleDecrement(item.type)}>-</button>
-                              <span>{selectedQuantities[item.type] || 1}</span>
+                              <span>{selectedQuantities[item.type] || 0}</span>
                               <button onClick={() => handleIncrement(item.type)}>+</button>
                             </div>
                           </td>

@@ -11,6 +11,7 @@ import image15 from "../../assets/images/banner/image 15.png";
 // import ApiHelper from '../utils/ApiHelper';
 import Carousel from "react-multi-carousel";
 import _ from "lodash";
+import toast, { Toaster } from "react-hot-toast";
 
 const clinetreview = {
   desktop: {
@@ -30,22 +31,23 @@ const clinetreview = {
   },
 };
 function Product(props) {
-  const {  name } = useParams();
-  const { brand } = useParams();
-  console.log("banddddddd", brand);
-  // const { id, name } = useParams();
-  console.log("name", name);
+  const { name } = useParams();
   const [brandcategories, setbrandcategories] = useState([]);
   const [allproduct, setallproduct] = useState([]);
   const [thirdbanner, setthirdbanner] = useState([]);
   const [activeCategory, setActiveCategory] = useState(name);
-console.log('====================================',activeCategory);
-
+  console.log('====================================', activeCategory);
+  const loginId = localStorage.getItem("id");
   const pageSize = 24;
   // const [brandcategories, setBrandCategories] = useState([]);
   const [paginatedCategories, setPaginatedCategories] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [categories, setCategory] = useState([]);
+  //   const [activeCategory, setActiveCategory] = useState(name);
+  // console.log('====================================',activeCategory);
+  // console.log();
+  // console.log('====================================');
+
   useEffect(() => {
     categorys();
     allProduct();
@@ -57,15 +59,15 @@ console.log('====================================',activeCategory);
     pagination(currentPage);
   }, [allproduct, currentPage]);
 
+  const [error, setError] = useState([]);
   const categorys = () => {
     axios
       .get(`${BASE_URL}/categories`)
       .then((response) => {
-        console.log(response.data);
         setbrandcategories(response.data.data);
       })
       .catch((error) => {
-        console.error("Error fetching data:", error);
+        setError(error);
       });
   };
   const cleanImageUrl = (imageUrl) => {
@@ -76,22 +78,38 @@ console.log('====================================',activeCategory);
     axios
       .get(`${BASE_URL}/products/latest`)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setallproduct(response.data.data);
       })
       .catch((error) => {
-        console.error("Error fetching data:", error);
+        // console.error("Error fetching data:", error);
       });
   };
+
+  const allProductreverse = () => {
+    axios
+      .get(`${BASE_URL}/products/latest`)
+      .then((response) => {
+        // Reverse the array obtained from the API response
+        const reversedData = response.data.data.reverse();
+        setallproduct(reversedData);
+      })
+      .catch((error) => {
+        // Handle errors if needed
+        // console.error("Error fetching data:", error);
+      });
+  };
+
+
   const thirdBanner = () => {
     axios
       .get(`${BASE_URL}/banners1`)
       .then((response) => {
-        console.log(response.data.data);
+        // console.log(response.data.data);
         setthirdbanner(response.data.data);
       })
       .catch((error) => {
-        console.error("Error fetching data:", error);
+        // console.error("Error fetching data:", error);
       });
   };
   const [value, setValue] = useState(50);
@@ -103,8 +121,8 @@ console.log('====================================',activeCategory);
   const [filter, setFilter] = useState(false);
 
   const handleDataList = async (name) => {
-    console.log(name);
     setActiveCategory(name);
+    // console.log(name);
     setData(name);
     try {
       const response = await fetch(
@@ -117,31 +135,29 @@ console.log('====================================',activeCategory);
       const filteredData = nestedData.filter((item) => item.brand === name);
       setDataList(filteredData);
       setFilter(true);
-      
+
 
       const categoryNames = filteredData.map((item) => item.category);
       setCategory(categoryNames);
     } catch (error) {
-      console.log("Errorr", error);
+      // console.log("Errorr", error);
     }
   };
-  console.log(categories);
 
   useEffect(() => {
     arhaProduct();
   }, []);
-
 
   const [arhadata, setarhadata] = useState([]);
   const arhaProduct = () => {
     axios
       .get(`${BASE_URL}/products/latest`)
       .then((response) => {
-        console.log(response.data.data);
+        // console.log(response.data.data);
         setarhadata(response.data.data);
       })
       .catch((error) => {
-        console.error("Error fetching data:", error);
+        // console.error("Error fetching data:", error);
       });
   };
   const [image, setimage] = useState("");
@@ -151,45 +167,90 @@ console.log('====================================',activeCategory);
   const [filterdata, setfilterdata] = useState([]);
 
   const SubCategory = (thumnail, title, file) => {
-    console.log("categoery", thumnail, title);
+    // console.log("categoery", thumnail, title);
     setimage(thumnail);
     settitle(title);
     setfile(file);
   };
 
-  const handleCheck24 = (event) => {
-    setCheck(event.target.value);
-    setallproduct(allproduct.filter((item) => item.purity === "24k"));
-  };
-  console.log("filterdatafilterdatafilterdatafilterdata", filterdata);
+  // const handleCheck24 = (event) => {
+  //   setCheck(event.target.value);
+  //   setallproduct(allproduct.filter((item) => item.purity === "24k"));
+  // };
+  // // console.log("filterdatafilterdatafilterdatafilterdata", filterdata);
 
-  const handleCheck22 = (event) => {
-    setCheck(event.target.value);
-    setallproduct(allproduct.filter((item) => item.purity === "14k" || item.purity === "16k" || item.purity === "18k" || item.purity === "20k" || item.purity === "22k" || item.purity === "24k"));
+  // const handleCheck22 = (event) => {
+  //   setCheck(event.target.value);
+  //   setallproduct(
+  //     allproduct.filter(
+  //       (item) =>
+  //         item.purity === "14k" ||
+  //         item.purity === "16k" ||
+  //         item.purity === "18k" ||
+  //         item.purity === "20k" ||
+  //         item.purity === "22k" ||
+  //         item.purity === "24k"
+  //     )
+  //   );
+  // };
+  // // console.log("1010101010110", allproduct);
 
-  };
-  console.log("1010101010110", allproduct);
-
-  const handleCheck18 = (event) => {
-    setCheck(event.target.value);
-    setallproduct(allproduct.filter((item) => item.purity === "14k" || item.purity === "16k" || item.purity === "18k" || item.purity === "20k" || item.purity === "22k" || item.purity === "24k"));
-
-  }
-  const handleCheck14 = (event) => {
-    setCheck(event.target.value);
-    setallproduct(allproduct.filter((item) => item.purity === "14k" || item.purity === "16k" || item.purity === "18k" || item.purity === "20k" || item.purity === "22k" || item.purity === "24k"));
-
-  }
-  const handleCheck20 = (event) => {
-    setCheck(event.target.value);
-    setallproduct(allproduct.filter((item) => item.purity === "14k" || item.purity === "16k" || item.purity === "18k" || item.purity === "20k" || item.purity === "22k" || item.purity === "24k"));
-
-  }
-  const handleCheck16 = (event) => {
-    setCheck(event.target.value);
-    setallproduct(allproduct.filter((item) => item.purity === "14k" || item.purity === "16k" || item.purity === "18k" || item.purity === "20k" || item.purity === "22k" || item.purity === "24k"));
-
-  }
+  // const handleCheck18 = (event) => {
+  //   setCheck(event.target.value);
+  //   setallproduct(
+  //     allproduct.filter(
+  //       (item) =>
+  //         item.purity === "14k" ||
+  //         item.purity === "16k" ||
+  //         item.purity === "18k" ||
+  //         item.purity === "20k" ||
+  //         item.purity === "22k" ||
+  //         item.purity === "24k"
+  //     )
+  //   );
+  // };
+  // const handleCheck14 = (event) => {
+  //   setCheck(event.target.value);
+  //   setallproduct(
+  //     allproduct.filter(
+  //       (item) =>
+  //         item.purity === "14k" ||
+  //         item.purity === "16k" ||
+  //         item.purity === "18k" ||
+  //         item.purity === "20k" ||
+  //         item.purity === "22k" ||
+  //         item.purity === "24k"
+  //     )
+  //   );
+  // };
+  // const handleCheck20 = (event) => {
+  //   setCheck(event.target.value);
+  //   setallproduct(
+  //     allproduct.filter(
+  //       (item) =>
+  //         item.purity === "14k" ||
+  //         item.purity === "16k" ||
+  //         item.purity === "18k" ||
+  //         item.purity === "20k" ||
+  //         item.purity === "22k" ||
+  //         item.purity === "24k"
+  //     )
+  //   );
+  // };
+  // const handleCheck16 = (event) => {
+  //   setCheck(event.target.value);
+  //   setallproduct(
+  //     allproduct.filter(
+  //       (item) =>
+  //         item.purity === "14k" ||
+  //         item.purity === "16k" ||
+  //         item.purity === "18k" ||
+  //         item.purity === "20k" ||
+  //         item.purity === "22k" ||
+  //         item.purity === "24k"
+  //     )
+  //   );
+  // };
 
   const pageCount = allproduct ? Math.ceil(allproduct.length / pageSize) : 0;
   const pages = _.range(1, pageCount + 1);
@@ -201,8 +262,76 @@ console.log('====================================',activeCategory);
     setPaginatedCategories(paginated);
   };
 
+  const addToWishlist = async (product_id) => {
+    const formData = new FormData();
+    formData.append("id", loginId);
+    formData.append("product_id", product_id);
+    axios
+      .post(`https://veejayjewels.com/api/v1/customer/wish-list/add-to-wishlist`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+      .then((response) => {
+        console.log("response143", response);
+        if (response.data.message) {
+          toast.success(response.data.message);
+
+        }
+
+      })
+      .catch((error) => {
+        toast.error("Already in your wishlist");
+      });
+  };
+
+
+  const [products, setProducts] = useState([]);
+  const [selectedPurity, setSelectedPurity] = useState([]); // Default to 24k as an array
+  const purities = ["24k", "22k", "21k", "20k"];
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Fetch data for each selected purity level
+        const promises = selectedPurity.map(async (purity) => {
+          const response = await axios.post(
+            "https://veejayjewels.com/api/v1/products/product_filter",
+            {
+              purity: purity,
+            }
+          );
+          return response.data.data;
+        });
+
+        // Wait for all the requests to complete
+        const allData = await Promise.all(promises);
+
+        // Combine all data into a single array
+        const combinedData = allData.reduce((acc, data) => [...acc, ...data], []);
+
+        setProducts(combinedData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, [selectedPurity]); // Run this effect whenever the selectedPurity state changes
+
+  const handlePurityChange = (event) => {
+    const { value, checked } = event.target;
+    if (checked) {
+      setSelectedPurity([...selectedPurity, value]); // Add the selected purity
+    } else {
+      setSelectedPurity(selectedPurity.filter((purity) => purity !== value)); // Remove the selected purity
+    }
+  };
+
+
+  const fieldpagerefresh = () => {
+    window.location.reload(false);
+  }
   return (
     <>
+      <Toaster />
       <Header />
       <div className="allPage-bgtwo">
         {" "}
@@ -219,31 +348,168 @@ console.log('====================================',activeCategory);
                 <Nav variant="pills" className="flex-column brand-cate-list">
                   <div className="tabBrands">
                     <h3>Brand</h3>
-                    <Nav.Item>
-        <Nav.Link
-          eventKey="AllProduct"
-          onClick={() => handleDataList('AllProduct')}
-          active={activeCategory === 'AllProduct'}
-        >
-          All Product
-        </Nav.Link>
-      </Nav.Item>
+                    <Nav.Item onClick={fieldpagerefresh}>
+                      <Nav.Link
+                        eventKey="AllProduct"
+                        onClick={() => handleDataList('AllProduct')}
+                        active={activeCategory === 'AllProduct'}
+
+                      >
+                        All Product
+                      </Nav.Link>
+                    </Nav.Item>
                     {brandcategories
                       ? brandcategories.map((item, index) => (
                         <Nav.Item key={index}>
-                        <Nav.Link
-                          eventKey={item.name}
-                          onClick={() => handleDataList(item.name)}
-                          active={activeCategory === item.name}
-                        >
-                          {item.name}
-                        </Nav.Link>
-                      </Nav.Item>
-                        ))
+                          <Nav.Link
+                            eventKey={item.name}
+                            onClick={() => handleDataList(item.name)}
+                            active={activeCategory === item.name}
+                          >
+                            {item.name}
+                          </Nav.Link>
+                        </Nav.Item>
+                      ))
                       : null}
 
                     <h3>Sort by</h3>
                     <div className="checkbox-bg">
+                      <div className="form-check">
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          name="exampleRadios"
+                          id="exampleRadios1"
+                          defaultValue="option1"
+                          onClick={allProduct}
+                          defaultChecked
+                        />
+                        <label
+                          className="form-check-label"
+                          htmlFor="exampleRadios1"
+                        >
+                          Latest Order
+                        </label>
+                      </div>
+                      <div className="form-check">
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          name="exampleRadios"
+                          id="exampleRadios2"
+                          defaultValue="option2"
+                          onChange={allProductreverse}
+                        />
+                        <label
+                          className="form-check-label"
+                          htmlFor="exampleRadios2"
+                        >
+                          Oldest Order
+                        </label>
+                      </div>
+
+                    </div>
+                    <h3>Filter</h3>
+                    {/* <div className="range-bg">
+                      <label>Select Gold Kt</label>
+                      <div>
+                        <div className="form-check form-check-inline">
+                          <input
+                            className="form-check-input"
+                            type="radio"
+                            onClick={handleCheck14}
+                          />
+                          <label className="form-check-label">14 Kt</label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                          <input
+                            className="form-check-input"
+                            type="radio"
+                            onClick={handleCheck16}
+                          />
+                          <label className="form-check-label">16 Kt</label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                          <input
+                            className="form-check-input"
+                            type="radio"
+                            onClick={handleCheck18}
+                          />
+                          <label className="form-check-label">18 Kt</label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                          <input
+                            className="form-check-input"
+                            type="radio"
+                            onClick={handleCheck20}
+                          />
+                          <label className="form-check-label">20 Kt</label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                          <input
+                            className="form-check-input"
+                            type="radio"
+                            onClick={handleCheck22}
+                          />
+                          <label className="form-check-label">22 Kt</label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                          <input
+                            className="form-check-input"
+                            type="radio"
+                            onClick={handleCheck24}
+                          />
+                          <label className="form-check-label">24 Kt</label>
+                        </div>
+                      </div>
+                      <input
+                          type="range"
+                          min={0}
+                          max={1000000}
+                          value={value}
+                          onChange={handleRangeChange}
+                          className='rangeinput'
+                        />
+                        <div className="text-center">
+                          <h2>₹ {value}</h2>
+                        </div>
+                    </div> */}
+                    <div className="checkbox-bg">
+                      {/* {purities.map((purity) => (
+                        <label key={purity}>
+                          <input
+                            type="checkbox"
+                            value={purity}
+                            checked={selectedPurity.includes(purity)}
+                            onChange={handlePurityChange}
+                          />
+                          {purity}
+                        </label>
+                      ))} */}
+
+                      {purities.map((purity) => (
+                      <div className="form-check">
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          name="exampleRadios"
+                          id="exampleRadios1"
+                          defaultValue="option1"
+                          defaultChecked
+                          value={purity}
+                            checked={selectedPurity.includes(purity)}
+                            onChange={handlePurityChange}
+                        />
+                         <label
+                          className="form-check-label"
+                          htmlFor="exampleRadios1"
+                        >
+                          {purity}
+                        </label>
+                      </div>
+                      ))}
+                    </div>
+                    {/* <div className="checkbox-bg">
                       <div className="form-check">
                         <input
                           className="form-check-input"
@@ -257,7 +523,7 @@ console.log('====================================',activeCategory);
                           className="form-check-label"
                           htmlFor="exampleRadios1"
                         >
-                          Last First
+                          14 kt
                         </label>
                       </div>
                       <div className="form-check">
@@ -272,7 +538,7 @@ console.log('====================================',activeCategory);
                           className="form-check-label"
                           htmlFor="exampleRadios2"
                         >
-                          Oldest First
+                          16 kt
                         </label>
                       </div>
                       <div className="form-check">
@@ -287,7 +553,7 @@ console.log('====================================',activeCategory);
                           className="form-check-label"
                           htmlFor="exampleRadios3"
                         >
-                          Gross Wt high to Low
+                          18 kt
                         </label>
                       </div>
                       <div className="form-check">
@@ -302,71 +568,40 @@ console.log('====================================',activeCategory);
                           className="form-check-label"
                           htmlFor="exampleRadios4"
                         >
-                          Gross Wt Low to high
+                          20 kt
                         </label>
                       </div>
-                    </div>
-                    <h3>Filter</h3>
-                    <div className="range-bg">
-                      <label>Select Gold Karat</label>
-                      <div>
-                        <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="checkbox" onClick={handleCheck14} />
-                          <label className="form-check-label" >14 Karat</label>
-                        </div>
-                        <div className="form-check form-check-inline">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            onClick={handleCheck16}
-                          />
-                          <label className="form-check-label">16 Karat</label>
-                        </div>
-                        <div className="form-check form-check-inline">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            onClick={handleCheck18}
-                          />
-                          <label className="form-check-label">18 Karat</label>
-                        </div>
-                        <div className="form-check form-check-inline">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            onClick={handleCheck20}
-                          />
-                          <label className="form-check-label">20 Karat</label>
-                        </div>
-                        <div className="form-check form-check-inline">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            onClick={handleCheck22}
-                          />
-                          <label className="form-check-label">22 Karat</label>
-                        </div>
-                        <div className="form-check form-check-inline">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            onClick={handleCheck24}
-                          />
-                          <label className="form-check-label">24 Karat</label>
-                        </div>
-                      </div>
-                      {/* <input
-                          type="range"
-                          min={0}
-                          max={1000000}
-                          value={value}
-                          onChange={handleRangeChange}
-                          className='rangeinput'
+                      <div className="form-check">
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          name="exampleRadios"
+                          id="exampleRadios4"
+                          defaultValue="option2"
                         />
-                        <div className="text-center">
-                          <h2>₹ {value}</h2>
-                        </div> */}
-                    </div>
+                        <label
+                          className="form-check-label"
+                          htmlFor="exampleRadios4"
+                        >
+                          22 kt
+                        </label>
+                      </div>
+                      <div className="form-check">
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          name="exampleRadios"
+                          id="exampleRadios4"
+                          defaultValue="option2"
+                        />
+                        <label
+                          className="form-check-label"
+                          htmlFor="exampleRadios4"
+                        >
+                          24 kt
+                        </label>
+                      </div>
+                    </div> */}
                   </div>
                 </Nav>
                 <div className="product-banner">
@@ -392,6 +627,42 @@ console.log('====================================',activeCategory);
                 <Tab.Content>
                   <Tab.Pane eventKey="AllProduct">
                     <Row>
+
+                      {products.map((item) => (
+                        <Col
+                          lg={4}
+                          sm={4}
+                          xs={6}
+                          className="mb-4"
+                          key={item.id}
+                        >
+                          <div className="mainProductcard" key={item.id}>
+                            {/* <Link to={`/product-details/${item.id}`}> */}
+                            <div className="like-icon">
+                              <i class="fa fa-heart-o" onClick={(id) => addToWishlist(item.id)} />
+                            </div>
+                            <img src={cleanImageUrl(item.image)} />
+                            <h4>{item.name}</h4>
+                            <p>
+                              {item.unit_value} {item.unit}
+                            </p>
+                            <span>Karat : {item.purity}</span><br />
+                            <span>Design Num : {item.design}</span>
+                            <div className="product-btnarea">
+                              <Link
+                                to={`/product-details/${item.id}`}
+                                className="product-addBtn"
+                              >
+                                View Products
+                              </Link>
+
+                            </div>
+                            {/* </Link> */}
+                          </div>
+                        </Col>
+                      ))}
+                      {/* {products.length === 0 && <p>Product is not available.</p>} */}
+
                       {paginatedCategories.map((item) => (
                         <Col
                           lg={4}
@@ -401,28 +672,31 @@ console.log('====================================',activeCategory);
                           key={item.id}
                         >
                           <div className="mainProductcard">
-                            <Link to={`/product-details/${item.id}`}>
+                            {/* <Link to={`/product-details/${item.id}`}> */}
                             <div className="like-icon">
-                                <i class="fa fa-heart-o" />
-                              </div>
-                              <img src={cleanImageUrl(item.image)} />
-                              <h4>{item.name}</h4>
-                              <p>
-                                {item.unit_value} {item.unit}
-                              </p>
-                              <span>Karat : {item.purity}</span>
-                              <div className="product-btnarea">
-                                <Link
-                                  to={`/product-details/${item.id}`}
-                                  className="product-addBtn"
-                                >
-                                  Add To Cart
-                                </Link>
-                              </div>
-                            </Link>
+                              <i class="fa fa-heart-o" onClick={(id) => addToWishlist(item.id)} />
+                            </div>
+                            <img src={cleanImageUrl(item.image)} />
+                            <h4>{item.name}</h4>
+                            <p>
+                              {item.unit_value} {item.unit}
+                            </p>
+                            <span>Karat : {item.purity}</span><br />
+                            <span>Design Num : {item.design}</span>
+                            <div className="product-btnarea">
+                              <Link
+                                to={`/product-details/${item.id}`}
+                                className="product-addBtn"
+                              >
+                                View Products
+                              </Link>
+
+                            </div>
+                            {/* </Link> */}
                           </div>
                         </Col>
                       ))}
+
                       {check &&
                         filterdata.map((item) => (
                           <Col
@@ -433,28 +707,31 @@ console.log('====================================',activeCategory);
                             key={item.id}
                           >
                             <div className="mainProductcard">
-                              <Link to={`/product-details/${item.id}`}>
+                              {/* <Link to={`/product-details/${item.id}`}> */}
                               <div className="like-icon">
-                                <i class="fa fa-heart-o" />
+                                <i class="fa fa-heart-o" onClick={(id) => addToWishlist(item.id)} />
                               </div>
-                                <img src={cleanImageUrl(item.image)} />
-                                <h4>{item.name}</h4>
-                                <p>
-                                  {item.unit_value} {item.unit}
-                                </p>
-                                <span>Karat : {item.purity}</span>
-                                <div className="product-btnarea">
-                                  <Link
-                                    to="/add-to-cart"
-                                    className="product-addBtn"
-                                  >
-                                    Add To Cart
-                                  </Link>
-                                </div>
-                              </Link>
+                              <img src={cleanImageUrl(item.image)} />
+                              <h4>{item.name}</h4>
+                              <p>
+                                {item.unit_value} {item.unit}
+                              </p>
+                              <span>Karat : {item.purity}</span><br />
+                              <span>Design Num : {item.design}</span>
+                              <div className="product-btnarea">
+                                <Link
+                                  to="/add-to-cart"
+                                  className="product-addBtn"
+                                >
+                                  View Products
+                                </Link>
+                              </div>
+                              {/* </Link> */}
                             </div>
                           </Col>
-                        ))}
+                        ))
+                      }
+
                     </Row>
                     <nav>
                       <ul className="pagination">
@@ -539,28 +816,30 @@ console.log('====================================',activeCategory);
                                 dataList.map((item) => (
                                   <Col lg={4} className="mb-4" key={item.id}>
                                     <div className="mainProductcard">
-                                      <Link to={`/product-details/${item.id}`}>
+                                      {/* <Link to={`/product-details/${item.id}`}> */}
                                       <div className="like-icon">
-                                <i class="fa fa-heart-o" />
-                              </div>
-                                        <img
-                                          src={cleanImageUrl(item.image)}
-                                          alt={item.name}
-                                        />
-                                        <h4>{item.name}</h4>
-                                        <p>
-                                          {item.unit_value} {item.unit}
-                                        </p>
-                                        <span>Karat : {item.purity}</span>
-                                        <div className="product-btnarea">
-                                          <Link
-                                            to={`/product-details/${item.id}`}
-                                            className="product-addBtn"
-                                          >
-                                            Add To Cart
-                                          </Link>
-                                        </div>
-                                      </Link>
+                                        <i class="fa fa-heart-o" onClick={(id) => addToWishlist(item.id)} />
+                                      </div>
+                                      <img
+                                        src={cleanImageUrl(item.image)}
+                                        alt={item.name}
+                                      />
+                                      <h4>{item.name}</h4>
+                                      <p>
+                                        {item.unit_value} {item.unit}
+                                      </p>
+                                      <span>Karat : {item.purity}</span><br />
+                                      <span>Design Num : {item.design}</span>
+                                      <div className="product-btnarea">
+                                        <Link
+                                          to={`/product-details/${item.id}`}
+                                          className="product-addBtn"
+                                        >
+                                          View Products
+                                        </Link>
+
+                                      </div>
+                                      {/* </Link> */}
                                     </div>
                                   </Col>
                                 ))
@@ -586,30 +865,32 @@ console.log('====================================',activeCategory);
                                         key={item.id}
                                       >
                                         <div className="mainProductcard">
-                                          <Link
+                                          {/* <Link
                                             to={`/product-details/${item.id}`}
-                                          >
-                                            <div className="like-icon">
-                                <i class="fa fa-heart-o" />
-                              </div>
-                                            <img
-                                              src={cleanImageUrl(item.image)}
-                                              alt={item.name}
-                                            />
-                                            <h4>{item.name}</h4>
-                                            <p>
-                                              {item.unit_value} {item.unit}
-                                            </p>
-                                            <span>Karat : {item.purity}</span>
-                                            <div className="product-btnarea">
-                                              <Link
-                                                to="/add-to-cart"
-                                                className="product-addBtn"
-                                              >
-                                                Add To Cart
-                                              </Link>
-                                            </div>
-                                          </Link>
+                                          > */}
+                                          <div className="like-icon">
+                                            <i class="fa fa-heart-o" onClick={(id) => addToWishlist(item.id)} />
+                                          </div>
+                                          <img
+                                            src={cleanImageUrl(item.image)}
+                                            alt={item.name}
+                                          />
+                                          <h4>{item.name}</h4>
+                                          <p>
+                                            {item.unit_value} {item.unit}
+                                          </p>
+                                          <span>Karat : {item.purity}</span><br />
+                                          <span>Design Num : {item.design}</span>
+                                          <div className="product-btnarea">
+                                            <Link
+                                              to="/add-to-cart"
+                                              className="product-addBtn"
+                                            >
+                                              View Products
+                                            </Link>
+
+                                          </div>
+                                          {/* </Link> */}
                                         </div>
                                       </Col>
                                     )
