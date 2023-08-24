@@ -169,6 +169,8 @@ function Profile() {
 
   const handleLogouot = () => {
     localStorage.removeItem("id");
+    localStorage.removeItem("phone");
+    navigate("/");
   };
   useEffect(() => {
     if (!storedId) {
@@ -179,6 +181,15 @@ function Profile() {
   const [stateall, setStateall] = useState('');
   const [statealldata, setStatealldata] = useState([]);
 
+  const handlePhoneNumberChange = (event) => {
+    const input = event.target.value;
+    const numericValue = input.replace(/\D/g, ""); // Remove non-digit characters
+
+    // Restrict to 10 digits
+    const formattedNumber = numericValue.slice(0, 10);
+
+    setPhone(formattedNumber);
+  };
 
   return (
     <>
@@ -234,7 +245,8 @@ function Profile() {
                       type="text"
                       placeholder="Enter mobile number"
                       value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
+                      onChange={handlePhoneNumberChange}
+                      onInput={(e) => setPhone(e.target.value)}
                     />
                   </Form.Group>
                   <Form.Group as={Col}>

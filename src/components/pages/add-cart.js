@@ -31,7 +31,6 @@
 //         setCardData(response.data.data);
 //         console.log(response.data.data);
 
-
 //       })
 //       .catch((error) => {
 //         console.error("Error fetching data:", error);
@@ -244,7 +243,6 @@
 //           </Row>
 //         </Container>
 
-
 //       </section>
 //       <Footer />
 //     </>
@@ -274,6 +272,7 @@ function Addcart() {
   const state = localStorage.getItem("state");
   const city = localStorage.getItem("city");
   const pincode = localStorage.getItem("pincode");
+  const address = localStorage.getItem("address");
 
   const [carddata, setCardData] = useState([]);
 
@@ -325,48 +324,46 @@ function Addcart() {
       setQuantity(quantity - 1);
     }
   };
-//   const updatedVariantObj = variantObj.map(item => {
-//   // Destructure the existing variant key and assign it to a new key named variation
-//   const { variant, ...rest } = item;
-//   return { variation: variant, ...rest };
-// });
+  //   const updatedVariantObj = variantObj.map(item => {
+  //   // Destructure the existing variant key and assign it to a new key named variation
+  //   const { variant, ...rest } = item;
+  //   return { variation: variant, ...rest };
+  // });
 
-  const handlePlaceOrder = () => {
-   const cards = carddata.map((item) => {
-  const { product_id, variant } = item;
-  const variantData = JSON.parse(variant).map((variantObj) => {
-    const { variant, ...rest } = variantObj; // Destructure the existing variant key
-    return { variation: variant, product_id, ...rest }; // Rename variant to variation and add product_id back
-  });
-  return variantData;
-});
-
-
+  const handlePlaceOrder = async () => {
+    const cards = carddata.map((item) => {
+      const { product_id, variant } = item;
+      const variantData = JSON.parse(variant).map((variantObj) => {
+        const { variant, ...rest } = variantObj; // Destructure the existing variant key
+        return { variation: variant, product_id, ...rest }; // Rename variant to variation and add product_id back
+      });
+      return variantData;
+    });
 
     const postData = {
       user_id: loginId,
-      delivery_address: state + " " + city + ", " + pincode,
+      delivery_address: `${address},  ${pincode}`,
       cart: cards.flat(),
     };
+    const jsonData = JSON.stringify(cards.flat());
+    await localStorage.setItem('addToCard', jsonData)
+    console.log(jsonData, "jsonDatajsonData");
 
-    const jsonData = JSON.stringify(postData);
-    console.log(jsonData,"jsonDatajsonData");
-
-    fetch("https://veejayjewels.com/api/v1/products/place", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: jsonData,
-    })
-      .then((response) => response.json())
-      .then((data) => {
+    // fetch("https://veejayjewels.com/api/v1/products/place", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: jsonData,
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => {
         navigate("/shipping");
-        console.log(data);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+    //     console.log(data);
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error:", error);
+    //   });
   };
 
   const navigatelogin = useNavigate("");
@@ -432,15 +429,21 @@ function Addcart() {
                   <p className="emptyMSG">Your Cart is Empty</p>
                 )}
 
-                {carddata && carddata.length > 0 && (
+                {/* {carddata && carddata.length > 0 && (
                   <div className="text-center mt-3">
                     <button className="showSize" onClick={handlePlaceOrder}>
                       Proceed...
                     </button>
                   </div>
-                )}
+                )} */}
 
-                {!loginId && carddata && carddata.length === 0 && (
+                {loginId && carddata.length > 0 ? (
+                  <div className="text-center mt-3">
+                    <button className="showSize" onClick={handlePlaceOrder}>
+                      Proceed...
+                    </button>
+                  </div>
+                ) : (
                   <div className="text-center mt-3">
                     <button className="showSize" onClick={buttonlogin}>
                       Login to Proceed...

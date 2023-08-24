@@ -3,7 +3,7 @@ import Header from "../../directives/header";
 import { Button, Table, Col, Container, Row, Modal } from "react-bootstrap";
 import ring2 from "../../assets/images/img/ring2.png";
 import Footer from "../../directives/footer";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, json, useNavigate } from "react-router-dom";
 import border from "../../assets/images/banner/border.png";
 import { BASE_URL } from "../../Constant/Index";
 import { useState, useEffect } from "react";
@@ -12,7 +12,7 @@ import axios from "axios";
 import { Input } from "reactstrap";
 
 function Addcart() {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
   const [order, setOrder] = useState(false);
   const [orderId, setOrderId] = useState(null);
   const handleClose = () => setShow(false);
@@ -38,8 +38,12 @@ function Addcart() {
   // const pincode = localStorage.getItem("pincode");
 
   const [carddata, setCardData] = useState([]);
-
- 
+  const cardData = localStorage.getItem("addToCard");
+  const stateLocal = localStorage.getItem("state");
+  const cityLocal = localStorage.getItem("city");
+  const pincode = localStorage.getItem("pincode");
+  const Fulladdress = localStorage.getItem("address");
+  console.log("cityLocal", cityLocal);
 
   // useEffect(() => {
   //   const timer = setTimeout(() => {
@@ -49,10 +53,10 @@ function Addcart() {
 
   //   return () => clearTimeout(timer); // Clear the timer when the component unmounts
   // }, []);
-  const [address, setAddres] = useState('')
-  const [stateall, setstate] = useState('');
-  const [cityall, setcity] = useState('');
-  const [pincodeall, setpincode] = useState('');
+  const [address, setAddres] = useState("");
+  const [stateall, setstate] = useState("");
+  const [cityall, setcity] = useState("");
+  const [pincodeall, setpincode] = useState("");
   // useEffect to retrieve and set the address from localStorage
   // useEffect(() => {
   //   const storedAddress = localStorage.getItem('address');
@@ -73,17 +77,17 @@ function Addcart() {
     handleClose();
   };
   const latestsapidata = () => {
-  axios
-    .get(`${BASE_URL}/products/card`)
-    .then((response) => {
-      console.log(response.data);
-      setCardData(response.data.data);
-      console.log("shyam----------:", response);
-    })
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-    });
-};
+    axios
+      .get(`${BASE_URL}/products/card`)
+      .then((response) => {
+        console.log(response.data);
+        setCardData(response.data.data);
+        console.log("shyam----------:", response);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
   //   console.error("Error fetching data:", variantdata);
 
   const parseVariant = (variant) => {
@@ -108,15 +112,18 @@ function Addcart() {
     })
       .then((response) => response.json())
       .then((response) => {
-        console.log("response url " + `${BASE_URL}/customer/info?id=${storedId}`, response);
+        console.log(
+          "response url " + `${BASE_URL}/customer/info?id=${storedId}`,
+          response
+        );
         setFirstName(response.data.f_name);
         setLastName(response.data.l_name);
 
         setEmail(response.data.email);
         setAddres(response.data.address);
-        setstate(response.data.state)
-        setcity(response.data.city)
-        setpincode(response.data.pincode)
+        setstate(response.data.state);
+        setcity(response.data.city);
+        setpincode(response.data.pincode);
 
         setPhone(response.data.phone);
       })
@@ -125,31 +132,50 @@ function Addcart() {
       });
   };
 
-  const handlePlaceOrder = () => {
-    const cards = carddata.map((item) => {
-      // Parse the variant data
-      const variantData = parseVariant(item.variant);
-      
-      // Check if the variantData is an array and not empty
-      if (!Array.isArray(variantData) || variantData.length === 0) {
-        console.error("Invalid variant data for item:", item);
-        return null;
-      }
-  
-      const { product_id, quantity, variant } = variantData;
-      
-      return {
-        product_id: item.product_id,
-        quantity,
-        variation: variant,
-        image: item.image, // Add the image property to the card object
-        product_name: item.product_name, // Add the product_name property to the card object
-      };
-    });
-    
-    // Rest of the code remains the same...
+  const handlePlaceOrder = async () => {
+    // const cards = carddata.map((item) => {
+    //   // Parse the variant data
+    //   const variantData = parseVariant(item.variant);
+
+    //   // Check if the variantData is an array and not empty
+    //   if (!Array.isArray(variantData) || variantData.length === 0) {
+    //     console.error("Invalid variant data for item:", item);
+    //     return null;
+    //   }
+
+    //   const { product_id, quantity, variant } = variantData;
+
+    //   return {
+    //     product_id: item.product_id,
+    //     quantity,
+    //     variation: variant,
+    //     image: item.image, // Add the image property to the card object
+    //     product_name: item.product_name, // Add the product_name property to the card object
+    //   };
+    // });
+    const prams = {
+      user_id: loginId,
+      delivery_address: `${Fulladdress},  ${pincode}`,
+      cart: JSON.parse(cardData),
+    }
+    console.log('prams', prams);
+  await  fetch("https://veejayjewels.com/api/v1/products/place", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(prams),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        navigate("/");
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+
   };
-  
 
   // console.log("addrescardscardssEdit", cards);
 
@@ -174,8 +200,7 @@ function Addcart() {
   //     });
   // };
 
-
-  const updateProfileData = (e) => {
+  const updateProfileData = async (e) => {
     e.preventDefault();
     console.log("7876876767676");
     const formData = new FormData();
@@ -185,8 +210,8 @@ function Addcart() {
     formData.append("email", email);
     // formData.append("image", uploadImage);
     formData.append("id", storedId);
-    formData.append("state", selectedStateName);
-    formData.append("city", citydata);
+    formData.append("state", selectedStateName ? selectedStateName : stateLocal);
+    formData.append("city", citydata ? citydata : cityLocal);
     formData.append("pincode", pincodeall);
     formData.append("address", address);
 
@@ -195,9 +220,16 @@ function Addcart() {
         headers: { "Content-Type": "multipart/form-data" },
         // withCredentials: true,
       })
-      .then((response) => {
+      .then( (response) => {
+        console.log('response in update address', response);
         // setImageProfile(response.data.data.image);
         toast.success("Successfuly Updated");
+        
+         localStorage.setItem("city", response.data.data.city);
+         localStorage.setItem("pincode", response.data.data.pincode);
+         localStorage.setItem("state", response.data.data.state);
+         localStorage.setItem("address", response.data.data.address);
+
       })
 
       .catch((error) => {
@@ -234,12 +266,13 @@ function Addcart() {
     }
   };
 
-  const [selectedStateName, setSelectedStateName] = useState('');
+  const [selectedStateName, setSelectedStateName] = useState("");
   // const [stateid, setStateid] = useState('');
 
   const handleSelectChange = (event) => {
     const selectedIdValue = event.target.value;
-    const selectedStateNameValue = event.target.options[event.target.selectedIndex].text;
+    const selectedStateNameValue =
+      event.target.options[event.target.selectedIndex].text;
     Getdatacity(event.target.value);
     setStatedata(selectedIdValue);
     setSelectedStateName(selectedStateNameValue);
@@ -264,11 +297,9 @@ function Addcart() {
     setCitydata(event.target.value);
   };
 
-
   const fieldpagerefresh = () => {
     window.location.reload(false);
-  }
-
+  };
 
   return (
     <>
@@ -282,44 +313,44 @@ function Addcart() {
                 <div>
                   {carddata
                     ? carddata.map((item, index) => (
-                      <Row className="align-self-center mb-3" key={index}>
-                        <Col lg={4} xs={3}>
-                          <div className="add-cart">
-                            <img src={item.image} alt={item.product_name} />
-                          </div>
-                        </Col>
-                        <Col lg={8} xs={6} className="">
-                          <div className="add-cart-content">
-                            <h2>{item.product_name}</h2>
+                        <Row className="align-self-center mb-3" key={index}>
+                          <Col lg={4} xs={3}>
+                            <div className="add-cart">
+                              <img src={item.image} alt={item.product_name} />
+                            </div>
+                          </Col>
+                          <Col lg={8} xs={6} className="">
+                            <div className="add-cart-content">
+                              <h2>{item.product_name}</h2>
 
-                            {item.variant && (
-                              <ul>
-                                {parseVariant(item.variant).map(
-                                  (variantItem, index) => (
-                                    <li key={index}>
-                                      Variant:{" "}
-                                      {variantItem.variant
-                                        ? variantItem.variant
-                                        : "N/A"}
-                                      , Quantity: {variantItem.quantity}
-                                    </li>
-                                  )
-                                )}
-                              </ul>
-                            )}
+                              {item.variant && (
+                                <ul>
+                                  {parseVariant(item.variant).map(
+                                    (variantItem, index) => (
+                                      <li key={index}>
+                                        Variant:{" "}
+                                        {variantItem.variant
+                                          ? variantItem.variant
+                                          : "N/A"}
+                                        , Quantity: {variantItem.quantity}
+                                      </li>
+                                    )
+                                  )}
+                                </ul>
+                              )}
 
-                            {/* <button
+                              {/* <button
                         className="showSize"
                       >
                         <Link to={`/product-details/${item.id}`}><i className="fa fa-pencil" /></Link>
                       </button> */}
+                            </div>
+                          </Col>
+                          <div className="text-center">
+                            <hr />
                           </div>
-                        </Col>
-                        <div className="text-center">
-                          <hr />
-                        </div>
-                      </Row>
-                    ))
+                        </Row>
+                      ))
                     : null}
                 </div>
                 <h4>Shipping Address</h4>
@@ -354,7 +385,15 @@ function Addcart() {
                     </tr>
                     <tr>
                       <th>New Address</th>
-                      <td><button className="neweditadd" data-toggle="modal" data-target="#exampleModal">Click for New Address</button></td>
+                      <td>
+                        <button
+                          className="neweditadd"
+                          data-toggle="modal"
+                          data-target="#exampleModal"
+                        >
+                          Click for New Address
+                        </button>
+                      </td>
                     </tr>
                     <tr>
                       <th>Pincode</th>
@@ -405,44 +444,63 @@ function Addcart() {
           <Modal.Body>
             <div className="show-area">
               <Modal.Header closeButton>
-              <h2 className="order-success-heading">
+                <h2 className="order-success-heading">
                   Order Successfully Placed!
                 </h2>
               </Modal.Header>
               <div className="showSizearea Order-Successfully">
-                
                 <p className="order-success-message">
                   Thank you for your order. Your purchase was successful.
                 </p>
               </div>
             </div>
-
           </Modal.Body>
         </Modal>
       </section>
       <Footer />
 
-
       {/* Button trigger modal */}
 
       {/* Modal */}
-      <div className="modal fade editAddress" id="exampleModal" tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div
+        className="modal fade editAddress"
+        id="exampleModal"
+        tabIndex={-1}
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">Edit For New Address</h5>
-              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true" onClick={fieldpagerefresh}>×</span>
+              <h5 className="modal-title" id="exampleModalLabel">
+                Edit For New Address
+              </h5>
+              <button
+                type="button"
+                className="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true" onClick={fieldpagerefresh}>
+                  ×
+                </span>
               </button>
             </div>
             <div className="modal-body">
               <div class="form-group">
                 <label for="exampleFormControlInput1">New address</label>
-                <input class="form-control" type="text" value={address} onChange={(e) => setAddres(e.target.value)} />
+                <input
+                  class="form-control"
+                  type="text"
+                  value={address}
+                  onChange={(e) => setAddres(e.target.value)}
+                />
               </div>
               <div class="form-group">
                 <label for="exampleFormControlInput1">State</label>
-                <select class="form-control"
+                <select
+                  class="form-control"
                   aria-label="Default select example"
                   onChange={handleSelectChange}
                   value={statedata}
@@ -454,12 +512,11 @@ function Addcart() {
                     </option>
                   ))}
                 </select>
-
-
               </div>
               <div class="form-group">
                 <label for="exampleFormControlInput1">City</label>
-                <select class="form-control"
+                <select
+                  class="form-control"
                   aria-label="Default select example"
                   onChange={Subscriptioncity}
                   value={citydata}
@@ -475,13 +532,26 @@ function Addcart() {
               </div>
               <div class="form-group">
                 <label for="exampleFormControlInput1">Pincode</label>
-                <input class="form-control" type="text" value={pincodeall} onChange={(e) => setpincode(e.target.value)} />
+                <input
+                  class="form-control"
+                  type="text"
+                  value={pincodeall}
+                  onChange={(e) => setpincode(e.target.value)}
+                />
               </div>
-
             </div>
             <div className="modal-footer">
               {/* <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button> */}
-              <button type="button" className="btn btn-primary" onClick={updateProfileData} >Update</button>
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={(e) => {
+                  updateProfileData(e)
+                  fieldpagerefresh()
+                }}
+              >
+                Update
+              </button>
             </div>
           </div>
         </div>

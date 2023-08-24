@@ -36,7 +36,9 @@ function Product(props) {
   const [allproduct, setallproduct] = useState([]);
   const [thirdbanner, setthirdbanner] = useState([]);
   const [activeCategory, setActiveCategory] = useState(name);
-  console.log('====================================', activeCategory);
+  console.log("activeCategory", activeCategory);
+  console.log("allproduct", allproduct);
+  console.log("brandcategories", brandcategories);
   const loginId = localStorage.getItem("id");
   const pageSize = 24;
   // const [brandcategories, setBrandCategories] = useState([]);
@@ -44,15 +46,19 @@ function Product(props) {
   const [currentPage, setCurrentPage] = useState(1);
   const [categories, setCategory] = useState([]);
   //   const [activeCategory, setActiveCategory] = useState(name);
-  // console.log('====================================',activeCategory);
-  // console.log();
-  // console.log('====================================');
 
   useEffect(() => {
+    if (
+      activeCategory == "AllProduct" ||
+      typeof activeCategory == "undefined"
+    ) {
+      allProduct();
+    } else {
+      handleDataList(activeCategory);
+    }
     categorys();
-    allProduct();
     thirdBanner();
-  }, []);
+  }, [activeCategory]);
 
   useEffect(() => {
     // Update the paginated categories whenever brandcategories or currentPage changes
@@ -62,7 +68,7 @@ function Product(props) {
   const [error, setError] = useState([]);
   const categorys = () => {
     axios
-      .get(`${BASE_URL}/categories`)
+      .get(`${BASE_URL}/categories/all_childes/${loginId}`)
       .then((response) => {
         setbrandcategories(response.data.data);
       })
@@ -72,7 +78,7 @@ function Product(props) {
   };
   const cleanImageUrl = (imageUrl) => {
     // Remove square brackets and escape characters
-    return imageUrl.replace(/[\[\]\\"]/g, "");
+    return imageUrl?.replace(/[\[\]\\"]/g, "");
   };
   const allProduct = () => {
     axios
@@ -100,7 +106,6 @@ function Product(props) {
       });
   };
 
-
   const thirdBanner = () => {
     axios
       .get(`${BASE_URL}/banners1`)
@@ -119,8 +124,9 @@ function Product(props) {
   const [data, setData] = useState(true);
   const [dataList, setDataList] = useState([]);
   const [filter, setFilter] = useState(false);
-
+  console.log("dataList", dataList);
   const handleDataList = async (name) => {
+    console.log("handleDataList ======= Callled", name);
     setActiveCategory(name);
     // console.log(name);
     setData(name);
@@ -132,10 +138,9 @@ function Product(props) {
       // Access nested data
       const nestedData = jsonData.data;
       // Filter the nested data based on brand
-      const filteredData = nestedData.filter((item) => item.brand === name);
+      const filteredData = nestedData.filter((item) => item.category === name);
       setDataList(filteredData);
       setFilter(true);
-
 
       const categoryNames = filteredData.map((item) => item.category);
       setCategory(categoryNames);
@@ -144,9 +149,9 @@ function Product(props) {
     }
   };
 
-  useEffect(() => {
-    arhaProduct();
-  }, []);
+  // useEffect(() => {
+  //   arhaProduct();
+  // }, []);
 
   const [arhadata, setarhadata] = useState([]);
   const arhaProduct = () => {
@@ -167,90 +172,10 @@ function Product(props) {
   const [filterdata, setfilterdata] = useState([]);
 
   const SubCategory = (thumnail, title, file) => {
-    // console.log("categoery", thumnail, title);
     setimage(thumnail);
     settitle(title);
     setfile(file);
   };
-
-  // const handleCheck24 = (event) => {
-  //   setCheck(event.target.value);
-  //   setallproduct(allproduct.filter((item) => item.purity === "24k"));
-  // };
-  // // console.log("filterdatafilterdatafilterdatafilterdata", filterdata);
-
-  // const handleCheck22 = (event) => {
-  //   setCheck(event.target.value);
-  //   setallproduct(
-  //     allproduct.filter(
-  //       (item) =>
-  //         item.purity === "14k" ||
-  //         item.purity === "16k" ||
-  //         item.purity === "18k" ||
-  //         item.purity === "20k" ||
-  //         item.purity === "22k" ||
-  //         item.purity === "24k"
-  //     )
-  //   );
-  // };
-  // // console.log("1010101010110", allproduct);
-
-  // const handleCheck18 = (event) => {
-  //   setCheck(event.target.value);
-  //   setallproduct(
-  //     allproduct.filter(
-  //       (item) =>
-  //         item.purity === "14k" ||
-  //         item.purity === "16k" ||
-  //         item.purity === "18k" ||
-  //         item.purity === "20k" ||
-  //         item.purity === "22k" ||
-  //         item.purity === "24k"
-  //     )
-  //   );
-  // };
-  // const handleCheck14 = (event) => {
-  //   setCheck(event.target.value);
-  //   setallproduct(
-  //     allproduct.filter(
-  //       (item) =>
-  //         item.purity === "14k" ||
-  //         item.purity === "16k" ||
-  //         item.purity === "18k" ||
-  //         item.purity === "20k" ||
-  //         item.purity === "22k" ||
-  //         item.purity === "24k"
-  //     )
-  //   );
-  // };
-  // const handleCheck20 = (event) => {
-  //   setCheck(event.target.value);
-  //   setallproduct(
-  //     allproduct.filter(
-  //       (item) =>
-  //         item.purity === "14k" ||
-  //         item.purity === "16k" ||
-  //         item.purity === "18k" ||
-  //         item.purity === "20k" ||
-  //         item.purity === "22k" ||
-  //         item.purity === "24k"
-  //     )
-  //   );
-  // };
-  // const handleCheck16 = (event) => {
-  //   setCheck(event.target.value);
-  //   setallproduct(
-  //     allproduct.filter(
-  //       (item) =>
-  //         item.purity === "14k" ||
-  //         item.purity === "16k" ||
-  //         item.purity === "18k" ||
-  //         item.purity === "20k" ||
-  //         item.purity === "22k" ||
-  //         item.purity === "24k"
-  //     )
-  //   );
-  // };
 
   const pageCount = allproduct ? Math.ceil(allproduct.length / pageSize) : 0;
   const pages = _.range(1, pageCount + 1);
@@ -267,24 +192,26 @@ function Product(props) {
     formData.append("id", loginId);
     formData.append("product_id", product_id);
     axios
-      .post(`https://veejayjewels.com/api/v1/customer/wish-list/add-to-wishlist`, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
+      .post(
+        `https://veejayjewels.com/api/v1/customer/wish-list/add-to-wishlist`,
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      )
       .then((response) => {
         console.log("response143", response);
         if (response.data.message) {
           toast.success(response.data.message);
-
         }
-
       })
       .catch((error) => {
         toast.error("Already in your wishlist");
       });
   };
 
-
   const [products, setProducts] = useState([]);
+  console.log("products", products);
   const [selectedPurity, setSelectedPurity] = useState([]); // Default to 24k as an array
   const purities = ["24k", "22k", "21k", "20k"];
 
@@ -304,16 +231,29 @@ function Product(props) {
 
         // Wait for all the requests to complete
         const allData = await Promise.all(promises);
-
+        console.log("allData", allData);
         // Combine all data into a single array
-        const combinedData = allData.reduce((acc, data) => [...acc, ...data], []);
+        const combinedData = allData.reduce(
+          (acc, data) => [...acc, ...data],
+          []
+        );
 
-        setProducts(combinedData);
+        // console.log('combinedData',combinedData)
+
+        setallproduct(combinedData);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
-    fetchData();
+    if (selectedPurity.length > 0) {
+      fetchData();
+    } else {
+      console.log("allProduct api in purity ELSE");
+      if (activeCategory == "AllProduct") {
+        allProduct();
+      }
+    }
+    console.log("selectedPurity", selectedPurity);
   }, [selectedPurity]); // Run this effect whenever the selectedPurity state changes
 
   const handlePurityChange = (event) => {
@@ -325,10 +265,9 @@ function Product(props) {
     }
   };
 
-
   const fieldpagerefresh = () => {
     window.location.reload(false);
-  }
+  };
   return (
     <>
       <Toaster />
@@ -342,34 +281,46 @@ function Product(props) {
       </div>
       <section className="section-padding">
         <Container>
-          <Tab.Container id="left-tabs-example" defaultActiveKey="AllProduct">
+          <Tab.Container
+            id="left-tabs-example"
+            defaultActiveKey={activeCategory}
+          >
             <Row className="mt-4">
               <Col sm={3}>
                 <Nav variant="pills" className="flex-column brand-cate-list">
                   <div className="tabBrands">
-                    <h3>Brand</h3>
-                    <Nav.Item onClick={fieldpagerefresh}>
+                    <h3>Category</h3>
+                    <Nav.Item
+                    //  onClick={fieldpagerefresh}
+                    >
                       <Nav.Link
                         eventKey="AllProduct"
-                        onClick={() => handleDataList('AllProduct')}
-                        active={activeCategory === 'AllProduct'}
-
+                        onClick={() => {
+                          // allProduct()
+                          setActiveCategory("AllProduct");
+                          setData("AllProduct");
+                        }}
+                        active={activeCategory === "AllProduct"}
                       >
                         All Product
                       </Nav.Link>
                     </Nav.Item>
-                    {brandcategories
+                    {brandcategories.length > 0
                       ? brandcategories.map((item, index) => (
-                        <Nav.Item key={index}>
-                          <Nav.Link
-                            eventKey={item.name}
-                            onClick={() => handleDataList(item.name)}
-                            active={activeCategory === item.name}
-                          >
-                            {item.name}
-                          </Nav.Link>
-                        </Nav.Item>
-                      ))
+                          <Nav.Item key={index}>
+                            <Nav.Link
+                              eventKey={item.name}
+                              onClick={() => {
+                                setActiveCategory(item.name);
+                                setData(item.name);
+                                // handleDataList(item.name)
+                              }}
+                              active={activeCategory === item.name}
+                            >
+                              {item.name}
+                            </Nav.Link>
+                          </Nav.Item>
+                        ))
                       : null}
 
                     <h3>Sort by</h3>
@@ -407,201 +358,31 @@ function Product(props) {
                           Oldest Order
                         </label>
                       </div>
-
                     </div>
                     <h3>Filter</h3>
-                    {/* <div className="range-bg">
-                      <label>Select Gold Kt</label>
-                      <div>
-                        <div className="form-check form-check-inline">
-                          <input
-                            className="form-check-input"
-                            type="radio"
-                            onClick={handleCheck14}
-                          />
-                          <label className="form-check-label">14 Kt</label>
-                        </div>
-                        <div className="form-check form-check-inline">
-                          <input
-                            className="form-check-input"
-                            type="radio"
-                            onClick={handleCheck16}
-                          />
-                          <label className="form-check-label">16 Kt</label>
-                        </div>
-                        <div className="form-check form-check-inline">
-                          <input
-                            className="form-check-input"
-                            type="radio"
-                            onClick={handleCheck18}
-                          />
-                          <label className="form-check-label">18 Kt</label>
-                        </div>
-                        <div className="form-check form-check-inline">
-                          <input
-                            className="form-check-input"
-                            type="radio"
-                            onClick={handleCheck20}
-                          />
-                          <label className="form-check-label">20 Kt</label>
-                        </div>
-                        <div className="form-check form-check-inline">
-                          <input
-                            className="form-check-input"
-                            type="radio"
-                            onClick={handleCheck22}
-                          />
-                          <label className="form-check-label">22 Kt</label>
-                        </div>
-                        <div className="form-check form-check-inline">
-                          <input
-                            className="form-check-input"
-                            type="radio"
-                            onClick={handleCheck24}
-                          />
-                          <label className="form-check-label">24 Kt</label>
-                        </div>
-                      </div>
-                      <input
-                          type="range"
-                          min={0}
-                          max={1000000}
-                          value={value}
-                          onChange={handleRangeChange}
-                          className='rangeinput'
-                        />
-                        <div className="text-center">
-                          <h2>₹ {value}</h2>
-                        </div>
-                    </div> */}
                     <div className="checkbox-bg">
-                      {/* {purities.map((purity) => (
-                        <label key={purity}>
+                      {purities.map((purity) => (
+                        <div className="form-check">
                           <input
+                            className="form-check-input"
                             type="checkbox"
+                            name="exampleRadios"
+                            id="exampleRadios1"
+                            defaultValue="option1"
+                            defaultChecked
                             value={purity}
                             checked={selectedPurity.includes(purity)}
                             onChange={handlePurityChange}
                           />
-                          {purity}
-                        </label>
-                      ))} */}
-
-                      {purities.map((purity) => (
-                      <div className="form-check">
-                        <input
-                          className="form-check-input"
-                          type="checkbox"
-                          name="exampleRadios"
-                          id="exampleRadios1"
-                          defaultValue="option1"
-                          defaultChecked
-                          value={purity}
-                            checked={selectedPurity.includes(purity)}
-                            onChange={handlePurityChange}
-                        />
-                         <label
-                          className="form-check-label"
-                          htmlFor="exampleRadios1"
-                        >
-                          {purity}
-                        </label>
-                      </div>
+                          <label
+                            className="form-check-label"
+                            htmlFor="exampleRadios1"
+                          >
+                            {purity}
+                          </label>
+                        </div>
                       ))}
                     </div>
-                    {/* <div className="checkbox-bg">
-                      <div className="form-check">
-                        <input
-                          className="form-check-input"
-                          type="radio"
-                          name="exampleRadios"
-                          id="exampleRadios1"
-                          defaultValue="option1"
-                          defaultChecked
-                        />
-                        <label
-                          className="form-check-label"
-                          htmlFor="exampleRadios1"
-                        >
-                          14 kt
-                        </label>
-                      </div>
-                      <div className="form-check">
-                        <input
-                          className="form-check-input"
-                          type="radio"
-                          name="exampleRadios"
-                          id="exampleRadios2"
-                          defaultValue="option2"
-                        />
-                        <label
-                          className="form-check-label"
-                          htmlFor="exampleRadios2"
-                        >
-                          16 kt
-                        </label>
-                      </div>
-                      <div className="form-check">
-                        <input
-                          className="form-check-input"
-                          type="radio"
-                          name="exampleRadios"
-                          id="exampleRadios3"
-                          defaultValue="option2"
-                        />
-                        <label
-                          className="form-check-label"
-                          htmlFor="exampleRadios3"
-                        >
-                          18 kt
-                        </label>
-                      </div>
-                      <div className="form-check">
-                        <input
-                          className="form-check-input"
-                          type="radio"
-                          name="exampleRadios"
-                          id="exampleRadios4"
-                          defaultValue="option2"
-                        />
-                        <label
-                          className="form-check-label"
-                          htmlFor="exampleRadios4"
-                        >
-                          20 kt
-                        </label>
-                      </div>
-                      <div className="form-check">
-                        <input
-                          className="form-check-input"
-                          type="radio"
-                          name="exampleRadios"
-                          id="exampleRadios4"
-                          defaultValue="option2"
-                        />
-                        <label
-                          className="form-check-label"
-                          htmlFor="exampleRadios4"
-                        >
-                          22 kt
-                        </label>
-                      </div>
-                      <div className="form-check">
-                        <input
-                          className="form-check-input"
-                          type="radio"
-                          name="exampleRadios"
-                          id="exampleRadios4"
-                          defaultValue="option2"
-                        />
-                        <label
-                          className="form-check-label"
-                          htmlFor="exampleRadios4"
-                        >
-                          24 kt
-                        </label>
-                      </div>
-                    </div> */}
                   </div>
                 </Nav>
                 <div className="product-banner">
@@ -625,10 +406,9 @@ function Product(props) {
               </Col>
               <Col sm={9}>
                 <Tab.Content>
-                  <Tab.Pane eventKey="AllProduct">
+                  <Tab.Pane eventKey={activeCategory}>
                     <Row>
-
-                      {products.map((item) => (
+                      {/* {products.map((item) => (
                         <Col
                           lg={4}
                           sm={4}
@@ -637,16 +417,25 @@ function Product(props) {
                           key={item.id}
                         >
                           <div className="mainProductcard" key={item.id}>
-                            {/* <Link to={`/product-details/${item.id}`}> */}
                             <div className="like-icon">
-                              <i class="fa fa-heart-o" onClick={(id) => addToWishlist(item.id)} />
+                              <i
+                                class="fa fa-heart-o"
+                                onClick={(id) => {
+                                  if (loginId == null) {
+                                    toast.error("Please Login first");
+                                  } else {
+                                    addToWishlist(item.id);
+                                  }
+                                }}
+                              />
                             </div>
                             <img src={cleanImageUrl(item.image)} />
                             <h4>{item.name}</h4>
                             <p>
                               {item.unit_value} {item.unit}
                             </p>
-                            <span>Karat : {item.purity}</span><br />
+                            <span>Karat : {item.purity}</span>
+                            <br />
                             <span>Design Num : {item.design}</span>
                             <div className="product-btnarea">
                               <Link
@@ -655,50 +444,14 @@ function Product(props) {
                               >
                                 View Products
                               </Link>
-
                             </div>
-                            {/* </Link> */}
                           </div>
                         </Col>
-                      ))}
+                      ))} */}
                       {/* {products.length === 0 && <p>Product is not available.</p>} */}
 
-                      {paginatedCategories.map((item) => (
-                        <Col
-                          lg={4}
-                          sm={4}
-                          xs={6}
-                          className="mb-4"
-                          key={item.id}
-                        >
-                          <div className="mainProductcard">
-                            {/* <Link to={`/product-details/${item.id}`}> */}
-                            <div className="like-icon">
-                              <i class="fa fa-heart-o" onClick={(id) => addToWishlist(item.id)} />
-                            </div>
-                            <img src={cleanImageUrl(item.image)} />
-                            <h4>{item.name}</h4>
-                            <p>
-                              {item.unit_value} {item.unit}
-                            </p>
-                            <span>Karat : {item.purity}</span><br />
-                            <span>Design Num : {item.design}</span>
-                            <div className="product-btnarea">
-                              <Link
-                                to={`/product-details/${item.id}`}
-                                className="product-addBtn"
-                              >
-                                View Products
-                              </Link>
-
-                            </div>
-                            {/* </Link> */}
-                          </div>
-                        </Col>
-                      ))}
-
-                      {check &&
-                        filterdata.map((item) => (
+                      {activeCategory == "AllProduct" ? (
+                        paginatedCategories.map((item) => (
                           <Col
                             lg={4}
                             sm={4}
@@ -707,32 +460,159 @@ function Product(props) {
                             key={item.id}
                           >
                             <div className="mainProductcard">
-                              {/* <Link to={`/product-details/${item.id}`}> */}
                               <div className="like-icon">
-                                <i class="fa fa-heart-o" onClick={(id) => addToWishlist(item.id)} />
+                                <i
+                                  class="fa fa-heart-o"
+                                  onClick={(id) => {
+                                    if (loginId == null) {
+                                      toast.error("Please Login first");
+                                    } else {
+                                      addToWishlist(item.id);
+                                    }
+                                  }}
+                                />
                               </div>
                               <img src={cleanImageUrl(item.image)} />
                               <h4>{item.name}</h4>
                               <p>
                                 {item.unit_value} {item.unit}
                               </p>
-                              <span>Karat : {item.purity}</span><br />
+                              <span>Karat : {item.purity}</span>
+                              <br />
                               <span>Design Num : {item.design}</span>
                               <div className="product-btnarea">
                                 <Link
-                                  to="/add-to-cart"
+                                  to={`/product-details/${item.id}`}
                                   className="product-addBtn"
                                 >
                                   View Products
                                 </Link>
                               </div>
-                              {/* </Link> */}
                             </div>
                           </Col>
                         ))
-                      }
-
+                      ) : (
+                        <Row>
+                          <div className="brands-tabs-all">
+                            {/* <ul
+                              className="nav nav-pills mb-3"
+                              id="pills-tab"
+                              role="tablist"
+                            >
+                              <li className="nav-item">
+                                <a
+                                  className="nav-link active"
+                                  id="AllProduct-tab"
+                                  data-toggle="pill"
+                                  href="#AllProduct"
+                                  role="tab"
+                                  aria-controls="AllProduct"
+                                  aria-selected="true"
+                                  eventKey="AllProduct"
+                                  onClick={() => {
+                                    // allProduct()
+                                    setActiveCategory("AllProduct");
+                                    setData("AllProduct");
+                                  }}
+                                >
+                                  All Products
+                                </a>
+                              </li>
+                              {filter && dataList.length > 0
+                                ? dataList.map((item) => (
+                                    <li className="nav-item">
+                                      <a
+                                        className="nav-link"
+                                        id="pills-arha-tab"
+                                        data-toggle="pill"
+                                        href="#pills-arha"
+                                        role="tab"
+                                        aria-controls="pills-profile"
+                                        aria-selected="false"
+                                      >
+                                        <div
+                                          onClick={(e) =>
+                                            SubCategory(
+                                              item.thumnail,
+                                              item.title,
+                                              item.file
+                                            )
+                                          }
+                                        >
+                                          {item.category}
+                                        </div>
+                                      </a>
+                                    </li>
+                                  ))
+                                : null}
+                            </ul> */}
+                            <div className="tab-content" id="pills-tabContent">
+                              <div
+                                className="tab-pane fade show active"
+                                id="arhaallproduct"
+                                role="tabpanel"
+                                aria-labelledby="arhaallproduct-tab"
+                              >
+                                <Row>
+                                  {filter && dataList.length > 0 ? (
+                                    dataList.map((item) => (
+                                      <Col
+                                        lg={4}
+                                        className="mb-4"
+                                        key={item.id}
+                                      >
+                                        <div className="mainProductcard">
+                                          <div className="like-icon">
+                                            <i
+                                              class="fa fa-heart-o"
+                                              onClick={(id) => {
+                                                if (loginId == null) {
+                                                  toast.error(
+                                                    "Please Login first"
+                                                  );
+                                                } else {
+                                                  addToWishlist(item.id);
+                                                }
+                                              }}
+                                            />
+                                          </div>
+                                          <img
+                                            src={cleanImageUrl(item.image)}
+                                            alt={item.name}
+                                          />
+                                          <h4>{item.name}</h4>
+                                          <p>
+                                            {item.unit_value} {item.unit}
+                                          </p>
+                                          <span>Karat : {item.purity}</span>
+                                          <br />
+                                          <span>
+                                            Design Num : {item.design}
+                                          </span>
+                                          <div className="product-btnarea">
+                                            <Link
+                                              to={`/product-details/${item.id}`}
+                                              className="product-addBtn"
+                                            >
+                                              View Products
+                                            </Link>
+                                          </div>
+                                        </div>
+                                      </Col>
+                                    ))
+                                  ) : (
+                                    <div>No data available.</div>
+                                  )}
+                                </Row>
+                              </div>
+                            </div>
+                          </div>
+                        </Row>
+                      )}
                     </Row>
+                    {/* <Row>
+                    </Row> */}
+                    {/* Pagination number show */}
                     <nav>
                       <ul className="pagination">
                         {pages.map((page) => (
@@ -755,7 +635,7 @@ function Product(props) {
                       </ul>
                     </nav>
                   </Tab.Pane>
-                  <Tab.Pane eventKey={data}>
+                  {/* <Tab.Pane eventKey={data}>
                     <Row>
                       <div className="brands-tabs-all">
                         <ul
@@ -776,32 +656,32 @@ function Product(props) {
                               All Products
                             </a>
                           </li>
-                          {filter && dataList
+                          {filter && dataList.length > 0
                             ? dataList.map((item) => (
-                              <li className="nav-item">
-                                <a
-                                  className="nav-link"
-                                  id="pills-arha-tab"
-                                  data-toggle="pill"
-                                  href="#pills-arha"
-                                  role="tab"
-                                  aria-controls="pills-profile"
-                                  aria-selected="false"
-                                >
-                                  <div
-                                    onClick={(e) =>
-                                      SubCategory(
-                                        item.thumnail,
-                                        item.title,
-                                        item.file
-                                      )
-                                    }
+                                <li className="nav-item">
+                                  <a
+                                    className="nav-link"
+                                    id="pills-arha-tab"
+                                    data-toggle="pill"
+                                    href="#pills-arha"
+                                    role="tab"
+                                    aria-controls="pills-profile"
+                                    aria-selected="false"
                                   >
-                                    {item.category}
-                                  </div>
-                                </a>
-                              </li>
-                            ))
+                                    <div
+                                      onClick={(e) =>
+                                        SubCategory(
+                                          item.thumnail,
+                                          item.title,
+                                          item.file
+                                        )
+                                      }
+                                    >
+                                      {item.category}
+                                    </div>
+                                  </a>
+                                </li>
+                              ))
                             : null}
                         </ul>
                         <div className="tab-content" id="pills-tabContent">
@@ -812,13 +692,21 @@ function Product(props) {
                             aria-labelledby="arhaallproduct-tab"
                           >
                             <Row>
-                              {filter && dataList.length >= 1 ? (
+                              {filter && dataList.length > 0 ? (
                                 dataList.map((item) => (
                                   <Col lg={4} className="mb-4" key={item.id}>
                                     <div className="mainProductcard">
-                                      {/* <Link to={`/product-details/${item.id}`}> */}
                                       <div className="like-icon">
-                                        <i class="fa fa-heart-o" onClick={(id) => addToWishlist(item.id)} />
+                                        <i
+                                          class="fa fa-heart-o"
+                                          onClick={(id) => {
+                                            if (loginId == null) {
+                                              toast.error("Please Login first");
+                                            } else {
+                                              addToWishlist(item.id);
+                                            }
+                                          }}
+                                        />
                                       </div>
                                       <img
                                         src={cleanImageUrl(item.image)}
@@ -828,7 +716,8 @@ function Product(props) {
                                       <p>
                                         {item.unit_value} {item.unit}
                                       </p>
-                                      <span>Karat : {item.purity}</span><br />
+                                      <span>Karat : {item.purity}</span>
+                                      <br />
                                       <span>Design Num : {item.design}</span>
                                       <div className="product-btnarea">
                                         <Link
@@ -837,9 +726,7 @@ function Product(props) {
                                         >
                                           View Products
                                         </Link>
-
                                       </div>
-                                      {/* </Link> */}
                                     </div>
                                   </Col>
                                 ))
@@ -848,60 +735,10 @@ function Product(props) {
                               )}
                             </Row>
                           </div>
-                          <div
-                            className="tab-pane fade"
-                            id="pills-arha"
-                            role="tabpanel"
-                            aria-labelledby="pills-arha-tab"
-                          >
-                            <Row>
-                              {arhadata
-                                ? arhadata.map(
-                                  (item, index) =>
-                                    item.brand === "Araha" && (
-                                      <Col
-                                        lg={4}
-                                        className="mb-4"
-                                        key={item.id}
-                                      >
-                                        <div className="mainProductcard">
-                                          {/* <Link
-                                            to={`/product-details/${item.id}`}
-                                          > */}
-                                          <div className="like-icon">
-                                            <i class="fa fa-heart-o" onClick={(id) => addToWishlist(item.id)} />
-                                          </div>
-                                          <img
-                                            src={cleanImageUrl(item.image)}
-                                            alt={item.name}
-                                          />
-                                          <h4>{item.name}</h4>
-                                          <p>
-                                            {item.unit_value} {item.unit}
-                                          </p>
-                                          <span>Karat : {item.purity}</span><br />
-                                          <span>Design Num : {item.design}</span>
-                                          <div className="product-btnarea">
-                                            <Link
-                                              to="/add-to-cart"
-                                              className="product-addBtn"
-                                            >
-                                              View Products
-                                            </Link>
-
-                                          </div>
-                                          {/* </Link> */}
-                                        </div>
-                                      </Col>
-                                    )
-                                )
-                                : null}
-                            </Row>
-                          </div>
                         </div>
                       </div>
                     </Row>
-                  </Tab.Pane>
+                  </Tab.Pane> */}
                 </Tab.Content>
               </Col>
             </Row>
@@ -930,13 +767,13 @@ function Product(props) {
           >
             {thirdbanner
               ? thirdbanner.map(
-                (item, index) =>
-                  item.type === "thrid" && (
-                    <div key={item.id} className="homeBack-bg">
-                      <img src={item.image} alt="" />
-                    </div>
-                  )
-              )
+                  (item, index) =>
+                    item.type === "thrid" && (
+                      <div key={item.id} className="homeBack-bg">
+                        <img src={item.image} alt="" />
+                      </div>
+                    )
+                )
               : null}
           </Carousel>
         </Container>

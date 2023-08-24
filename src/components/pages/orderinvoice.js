@@ -8,7 +8,6 @@ import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { BASE_URL } from "../../Constant/Index";
 import { useState } from "react";
-
 import axios from "axios";
 const customStyles = {
   content: {
@@ -21,14 +20,13 @@ const customStyles = {
     padding: "20px",
   },
 };
-
 function Orderinvoice() {
   const storedId = localStorage.getItem("id");
   const orderId = localStorage.getItem("order_id");
   const address = localStorage.getItem("address");
   const [filterOrder, setFilterOrder] = useState("");
   const { id } = useParams();
-  console.log(id,"id");
+  console.log(id, "id");
   const [productName, setProductName] = useState("");
   const [orderlistdata, setOrderListData] = useState([]);
   const [productOrderId, setProductOrderId] = useState("");
@@ -48,13 +46,11 @@ function Orderinvoice() {
   const [orderList, setOrderList] = useState([]);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
   useEffect(() => {
     productsList();
     EditProfile();
     handleProductsList(orderId);
   }, [orderId]);
-
   const EditProfile = async (e) => {
     var headers = {
       Accept: "application/json",
@@ -68,9 +64,7 @@ function Orderinvoice() {
       .then((response) => {
         setFirstName(response.data.f_name);
         setLastName(response.data.l_name);
-
         setEmail(response.data.email);
-
         setPhone(response.data.phone);
         setdesign(response.data.design);
       })
@@ -78,12 +72,10 @@ function Orderinvoice() {
         console.error("ERROR FOUND---->>>>" + error);
       });
   };
-
   const handleProductsList = async (orderId) => {
     const requestBody = {
       id: storedId,
     };
-
     fetch("https://veejayjewels.com/api/v1/products/list", {
       method: "POST",
       headers: {
@@ -102,17 +94,14 @@ function Orderinvoice() {
         console.error("Error:", error);
       });
   };
-
   const capitalizeFirstLetter = (str) => {
     if (!str || typeof str !== "string") {
       return str; // Return the input as it is if it's not a valid string
     }
-
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
-
   const handleInvoiceFilter = (data) => {
-    console.log(data,"data");
+    console.log(data, "data");
     const filteredOrder = data.find((order) => order.id == id);
     setFilterOrder(filteredOrder.invoice);
   };
@@ -130,7 +119,7 @@ function Orderinvoice() {
         },
       })
       .then((response) => {
-        console.log("products/details",response);
+        console.log("products/details", response);
         setProductName(response.data.data)
         setOrderListData(response.data.data);
         setProductOrderId(response.data.data[0].order_id);
@@ -149,12 +138,10 @@ function Orderinvoice() {
         console.error("Error fetching data:", error);
       });
   };
-
-  console.log("productName  ",productName);
+  console.log("productName  ", productName);
   return (
     <>
       <Header />
-
       <section className="section-padding">
         <Row className="justify-content-center mb-3">
           <Col lg={5}>
@@ -172,21 +159,29 @@ function Orderinvoice() {
                 <img src={border} />
               </div>
               <div className="order-invoiceN">
+                {productName ? (
+                  productName.map((items, index) => (
+                    <div key={index}>
+                      <h6>Product name: {items.product_name}</h6>
+                      <h6>Variation: {items.variation}</h6>
+                      <h6>Quantity: {items.quantity}</h6>
+                      <h6>Design Number: {items.design}</h6>
+                      <hr />
+                    </div>
+                  ))
+                ) : null}
                 <Table responsive className="productDetailTable">
                   <tbody>
-                    {productName?( 
+                    {/* {productName?(
                     productName.map((items,index)=>(
-
                       <tr key={index}>
                     <td>{items.product_name}</td>
                     <td>{items.variation}</td>
                     <td>{items.quantity}</td>
+                    <hr/>
                    </tr>
-               
                ))
-               ):null}
-               {/* <hr/> */}
-                    
+               ):null} */}
                     <tr>
                       <th>Name:</th>
                       <td>
@@ -203,10 +198,6 @@ function Orderinvoice() {
                       <td>{phone}</td>
                     </tr>
                     <tr>
-                      <th>Design Num:</th>
-                      <td>{design}</td>
-                    </tr>
-                    <tr>
                       <th>Delivery Address:</th>
                       <td>{address}</td>
                     </tr>
@@ -216,12 +207,11 @@ function Orderinvoice() {
               <div className="add-border">
                 <img src={border} />
               </div>
-
               <div className="text-center mt-3">
-            <Link className="showSize" to="/products">
-              Continue Shopping
-            </Link>
-          </div>
+                <Link className="showSize" to="/products">
+                  Continue Shopping
+                </Link>
+              </div>
             </div>
           </Col>
         </Row>
@@ -251,7 +241,6 @@ function Orderinvoice() {
           </Modal.Footer>
         </Modal>
       </section>
-
       <Footer />
     </>
   );

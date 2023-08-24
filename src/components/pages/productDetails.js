@@ -23,6 +23,8 @@ import border from "../../assets/images/banner/border.png";
 import { BASE_URL } from "../../Constant/Index";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import Lightbox from 'react-image-lightbox';
+import 'react-image-lightbox/style.css'; // Import the CSS for the lightbox styles
 
 const clinetreview = {
   desktop: {
@@ -124,13 +126,25 @@ function ProductDetails(props) {
     }));
   };
   const handleDecrement = (variant) => {
-    setSelectedQuantities((prevQuantities) => {
-      const updatedQuantity = (prevQuantities[variant] || 0) - 1;
-      return {
-        ...prevQuantities,
-        [variant]: updatedQuantity >= 1 ? updatedQuantity : 1,
-      };
-    });
+    const updatedQuantity = (selectedQuantities[variant] || 0) - 1;
+    if (updatedQuantity === 0 || updatedQuantity === -1) {
+      const data = Object.entries(selectedQuantities).filter(el => el[0] !== variant)
+      const converArray = {}
+      for (const innerArray of data) {
+        const key = innerArray[0]
+        const value = innerArray[1]
+        converArray[key] = value
+      }
+      setSelectedQuantities(converArray)
+    } else {
+      setSelectedQuantities((prevQuantities) => {
+        const updatedQuantity = (prevQuantities[variant] || 0) - 1;
+        return {
+          ...prevQuantities,
+          [variant]: updatedQuantity >= 1 ? updatedQuantity : 0,
+        };
+      });
+    }
   };
   const GetProductDetails = () => {
     axios
@@ -191,12 +205,24 @@ function ProductDetails(props) {
     const isSelected = selectedVariants.includes(variant);
     if (isSelected) {
       setSelectedVariants(selectedVariants.filter((v) => v !== variant));
+      const data = Object.entries(selectedQuantities).filter(el => el[0] !== variant)
+      const converArray = {}
+      for (const innerArray of data) {
+        const key = innerArray[0]
+        const value = innerArray[1]
+        converArray[key] = value
+      }
+      setSelectedQuantities(converArray)
+      // setSelectedQuantities((prevQuantities) => ({
+      //   ...prevQuantities,
+      //   [variant]: 0,
+      // }));
     } else {
       setSelectedVariants([...selectedVariants, variant]);
     }
   };
   const handleSubmit = () => {
-  
+
     const formData = new FormData();
     formData.append("user_id", loginId);
     formData.append("product_id", id);
@@ -254,6 +280,33 @@ function ProductDetails(props) {
     return imageUrl.replace(/[\[\]\\"]/g, "");
   };
 
+  // Lightbox product =====
+
+  const [mainImage, setMainImage] = useState("");
+  const [lightboxIsOpen, setLightboxIsOpen] = useState(false);
+  const [lightboxImageIndex, setLightboxImageIndex] = useState(0);
+
+  useEffect(() => {
+    if (image && image.length > 0) {
+      setMainImage(
+        "https://veejayjewels.com/storage/app/public/product/" +
+        image[0]
+      );
+    }
+  }, [image]);
+
+  const handleThumbnailClick = (index) => {
+    setMainImage(
+      "https://veejayjewels.com/storage/app/public/product/" + image[index]
+    );
+  };
+
+  const handleMainImageClick = () => {
+    setLightboxIsOpen(true);
+    setLightboxImageIndex(image.indexOf(mainImage));
+  };
+
+
   return (
     <>
       <Toaster />
@@ -267,90 +320,71 @@ function ProductDetails(props) {
         <Container>
           <div className="productDetailsBG">
             <Row>
-              <Col lg={6} sm={6}>
-                <Carousel
-                  swipeable={true}
-                  draggable={true}
-                  showDots={true}
-                  responsive={productdetails}
-                  ssr={true} // means to render carousel on server-side.
-                  infinite={true}
-                  autoPlay={props.deviceType !== "mobile" ? true : false}
-                  autoPlaySpeed={1000}
-                  keyBoardControl={true}
-                  customTransition="all 1s"
-                  transitionDuration={1000}
-                  containerClass="carousel-container"
-                  removeArrowOnDeviceType={["tablet", "mobile"]}
-                  deviceType={props.deviceType}
-                  dotListClass="product-dot-list-style"
-                  itemClass="carousel-item-padding-40-px"
-                >
-                  <div>
-                    <div className="productdetails-bg">
-                      <img
-                        src={
-                          "https://veejayjewels.com/storage/app/public/product/" +
-                          image
-                        }
-                      />
-                    </div>
-
-                  </div>
+              <Col lg={6}>
+                <div>
                   <div className="productdetails-bg">
                     <img
-                      src={
-                        "https://veejayjewels.com/storage/app/public/product/" +
-                        image
-                      }
+                      src={mainImage}
+                      alt="Product Image"
+                      onClick={handleMainImageClick}
                     />
                   </div>
-                  <div className="productdetails-bg">
-                    <img
-                      src={
-                        "https://veejayjewels.com/storage/app/public/product/" +
-                        image
-                      }
-                    />
+                  <div className="needplace">
+                    <Row>
+                      {image && image.length > 0 ? (
+                        image.map((item, index) => (
+                          <Col sm={3} className="mb-3" key={index}>
+                            <div
+                              className="semi-produ-img"
+                              onClick={() => handleThumbnailClick(index)}
+                            >
+                              <img
+                                src={
+                                  "https://veejayjewels.com/storage/app/public/product/" +
+                                  item
+                                }
+                                alt={`Image ${index}`}
+                              />
+                            </div>
+                          </Col>
+                        ))
+                      ) : (
+                        <p className="emptyMSG">No Related Image.</p>
+                      )}
+                    </Row>
                   </div>
-                </Carousel>
-                <div className="semi-products">
-                  <Row>
-                    <Col sm={4}>
-                      <div className="semi-produ-img">
-                        <img
-                          src={
-                            "https://veejayjewels.com/storage/app/public/product/" +
-                            image
-                          }
-                        />
-                      </div>
-                    </Col>
-                    <Col sm={4}>
-                      <div className="semi-produ-img">
-                        <img
-                          src={
-                            "https://veejayjewels.com/storage/app/public/product/" +
-                            image
-                          }
-                        />
-                      </div>
-                    </Col>
-                    <Col sm={4}>
-                      <div className="semi-produ-img">
-                        <img
-                          src={
-                            "https://veejayjewels.com/storage/app/public/product/" +
-                            image
-                          }
-                        />
-                      </div>
-                    </Col>
-                  </Row>
                 </div>
 
-
+                {lightboxIsOpen && (
+                  <Lightbox
+                    mainSrc={
+                      "https://veejayjewels.com/storage/app/public/product/" +
+                      image[lightboxImageIndex]
+                    }
+                    nextSrc={
+                      "https://veejayjewels.com/storage/app/public/product/" +
+                      image[(lightboxImageIndex + 1) % image.length]
+                    }
+                    prevSrc={
+                      "https://veejayjewels.com/storage/app/public/product/" +
+                      image[
+                      (lightboxImageIndex + image.length - 1) % image.length
+                      ]
+                    }
+                    onCloseRequest={() => setLightboxIsOpen(false)}
+                    onMovePrevRequest={() =>
+                      setLightboxImageIndex(
+                        (lightboxImageIndex + image.length - 1) % image.length
+                      )
+                    }
+                    onMoveNextRequest={() =>
+                      setLightboxImageIndex((lightboxImageIndex + 1) % image.length)
+                    }
+                  />
+                )}
               </Col>
+
+
               <Col lg={6} sm={6}>
                 <Table className="productDetailTable">
                   <tbody>
@@ -568,7 +602,7 @@ function ProductDetails(props) {
                                 />
                                 {item.type}
                               </div>
-                             
+
                             </label>
                           </td>
                           <td>
@@ -586,7 +620,14 @@ function ProductDetails(props) {
               </Row>
               <hr />
               <div className="showssss">
-                <Button onClick={handleSubmit} className="showSize">
+                <Button onClick={() => {
+                  if (Object.keys(selectedQuantities).length > 0) {
+
+                    handleSubmit()
+                  } else {
+                    toast.error("Please select at least one item");
+                  }
+                }} className="showSize">
                   Add To Cart
                 </Button>
               </div>

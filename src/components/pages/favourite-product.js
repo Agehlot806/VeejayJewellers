@@ -1,72 +1,14 @@
-// import React from 'react'
-// import Header from '../../directives/header'
-// import { Col, Container, Row } from 'react-bootstrap'
-// import product1 from "../../assets/images/img/product1.png";
-// import product2 from "../../assets/images/img/product2.png";
-// import product3 from "../../assets/images/img/product3.png";
-// import product4 from "../../assets/images/img/product4.png";
-// import { Link } from 'react-router-dom';
-// import Footer from '../../directives/footer';
-
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useState } from "react";
 import Header from "../../directives/header";
 import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Footer from "../../directives/footer";
 
-// function Favouriteproduct() {
-//     return (
-//         <>
-//             <Header />
-//             <section className='section-padding'>
-//                 <Container>
-//                     <div className="New-Products-head">
-//                         <h5>Favourite List Product</h5>
-//                     </div>
-
-//                     <Row className="mt-4 mb-4">
-//                         <Col lg={3} sm={4} xs={6} className="mb-4">
-//                             <div className="mainProductcard">
-//                             {/* //  key={item.id}> */}
-//                                 {/* <Link to={`/product-details/${item.id}`}> */}
-//                                 <div className="like-icon">
-//                                         <i class="fa fa-trash" />
-//                                     </div>
-//                                 <img src={product1} />
-//                                 <h4>Bangle</h4>
-//                                 <p>
-//                                     10 gm
-//                                 </p>
-//                                 <span>Karat : 10</span><br />
-//                                 <span>Design Num : 12345</span>
-//                                 <div className="product-btnarea">
-//                                   <Link to="/add-to-cart" className="product-addBtn">
-//                                         View Products
-//                                     </Link>
-
-//                                 </div>
-//                                 {/* </Link> */}
-//                             </div>
-//                         </Col>
-
-//                     </Row>
-//                 </Container>
-//             </section>
-
-//             <Footer />
-//         </>
-//     )
-// }
-
-// export default Favouriteproduct
-
-// ... (imports and other code)
 
 function Favouriteproduct() {
   const loginId = localStorage.getItem("id");
-
   const [wishlistData, setWishlistData] = useState([]);
   const [wishlistDatatwo, setWishlistDatatwo] = useState([]);
 
@@ -87,7 +29,10 @@ function Favouriteproduct() {
 
   const handleRemoveFromWishlist = async (id) => {
     try {
-      await axios.delete(`https://veejayjewels.com/api/v1/customer/wish-list/remove-wishlist/${id}`);
+      await axios.delete(`https://veejayjewels.com/api/v1/customer/wish-list/remove-wishlist/${id}`)
+      .then((response) => {
+        fetchWishlistData()
+      })
       setWishlistDatatwo((prevData) => prevData.filter((item) => item.id !== id));
     } catch (error) {
       console.error('Error removing item from wishlist:', error);

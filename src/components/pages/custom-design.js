@@ -9,6 +9,8 @@ import toast, { Toaster } from "react-hot-toast";
 function Customdesign() {
   const [title, setTitle] = useState("");
   const [size, setSize] = useState("");
+  const [Phone, setPhone] = useState("")
+  console.log('Phone',Phone);
   const [quantity, setQuantity] = useState("");
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
@@ -116,8 +118,8 @@ function Customdesign() {
                       <Form.Control
                         type="number"
                         placeholder="Enter number"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
+                        value={Phone}
+                        onChange={(e) => setPhone(e.target.value)}
                       />
                     </Form.Group>
                   <Row className="mb-3">
@@ -164,7 +166,13 @@ function Customdesign() {
                     ></img>
                   </Row>
                   <div className="mt-5">
-                    <Button className="main-btn" onClick={handleSubmitForm}>
+                    <Button className="main-btn" onClick={(e) => {
+                      if(id !== null){
+                        handleSubmitForm(e)
+                      }else{ 
+                        toast.error("Please login first")
+                      }
+                    }}>
                       <i className="fa fa-angle-double-right" /> Submit
                     </Button>
                   </div>

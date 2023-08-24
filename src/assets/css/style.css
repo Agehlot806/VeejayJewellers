@@ -2000,8 +2000,9 @@ nav.header-bg {
 }
 
 .productdetails-bg img {
-  width: 315px;
+  width: 300px;
   margin: 0 0 30px;
+  height: 300px;
 }
 
 .productDetailTable.table {
@@ -2938,4 +2939,29 @@ p.emptyMSG {
 
 .subscribt-area {
   display: flex;
+}
+
+.verify-popup {
+  padding: 30px 70px;
+  text-align: center;
+}
+.verify-popup h4 {
+  font-family: "Playfair Display";
+  font-size: 30px;
+  font-weight: bold;
+}
+.verify-popup button {
+  background: linear-gradient(280deg, #6a4500 0%, #936207 100%);
+  margin: 10px 0 0;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+}
+.verify-popup button:hover {
+  background: linear-gradient(280deg, #6a4500 0%, #936207 100%);
+  color: #fff;
+}
+.semi-produ-img img {
+  width: 90px;
+  height: 90px;
 }

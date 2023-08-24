@@ -40,6 +40,7 @@ function Login() {
           localStorage.setItem("state", data.data.state);
           localStorage.setItem("profileImage", data.data.image);
           localStorage.setItem("address", data.data.address);
+          localStorage.setItem("phone", data.data.phone);
           if (data.message === "Login Successfull") {
             navigate("/");
             toast.success("Login Successful");

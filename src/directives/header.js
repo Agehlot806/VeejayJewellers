@@ -1,4 +1,13 @@
-import { Dropdown, Container, Form, Nav, Navbar, Table, Modal, Button } from "react-bootstrap";
+import {
+  Dropdown,
+  Container,
+  Form,
+  Nav,
+  Navbar,
+  Table,
+  Modal,
+  Button,
+} from "react-bootstrap";
 import logo from "../assets/images/logo/logo.png";
 import shoppingIcon from "../assets/images/icons/bag-2.png";
 import { Link, useNavigate } from "react-router-dom";
@@ -17,17 +26,20 @@ function Header({ profileImage }) {
   const imageUrl = `https://veejayjewels.com/public/${profile}`;
   const latestProfile = `https://veejayjewels.com/public/${profileImage}`;
   // console.log("imageUrl", profile, profileImage);
+  const phone = localStorage.getItem("phone");
+  const loginId = localStorage.getItem("id");
+
   useEffect(() => {
     categorys();
     notification();
   }, []);
 
-
-  const categorys = () => {
-    axios
-      .get(`${BASE_URL}/categories`)
+  const categorys = async () => {
+    await axios
+      .get(`${BASE_URL}/categories/all_childes/${loginId}`)
       .then((response) => {
         setbrandcategories(response.data.data);
+        localStorage.setItem("status", response.data.user.status);
       })
       .catch((error) => {
         // console.error("Error fetching data:", error);
@@ -40,7 +52,7 @@ function Header({ profileImage }) {
       .get(`${BASE_URL}/notifications`)
       .then((response) => {
         // console.log("respon",response.data.data);
-        setNotification(response.data.data)
+        setNotification(response.data.data);
       })
       .catch((error) => {
         // console.error("Error fetching data:", error);
@@ -60,18 +72,45 @@ function Header({ profileImage }) {
               </Link>
               <Link className="text-center">
                 <Dropdown className="dropdown-rate">
-                  <Dropdown.Toggle id="dropdown-basic"> Live Rate</Dropdown.Toggle>
+                  <Dropdown.Toggle id="dropdown-basic">
+                    {" "}
+                    Live Rate
+                  </Dropdown.Toggle>
                   <Dropdown.Menu>
                     <Table id>
                       <tbody>
-                        <tr><td>Gold 24 KT</td><td>Rs. 5868.10 <span>per gm</span></td></tr>
-                        <tr><td>Gold 22 KT</td><td>Rs. 5461.40 <span>per gm</span></td></tr>
-                        <tr><td>Gold 18 KT</td><td className>Rs. 4648.00 <span>per gm</span></td></tr>
-                        <tr><td>Pure Silver </td><td className="silver_rate">Rs. 70.50 <span>per gm</span></td></tr>
+                        <tr>
+                          <td>Gold 24 KT</td>
+                          <td>
+                            Rs. 5868.10 <span>per gm</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Gold 22 KT</td>
+                          <td>
+                            Rs. 5461.40 <span>per gm</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Gold 18 KT</td>
+                          <td className>
+                            Rs. 4648.00 <span>per gm</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Pure Silver </td>
+                          <td className="silver_rate">
+                            Rs. 70.50 <span>per gm</span>
+                          </td>
+                        </tr>
                       </tbody>
                     </Table>
                     <div className="updated">
-                      <p><b>Updated On:</b><br />28/06/23 11:00 AM </p>
+                      <p>
+                        <b>Updated On:</b>
+                        <br />
+                        28/06/23 11:00 AM{" "}
+                      </p>
                     </div>
                   </Dropdown.Menu>
                 </Dropdown>
@@ -86,21 +125,32 @@ function Header({ profileImage }) {
               navbarScroll
             >
               <Nav.Link>
-                <Link to="/" className="btn-theme-home">Home</Link>
+                <Link to="/" className="btn-theme-home">
+                  Home
+                </Link>
               </Nav.Link>
 
               <Nav.Link>
-                <Link to="/products" className="btn-theme-home">Products</Link>
+                <Link
+                  to={phone ? `/products/${"AllProduct"}` : "/login"}
+                  className="btn-theme-home"
+                >
+                  Products
+                </Link>
               </Nav.Link>
               <Nav.Link>
                 <Dropdown className="btn-theme-home">
-                  <Dropdown.Toggle id="dropdown-basic" >Brands</Dropdown.Toggle>
+                  <Dropdown.Toggle id="dropdown-basic">
+                    Category's
+                  </Dropdown.Toggle>
                   <Dropdown.Menu>
-                    {brandcategories &&
+                    {brandcategories.length > 0 &&
                       brandcategories.map((item) => (
                         <Dropdown.Item href="" key={item.id}>
-                          <i className="fa fa-angle-double-right" />{" "}
-                          <Link to={`/products/${item.name}`}>
+                          <i className="fa fa-angle-double-right" />
+                          <Link
+                            to={phone ? `/products/${item.name}` : "/login"}
+                          >
                             {item.name}
                           </Link>
                         </Dropdown.Item>
@@ -141,29 +191,35 @@ function Header({ profileImage }) {
               </Nav.Link> */}
               <Nav.Link>
                 <Dropdown className="btn-theme-home">
-                  <Dropdown.Toggle id="dropdown-basic">Catalogue</Dropdown.Toggle>
+                  <Dropdown.Toggle id="dropdown-basic">
+                    Catalogue
+                  </Dropdown.Toggle>
 
                   <Dropdown.Menu>
                     <Dropdown.Item href="">
                       <i className="fa fa-angle-double-right" />{" "}
-                      <Link to="/women">Women</Link>
+                      <Link to={phone ? "/women" : "/login"}>Women</Link>
                     </Dropdown.Item>
                     <Dropdown.Item href="">
                       <i className="fa fa-angle-double-right" />{" "}
-                      <Link to="/men">Men</Link>
+                      <Link to={phone ? "/men" : "/login"}>Men</Link>
                     </Dropdown.Item>
                     <Dropdown.Item href="">
                       <i className="fa fa-angle-double-right" />{" "}
-                      <Link to="/kids">Kids</Link>
+                      <Link to={phone ? "/kids" : "/login"}>Kids</Link>
                     </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               </Nav.Link>
               <Nav.Link>
-                <Link to="/about" className="btn-theme-home">About Us</Link>
+                <Link to="/about" className="btn-theme-home">
+                  About Us
+                </Link>
               </Nav.Link>
               <Nav.Link>
-                <Link to="/contact" className="btn-theme-home">Contact Us</Link>
+                <Link to="/contact" className="btn-theme-home">
+                  Contact Us
+                </Link>
               </Nav.Link>
               <Nav.Link className="header-bag">
                 <Link to="/calculator">
@@ -190,8 +246,8 @@ function Header({ profileImage }) {
                         profileImage
                           ? latestProfile
                           : profile
-                            ? imageUrl
-                            : ProfileImage
+                          ? imageUrl
+                          : ProfileImage
                       }
                       alt=""
                     ></img>
@@ -214,7 +270,6 @@ function Header({ profileImage }) {
                       <i className="fa fa-angle-double-right" />{" "}
                       <Link to="/profile">Profile</Link>
                     </Dropdown.Item>
-
                   </Dropdown.Menu>
                 </Dropdown>
               </Nav.Link>
@@ -240,25 +295,35 @@ function Header({ profileImage }) {
         </Container>
       </Navbar>
 
-
       <Modal show={shownotifications} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Notifications</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <tbody>
-            {notifications ? notifications.map((items, index) => (
-              <tr key={index}>
-                <td><img src={"https://veejayjewels.com/storage/app/public/notification/" + items.image} /></td>
-                <td className="p-2">{items.title}<br />{items.description}</td>
-              </tr>
-            )) : ""}
+            {notifications
+              ? notifications.map((items, index) => (
+                  <tr key={index}>
+                    <td>
+                      <img
+                        src={
+                          "https://veejayjewels.com/storage/app/public/notification/" +
+                          items.image
+                        }
+                      />
+                    </td>
+                    <td className="p-2">
+                      {items.title}
+                      <br />
+                      {items.description}
+                    </td>
+                  </tr>
+                ))
+              : ""}
           </tbody>
         </Modal.Body>
-
       </Modal>
     </>
-
   );
 }
 

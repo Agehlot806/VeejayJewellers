@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "../../directives/header";
 import { Link } from "react-router-dom";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { Container, Row, Col, Form, Button, Modal } from "react-bootstrap";
 import { AnimationOnScroll } from "react-animation-on-scroll";
 import Carousel from "react-multi-carousel";
 import "animate.css/animate.min.css";
@@ -36,7 +36,6 @@ import homeBanner2 from "../../assets/images/banner/home-banner2.png";
 import { BASE_URL } from "../../Constant/Index";
 import "../../assets/css/alert.css";
 import toast, { Toaster } from "react-hot-toast";
-
 
 const clinetreview = {
   desktop: {
@@ -85,9 +84,12 @@ function Home(props) {
   const [secondbanner, setsecondbanner] = useState([]);
   const [thirdbanner, setthirdbanner] = useState([]);
   const [bangledata, setbangledata] = useState([]);
+  const [show, setShow] = useState(false);
+
 
   const [showAlert, setShowAlert] = useState(localStorage.getItem("status"));
   const loginId = localStorage.getItem("id");
+  const phone = localStorage.getItem("phone");
 
   // const profile = localStorage.getItem("profileImage");
   const handleDismiss = () => {
@@ -101,6 +103,9 @@ function Home(props) {
       .then((jsonData) => setData(jsonData.data))
       .catch((error) => console.error("An error occurred:", error));
   }, []);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   useEffect(() => {
     categorys();
@@ -235,30 +240,28 @@ function Home(props) {
       });
   };
 
-
   const addToWishlist = async (product_id) => {
     const formData = new FormData();
     formData.append("id", loginId);
     formData.append("product_id", product_id);
     axios
-      .post(`https://veejayjewels.com/api/v1/customer/wish-list/add-to-wishlist`, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
+      .post(
+        "https://veejayjewels.com/api/v1/customer/wish-list/add-to-wishlist",
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      )
       .then((response) => {
-        console.log("response143", response);
+        console.log("Response:", response);
         if (response.data.message) {
           toast.success(response.data.message);
-
         }
-
       })
       .catch((error) => {
         toast.error("Already in your wishlist");
       });
   };
-
-
-
   const [email, setEmail] = useState("");
   const [responseMessage, setResponseMessage] = useState("");
 
@@ -267,7 +270,8 @@ function Home(props) {
     const data = {
       email: email,
     };
-    axios.post("https://veejayjewels.com/api/v1/auth/newsletter", data)
+    axios
+      .post("https://veejayjewels.com/api/v1/auth/newsletter", data)
       .then((response) => {
         setResponseMessage(response.data.message);
         toast.success("Add Successfull");
@@ -282,7 +286,11 @@ function Home(props) {
     <>
       <Toaster />
       <Header />
-
+      <div className="text-center mt-3">
+        <Button className="showSize1" onClick={handleShow}>
+          Popup
+        </Button>
+      </div>
       <div className="home-bg">
         <div className="home-area">
           <Container>
@@ -314,7 +322,11 @@ function Home(props) {
                     scelerisque mi, ac sed lacus aliquam at tortor. Risus nulla
                     massa ut vitae phasellus dictum.
                   </p>
-                  <Link to="/login" className="btn-theme-4">Login</Link>
+                  {phone ? null : (
+                    <Link to="/login" className="btn-theme-4">
+                      Login
+                    </Link>
+                  )}
                   <Link to="/custom-design" className="btn-theme-5">
                     <i className="fa fa-qrcode" /> Custom design
                   </Link>
@@ -409,50 +421,44 @@ function Home(props) {
       </section>
       <section className="section-padding"></section>
 
-      <section className="section-padding">
+      <section className="section-padding bestseller">
+        <div className="bangleHome">
+          <h4 className="main-heading">Veejay Jewels Brand</h4>
+        </div>
         <Container>
-          <Row className="justify-content-center">
-            <Col lg={7}>
-              <div className="bestseller">
-                <h4 className="main-heading">Veejay Jewels Brands </h4>
-              </div>
-            </Col>
-          </Row>
-          <Row className="mt-3 justify-content-center">
+          <Carousel
+            swipeable={true}
+            draggable={true}
+            showDots={true}
+            responsive={clinetreview}
+            ssr={true} // means to render carousel on server-side.
+            infinite={true}
+            autoPlay={props.deviceType !== "mobile" ? true : false}
+            autoPlaySpeed={1000}
+            keyBoardControl={true}
+            customTransition="all 1s"
+            transitionDuration={1000}
+            containerClass="carousel-container"
+            removeArrowOnDeviceType={["tablet", "mobile"]}
+            deviceType={props.deviceType}
+            dotListClass="custom-dot-list-style"
+            itemClass="carousel-item-padding-40-px"
+          >
+
             {brandcategories.map((item) => (
-              <Col lg={4} sm={4} xs={6} className="mb-3" key={item.id}>
+              <div key={item.id}>
                 <Link to={`/products/${item.name}`}>
                   <div className="brandsCard">
                     <img src={item.image} alt="" />
                     <h3>{item.name}</h3>
-                    {/* <Link to={`/products/${item.id}/${item.name}`}> */}
-                    {/* <Link to="/products">
-                    <i className="fa fa-angle-double-right" /> Read More
-                  </Link> */}
-                    {/* {item.name === "Aaraha"
-                    ? <Link to='/ARHA-brands'><i className="fa fa-angle-double-right" /> Read More</Link>
-                    :
-                      item.name === "Vedanta" ? <Link to='/VDANA-brands'><i className="fa fa-angle-double-right" /> Read More</Link>
-                        : <Link to='/IRKA-brands'><i className="fa fa-angle-double-right" /> Read More</Link>
-                    } */}
                   </div>
                 </Link>
-              </Col>
-            ))}
-            {/* <Col lg={4} sm={6} className='mb-3'>
-                <div className="brandsCard">
-                  <h3></h3>
-                  <Link to='/VDANA-brands'><i className="fa fa-angle-double-right" /> Read More</Link>
-                </div>
-            </Col>
-            <Col lg={4} sm={6} className='mb-3'>
-              <div className="brandsCard">
-                <h3>Brand IRKA Category</h3>
-                <Link to='/IRKA-brands'><i className="fa fa-angle-double-right" /> Read More</Link>
               </div>
-            </Col> */}
-          </Row>
+            ))}
+
+          </Carousel>
         </Container>
+
       </section>
       <section className="sliderBangle">
         <Container fluid className="p-0">
@@ -499,19 +505,24 @@ function Home(props) {
                           <Link to={`/product-details/${item.id}`}>
                             <div className="mainProductcard">
                               <div className="like-icon">
-                                <i class="fa fa-heart-o" onClick={() => addToWishlist(item.id)} />
+                              <i
+  className="fa fa-heart-o"
+  onClick={() => addToWishlist(item.id)}
+/>
                               </div>
                               <img src={cleanImageUrl(item.image)} />
                               <h4>{item.name}</h4>
                               <p>
                                 {item.unit_value} {item.unit}
                               </p>
-                              <span>Karat : {item.purity}</span><br />
+                              <span>Karat : {item.purity}</span>
+                              <br />
                               <span>Design Num : {item.design}</span>
                               <div className="product-btnarea">
                                 <Link
                                   to={`/product-details/${item.id}`}
-                                  className="product-addBtn">
+                                  className="product-addBtn"
+                                >
                                   View Products
                                 </Link>
                               </div>
@@ -578,29 +589,6 @@ function Home(props) {
             </Col>
           </Row>
 
-          {/* <Row className="mt-4 mb-4">
-            {latestproduct &&
-              latestproduct.map((item) => (
-                <Col lg={3} sm={4} xs={6} className="mb-5">
-                  <div className="bestseller-card" key={item.id}>
-                    <div className="bestseller-cardImg">
-
-                      <img src={cleanImageUrl(item.image)} alt="" />
-                    </div>
-                  </div>
-                  <div className="bestseller-cardText">
-                    <h5>{item.name}</h5>
-                    <p>{item.unit}</p>
-                    <div className="product-btnarea">
-                      <Link to={`/product-details/${item.id}`} className="product-addBtn">
-                        View Products
-                      </Link>
-                    </div>
-                  </div>
-                </Col>
-              ))}
-
-          </Row> */}
           <Row className="mt-3 mb-3">
             {latestproduct &&
               latestproduct.map((item) => (
@@ -608,14 +596,18 @@ function Home(props) {
                   <div className="mainProductcard" key={item.id}>
                     {/* <Link to={`/product-details/${item.id}`}> */}
                     <div className="like-icon">
-                      <i class="fa fa-heart-o" onClick={(id) => addToWishlist(item.id)} />
+                    <i
+  className="fa fa-heart-o"
+  onClick={() => addToWishlist(item.id)}
+/>
                     </div>
                     <img src={cleanImageUrl(item.image)} />
                     <h4>{item.name}</h4>
                     <p>
                       {item.unit_value} {item.unit}
                     </p>
-                    <span>Karat : {item.purity}</span><br />
+                    <span>Karat : {item.purity}</span>
+                    <br />
                     <span>Design Num : {item.design}</span>
                     <div className="product-btnarea">
                       <Link
@@ -631,7 +623,10 @@ function Home(props) {
               ))}
           </Row>
           <div className="text-center">
-            <Link to="/products" className="main-btn">
+            <Link
+              to={phone ? `/products/${"AllProduct"}` : "/login"}
+              className="main-btn"
+            >
               <i className="fa fa-angle-double-right" /> See All Jewelery
             </Link>
           </div>
@@ -689,7 +684,7 @@ function Home(props) {
             <Col lg={6} xs={6}>
               <div className="New-ProductsLink">
                 <h5>
-                  <Link to="/products">
+                  <Link to={phone ? `/products/${"AllProduct"}` : "/login"}>
                     Get Similiar Product{" "}
                     <i className="fa fa-long-arrow-right" />
                   </Link>
@@ -704,20 +699,26 @@ function Home(props) {
                   <div className="mainProductcard" key={item.id}>
                     {/* <Link to={`/product-details/${item.id}`}> */}
                     <div className="like-icon">
-                      <i class="fa fa-heart-o" onClick={(id) => addToWishlist(item.id)} />
+                    <i
+  className="fa fa-heart-o"
+  onClick={() => addToWishlist(item.id)}
+/>
                     </div>
                     <img src={cleanImageUrl(item.image)} />
                     <h4>{item.name}</h4>
                     <p>
                       {item.unit_value} {item.unit}
                     </p>
-                    <span>Karat : {item.purity}</span><br />
+                    <span>Karat : {item.purity}</span>
+                    <br />
                     <span>Design Num : {item.design}</span>
                     <div className="product-btnarea">
-                      <Link to={`/product-details/${item.id}`} className="product-addBtn">
+                      <Link
+                        to={`/product-details/${item.id}`}
+                        className="product-addBtn"
+                      >
                         View Products
                       </Link>
-
                     </div>
                     {/* </Link> */}
                   </div>
@@ -747,7 +748,7 @@ function Home(props) {
                   </Col>
                   <Col lg={6} xs={6}>
                     <h6>
-                      <Link to="/women">
+                      <Link to={phone ? "/women" : "/login"}>
                         Explore More <i className="fa fa-angle-right" />
                       </Link>
                     </h6>
@@ -764,7 +765,7 @@ function Home(props) {
                   </Col>
                   <Col lg={6} xs={6}>
                     <h6>
-                      <Link to="/men">
+                      <Link to={phone ? "/men" : "/login"}>
                         Explore More <i className="fa fa-angle-right" />
                       </Link>
                     </h6>
@@ -781,7 +782,7 @@ function Home(props) {
                   </Col>
                   <Col lg={6} xs={6}>
                     <h6>
-                      <Link to="/kids">
+                      <Link to={phone ? "/kids" : "/login"}>
                         Explore More <i className="fa fa-angle-right" />
                       </Link>
                     </h6>
@@ -904,15 +905,21 @@ function Home(props) {
                       <h1 className="main-head">
                         Signup To be a veejay jewels insider
                       </h1>
-                      <Form className="subscribt-area" >
+                      <Form className="subscribt-area">
                         <Form.Control
                           type="search"
                           placeholder="Enter your email"
                           className="me-2"
                           aria-label="Search"
-                          value={email} onChange={(e) => setEmail(e.target.value)}
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
                         />
-                        <Button variant="outline-success" onClick={handleSubmit}>Subscribe</Button>
+                        <Button
+                          variant="outline-success"
+                          onClick={handleSubmit}
+                        >
+                          Subscribe
+                        </Button>
                         {/* {responseMessage && <p>{responseMessage}</p>} */}
                       </Form>
                     </div>
@@ -924,6 +931,32 @@ function Home(props) {
         </Container>
       </section>
       <Footer />
+
+
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+        className="order-confi"
+      >
+        <Modal.Body>
+          <div className="show-area">
+            <div className="show-areatext">
+              <div className="text-center">
+                <h3>Session Expired</h3>
+              </div>
+            </div>
+
+            <div className="verify-popup">
+              <h4>Please Verify Again</h4>
+              <Button variant="btn" onClick={handleClose}>
+                Verify
+              </Button>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
     </>
   );
 }
