@@ -2388,6 +2388,7 @@ table.productDetailTable.table tr td label {
   background: #fff;
   border: 1px solid #93620747;
   padding: 10px;
+  text-align: center;
 }
 .showSizearea {
   padding: 10px 140px 30px;
@@ -2964,4 +2965,8 @@ p.emptyMSG {
 .semi-produ-img img {
   width: 90px;
   height: 90px;
+}
+.navbar-toggler {
+    padding: 2px !important;
+    border: none !important;
 }

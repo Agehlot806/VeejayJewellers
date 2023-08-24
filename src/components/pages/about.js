@@ -37,12 +37,12 @@ function About() {
             <section className='section-padding'>
                 <Container>
                     <Row>
-                        <Col lg={5} className='align-self-center'>
+                        <Col lg={5} sm={5} className='align-self-center'>
                             <div className='aboutImg'>
                                 <img src={about} />
                             </div>
                         </Col>
-                        <Col lg={7}>
+                        <Col lg={7} sm={7}>
                             <div className='about-content'>
                                     <h1>About “VEEJAY JEWELLERS”</h1>
                                 <p><b>Mauris blandit aliquet elit eget tincidunt nibh pulvinar uisque velit
@@ -81,7 +81,7 @@ function About() {
             <section className='section-padding'>
                 <Container>
                     <Row>
-                        <Col lg={4}>
+                        <Col lg={4} sm={4}>
                             <div className='theme-card'>
                                 <div className='theme-cardImg'>
                                     <img src={about1} />
@@ -93,12 +93,12 @@ function About() {
                                 </div>
                             </div>
                         </Col>
-                        <Col lg={4} className='align-self-center'>
+                        <Col lg={4} sm={4} className='align-self-center'>
                             <div className='aboutCenterImg'>
                                 <img src={about2} />
                             </div>
                         </Col>
-                        <Col lg={4}>
+                        <Col lg={4} sm={4}>
                             <div className='theme-cardHead'>
                                     <h3>Our Goals</h3>
                                 <p>Metus natoquefui sociis tempor facili tempus ridiclus porta porttitor feugiat consequat.</p>

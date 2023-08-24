@@ -80,7 +80,7 @@ function Women() {
                   {womendata ? (
                     womendata.map((item, index) => (
                       item.type === 'women' && (
-                        <Col lg={4} className='mt-2 mb-2'>
+                        <Col lg={4} sm={6} xs={6} className='mt-2 mb-2'>
                           <div className='catlogOne'>
                             <Row>
                               <Link to={"https://veejayjewels.com/storage/app/public/pdf/" + item.file}>
@@ -100,7 +100,7 @@ function Women() {
               </div>
               <div className="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                 <Row>
-                  <Col lg={4} className='mt-2 mb-2'>
+                  <Col lg={4} sm={6} xs={6} className='mt-2 mb-2'>
                     <div className='catlogOne'>
                       <Row>
                         <Link to={"https://veejayjewels.com/storage/app/public/pdf/" + file}>

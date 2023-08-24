@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "../../directives/header";
-import { Button, Modal, Col, Row, Table } from "react-bootstrap";
+import { Button, Modal, Col, Row, Table, Container } from "react-bootstrap";
 import logo from "../../assets/images/logo/logo.png";
 import Footer from "../../directives/footer";
 import border from "../../assets/images/banner/border.png";
@@ -143,6 +143,7 @@ function Orderinvoice() {
     <>
       <Header />
       <section className="section-padding">
+        <Container>
         <Row className="justify-content-center mb-3">
           <Col lg={5}>
             <div className="invoice-cardnew-area">
@@ -215,6 +216,7 @@ function Orderinvoice() {
             </div>
           </Col>
         </Row>
+        </Container>
         {/* <div className="text-center">
           <Link className="showSize" onClick={handleShow}>
             Submit
