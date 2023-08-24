@@ -333,7 +333,7 @@ function ProductDetails(props) {
                     <Row>
                       {image && image.length > 0 ? (
                         image.map((item, index) => (
-                          <Col sm={3} className="mb-3" key={index}>
+                          <Col sm={3} xs={4} className="mb-3" key={index}>
                             <div
                               className="semi-produ-img"
                               onClick={() => handleThumbnailClick(index)}
@@ -385,7 +385,7 @@ function ProductDetails(props) {
               </Col>
 
 
-              <Col lg={6} sm={6}>
+              <Col lg={6}>
                 <Table className="productDetailTable">
                   <tbody>
                     <tr>

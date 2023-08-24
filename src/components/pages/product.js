@@ -558,6 +558,7 @@ function Product(props) {
                                     dataList.map((item) => (
                                       <Col
                                         lg={4}
+                                        xs={6}
                                         className="mb-4"
                                         key={item.id}
                                       >

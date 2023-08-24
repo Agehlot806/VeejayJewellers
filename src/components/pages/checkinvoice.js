@@ -138,10 +138,10 @@ function Checkinvoice() {
 
                     <div className="mainProductcard">
                       <Row >
-                        <Col lg={4}>
+                        <Col lg={4} sm={4}>
                           <img src={logo} />
                         </Col>
-                        <Col lg={8}>
+                        <Col lg={8} sm={8}>
                           <div style={{textAlign:"left"}}>
                             <h4>Order Id: {item.id}  <span>Date:  {getDateFromCreatedAt(item.created_at)}</span></h4>
                             <h4>Order Status: {item.order_status}</h4>

@@ -314,12 +314,12 @@ function Addcart() {
                   {carddata
                     ? carddata.map((item, index) => (
                         <Row className="align-self-center mb-3" key={index}>
-                          <Col lg={4} xs={3}>
+                          <Col lg={4} xs={12}>
                             <div className="add-cart">
                               <img src={item.image} alt={item.product_name} />
                             </div>
                           </Col>
-                          <Col lg={8} xs={6} className="">
+                          <Col lg={8} xs={12} className="">
                             <div className="add-cart-content">
                               <h2>{item.product_name}</h2>
 
