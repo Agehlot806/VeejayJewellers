@@ -34,17 +34,19 @@ function Product(props) {
   const { name } = useParams();
   const [brandcategories, setbrandcategories] = useState([]);
   const [allproduct, setallproduct] = useState([]);
+  console.log("allproduct", allproduct);
   const [thirdbanner, setthirdbanner] = useState([]);
   const [activeCategory, setActiveCategory] = useState(name);
-  console.log("activeCategory", activeCategory);
-  console.log("allproduct", allproduct);
-  console.log("brandcategories", brandcategories);
+  const [wishlistData, setWishlistData] = useState([]);
   const loginId = localStorage.getItem("id");
   const pageSize = 24;
   // const [brandcategories, setBrandCategories] = useState([]);
   const [paginatedCategories, setPaginatedCategories] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [categories, setCategory] = useState([]);
+  const [isFavCheck, setisFavCheck] = useState(false);
+  const [dataList, setDataList] = useState([]);
+
   //   const [activeCategory, setActiveCategory] = useState(name);
 
   useEffect(() => {
@@ -65,6 +67,16 @@ function Product(props) {
     pagination(currentPage);
   }, [allproduct, currentPage]);
 
+  useEffect(() => {
+    if (allproduct.length > 0) {
+      handleWishlist();
+    }
+
+    return () => {
+      setisFavCheck(false);
+    };
+  }, [isFavCheck]);
+
   const [error, setError] = useState([]);
   const categorys = () => {
     axios
@@ -76,20 +88,70 @@ function Product(props) {
         setError(error);
       });
   };
-  const cleanImageUrl = (imageUrl) => {
-    // Remove square brackets and escape characters
-    return imageUrl?.replace(/[\[\]\\"]/g, "");
-  };
   const allProduct = () => {
     axios
       .get(`${BASE_URL}/products/latest`)
       .then((response) => {
         // console.log(response.data);
         setallproduct(response.data.data);
+        fetchWishlistData();
       })
       .catch((error) => {
         // console.error("Error fetching data:", error);
       });
+  };
+  const fetchWishlistData = async () => {
+    try {
+      await axios
+        .get(`${BASE_URL}/customer/wish-list/wishlist/${loginId}`)
+        .then((response) => {
+          console.log("response in whisList", response);
+          setWishlistData(response.data.wishlist);
+          setisFavCheck(true);
+          // handleWishlist();
+        });
+    } catch (error) {
+      console.error("Error fetching wishlist data:", error);
+    }
+  };
+  const handleWishlist = () => {
+    let newArr = [...allproduct];
+    let newArr1 = [...dataList];
+    let filterData = [];
+    if (activeCategory == "AllProduct") {
+      filterData = allproduct.filter((el) => {
+        return wishlistData.some((ele) => {
+          return ele.product_id === el.id;
+        });
+      });
+    } else {
+      filterData = dataList.filter((el) => {
+        return wishlistData.some((ele) => {
+          return ele.product_id === el.id;
+        });
+      });
+    }
+
+    if (filterData.length > 0) {
+      for (let index = 0; index < filterData.length; index++) {
+        const element = filterData[index];
+        const indexData = allproduct.map((ele) => ele.id).indexOf(element.id);
+        console.log("indexData", indexData);
+        if (activeCategory == "AllProduct") {
+          newArr[indexData].isFav = true;
+          setallproduct(newArr);
+        } else {
+          newArr1[indexData].isFav = true;
+          setDataList(newArr1);
+        }
+      }
+    }
+    console.log("filterData", filterData);
+    console.log("newArr", newArr);
+  };
+  const cleanImageUrl = (imageUrl) => {
+    // Remove square brackets and escape characters
+    return imageUrl?.replace(/[\[\]\\"]/g, "");
   };
 
   const allProductreverse = () => {
@@ -122,9 +184,7 @@ function Product(props) {
     setValue(event.target.value);
   };
   const [data, setData] = useState(true);
-  const [dataList, setDataList] = useState([]);
   const [filter, setFilter] = useState(false);
-  console.log("dataList", dataList);
   const handleDataList = async (name) => {
     console.log("handleDataList ======= Callled", name);
     setActiveCategory(name);
@@ -144,6 +204,7 @@ function Product(props) {
 
       const categoryNames = filteredData.map((item) => item.category);
       setCategory(categoryNames);
+      setisFavCheck(true);
     } catch (error) {
       // console.log("Errorr", error);
     }
@@ -203,6 +264,10 @@ function Product(props) {
         console.log("response143", response);
         if (response.data.message) {
           toast.success(response.data.message);
+          let newArr = [...allproduct];
+          const index = allproduct.map((el) => el.id).indexOf(product_id);
+          newArr[index].isFav = true;
+          setallproduct(newArr);
         }
       })
       .catch((error) => {
@@ -241,6 +306,7 @@ function Product(props) {
         // console.log('combinedData',combinedData)
 
         setallproduct(combinedData);
+      setisFavCheck(true);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -462,7 +528,9 @@ function Product(props) {
                             <div className="mainProductcard">
                               <div className="like-icon">
                                 <i
-                                  class="fa fa-heart-o"
+                                  class={
+                                    item.isFav ? "fa fa-heart" : "fa fa-heart-o"
+                                  }
                                   onClick={(id) => {
                                     if (loginId == null) {
                                       toast.error("Please Login first");
@@ -564,7 +632,9 @@ function Product(props) {
                                         <div className="mainProductcard">
                                           <div className="like-icon">
                                             <i
-                                              class="fa fa-heart-o"
+                                              class={
+                                                item.isFav ? "fa fa-heart" : "fa fa-heart-o"
+                                              }
                                               onClick={(id) => {
                                                 if (loginId == null) {
                                                   toast.error(
