@@ -59,7 +59,7 @@ function Allproduct() {
                             <Col lg={3} xs={6} className="mt-4 mb-5">
                                 <div className="bestseller-card">
                                     <div className="bestseller-cardImg">
-                                        <img src={cleanImageUrl(item.image)} alt="" />
+                                        <img src={"https://veejayjewels.com/storage/app/public/product/" + item.single_img} alt="" />
                                     </div>
                                 </div>
                                 <div className="bestseller-cardText">

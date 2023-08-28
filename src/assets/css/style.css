@@ -2824,7 +2824,7 @@ table.productDetailTable.table tr th {
 }
 
 .btn-theme-home {
-  padding: 0 10px;
+  padding: 0 6px;
   display: inline-block;
   position: relative;
   z-index: 5;
@@ -2969,4 +2969,11 @@ p.emptyMSG {
 .navbar-toggler {
     padding: 2px !important;
     border: none !important;
+}
+.verify-area-new i {
+  font-size: 30px;
+  font-weight: 100;
+}
+.verify-area-new a {
+    float: right;
 }

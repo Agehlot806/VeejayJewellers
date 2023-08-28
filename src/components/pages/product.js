@@ -264,10 +264,17 @@ function Product(props) {
         console.log("response143", response);
         if (response.data.message) {
           toast.success(response.data.message);
+          let newArr1 = [...dataList];
           let newArr = [...allproduct];
-          const index = allproduct.map((el) => el.id).indexOf(product_id);
-          newArr[index].isFav = true;
-          setallproduct(newArr);
+          if (activeCategory == "AllProduct") {
+            const index = allproduct.map((el) => el.id).indexOf(product_id);
+            newArr[index].isFav = true;
+            setallproduct(newArr);
+          } else {
+            const index = allproduct.map((el) => el.id).indexOf(product_id);
+            newArr1[index].isFav = true;
+            setDataList(newArr1);
+          }
         }
       })
       .catch((error) => {
@@ -306,7 +313,7 @@ function Product(props) {
         // console.log('combinedData',combinedData)
 
         setallproduct(combinedData);
-      setisFavCheck(true);
+        setisFavCheck(true);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -495,7 +502,7 @@ function Product(props) {
                                 }}
                               />
                             </div>
-                            <img src={cleanImageUrl(item.image)} />
+                            <img src={"https://veejayjewels.com/storage/app/public/product/" + item.single_img} />
                             <h4>{item.name}</h4>
                             <p>
                               {item.unit_value} {item.unit}
@@ -540,7 +547,7 @@ function Product(props) {
                                   }}
                                 />
                               </div>
-                              <img src={cleanImageUrl(item.image)} />
+                              <img src={"https://veejayjewels.com/storage/app/public/product/" + item.single_img} />
                               <h4>{item.name}</h4>
                               <p>
                                 {item.unit_value} {item.unit}
@@ -634,7 +641,9 @@ function Product(props) {
                                           <div className="like-icon">
                                             <i
                                               class={
-                                                item.isFav ? "fa fa-heart" : "fa fa-heart-o"
+                                                item.isFav
+                                                  ? "fa fa-heart"
+                                                  : "fa fa-heart-o"
                                               }
                                               onClick={(id) => {
                                                 if (loginId == null) {
@@ -648,7 +657,7 @@ function Product(props) {
                                             />
                                           </div>
                                           <img
-                                            src={cleanImageUrl(item.image)}
+                                            src={"https://veejayjewels.com/storage/app/public/product/" + item.single_img}
                                             alt={item.name}
                                           />
                                           <h4>{item.name}</h4>
@@ -780,7 +789,7 @@ function Product(props) {
                                         />
                                       </div>
                                       <img
-                                        src={cleanImageUrl(item.image)}
+                                        src={"https://veejayjewels.com/storage/app/public/product/" + item.single_img}
                                         alt={item.name}
                                       />
                                       <h4>{item.name}</h4>

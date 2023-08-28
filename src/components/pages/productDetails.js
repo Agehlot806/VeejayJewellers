@@ -515,7 +515,7 @@ function ProductDetails(props) {
                       <div className="like-icon">
                         <i class="fa fa-heart-o" />
                       </div>
-                      <img src={cleanImageUrl(item.image)} alt="" />
+                      <img src={"https://veejayjewels.com/storage/app/public/product/" + item.single_img} alt="" />
                       <h4>{item.name}</h4>
                       <p>
                         {item.unit_value} {item.unit}

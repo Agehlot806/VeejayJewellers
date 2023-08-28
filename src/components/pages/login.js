@@ -33,14 +33,15 @@ function Login() {
           if (data.errors && data.errors[0].message) {
             toast.error("Invalid credential");
           }
-          localStorage.setItem("id", data.data.id);
-          localStorage.setItem("city", data.data.city);
-          localStorage.setItem("pincode", data.data.pincode);
-          localStorage.setItem("status", data.data.status);
-          localStorage.setItem("state", data.data.state);
-          localStorage.setItem("profileImage", data.data.image);
-          localStorage.setItem("address", data.data.address);
-          localStorage.setItem("phone", data.data.phone);
+          localStorage.setItem("id", data.data[0].id);
+          localStorage.setItem("name", `${data.data[0].f_name} ${data.data[0].l_name}`);
+          localStorage.setItem("city", data.data[0].city);
+          localStorage.setItem("pincode", data.data[0].pincode);
+          localStorage.setItem("status", data.data[0].status);
+          localStorage.setItem("state", data.data[0].state);
+          localStorage.setItem("profileImage", data.data[0].image);
+          localStorage.setItem("address", data.data[0].address);
+          localStorage.setItem("phone", data.data[0].phone);
           if (data.message === "Login Successfull") {
             navigate("/");
             toast.success("Login Successful");

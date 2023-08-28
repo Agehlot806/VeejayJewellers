@@ -16,7 +16,7 @@ import React, { useEffect, useState } from "react";
 import { BASE_URL } from "../Constant/Index";
 import ProfileImage from "../assets/images/icons/Profile.png";
 
-function Header({ profileImage }) {
+function Header(props) {
   const navigate = useNavigate();
   const [brandcategories, setbrandcategories] = useState([]);
   const [shownotifications, setShownotifications] = useState(false);
@@ -24,13 +24,16 @@ function Header({ profileImage }) {
   const profile = localStorage.getItem("profileImage");
   // const uploadImageURL = localStorage.getItem("uploadImageURL");
   const imageUrl = `https://veejayjewels.com/public/${profile}`;
-  const latestProfile = `https://veejayjewels.com/public/${profileImage}`;
+  const latestProfile = `https://veejayjewels.com/public/${props.profileImage}`;
   // console.log("imageUrl", profile, profileImage);
   const phone = localStorage.getItem("phone");
   const loginId = localStorage.getItem("id");
+  const userStatus = localStorage.getItem("status");
 
   useEffect(() => {
-    categorys();
+    if (phone) {
+      categorys();
+    }
     notification();
   }, []);
 
@@ -59,12 +62,16 @@ function Header({ profileImage }) {
       });
   };
 
+  const onPressVerify = () => {
+    console.log("onPressVerify Called");
+    props.setShow(true);
+  };
   const handleClose = () => setShownotifications(false);
   const handleShow = () => setShownotifications(true);
   return (
     <>
       <Navbar bg="white" expand="lg" className="header-bg">
-        <Container fluid>
+        <Container>
           <div className="header-rate">
             <Navbar.Brand>
               <Link to="/">
@@ -131,32 +138,56 @@ function Header({ profileImage }) {
               </Nav.Link>
 
               <Nav.Link>
-                <Link
-                  to={phone ? `/products/${"AllProduct"}` : "/login"}
-                  className="btn-theme-home"
-                >
-                  Products
-                </Link>
+                {userStatus == "unverified" ? (
+                  <a className="btn-theme-home" onClick={() => onPressVerify()}>
+                    Products
+                  </a>
+                ) : (
+                  <Link
+                    to={phone ? `/products/${"AllProduct"}` : "/login"}
+                    className="btn-theme-home"
+                  >
+                    Products
+                  </Link>
+                )}
               </Nav.Link>
               <Nav.Link>
-                <Dropdown className="btn-theme-home">
-                  <Dropdown.Toggle id="dropdown-basic">
+                {userStatus == "unverified" ? (
+                  <a className="btn-theme-home" onClick={() => onPressVerify()}>
                     Category's
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    {brandcategories.length > 0 &&
-                      brandcategories.map((item) => (
-                        <Dropdown.Item href="" key={item.id}>
-                          <i className="fa fa-angle-double-right" />
-                          <Link
-                            to={phone ? `/products/${item.name}` : "/login"}
-                          >
-                            {item.name}
-                          </Link>
-                        </Dropdown.Item>
-                      ))}
-                  </Dropdown.Menu>
-                </Dropdown>
+                  </a>
+                ) : phone ? (
+                  <Dropdown className="btn-theme-home">
+                    <Dropdown.Toggle id="dropdown-basic">
+                      Category's
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      {brandcategories.length > 0 &&
+                        brandcategories.map((item) => (
+                          <Dropdown.Item href="" key={item.id}>
+                            <i className="fa fa-angle-double-right" />
+                            <Link
+                              to={
+                                phone
+                                  ? `/products/${item.name}`
+                                  : userStatus == "unverified"
+                                  ? onPressVerify()
+                                  : "/login"
+                              }
+                            >
+                              {item.name}
+                            </Link>
+                          </Dropdown.Item>
+                        ))}
+                    </Dropdown.Menu>
+                  </Dropdown>
+                ) : (
+                  <Nav.Link>
+                    <Link to={"/login"} className="btn-theme-home">
+                      Category's
+                    </Link>
+                  </Nav.Link>
+                )}
               </Nav.Link>
               {/* <Nav.Link>
                 <Dropdown>
@@ -190,46 +221,82 @@ function Header({ profileImage }) {
                 </Dropdown>
               </Nav.Link> */}
               <Nav.Link>
-                <Dropdown className="btn-theme-home">
-                  <Dropdown.Toggle id="dropdown-basic">
+                {userStatus == "unverified" ? (
+                  <a className="btn-theme-home" onClick={() => onPressVerify()}>
                     Catalogue
-                  </Dropdown.Toggle>
+                  </a>
+                ) : phone ? (
+                  <Dropdown className="btn-theme-home">
+                    <Dropdown.Toggle id="dropdown-basic">
+                      Catalogue
+                    </Dropdown.Toggle>
 
-                  <Dropdown.Menu>
-                    <Dropdown.Item href="">
-                      <i className="fa fa-angle-double-right" />{" "}
-                      <Link to={phone ? "/women" : "/login"}>Women</Link>
-                    </Dropdown.Item>
-                    <Dropdown.Item href="">
-                      <i className="fa fa-angle-double-right" />{" "}
-                      <Link to={phone ? "/men" : "/login"}>Men</Link>
-                    </Dropdown.Item>
-                    <Dropdown.Item href="">
-                      <i className="fa fa-angle-double-right" />{" "}
-                      <Link to={phone ? "/kids" : "/login"}>Kids</Link>
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
+                    <Dropdown.Menu>
+                      <Dropdown.Item href="">
+                        <i className="fa fa-angle-double-right" />{" "}
+                        <Link to={phone ? "/women" : "/login"}>Women</Link>
+                      </Dropdown.Item>
+                      <Dropdown.Item href="">
+                        <i className="fa fa-angle-double-right" />{" "}
+                        <Link to={phone ? "/men" : "/login"}>Men</Link>
+                      </Dropdown.Item>
+                      <Dropdown.Item href="">
+                        <i className="fa fa-angle-double-right" />{" "}
+                        <Link to={phone ? "/kids" : "/login"}>Kids</Link>
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                ) : (
+                  <Nav.Link>
+                    <Link to={"/login"} className="btn-theme-home">
+                      Catalogue
+                    </Link>
+                  </Nav.Link>
+                )}
               </Nav.Link>
               <Nav.Link>
-                <Link to="/about" className="btn-theme-home">
+              {userStatus == "unverified" ? (
+                <Link onClick={() => onPressVerify()} className="btn-theme-home">
                   About Us
                 </Link>
+              ):(
+                <Link to={phone ? `/about` : "/login"} className="btn-theme-home">
+                  About Us
+                </Link>
+              )}
               </Nav.Link>
               <Nav.Link>
-                <Link to="/contact" className="btn-theme-home">
+              {userStatus == "unverified" ? (
+                <Link onClick={() => onPressVerify()} className="btn-theme-home">
                   Contact Us
                 </Link>
+              ):(
+                <Link to={phone ? `/contact` : "/login"} className="btn-theme-home">
+                Contact Us
+              </Link> 
+              )}
               </Nav.Link>
               <Nav.Link className="header-bag">
-                <Link to="/calculator">
+              {userStatus == "unverified" ? (
+                <Link onClick={() => onPressVerify()}>
                   <i className="fa fa-calculator" />
                 </Link>
+              ):(
+                <Link to={phone ? `/calculator` : "/login"}>
+                <i className="fa fa-calculator" />
+              </Link>
+              )}
               </Nav.Link>
               <Nav.Link className="header-bag">
-                <Link to="/add-to-cart">
-                  <i className="fa fa-shopping-bag" />
-                </Link>
+                {userStatus == "unverified" ? (
+                  <a onClick={() => onPressVerify()}>
+                    <i className="fa fa-shopping-bag" />
+                  </a>
+                ) : (
+                  <Link to={phone ? "/add-to-cart" : "/login"}>
+                    <i className="fa fa-shopping-bag" />
+                  </Link>
+                )}
               </Nav.Link>
               <Nav.Link className="header-bag">
                 <i className="fa fa-bell-o" onClick={handleShow}></i>
@@ -243,7 +310,7 @@ function Header({ profileImage }) {
                       className="profile-icon"
                       // src={ProfileImage}
                       src={
-                        profileImage
+                        props.profileImage
                           ? latestProfile
                           : profile
                           ? imageUrl
@@ -256,19 +323,49 @@ function Header({ profileImage }) {
                   <Dropdown.Menu>
                     <Dropdown.Item href="">
                       <i className="fa fa-heart-o" />{" "}
-                      <Link to="/favourite-product">Favourite Product</Link>
+                      {userStatus == "unverified" ? (
+                        <Link
+                        onClick={() => onPressVerify()}
+                      >
+                        Favourite Product
+                      </Link>
+                      ):(
+                      <Link
+                        to={
+                          phone
+                            ? "/favourite-product"
+                            : userStatus == "unverified"
+                            ? onPressVerify()
+                            : "/login"
+                        }
+                      >
+                        Favourite Product
+                      </Link>
+                      )}
                     </Dropdown.Item>
                     <Dropdown.Item href="">
                       <i className="fa fa-angle-double-right" />{" "}
-                      <Link to="/custom-order">Custom Order</Link>
+                      {userStatus == "unverified" ? (
+                      <Link onClick={() => onPressVerify()}>Custom Order</Link>
+                      ):(
+                      <Link to={phone ? "/custom-order" : "/login"}>Custom Order</Link>
+                      )}
                     </Dropdown.Item>
                     <Dropdown.Item href="">
                       <i className="fa fa-angle-double-right" />{" "}
-                      <Link to="/check-invoice">My Order</Link>
+                      {userStatus == "unverified" ? (
+                      <Link onClick={() => onPressVerify()}>My Order</Link>
+                      ):(
+                      <Link to={phone ? "/check-invoice" : "/login"} >My Order</Link>
+                      )}
                     </Dropdown.Item>
                     <Dropdown.Item href="">
                       <i className="fa fa-angle-double-right" />{" "}
-                      <Link to="/profile">Profile</Link>
+                      {userStatus == "unverified" ? (
+                      <Link onClick={() => onPressVerify()}>Profile</Link>
+                      ):(
+                      <Link to={phone ? "/profile" : "/login"} >Profile</Link>
+                      )}
                     </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>

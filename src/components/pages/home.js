@@ -84,17 +84,36 @@ function Home(props) {
   const [secondbanner, setsecondbanner] = useState([]);
   const [thirdbanner, setthirdbanner] = useState([]);
   const [bangledata, setbangledata] = useState([]);
+  const [banglethirddata, setbanglethirdData] = useState([]);
+
+  const userStatus = localStorage.getItem("status");
   const [show, setShow] = useState(false);
-
-
-  const [showAlert, setShowAlert] = useState(localStorage.getItem("status"));
+  const [showAlert, setShowAlert] = useState();
   const loginId = localStorage.getItem("id");
+  const userName = localStorage.getItem("name");
   const phone = localStorage.getItem("phone");
+  const [wishlistData, setWishlistData] = useState([]);
+  const [isFavCheck, setisFavCheck] = useState(false);
 
   // const profile = localStorage.getItem("profileImage");
   const handleDismiss = () => {
     setShowAlert(false);
   };
+
+  useEffect(() => {
+    if (userStatus == "verified") {
+      setShow(false);
+    } else {
+      setShow(true);
+    }
+  }, [userStatus]);
+  useEffect(() => {
+    handleWishlist();
+
+    return () => {
+      setisFavCheck(false);
+    };
+  }, [isFavCheck]);
 
   useEffect(() => {
     // Fetch the data
@@ -141,29 +160,73 @@ function Home(props) {
       console.log(error);
     }
   };
+  const banglethirds = () => {
+    axios
+      .get(`${BASE_URL}/products/latest`)
+      .then((response) => {
+        setbanglethirdData(response.data.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
 
   const fetchlatestProduct = async () => {
     try {
       const response = await fetch(`${BASE_URL}/products/latest`);
       const data = await response.json();
       const latestPosts = data.data.slice(0, 8);
-      console.log("22222", data);
       setlatestproduct(latestPosts);
     } catch (error) {
       console.log(error);
     }
   };
+
   const fetchnewProduct = async () => {
     try {
       const response = await fetch(`${BASE_URL}/products/latest`);
       const data = await response.json();
-      const latestPosts = data.data.slice(0, 4);
+      const latestPosts = data.data;
       setallproduct(latestPosts);
+      fetchWishlistData();
     } catch (error) {
       console.log(error);
     }
   };
 
+  const fetchWishlistData = async () => {
+    try {
+      const response = await axios.get(
+        `https://veejayjewels.com/api/v1/customer/wish-list/wishlist/${loginId}`
+      );
+      setWishlistData(response.data.wishlist);
+      setisFavCheck(true);
+    } catch (error) {
+      console.error("Error fetching wishlist data:", error);
+    }
+  };
+  const handleWishlist = () => {
+    let newArr = [...allproduct];
+    let filterData = [];
+    if (allproduct?.length > 0) {
+      filterData = allproduct.filter((el) => {
+        return wishlistData.some((ele) => {
+          return ele.product_id === el.id;
+        });
+      });
+    }
+
+    if (filterData.length > 0) {
+      for (let index = 0; index < filterData.length; index++) {
+        const element = filterData[index];
+        const indexData = allproduct.map((ele) => ele.id).indexOf(element.id);
+        console.log("indexData in all", indexData);
+        newArr[indexData].isFav = true;
+        setallproduct(newArr);
+      }
+    }
+    console.log("filterData", filterData);
+  };
   const cleanImageUrl = (imageUrl) => {
     // Remove square brackets and escape characters
     return imageUrl.replace(/[\[\]\\"]/g, "");
@@ -179,7 +242,6 @@ function Home(props) {
         console.error("Error fetching data:", error);
       });
   };
-  // console.log("brandcategoriesbrandcategories", data);
 
   useEffect(() => {
     axios
@@ -227,20 +289,7 @@ function Home(props) {
     }
   };
 
-  const [banglethirddata, setbanglethirdData] = useState([]);
-  const banglethirds = () => {
-    axios
-      .get(`${BASE_URL}/products/latest`)
-      .then((response) => {
-        console.log(response.data.data);
-        setbanglethirdData(response.data.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  };
-
-  const addToWishlist = async (product_id) => {
+  const addToWishlist = async (product_id, type) => {
     const formData = new FormData();
     formData.append("id", loginId);
     formData.append("product_id", product_id);
@@ -256,6 +305,13 @@ function Home(props) {
         console.log("Response:", response);
         if (response.data.message) {
           toast.success(response.data.message);
+
+          let newArr = [...allproduct];
+          let newArr1 = [...banglethirddata];
+          let newArr2 = [...latestproduct];
+          const index = allproduct.map((el) => el.id).indexOf(product_id);
+          newArr[index].isFav = true;
+          setallproduct(newArr);
         }
       })
       .catch((error) => {
@@ -281,35 +337,48 @@ function Home(props) {
       });
   };
 
+  const handleVerify = async () => {
+    let formData = new FormData();
+    formData.append("user_id", loginId);
+    formData.append("user_name", userName);
+    await axios
+      .post("https://veejayjewels.com/api/v1/auth/verified_request", formData)
+      .then((res) => {
+        console.log("res in verify", res);
+        toast.success("Verification request sent Succsesfully");
+        setShow(false);
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
+  };
 
   return (
     <>
       <Toaster />
-      <Header />
-      <div className="text-center mt-3">
+      <Header setShow={setShow} />
+      {/* <div className="text-center mt-3">
         <Button className="showSize1" onClick={handleShow}>
           Popup
         </Button>
-      </div>
+      </div> */}
       <div className="home-bg">
         <div className="home-area">
           <Container>
-            <Row className="justify-content-center">
+            {/* <Row className="justify-content-center">
               <Col lg={4}>
-                {showAlert === "unverified" && (
                   <div className="verified-area" role="alert">
-                    {/* <button type="button" className="close" onClick={handleDismiss}>
+                    <button type="button" className="close" onClick={handleDismiss}>
                       <span aria-hidden="true">&times;</span>
-                    </button> */}
+                    </button>
                     <h5>Verification Request</h5>
                     <h6>You are not verified</h6>
                     <div className="ok-btn">
                       <button onClick={handleDismiss}>OK</button>
                     </div>
                   </div>
-                )}
               </Col>
-            </Row>
+            </Row> */}
             <Row>
               <Col lg={7} sm={7}>
                 <div className="home-content">
@@ -327,9 +396,18 @@ function Home(props) {
                       Login
                     </Link>
                   )}
-                  <Link to="/custom-design" className="btn-theme-5">
-                    <i className="fa fa-qrcode" /> Custom design
-                  </Link>
+                  {userStatus == "unverified" ? (
+                    <Link onClick={() => setShow(true)} className="btn-theme-5">
+                      <i className="fa fa-qrcode" /> Custom design
+                    </Link>
+                  ) : (
+                    <Link
+                      to={phone ? `/custom-design` : "/login"}
+                      className="btn-theme-5"
+                    >
+                      <i className="fa fa-qrcode" /> Custom design
+                    </Link>
+                  )}
                 </div>
               </Col>
               <Col lg={5} sm={5} className="align-self-center">
@@ -444,21 +522,27 @@ function Home(props) {
             dotListClass="custom-dot-list-style"
             itemClass="carousel-item-padding-40-px"
           >
-
             {brandcategories.map((item) => (
               <div key={item.id}>
-                <Link to={`/products/${item.name}`}>
-                  <div className="brandsCard">
-                    <img src={item.image} alt="" />
-                    <h3>{item.name}</h3>
-                  </div>
-                </Link>
+                {userStatus == "unverified" ? (
+                  <Link onClick={() => setShow(true)}>
+                    <div className="brandsCard">
+                      <img src={item.image} alt="" />
+                      <h3>{item.name}</h3>
+                    </div>
+                  </Link>
+                ) : (
+                  <Link to={phone ? `/products/${"AllProduct"}` : "/login"}>
+                    <div className="brandsCard">
+                      <img src={item.image} alt="" />
+                      <h3>{item.name}</h3>
+                    </div>
+                  </Link>
+                )}
               </div>
             ))}
-
           </Carousel>
         </Container>
-
       </section>
       <section className="sliderBangle">
         <Container fluid className="p-0">
@@ -499,18 +583,37 @@ function Home(props) {
               <Row>
                 {banglethirddata
                   ? banglethirddata.map(
-                    (item, index) =>
-                      item.name === "Bangle" && (
-                        <Col lg={4} sm={4} xs={6} className="mb-4">
-                          <Link to={`/product-details/${item.id}`}>
+                      (item, index) =>
+                        item.name === "Bangle" && (
+                          <Col lg={4} sm={4} xs={6} className="mb-4">
                             <div className="mainProductcard">
                               <div className="like-icon">
-                              <i
-  className="fa fa-heart-o"
-  onClick={() => addToWishlist(item.id)}
-/>
+                                {userStatus == "unverified" ? (
+                                  <Link onClick={() => setShow(true)}>
+                                    <i
+                                      className={
+                                        item.isFav
+                                          ? "fa fa-heart"
+                                          : "fa fa-heart-o"
+                                      }
+                                    />
+                                  </Link>
+                                ) : (
+                                  <Link>
+                                    <i
+                                      className={
+                                        item.isFav
+                                          ? "fa fa-heart"
+                                          : "fa fa-heart-o"
+                                      }
+                                      onClick={() =>
+                                        addToWishlist(item.id, "Bangle")
+                                      }
+                                    />
+                                  </Link>
+                                )}
                               </div>
-                              <img src={cleanImageUrl(item.image)} />
+                              <img src={"https://veejayjewels.com/storage/app/public/product/" + item.single_img} />
                               <h4>{item.name}</h4>
                               <p>
                                 {item.unit_value} {item.unit}
@@ -519,18 +622,30 @@ function Home(props) {
                               <br />
                               <span>Design Num : {item.design}</span>
                               <div className="product-btnarea">
-                                <Link
-                                  to={`/product-details/${item.id}`}
-                                  className="product-addBtn"
-                                >
-                                  View Products
-                                </Link>
+                                {userStatus == "unverified" ? (
+                                  <Link
+                                    onClick={() => setShow(true)}
+                                    className="product-addBtn"
+                                  >
+                                    View Products
+                                  </Link>
+                                ) : (
+                                  <Link
+                                    to={
+                                      phone
+                                        ? `product-details/${item.id}`
+                                        : "/login"
+                                    }
+                                    className="product-addBtn"
+                                  >
+                                    View Products
+                                  </Link>
+                                )}
                               </div>
                             </div>
-                          </Link>
-                        </Col>
-                      )
-                  )
+                          </Col>
+                        )
+                    )
                   : null}
               </Row>
             </div>
@@ -560,13 +675,13 @@ function Home(props) {
           >
             {secondbanner
               ? secondbanner.map(
-                (item, index) =>
-                  item.type === "second" && (
-                    <div key={item.id} className="homeBack-bg">
-                      <img src={item.image} alt="" />
-                    </div>
-                  )
-              )
+                  (item, index) =>
+                    item.type === "second" && (
+                      <div key={item.id} className="homeBack-bg">
+                        <img src={item.image} alt="" />
+                      </div>
+                    )
+                )
               : null}
             {/* <div>
               <img src={one} />
@@ -590,18 +705,43 @@ function Home(props) {
           </Row>
 
           <Row className="mt-3 mb-3">
-            {latestproduct &&
-              latestproduct.map((item) => (
+            {allproduct &&
+              allproduct.slice(0, 8).map((item) => (
                 <Col lg={3} sm={4} xs={6} className="mb-4">
                   <div className="mainProductcard" key={item.id}>
-                    {/* <Link to={`/product-details/${item.id}`}> */}
+                    {/* <div className="like-icon">
+                      <i
+                        className={item.isFav ? "fa fa-heart" : "fa fa-heart-o"}
+                        onClick={() => {
+                          if (loginId == null) {
+                            toast.error("Please Login first");
+                          } else {
+                            addToWishlist(item.id, "latest");
+                          }
+                        }}
+                      />
+                    </div> */}
                     <div className="like-icon">
-                    <i
-  className="fa fa-heart-o"
-  onClick={() => addToWishlist(item.id)}
-/>
+                      {userStatus == "unverified" ? (
+                        <Link onClick={() => setShow(true)}>
+                          <i
+                            className={
+                              item.isFav ? "fa fa-heart" : "fa fa-heart-o"
+                            }
+                          />
+                        </Link>
+                      ) : (
+                        <Link>
+                          <i
+                            className={
+                              item.isFav ? "fa fa-heart" : "fa fa-heart-o"
+                            }
+                            onClick={() => addToWishlist(item.id, "Bangle")}
+                          />
+                        </Link>
+                      )}
                     </div>
-                    <img src={cleanImageUrl(item.image)} />
+                    <img src={"https://veejayjewels.com/storage/app/public/product/" + item.single_img}  />
                     <h4>{item.name}</h4>
                     <p>
                       {item.unit_value} {item.unit}
@@ -610,25 +750,39 @@ function Home(props) {
                     <br />
                     <span>Design Num : {item.design}</span>
                     <div className="product-btnarea">
-                      <Link
-                        to={`/product-details/${item.id}`}
-                        className="product-addBtn"
-                      >
-                        View Products
-                      </Link>
+                      {userStatus == "unverified" ? (
+                        <Link
+                          onClick={() => setShow(true)}
+                          className="product-addBtn"
+                        >
+                          View Products
+                        </Link>
+                      ) : (
+                        <Link
+                          to={phone ? `product-details/${item.id}` : "/login"}
+                          className="product-addBtn"
+                        >
+                          View Products
+                        </Link>
+                      )}
                     </div>
-                    {/* </Link> */}
                   </div>
                 </Col>
               ))}
           </Row>
           <div className="text-center">
-            <Link
-              to={phone ? `/products/${"AllProduct"}` : "/login"}
-              className="main-btn"
-            >
-              <i className="fa fa-angle-double-right" /> See All Jewelery
-            </Link>
+            {userStatus == "unverified" ? (
+              <Link onClick={() => setShow(true)} className="main-btn">
+                <i className="fa fa-angle-double-right" /> See All Jewelery
+              </Link>
+            ) : (
+              <Link
+                to={phone ? `/products/${"AllProduct"}` : "/login"}
+                className="main-btn"
+              >
+                <i className="fa fa-angle-double-right" /> See All Jewelery
+              </Link>
+            )}
           </div>
         </Container>
       </section>
@@ -684,27 +838,59 @@ function Home(props) {
             <Col lg={6} xs={6}>
               <div className="New-ProductsLink">
                 <h5>
-                  <Link to={phone ? `/products/${"AllProduct"}` : "/login"}>
-                    Get Similiar Product{" "}
-                    <i className="fa fa-long-arrow-right" />
-                  </Link>
+                  {userStatus == "unverified" ? (
+                    <Link onClick={() => setShow(true)}>
+                      Get Similiar Product{" "}
+                      <i className="fa fa-long-arrow-right" />
+                    </Link>
+                  ) : (
+                    <Link to={phone ? `/products/${"AllProduct"}` : "/login"}>
+                      Get Similiar Product{" "}
+                      <i className="fa fa-long-arrow-right" />
+                    </Link>
+                  )}
                 </h5>
               </div>
             </Col>
           </Row>
           <Row className="mt-4 mb-4">
             {allproduct &&
-              allproduct.map((item) => (
+              allproduct.slice(0, 4).map((item) => (
                 <Col lg={3} sm={4} xs={6} className="mb-4">
                   <div className="mainProductcard" key={item.id}>
-                    {/* <Link to={`/product-details/${item.id}`}> */}
+                    {/* <div className="like-icon">
+                      <i
+                        className={item.isFav ? "fa fa-heart" : "fa fa-heart-o"}
+                        onClick={() => {
+                          if (loginId == null) {
+                            toast.error("Please Login first");
+                          } else {
+                            addToWishlist(item.id, "allproduct");
+                          }
+                        }}
+                      />
+                    </div> */}
                     <div className="like-icon">
-                    <i
-  className="fa fa-heart-o"
-  onClick={() => addToWishlist(item.id)}
-/>
+                      {userStatus == "unverified" ? (
+                        <Link onClick={() => setShow(true)}>
+                          <i
+                            className={
+                              item.isFav ? "fa fa-heart" : "fa fa-heart-o"
+                            }
+                          />
+                        </Link>
+                      ) : (
+                        <Link>
+                          <i
+                            className={
+                              item.isFav ? "fa fa-heart" : "fa fa-heart-o"
+                            }
+                            onClick={() => addToWishlist(item.id, "Bangle")}
+                          />
+                        </Link>
+                      )}
                     </div>
-                    <img src={cleanImageUrl(item.image)} />
+                    <img src={"https://veejayjewels.com/storage/app/public/product/" + item.single_img}/>
                     <h4>{item.name}</h4>
                     <p>
                       {item.unit_value} {item.unit}
@@ -713,14 +899,22 @@ function Home(props) {
                     <br />
                     <span>Design Num : {item.design}</span>
                     <div className="product-btnarea">
-                      <Link
-                        to={`/product-details/${item.id}`}
-                        className="product-addBtn"
-                      >
-                        View Products
-                      </Link>
+                      {userStatus == "unverified" ? (
+                        <Link
+                          onClick={() => setShow(true)}
+                          className="product-addBtn"
+                        >
+                          View Products
+                        </Link>
+                      ) : (
+                        <Link
+                          to={phone ? `product-details/${item.id}` : "/login"}
+                          className="product-addBtn"
+                        >
+                          View Products
+                        </Link>
+                      )}
                     </div>
-                    {/* </Link> */}
                   </div>
                 </Col>
               ))}
@@ -748,9 +942,15 @@ function Home(props) {
                   </Col>
                   <Col lg={6} xs={6}>
                     <h6>
-                      <Link to={phone ? "/women" : "/login"}>
-                        Explore More <i className="fa fa-angle-right" />
-                      </Link>
+                      {userStatus == "unverified" ? (
+                       <Link onClick={() => setShow(true)}>
+                          Explore More <i className="fa fa-angle-right" />
+                        </Link>
+                      ) : (
+                        <Link to={phone ? "/women" : "/login"}>
+                          Explore More <i className="fa fa-angle-right" />
+                        </Link>
+                      )}
                     </h6>
                   </Col>
                 </Row>
@@ -765,9 +965,15 @@ function Home(props) {
                   </Col>
                   <Col lg={6} xs={6}>
                     <h6>
+                    {userStatus == "unverified" ? (
+                       <Link onClick={() => setShow(true)}>
+                         Explore More <i className="fa fa-angle-right" />
+                      </Link>
+                    ):(
                       <Link to={phone ? "/men" : "/login"}>
                         Explore More <i className="fa fa-angle-right" />
                       </Link>
+                    )}
                     </h6>
                   </Col>
                 </Row>
@@ -782,9 +988,15 @@ function Home(props) {
                   </Col>
                   <Col lg={6} xs={6}>
                     <h6>
+                    {userStatus == "unverified" ? (
+                       <Link onClick={() => setShow(true)}>
+                         Explore More <i className="fa fa-angle-right" />
+                      </Link>
+                    ):(
                       <Link to={phone ? "/kids" : "/login"}>
                         Explore More <i className="fa fa-angle-right" />
                       </Link>
+                    )}
                     </h6>
                   </Col>
                 </Row>
@@ -807,7 +1019,8 @@ function Home(props) {
             {posts &&
               posts.map((blog) => (
                 <Col lg={4} sm={4} xs={6} className="mt-2 mb-3">
-                  <Link to="/blog">
+                  {userStatus == "unverified" ? ( 
+                 <Link onClick={() => setShow(true)}>
                     <div className="blogs-card" key={blog.id}>
                       <img
                         src={
@@ -820,13 +1033,34 @@ function Home(props) {
                       <h5>{blog.title}</h5>
                     </div>
                   </Link>
+                  ):(
+                  <Link to={phone ? `/blog` : "/login"}>
+                    <div className="blogs-card" key={blog.id}>
+                      <img
+                        src={
+                          blog.image
+                            ? `https://veejayjewels.com/storage/app/public/banner/${blog.image}`
+                            : blog1
+                        }
+                        alt=""
+                      />
+                      <h5>{blog.title}</h5>
+                    </div>
+                  </Link>
+                  )}
                 </Col>
               ))}
           </Row>
           <div className="text-center mt-3">
-            <Link to="/blog" className="main-btn">
+          {userStatus == "unverified" ? ( 
+            <Link onClick={() => setShow(true)} className="main-btn">
               <i className="fa fa-angle-double-right" /> All Blogs
             </Link>
+            ):(
+              <Link to={phone ? `/blog` : "/login"} className="main-btn">
+              <i className="fa fa-angle-double-right" /> All Blogs
+            </Link>
+            )}
           </div>
         </Container>
       </section>
@@ -881,13 +1115,13 @@ function Home(props) {
             </Row> */}
             {thirdbanner
               ? thirdbanner.map(
-                (item, index) =>
-                  item.type === "thrid" && (
-                    <div key={item.id} className="homeBack-bg">
-                      <img src={item.image} alt="" />
-                    </div>
-                  )
-              )
+                  (item, index) =>
+                    item.type === "thrid" && (
+                      <div key={item.id} className="homeBack-bg">
+                        <img src={item.image} alt="" />
+                      </div>
+                    )
+                )
               : null}
           </Carousel>
         </Container>
@@ -930,8 +1164,7 @@ function Home(props) {
           </Row>
         </Container>
       </section>
-      <Footer />
-
+      <Footer setShow={setShow}/>
 
       <Modal
         show={show}
@@ -943,15 +1176,24 @@ function Home(props) {
         <Modal.Body>
           <div className="show-area">
             <div className="show-areatext">
-              <div className="text-center">
-                <h3>Session Expired</h3>
+              <div className="verify-area-new">
+                <Row>
+                  <Col lg={6}>
+                    <h3>Session Expired</h3>
+                  </Col>
+                  <Col lg={6}>
+                    <a onClick={() => setShow(false)}>
+                      <i class="fa fa-times" aria-hidden="true"></i>
+                    </a>
+                  </Col>
+                </Row>
               </div>
             </div>
 
             <div className="verify-popup">
               <h4>Please Verify Again</h4>
-              <Button variant="btn" onClick={handleClose}>
-                Verify
+              <Button variant="btn" onClick={() => handleVerify()}>
+              Verification Request
               </Button>
             </div>
           </div>
