@@ -68,7 +68,7 @@ function Favouriteproduct() {
                       </div>
                     {/* ))} */}
 
-                    <img src={productArray[0].image[0]} />
+                    <img src={"https://veejayjewels.com/storage/app/public/product/" + productArray[0].single_img} />
                     {/* alt={productArray[0].name} */}
                     <h4>{productArray[0].name}</h4>
                     <p>

@@ -238,7 +238,7 @@ function ProductDetails(props) {
     );
     formData.append(
       "image",
-      "https://veejayjewels.com/storage/app/public/product/" + image
+      "https://veejayjewels.com/storage/app/public/product/" + image[0]
     );
     // for (let pair of formData.entries()) {
     //   console.log(pair[0], pair[1]);
