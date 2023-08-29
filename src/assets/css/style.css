@@ -2977,3 +2977,43 @@ p.emptyMSG {
 .verify-area-new a {
     float: right;
 }
+
+/* This will style the mega dropdown container */
+.mega-dropdown {
+  position: relative;
+}
+
+/* This will style the mega dropdown content */
+.mega-dropdown-content {
+  display: none; /* Hide by default on small screens */
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+  position: absolute;
+  top: 100%;
+  z-index: 1000;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  left: 75%; /* Center the dropdown */
+  transform: translateX(-50%);
+}
+
+/* Show the dropdown content on larger screens */
+@media (min-width: 768px) {
+  .mega-dropdown-content {
+    display: block;
+    width: 100vw;
+    max-width: 1200px; /* Adjust the maximum width as needed */
+  }
+}
+
+/* Style for each column within the mega dropdown */
+.mega-dropdown-content h3 {
+  font-weight: 400;
+  font-size: 16px;
+  color: #000000;
+  font-family: "Playfair Display";
+}
+.dropdown-menu {
+  padding: 0 !important;
+  --bs-dropdown-border-color: none !important;
+}

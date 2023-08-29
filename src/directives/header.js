@@ -7,6 +7,7 @@ import {
   Table,
   Modal,
   Button,
+  Row,
 } from "react-bootstrap";
 import logo from "../assets/images/logo/logo.png";
 import shoppingIcon from "../assets/images/icons/bag-2.png";
@@ -151,7 +152,7 @@ function Header(props) {
                   </Link>
                 )}
               </Nav.Link>
-              <Nav.Link>
+              {/* <Nav.Link>
                 {userStatus == "unverified" ? (
                   <a className="btn-theme-home" onClick={() => onPressVerify()}>
                     Category's
@@ -188,7 +189,53 @@ function Header(props) {
                     </Link>
                   </Nav.Link>
                 )}
+              </Nav.Link> */}
+
+              <Nav.Link>
+                {userStatus === "unverified" ? (
+                  <a className="btn-theme-home" onClick={() => onPressVerify()}>
+                    Category's
+                  </a>
+                ) : phone ? (
+                  <div className="mega-dropdown">
+                    <Dropdown className="btn-theme-home">
+                      <Dropdown.Toggle id="dropdown-basic">
+                        Category's
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        <div className="mega-dropdown-content">
+                          <Row>
+                            {brandcategories.length > 0 &&
+                              brandcategories.map((item) => (
+                                <div className="col-lg-3" key={item.id}>
+                                  <Link
+                              to={
+                                phone
+                                  ? `/products/${item.name}`
+                                  : userStatus == "unverified"
+                                  ? onPressVerify()
+                                  : "/login"
+                              }
+                            >
+                              {item.name}
+                            </Link>
+                                  {/* Add links or other content related to this category */}
+                                </div>
+                              ))}
+                          </Row>
+                        </div>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  </div>
+                ) : (
+                  <Nav.Link>
+                    <Link to={"/login"} className="btn-theme-home">
+                      Category's
+                    </Link>
+                  </Nav.Link>
+                )}
               </Nav.Link>
+
               {/* <Nav.Link>
                 <Dropdown>
                   <Dropdown.Toggle id="dropdown-basic">Product</Dropdown.Toggle>
