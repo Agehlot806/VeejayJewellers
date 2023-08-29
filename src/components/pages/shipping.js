@@ -12,7 +12,7 @@ import axios from "axios";
 import { Input } from "reactstrap";
 
 function Addcart() {
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
   const [order, setOrder] = useState(false);
   const [orderId, setOrderId] = useState(null);
   const handleClose = () => setShow(false);
@@ -406,7 +406,7 @@ function Addcart() {
           </Row>
         </Container>
         <div className="text-center mt-3">
-          <Link className="showSize1" onClick={handleShow}>
+          <Link className="showSize1" onClick={() => handleShow()}>
             Submit
           </Link>
         </div>

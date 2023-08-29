@@ -101,7 +101,7 @@ function Home(props) {
   };
 
   useEffect(() => {
-    if (userStatus == "verified") {
+    if (userStatus == "verified" || userStatus == null) {
       setShow(false);
     } else {
       setShow(true);
@@ -588,7 +588,7 @@ function Home(props) {
                           <Col lg={4} sm={4} xs={6} className="mb-4">
                             <div className="mainProductcard">
                               <div className="like-icon">
-                                {userStatus == "unverified" ? (
+                                {/* {userStatus == "unverified" ? (
                                   <Link onClick={() => setShow(true)}>
                                     <i
                                       className={
@@ -606,14 +606,23 @@ function Home(props) {
                                           ? "fa fa-heart"
                                           : "fa fa-heart-o"
                                       }
-                                      onClick={() =>
-                                        addToWishlist(item.id, "Bangle")
-                                      }
+                                      onClick={(id) => {
+                                        if (loginId == null) {
+                                          toast.error("Please Login first");
+                                        } else {
+                                          addToWishlist(item.id);
+                                        }
+                                      }}
                                     />
                                   </Link>
-                                )}
+                                )} */}
                               </div>
-                              <img src={"https://veejayjewels.com/storage/app/public/product/" + item.single_img} />
+                              <img
+                                src={
+                                  "https://veejayjewels.com/storage/app/public/product/" +
+                                  item.single_img
+                                }
+                              />
                               <h4>{item.name}</h4>
                               <p>
                                 {item.unit_value} {item.unit}
@@ -622,25 +631,12 @@ function Home(props) {
                               <br />
                               <span>Design Num : {item.design}</span>
                               <div className="product-btnarea">
-                                {userStatus == "unverified" ? (
-                                  <Link
-                                    onClick={() => setShow(true)}
-                                    className="product-addBtn"
-                                  >
-                                    View Products
-                                  </Link>
-                                ) : (
-                                  <Link
-                                    to={
-                                      phone
-                                        ? `product-details/${item.id}`
-                                        : "/login"
-                                    }
-                                    className="product-addBtn"
-                                  >
-                                    View Products
-                                  </Link>
-                                )}
+                                <Link
+                                  to={`product-details/${item.id}`}
+                                  className="product-addBtn"
+                                >
+                                  View Products
+                                </Link>
                               </div>
                             </div>
                           </Col>
@@ -736,12 +732,23 @@ function Home(props) {
                             className={
                               item.isFav ? "fa fa-heart" : "fa fa-heart-o"
                             }
-                            onClick={() => addToWishlist(item.id, "Bangle")}
+                            onClick={(id) => {
+                              if (loginId == null) {
+                                toast.error("Please Login first");
+                              } else {
+                                addToWishlist(item.id);
+                              }
+                            }}
                           />
                         </Link>
                       )}
                     </div>
-                    <img src={"https://veejayjewels.com/storage/app/public/product/" + item.single_img}  />
+                    <img
+                      src={
+                        "https://veejayjewels.com/storage/app/public/product/" +
+                        item.single_img
+                      }
+                    />
                     <h4>{item.name}</h4>
                     <p>
                       {item.unit_value} {item.unit}
@@ -750,21 +757,12 @@ function Home(props) {
                     <br />
                     <span>Design Num : {item.design}</span>
                     <div className="product-btnarea">
-                      {userStatus == "unverified" ? (
-                        <Link
-                          onClick={() => setShow(true)}
-                          className="product-addBtn"
-                        >
-                          View Products
-                        </Link>
-                      ) : (
-                        <Link
-                          to={phone ? `product-details/${item.id}` : "/login"}
-                          className="product-addBtn"
-                        >
-                          View Products
-                        </Link>
-                      )}
+                      <Link
+                        to={`product-details/${item.id}`}
+                        className="product-addBtn"
+                      >
+                        View Products
+                      </Link>
                     </div>
                   </div>
                 </Col>
@@ -885,12 +883,23 @@ function Home(props) {
                             className={
                               item.isFav ? "fa fa-heart" : "fa fa-heart-o"
                             }
-                            onClick={() => addToWishlist(item.id, "Bangle")}
+                            onClick={(id) => {
+                              if (loginId == null) {
+                                toast.error("Please Login first");
+                              } else {
+                                addToWishlist(item.id);
+                              }
+                            }}
                           />
                         </Link>
                       )}
                     </div>
-                    <img src={"https://veejayjewels.com/storage/app/public/product/" + item.single_img}/>
+                    <img
+                      src={
+                        "https://veejayjewels.com/storage/app/public/product/" +
+                        item.single_img
+                      }
+                    />
                     <h4>{item.name}</h4>
                     <p>
                       {item.unit_value} {item.unit}
@@ -899,21 +908,12 @@ function Home(props) {
                     <br />
                     <span>Design Num : {item.design}</span>
                     <div className="product-btnarea">
-                      {userStatus == "unverified" ? (
-                        <Link
-                          onClick={() => setShow(true)}
-                          className="product-addBtn"
-                        >
-                          View Products
-                        </Link>
-                      ) : (
-                        <Link
-                          to={phone ? `product-details/${item.id}` : "/login"}
-                          className="product-addBtn"
-                        >
-                          View Products
-                        </Link>
-                      )}
+                      <Link
+                        to={`product-details/${item.id}`}
+                        className="product-addBtn"
+                      >
+                        View Products
+                      </Link>
                     </div>
                   </div>
                 </Col>
@@ -943,7 +943,7 @@ function Home(props) {
                   <Col lg={6} xs={6}>
                     <h6>
                       {userStatus == "unverified" ? (
-                       <Link onClick={() => setShow(true)}>
+                        <Link onClick={() => setShow(true)}>
                           Explore More <i className="fa fa-angle-right" />
                         </Link>
                       ) : (
@@ -965,15 +965,15 @@ function Home(props) {
                   </Col>
                   <Col lg={6} xs={6}>
                     <h6>
-                    {userStatus == "unverified" ? (
-                       <Link onClick={() => setShow(true)}>
-                         Explore More <i className="fa fa-angle-right" />
-                      </Link>
-                    ):(
-                      <Link to={phone ? "/men" : "/login"}>
-                        Explore More <i className="fa fa-angle-right" />
-                      </Link>
-                    )}
+                      {userStatus == "unverified" ? (
+                        <Link onClick={() => setShow(true)}>
+                          Explore More <i className="fa fa-angle-right" />
+                        </Link>
+                      ) : (
+                        <Link to={phone ? "/men" : "/login"}>
+                          Explore More <i className="fa fa-angle-right" />
+                        </Link>
+                      )}
                     </h6>
                   </Col>
                 </Row>
@@ -988,15 +988,15 @@ function Home(props) {
                   </Col>
                   <Col lg={6} xs={6}>
                     <h6>
-                    {userStatus == "unverified" ? (
-                       <Link onClick={() => setShow(true)}>
-                         Explore More <i className="fa fa-angle-right" />
-                      </Link>
-                    ):(
-                      <Link to={phone ? "/kids" : "/login"}>
-                        Explore More <i className="fa fa-angle-right" />
-                      </Link>
-                    )}
+                      {userStatus == "unverified" ? (
+                        <Link onClick={() => setShow(true)}>
+                          Explore More <i className="fa fa-angle-right" />
+                        </Link>
+                      ) : (
+                        <Link to={phone ? "/kids" : "/login"}>
+                          Explore More <i className="fa fa-angle-right" />
+                        </Link>
+                      )}
                     </h6>
                   </Col>
                 </Row>
@@ -1019,47 +1019,47 @@ function Home(props) {
             {posts &&
               posts.map((blog) => (
                 <Col lg={4} sm={4} xs={6} className="mt-2 mb-3">
-                  {userStatus == "unverified" ? ( 
-                 <Link onClick={() => setShow(true)}>
-                    <div className="blogs-card" key={blog.id}>
-                      <img
-                        src={
-                          blog.image
-                            ? `https://veejayjewels.com/storage/app/public/banner/${blog.image}`
-                            : blog1
-                        }
-                        alt=""
-                      />
-                      <h5>{blog.title}</h5>
-                    </div>
-                  </Link>
-                  ):(
-                  <Link to={phone ? `/blog` : "/login"}>
-                    <div className="blogs-card" key={blog.id}>
-                      <img
-                        src={
-                          blog.image
-                            ? `https://veejayjewels.com/storage/app/public/banner/${blog.image}`
-                            : blog1
-                        }
-                        alt=""
-                      />
-                      <h5>{blog.title}</h5>
-                    </div>
-                  </Link>
+                  {userStatus == "unverified" ? (
+                    <Link onClick={() => setShow(true)}>
+                      <div className="blogs-card" key={blog.id}>
+                        <img
+                          src={
+                            blog.image
+                              ? `https://veejayjewels.com/storage/app/public/banner/${blog.image}`
+                              : blog1
+                          }
+                          alt=""
+                        />
+                        <h5>{blog.title}</h5>
+                      </div>
+                    </Link>
+                  ) : (
+                    <Link to={phone ? `/blog` : "/login"}>
+                      <div className="blogs-card" key={blog.id}>
+                        <img
+                          src={
+                            blog.image
+                              ? `https://veejayjewels.com/storage/app/public/banner/${blog.image}`
+                              : blog1
+                          }
+                          alt=""
+                        />
+                        <h5>{blog.title}</h5>
+                      </div>
+                    </Link>
                   )}
                 </Col>
               ))}
           </Row>
           <div className="text-center mt-3">
-          {userStatus == "unverified" ? ( 
-            <Link onClick={() => setShow(true)} className="main-btn">
-              <i className="fa fa-angle-double-right" /> All Blogs
-            </Link>
-            ):(
+            {userStatus == "unverified" ? (
+              <Link onClick={() => setShow(true)} className="main-btn">
+                <i className="fa fa-angle-double-right" /> All Blogs
+              </Link>
+            ) : (
               <Link to={phone ? `/blog` : "/login"} className="main-btn">
-              <i className="fa fa-angle-double-right" /> All Blogs
-            </Link>
+                <i className="fa fa-angle-double-right" /> All Blogs
+              </Link>
             )}
           </div>
         </Container>
@@ -1164,7 +1164,7 @@ function Home(props) {
           </Row>
         </Container>
       </section>
-      <Footer setShow={setShow}/>
+      <Footer setShow={setShow} />
 
       <Modal
         show={show}
@@ -1193,7 +1193,7 @@ function Home(props) {
             <div className="verify-popup">
               <h4>Please Verify Again</h4>
               <Button variant="btn" onClick={() => handleVerify()}>
-              Verification Request
+                Verification Request
               </Button>
             </div>
           </div>

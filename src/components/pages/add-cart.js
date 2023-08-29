@@ -346,7 +346,7 @@ function Addcart() {
       cart: cards.flat(),
     };
     const jsonData = JSON.stringify(cards.flat());
-    await localStorage.setItem('addToCard', jsonData)
+    await localStorage.setItem("addToCard", jsonData);
     console.log(jsonData, "jsonDatajsonData");
 
     // fetch("https://veejayjewels.com/api/v1/products/place", {
@@ -358,7 +358,7 @@ function Addcart() {
     // })
     //   .then((response) => response.json())
     //   .then((data) => {
-        navigate("/shipping");
+    navigate("/shipping");
     //     console.log(data);
     //   })
     //   .catch((error) => {
@@ -437,12 +437,14 @@ function Addcart() {
                   </div>
                 )} */}
 
-                {loginId && carddata.length > 0 ? (
-                  <div className="text-center mt-3">
-                    <button className="showSize" onClick={handlePlaceOrder}>
-                      Proceed...
-                    </button>
-                  </div>
+                {loginId ? (
+                  carddata.length > 0 ? (
+                    <div className="text-center mt-3">
+                      <button className="showSize" onClick={handlePlaceOrder}>
+                        Proceed...
+                      </button>
+                    </div>
+                  ) : null
                 ) : (
                   <div className="text-center mt-3">
                     <button className="showSize" onClick={buttonlogin}>
@@ -452,7 +454,7 @@ function Addcart() {
                 )}
 
                 <div className="text-center mt-3">
-                  <Link className="showSize" to="/products">
+                  <Link className="showSize" to={`/products/${"AllProduct"}`}>
                     Continue Shopping
                   </Link>
                 </div>

@@ -35,8 +35,9 @@ function Product(props) {
   const [brandcategories, setbrandcategories] = useState([]);
   const [allproduct, setallproduct] = useState([]);
   console.log("allproduct", allproduct);
+  const [filterProduct, setfilterProduct] = useState([])
   const [thirdbanner, setthirdbanner] = useState([]);
-  const [activeCategory, setActiveCategory] = useState(name);
+  const [activeCategory, setActiveCategory] = useState('AllProduct');
   const [wishlistData, setWishlistData] = useState([]);
   const loginId = localStorage.getItem("id");
   const pageSize = 24;
@@ -46,21 +47,20 @@ function Product(props) {
   const [categories, setCategory] = useState([]);
   const [isFavCheck, setisFavCheck] = useState(false);
   const [dataList, setDataList] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState([]);
+  console.log("selectedCategory", selectedCategory);
+  console.log("dataList", dataList);
+  console.log("activeCategory", activeCategory);
+  console.log("paginatedCategories", paginatedCategories);
 
   //   const [activeCategory, setActiveCategory] = useState(name);
 
   useEffect(() => {
-    if (
-      activeCategory == "AllProduct" ||
-      typeof activeCategory == "undefined"
-    ) {
-      allProduct();
-    } else {
-      handleDataList(activeCategory);
-    }
+    
+      // allProduct();
     categorys();
     thirdBanner();
-  }, [activeCategory]);
+  }, []);
 
   useEffect(() => {
     // Update the paginated categories whenever brandcategories or currentPage changes
@@ -94,7 +94,9 @@ function Product(props) {
       .then((response) => {
         // console.log(response.data);
         setallproduct(response.data.data);
+        setfilterProduct(response.data.data);
         fetchWishlistData();
+        setSelectedCategory([...selectedCategory, name]);
       })
       .catch((error) => {
         // console.error("Error fetching data:", error);
@@ -124,7 +126,7 @@ function Product(props) {
           return ele.product_id === el.id;
         });
       });
-    } else {
+    } else if(dataList.length > 0) {
       filterData = dataList.filter((el) => {
         return wishlistData.some((ele) => {
           return ele.product_id === el.id;
@@ -161,6 +163,7 @@ function Product(props) {
         // Reverse the array obtained from the API response
         const reversedData = response.data.data.reverse();
         setallproduct(reversedData);
+        setfilterProduct(reversedData);
       })
       .catch((error) => {
         // Handle errors if needed
@@ -185,30 +188,30 @@ function Product(props) {
   };
   const [data, setData] = useState(true);
   const [filter, setFilter] = useState(false);
-  const handleDataList = async (name) => {
-    console.log("handleDataList ======= Callled", name);
-    setActiveCategory(name);
-    // console.log(name);
-    setData(name);
-    try {
-      const response = await fetch(
-        "https://veejayjewels.com/api/v1/products/latest"
-      );
-      const jsonData = await response.json();
-      // Access nested data
-      const nestedData = jsonData.data;
-      // Filter the nested data based on brand
-      const filteredData = nestedData.filter((item) => item.category === name);
-      setDataList(filteredData);
-      setFilter(true);
+  // const handleDataList = async (name) => {
+  //   console.log("handleDataList ======= Callled", name);
+  //   setActiveCategory(name);
+  //   // console.log(name);
+  //   setData(name);
+  //   try {
+  //     const response = await fetch(
+  //       "https://veejayjewels.com/api/v1/products/latest"
+  //     );
+  //     const jsonData = await response.json();
+  //     // Access nested data
+  //     const nestedData = jsonData.data;
+  //     // Filter the nested data based on brand
+  //     const filteredData = nestedData.filter((item) => item.category === name);
+  //     setDataList(filteredData);
+  //     setFilter(true);
 
-      const categoryNames = filteredData.map((item) => item.category);
-      setCategory(categoryNames);
-      setisFavCheck(true);
-    } catch (error) {
-      // console.log("Errorr", error);
-    }
-  };
+  //     const categoryNames = filteredData.map((item) => item.category);
+  //     setCategory(categoryNames);
+  //     setisFavCheck(true);
+  //   } catch (error) {
+  //     // console.log("Errorr", error);
+  //   }
+  // };
 
   // useEffect(() => {
   //   arhaProduct();
@@ -283,7 +286,6 @@ function Product(props) {
   };
 
   const [products, setProducts] = useState([]);
-  console.log("products", products);
   const [selectedPurity, setSelectedPurity] = useState([]); // Default to 24k as an array
   const purities = ["24k", "22k", "21k", "20k"];
 
@@ -313,6 +315,7 @@ function Product(props) {
         // console.log('combinedData',combinedData)
 
         setallproduct(combinedData);
+        setfilterProduct(combinedData);
         setisFavCheck(true);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -337,6 +340,84 @@ function Product(props) {
       setSelectedPurity(selectedPurity.filter((purity) => purity !== value)); // Remove the selected purity
     }
   };
+  const handleCategoryChange = (event) => {
+    const { value, checked } = event.target;
+    console.log("value", value);
+    if (checked) {
+      setCheck(checked)
+      setSelectedCategory([...selectedCategory, value]);
+    } else {
+      setCheck(checked)
+      setSelectedCategory(
+        selectedCategory.filter((purity) => purity !== value)
+      ); 
+    }
+  };
+
+  // useEffect(() => {
+  //   const filterCat = () => {
+  //     selectedCategory.map((name) => {
+  //       const filteredData = allproduct.filter(
+  //         (item) => item.category === name
+  //       );
+  //       if(check){
+  //         console.log('dataList if called')
+  //         const combineData = [...dataList, ...filteredData]
+  //         setDataList([...new Set(combineData)]);
+  //       }else {
+  //         console.log('dataList Else called')
+  //         console.log('dataList Else called',filteredData)
+  //         const data = dataList.filter((el) => {
+  //           return filteredData.some((ele) => {
+  //             return ele.id == el.id
+  //           })
+  //         })
+  //         console.log('dataList data', data)
+  //         console.log('dataList selectedCat', selectedCategory)
+  //         setDataList(data)
+  //       }
+  //       setFilter(true);
+  //       // setDataList(dataList)
+  //       const categoryNames = filteredData.map((item) => item.category);
+  //       setCategory(categoryNames);
+  //       // setisFavCheck(true);
+  //     });
+  //   };
+  //   filterCat();
+  // }, [selectedCategory]);
+  useEffect(() => {
+    const filterCat = () => {
+      const combinedData = [];
+      const categoryNames = [];
+  
+      selectedCategory.forEach((name) => {
+        const filteredData = filterProduct.filter((item) => item.category === name);
+        combinedData.push(...filteredData);
+        categoryNames.push(...filteredData.map((item) => item.category));
+      });
+  
+      const uniqueCombinedData = [...new Set(combinedData)];
+  
+      if (check) {
+        setallproduct(uniqueCombinedData);
+      } else {
+        const newData = allproduct.filter((el) => {
+          return uniqueCombinedData.some((ele) => ele.id === el.id);
+        });
+        setallproduct(newData);
+        if(newData.length == 0){
+          setActiveCategory('AllProduct')
+          setallproduct(filterProduct)
+        }
+      }
+  
+      setCategory([...new Set(categoryNames)]);
+      setFilter(true);
+    };
+  
+    filterCat();
+  }, [selectedCategory]);
+  
 
   const fieldpagerefresh = () => {
     window.location.reload(false);
@@ -378,24 +459,47 @@ function Product(props) {
                         All Product
                       </Nav.Link>
                     </Nav.Item>
-                    {brandcategories.length > 0
-                      ? brandcategories.map((item, index) => (
-                          <Nav.Item key={index}>
-                            <Nav.Link
-                              eventKey={item.name}
-                              onClick={() => {
-                                setActiveCategory(item.name);
-                                setData(item.name);
-                                // handleDataList(item.name)
-                              }}
-                              active={activeCategory === item.name}
-                            >
-                              {item.name}
-                            </Nav.Link>
-                          </Nav.Item>
-                        ))
-                      : null}
-
+                    <div className="checkbox-bg">
+                      {brandcategories.length > 0
+                        ? brandcategories.map((item, index) => (
+                            // <Nav.Item key={index}>
+                            //   <Nav.Link
+                            //     eventKey={item.name}
+                            //     onClick={() => {
+                            //       setActiveCategory(item.name);
+                            //       setData(item.name);
+                            //       // handleDataList(item.name)
+                            //     }}
+                            //     active={activeCategory === item.name}
+                            //   >
+                            //     {item.name}
+                            //   </Nav.Link>
+                            // </Nav.Item>
+                            <div className="form-check">
+                              <input
+                                className="form-check-input"
+                                type="checkbox"
+                                name="exampleRadios"
+                                id="exampleRadios1"
+                                defaultValue="option1"
+                                defaultChecked
+                                value={item.name}
+                                checked={selectedCategory.includes(item.name)}
+                                onChange={(e) => {
+                                  handleCategoryChange(e);
+                                  // setActiveCategory(item.name);
+                                }}
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="exampleRadios1"
+                              >
+                                {item.name}
+                              </label>
+                            </div>
+                          ))
+                        : null}
+                    </div>
                     <h3>Sort by</h3>
                     <div className="checkbox-bg">
                       <div className="form-check">
@@ -481,49 +585,8 @@ function Product(props) {
                 <Tab.Content>
                   <Tab.Pane eventKey={activeCategory}>
                     <Row>
-                      {/* {products.map((item) => (
-                        <Col
-                          lg={4}
-                          sm={4}
-                          xs={6}
-                          className="mb-4"
-                          key={item.id}
-                        >
-                          <div className="mainProductcard" key={item.id}>
-                            <div className="like-icon">
-                              <i
-                                class="fa fa-heart-o"
-                                onClick={(id) => {
-                                  if (loginId == null) {
-                                    toast.error("Please Login first");
-                                  } else {
-                                    addToWishlist(item.id);
-                                  }
-                                }}
-                              />
-                            </div>
-                            <img src={"https://veejayjewels.com/storage/app/public/product/" + item.single_img} />
-                            <h4>{item.name}</h4>
-                            <p>
-                              {item.unit_value} {item.unit}
-                            </p>
-                            <span>Karat : {item.purity}</span>
-                            <br />
-                            <span>Design Num : {item.design}</span>
-                            <div className="product-btnarea">
-                              <Link
-                                to={`/product-details/${item.id}`}
-                                className="product-addBtn"
-                              >
-                                View Products
-                              </Link>
-                            </div>
-                          </div>
-                        </Col>
-                      ))} */}
-                      {/* {products.length === 0 && <p>Product is not available.</p>} */}
-
-                      {activeCategory == "AllProduct" ? (
+                      {
+                       
                         paginatedCategories.map((item) => (
                           <Col
                             lg={4}
@@ -547,7 +610,12 @@ function Product(props) {
                                   }}
                                 />
                               </div>
-                              <img src={"https://veejayjewels.com/storage/app/public/product/" + item.single_img} />
+                              <img
+                                src={
+                                  "https://veejayjewels.com/storage/app/public/product/" +
+                                  item.single_img
+                                }
+                              />
                               <h4>{item.name}</h4>
                               <p>
                                 {item.unit_value} {item.unit}
@@ -566,129 +634,7 @@ function Product(props) {
                             </div>
                           </Col>
                         ))
-                      ) : (
-                        <Row>
-                          <div className="brands-tabs-all">
-                            {/* <ul
-                              className="nav nav-pills mb-3"
-                              id="pills-tab"
-                              role="tablist"
-                            >
-                              <li className="nav-item">
-                                <a
-                                  className="nav-link active"
-                                  id="AllProduct-tab"
-                                  data-toggle="pill"
-                                  href="#AllProduct"
-                                  role="tab"
-                                  aria-controls="AllProduct"
-                                  aria-selected="true"
-                                  eventKey="AllProduct"
-                                  onClick={() => {
-                                    // allProduct()
-                                    setActiveCategory("AllProduct");
-                                    setData("AllProduct");
-                                  }}
-                                >
-                                  All Products
-                                </a>
-                              </li>
-                              {filter && dataList.length > 0
-                                ? dataList.map((item) => (
-                                    <li className="nav-item">
-                                      <a
-                                        className="nav-link"
-                                        id="pills-arha-tab"
-                                        data-toggle="pill"
-                                        href="#pills-arha"
-                                        role="tab"
-                                        aria-controls="pills-profile"
-                                        aria-selected="false"
-                                      >
-                                        <div
-                                          onClick={(e) =>
-                                            SubCategory(
-                                              item.thumnail,
-                                              item.title,
-                                              item.file
-                                            )
-                                          }
-                                        >
-                                          {item.category}
-                                        </div>
-                                      </a>
-                                    </li>
-                                  ))
-                                : null}
-                            </ul> */}
-                            <div className="tab-content" id="pills-tabContent">
-                              <div
-                                className="tab-pane fade show active"
-                                id="arhaallproduct"
-                                role="tabpanel"
-                                aria-labelledby="arhaallproduct-tab"
-                              >
-                                <Row>
-                                  {filter && dataList.length > 0 ? (
-                                    dataList.map((item) => (
-                                      <Col
-                                        lg={4}
-                                        xs={6}
-                                        className="mb-4"
-                                        key={item.id}
-                                      >
-                                        <div className="mainProductcard">
-                                          <div className="like-icon">
-                                            <i
-                                              class={
-                                                item.isFav
-                                                  ? "fa fa-heart"
-                                                  : "fa fa-heart-o"
-                                              }
-                                              onClick={(id) => {
-                                                if (loginId == null) {
-                                                  toast.error(
-                                                    "Please Login first"
-                                                  );
-                                                } else {
-                                                  addToWishlist(item.id);
-                                                }
-                                              }}
-                                            />
-                                          </div>
-                                          <img
-                                            src={"https://veejayjewels.com/storage/app/public/product/" + item.single_img}
-                                            alt={item.name}
-                                          />
-                                          <h4>{item.name}</h4>
-                                          <p>
-                                            {item.unit_value} {item.unit}
-                                          </p>
-                                          <span>Karat : {item.purity}</span>
-                                          <br />
-                                          <span>
-                                            Design Num : {item.design}
-                                          </span>
-                                          <div className="product-btnarea">
-                                            <Link
-                                              to={`/product-details/${item.id}`}
-                                              className="product-addBtn"
-                                            >
-                                              View Products
-                                            </Link>
-                                          </div>
-                                        </div>
-                                      </Col>
-                                    ))
-                                  ) : (
-                                    <div>No data available.</div>
-                                  )}
-                                </Row>
-                              </div>
-                            </div>
-                          </div>
-                        </Row>
-                      )}
+                      }
                     </Row>
                     {/* <Row>
                     </Row> */}

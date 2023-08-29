@@ -9,16 +9,10 @@ import {
   Modal,
   Button,
 } from "react-bootstrap";
-import product6 from "../../assets/images/img/product6.png";
 import Footer from "../../directives/footer";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Carousel from "react-multi-carousel";
-import product1 from "../../assets/images/img/product1.png";
-import productdetails2 from "../../assets/images/img/productdetails2.jpg";
 import bannertwo from "../../assets/images/banner/image 12.png";
-import product2 from "../../assets/images/img/product2.png";
-import product3 from "../../assets/images/img/product3.png";
-import product4 from "../../assets/images/img/product4.png";
 import border from "../../assets/images/banner/border.png";
 import { BASE_URL } from "../../Constant/Index";
 import axios from "axios";
@@ -43,27 +37,8 @@ const clinetreview = {
     slidesToSlide: 1, // optional, default to 1.
   },
 };
-const productdetails = {
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 1,
-    slidesToSlide: 1, // optional, default to 1.
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 1,
-    slidesToSlide: 1, // optional, default to 1.
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1,
-    slidesToSlide: 1, // optional, default to 1.
-  },
-};
 function ProductDetails(props) {
   const [thirdbanner, setthirdbanner] = useState([]);
-  const [quantity1, setQuantity1] = useState(0);
-  const [quantity2, setQuantity2] = useState(0);
   const [show, setShow] = useState(false);
   const [unit, setUnit] = useState("");
   const [unit_value, setunit_value] = useState("");
@@ -73,7 +48,6 @@ function ProductDetails(props) {
   const [image, setImage] = useState("");
   const [description, setdescription] = useState("");
   const [variations, setvariations] = useState("");
-  // const [variationstype, setvariationstype] = useState("")
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [categoies, setCategoies] = useState("");
@@ -82,42 +56,14 @@ function ProductDetails(props) {
 
   const { id } = useParams();
   const addtocard = useNavigate();
-  const [selectedVariant, setSelectedVariant] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [variationstype, setVariationstype] = useState("");
-  const handleIncrementone = () => {
-    setQuantity(quantity + 1);
-  };
-  const handleDecrementone = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
-  };
-  const handleSubmitone = () => {
-    const formData = new FormData();
-    formData.append("user_id", loginId);
-    formData.append("product_id", id);
-    formData.append("product_name", name);
-    formData.append(
-      "variant",
-      JSON.stringify([{ variant: selectedVariant, quantity: quantity }])
-    );
-    formData.append(
-      "image",
-      "https://veejayjewels.com/storage/app/public/product/" + image
-    );
-    axios
-      .post(`${BASE_URL}/products/add_to_card`, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
-      .then((response) => {
-        console.log(response);
-        // addtocard("/add-to-cart");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  const userStatus = localStorage.getItem("status");
+  const phone = localStorage.getItem("phone");
+  const [isVerify, setIsVerify] = useState(false);
+
+  
+ 
   const [selectedQuantities, setSelectedQuantities] = useState({});
   const handleIncrement = (variant) => {
     setSelectedQuantities((prevQuantities) => ({
@@ -199,7 +145,7 @@ function ProductDetails(props) {
     thirdBanner();
   }, []);
   const loginId = localStorage.getItem("id");
-  console.log("loginId", loginId);
+  const userName = localStorage.getItem("name");
   const [selectedVariants, setSelectedVariants] = useState([]);
   const handleVariantSelection = (variant) => {
     const isSelected = selectedVariants.includes(variant);
@@ -258,11 +204,6 @@ function ProductDetails(props) {
         console.log(error);
       });
   };
-  const [typevariant, setTypeVeriant] = useState();
-  const typeValue = (e) => {
-    setTypeVeriant(e.target.value);
-  };
-  console.log("typevarianttypevariant", typevariant);
 
   const thirdBanner = () => {
     axios
@@ -274,10 +215,6 @@ function ProductDetails(props) {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  };
-  const cleanImageUrl = (imageUrl) => {
-    // Remove square brackets and escape characters
-    return imageUrl.replace(/[\[\]\\"]/g, "");
   };
 
   // Lightbox product =====
@@ -306,11 +243,25 @@ function ProductDetails(props) {
     setLightboxImageIndex(image.indexOf(mainImage));
   };
 
-
+  const handleVerify = async () => {
+    let formData = new FormData();
+    formData.append("user_id", loginId);
+    formData.append("user_name", userName);
+    await axios
+      .post("https://veejayjewels.com/api/v1/auth/verified_request", formData)
+      .then((res) => {
+        console.log("res in verify", res);
+        toast.success("Verification request sent Succsesfully");
+        setIsVerify(false);
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
+  };
   return (
     <>
       <Toaster />
-      <Header />
+      <Header setShow={setIsVerify}/>
       <div className="allPage-bgtwo">
         <Container fluid className="p-0">
           <img src={bannertwo} />
@@ -621,12 +572,18 @@ function ProductDetails(props) {
               <hr />
               <div className="showssss">
                 <Button onClick={() => {
+                  if(userStatus == "unverified"){
+                    setIsVerify(true)
+                  }else if(phone == null){
+                    addtocard('/login')
+                  }else {
                   if (Object.keys(selectedQuantities).length > 0) {
 
                     handleSubmit()
                   } else {
                     toast.error("Please select at least one item");
                   }
+                }
                 }} className="showSize">
                   Add To Cart
                 </Button>
@@ -638,6 +595,40 @@ function ProductDetails(props) {
 
 
 
+      </Modal>
+      {/* verification modal */}
+      <Modal
+        show={isVerify}
+        onHide={() => setIsVerify(false)}
+        backdrop="static"
+        keyboard={false}
+        className="order-confi"
+      >
+        <Modal.Body>
+          <div className="show-area">
+            <div className="show-areatext">
+              <div className="verify-area-new">
+                <Row>
+                  <Col lg={6}>
+                    <h3>Session Expired</h3>
+                  </Col>
+                  <Col lg={6}>
+                    <a onClick={() => setIsVerify(false)}>
+                      <i class="fa fa-times" aria-hidden="true"></i>
+                    </a>
+                  </Col>
+                </Row>
+              </div>
+            </div>
+
+            <div className="verify-popup">
+              <h4>Please Verify Again</h4>
+              <Button variant="btn" onClick={() => handleVerify()}>
+                Verification Request
+              </Button>
+            </div>
+          </div>
+        </Modal.Body>
       </Modal>
     </>
   );
